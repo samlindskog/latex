@@ -1,0 +1,57 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+
+\title{Logic For Philosophy Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+%\tableofcontents
+%\setlength{\parindent}{0cm}
+
+\section{Fundamentals}
+\begin{defi}[Logical Consequence]
+	Synonyms include "logically follows", "logically implies", "follows from". Logical consequence is \emph{truth preservation by virtue of form}. For example, "the apple was dropped" and "the apple fell" is true by virtue of the contents of these statements and not their form.
+\end{defi}
+\subsection{Formalization}
+Modern Logic is called "mathematical" or "symbolic" logic because its method is the mathematical study of formal languages. Formalized logical consequence and logical truth should be distinguished from genuine logical consequence and logical truth. For example, \(P\Rightarrow P\) is a tautology, but since it is uninterpreted, it is not a logical truth. Rather it can \emph{represent} logical truths of various kinds.\par
+Formal Languages' properties are mathematically stipulated, and some are designed to represent the logical behavior of certain words such as 'and', 'or', etc.
+\subsection{Metalogical Proofs}
+There are metalogic proofs, and there are proofs in formal systems. Metalogic proofs are phrased in natural language, and employ informal reasoning. Proofs in formal systems are phrased using sentences of formal languages, and proceed according to prescribed formal rules.
+\subsection{Application of Formalized Systems}
+Some formalized constructions shed no light at all on genuine logical consequence, e.g. a system that includes \(P\rightarrow\neg P\). Thus, the mathematical existence and coherence of a formal system must be distinguished from its value in representing genuine logical condequence and logical truth. What might it mean to say that a formal system "represents" or "models" genuine logical consequence? An example is propositional logic, which models the behavior of english words 'and', 'or', etc. The question of the nature of genuine logical consequence is an open philosophical question, analagous to the question "what is knowledge?". 
+\begin{defi}[Semantic/Model-theoretic Approach]
+	Under this approach to formalizing logical consequence, one chooses a formal language, defines a notion of model for the chosen language, defines a notion of truth-in-a-model for sentences of the language, and then represents logical consequence for the chosen language as truth-preservation in models (\(\phi\) is the logical consequence of \(\psi_1,\psi_2,\ldots\) iff \(\phi\) is true in any model using the same framework in which \(\psi_1,\psi_2,\ldots\) is true.)\footnote{As stated, this isn't a theory of genuine logical consequece. It's only a way of representing logical consequence using formal languages. Truth-preservation in all models leads to the meaning of logical expressions guaranteeing a certain outcome. This is merely a preference for a certain approach to representing logical consequence.}
+\end{defi}
+\begin{defi}[Proof-theoretic Approach]
+	We define up a relation of provability between sentences of formal languages. We do this by defining certain acceptable "transitions" between sentences of formal languages, and then saying that a sentence \(\phi\) is provable from sentences \(\psi_1,\psi_2,\ldots\) if and only if there is some way of moving by acceptable transitions from \(\psi_1,\psi_2,\ldots\) to \(\phi\).
+\end{defi}
+\begin{defi}[Logical Constants]
+	The words that construct logical forms including but not limited to \(\neg, \vee, \wedge,\forall\) are called logical constants.
+\end{defi}
+\section{Propositional Logic}
+\begin{defi}[Well Formed Formula]
+	\begin{enumerate}
+		Syntactic inductive definition for wffs:
+		\item Every sentence letter is a PL-wff.
+		\item if \(\phi\) and \(\psi\) are PL-wffs then \((\phi\rightarrow\psi)\) and \(\sim\phi\) are also PL-wffs.
+	\end{enumerate}
+\end{defi}
+\end{document}

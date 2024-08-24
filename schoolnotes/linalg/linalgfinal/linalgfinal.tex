@@ -1,0 +1,295 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+
+\title{Linalg Fall 2023 Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Vectors, Matrices, and Linear Systems}
+\begin{defi}[Elementary Row Operations]
+	There are three elementary row operationss:\footnote{If a matrix \(B\) can be obtained from a matrix \(A\) by means of row operations, then \(A\) is \emph{row equivalent} to \(B\). If two matrices are row-equivalent, they have the same solutions sets.}
+	\begin{enumerate}
+		\item (Row Interchange) Interchange the \(i\)th and \(j\)th row vectors in a matrix.
+		\item (Row Scaling) Multiply the \(i\)th row vector in a matrix by a nonzero scalar \(s\).
+		\item (Row Addition) Add to the \(i\)th row vector of a matrix \(s\) times the \(j\)th row vector.
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Elementary Matrix]
+A matrix which differs from the identity matrix my one elementary row operation.
+\end{defi}
+\begin{defi}[Transpose Matrix]
+	The matrix \(B\) is the transpose of matrix \(A\) if \(\forall b\in B\wedge\forall a\in A\), we have \(b_{ij}=a_{ji}\)
+\end{defi}
+\begin{defi}[Symmetric Matrix]
+	If \(A\) is a matrix and \(A=A^T\), then \(A\) is symmetric.\footnote{Symmetric matrices have the property that any two symmetric matrices multiplied by any two scalars, added to each other form a symmetric matrix.}
+\end{defi}
+\begin{defi}[Inverse Matrix]
+	The inverse of an \(n\times n\) matrix \(A\) is the \(n\times n\) matrix denoted \(A^{-1}\) such that \(AA^{-1}=I\).\footnote{\(A^{-1}A=I\) as well. To think about why this is, see that when using the gauss-jordan method, the right side of the augmented matrix is the same as the left side after it has been reduced.}
+\end{defi}
+\begin{defi}[Row-Echelon Form]
+ A matrix is in row-echelon form if it satisfies two conditions:	
+	\begin{enumerate}
+		\item All rows containing only zeros appear below rows with nonzero entries.
+		\item The first nonzero entry in any row appears in a column to the right of the first nonzero entry in any preceding row.\footnote{The first nonzero entry in a row is the pivot for that row. The number of pivots in a reduced matrix is equal to the dimension of that matrix}
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Reduced Row-Echelon Form]
+	A matrix in row-echelon form with all pivots equal to \(1\) and with zeros above as well as below each pivot is said to be in reduced row-echelon form.\footnote{The reduced row-echelon form of a matrix is unique.}
+\end{defi}
+\subsection{Row Echelon Form Calculation Procedures}
+The procedure below is known as Gauss reduction with back substitution.
+\begin{enumerate}
+	\item Use row interchange to ensure the first row has a nonzero entry in the furthest left nonzero column.
+	\item Use row scaling to change the pivot of the first row to 1.
+	\item Use row add the first row to the other rows so that each entry below the first row's pivot is zero.
+	\item Mentally cross off first row and column, and repeat with new matrix from step 1 until all pivots are 1.
+\end{enumerate}
+\begin{defi}[Consistency]
+	A linear system having no solutions is inconsistent. If it has one or more solutions, the linear system is said to be consistent.
+\end{defi}
+\begin{defi}[Matrix Multiplication]
+	Multiplication between two matrices is defined as follows:
+	\begin{equation*}
+		EA=\begin{pmatrix}
+			1&0&0\\
+			0&0&1\\
+			0&1&0
+		\end{pmatrix}
+		\times
+		\begin{pmatrix}
+			a_{11}&a_{12}&a_{13}\\
+			a_{21}&a_{22}&a_{23}\\
+			a_{31}&a_{32}&a_{33}
+		\end{pmatrix}=
+		\begin{pmatrix}
+			a_{11}&a_{12}&a_{13}\\
+			a_{31}&a_{32}&a_{33}\\
+			a_{21}&a_{22}&a_{23}
+		\end{pmatrix}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Homogeneous System]
+	A linear system \(Ax=b\) is homogeneous if \(b=0\).\footnote{The solution set of every homogenous system with \(n\) unknowns is a subspace of \(\mathbb{R}^n\).}
+\end{defi}
+\begin{defi}[Row Space]
+	The span of the row vectors of a matrix \(A\) is the row space of \(A\).
+\end{defi}
+\begin{defi}[Column Space]
+	The span of the column vectors of a matrix \(A\) is the column space of \(A\).
+\end{defi}
+\begin{defi}[Nullspace]
+	The solution set of \(Ax=0\), is the nullspace of \(A\).
+\end{defi}
+\begin{thm}[Column Space Criterion]
+	A linear system \(Ax=b\) has a solution if and only if \(b\) is in the column space of \(A\).
+\end{thm}
+\begin{thm}
+	Let \(Ax=b\) be a linear system. If \(p\) is any particular solution of \(Ax=b\) and \(h\) is a solution of the corresponding homogeneous system \(Ax=0\), then \(p+h\) is a solution of \(Ax=b\).\footnote{Every solution has this form \(p+h\), so that the general solution is \(x=p+h\)}
+\end{thm}
+\section{Dimension, Rank, and Linear Transformations}
+\begin{defi}[Ordered Basis]
+	By convention, set notation does not denote order; for example, a basis \(\{b_1,b_2\}\) is equal to a basis \(\{b_2,b_1\}\). To denote order, we use parentheses, \(()\). We denote an \emph{ordered basis} of \(n\) vectors in \(V\) by \(B=(b_1,b_2,\ldots,b_n)\).\footnote{Ordered bases are used to specify the coordinate vector of a vector relative to a basis. Otherwise, how would you know which individual basis vectors the elements of \(v_{B}\) refer to?}
+\end{defi}
+\begin{defi}[Standard Ordered Basis]
+	We regard the standard basis vectors as having a natural order, \(e_1=[1,0]\), \(e_2=[0,1]\). The ordered basis \((E=e_1,\ldots,e_n)\) is the \emph{standard ordered basis} for \(\mathbb{R}^n\).\footnote{To calculate a coordinate vector for \(v\) relative to basis \(B\), use Gauss-Jordan reduction of the form \([b_1,\ldots,b_n\mid v]\) to find \(v_B\).}
+\end{defi}
+\begin{cor}
+	The coordinate vector of \(v+w\) relative to basis \(B\) is:
+	\begin{equation*}
+		(v+w)_B=v_b+w_b
+	\end{equation*}
+\end{cor}
+\begin{defi}[Linear Transformation of Real Vector Space]
+	A function \(T:\mathbb{R}^n\rightarrow \mathbb{R}^m\) is a linear transformation if it satisfies two conditions:
+	\begin{enumerate}
+		\item\(T(u+v)=T(u)+T(v)\) (Preservation of addition)
+		\item\(T(ru)=rT(u)\) (Preservation of scalar multiplication)
+	\end{enumerate}
+\end{defi}
+\subsection{Matrices and Linear Transformations}
+\(T:\mathbb{R}^2\rightarrow\mathbb{R}^3\) defined by \(T([x_1,x_2])=[x_2,x_1-x_2,2x_1+x_2]\) is a linear transformation. This can be shown in column-vector notation as:
+\begin{equation*}
+	T\left(\begin{bmatrix}x_1\\x_2\end{bmatrix}\right)=
+		\begin{bmatrix}x_2\\x_1-x_2\\2x_1+x_2\end{bmatrix}=
+		\begin{bmatrix}0&1\\1&-1\\2&1\end{bmatrix}
+			\begin{bmatrix}x_1\\x_2\end{bmatrix}
+\end{equation*}
+If \(A=\begin{bmatrix}T(e_1)&\ldots&T(e_n)\end{bmatrix}\) then \(T(x)=Ax\) for each column vector \(x\in\mathbb{R}^n\). \(A\) is referred to as the \emph{standard matrix representation} of the linear transformation \(T\).
+
+Let \(T:\mathbb{R}^n\rightarrow\mathbb{R^m}\) be a linear transformation with standard matrix representation \(A\).
+\begin{enumerate}
+	\item The \emph{range} of \(T[\mathbb{R}^n]\) of \(T\) is the column space of \(A\) in \(\mathbb{R}^m\).\footnote{The dimension of range \(T\) is called the \emph{rank} of \(T\).}
+	\item The \emph{kernel} of \(T\) is the nullspace of \(A\) and is denoted ker\((T)\).\footnote{The dimension of ker\((T)\) is called the \emph{nullity} of \(T\).}
+	\item If \(W\) is a subspace of \(\mathbb{R}^n\), then \(T[W]\) is a subspace of \(\mathbb{R}^m\).
+\end{enumerate}
+\begin{defi}[Linear Transformation]
+	A function \(T\) that maps a vector space \(V\) into a vector space \(V'\) is a \emph{linear transformation} if it satisfies two conditions:
+\begin{enumerate}
+	\item \(T(u+v)=T(u)+T(v)\)
+	\item \(T(ru)=rT(u)\)
+\end{enumerate}
+\end{defi}
+\begin{defi}[Image]
+	For the linear transformation \(T:V\rightarrow V'\), if \(W\subseteq V\), then \(T[W]=\{T(w)\mid w\in W\}\) is the image of \(W\) under \(T\).
+\end{defi}
+\begin{defi}[Domain, Codomain, and Range]
+	For a linear transformation \(T:V\rightarrow V'\), the set \(V\) is the \emph{domain} of \(T\), and the set \(V'\) is the \emph{codomain} of \(T\). \(T[V]\) is the \emph{range} of \(T\).
+\end{defi}
+\begin{defi}[Inverse Image and Kernel]
+	Suppose a linear transformation \(T:V\rightarrow V'\). If \(W'\subseteq V'\), then \(T^{-1}[W']=\{v\in V\mid T(v)\in W'\}\) is the \emph{inverse image} of \(W'\) under \(T\). In particular, \(T^{-1}[\{0'\}]\) is the \emph{kernel} of \(T\), denoted by ker\((T)\).
+\end{defi}
+\begin{defi}[Invertable Transformation]
+	Let \(V\) and \(V'\) be vector spaces. A linear transformation \(T:V\rightarrow V'\) is \emph{invertable} if there exists a linear transformation \(T^{-1}:V'\rightarrow V\) such that \(T^{-1}\circ T\) is the identity transformation on \(V\) and \(T\circ T^{-1}\) is the identity transformation of \(V'\).
+\end{defi}
+\begin{cor}
+	An invertable linear transformation \(T\) must be bijective:
+	\begin{enumerate}
+		\item If \(v_1\neq v_2\), then \(T(v_1)\neq T(v_2)\). (injective)\footnote{A consequence of this is that the ker\((T)=\{0\}\)}
+		\item If \(v'\) is in \(V'\), then \(T(v)=v'\) for some \(v\in V\). (surjective)
+	\end{enumerate}
+\end{cor}
+\begin{defi}[Isomorphism]
+	An isomorphism is a linear transformation \(T:V\rightarrow V'\) that is bijective.
+\end{defi}
+\begin{thm}
+	Let \(V\) be a finite-dimesional vector space with ordered basis \(B=(b_1,b_2,\ldots,b_n)\). The map \(T:V\rightarrow\mathbb{R}^n\) defined by \(T(v)=v_B\), the coordinate vector v relative to \(B\), is an isomorphism.
+\end{thm}
+\section{Determinants, and Eigenstuff}
+\begin{defi}[Second-order Determinant]
+	The area formed by the parallelogram of two vectors \([a_1, a_2]\) and \(b_1, b_2\) in a \(2\times 2\) matrix is called the second-order determinant, and is calculated as follows:
+	\begin{equation*}
+		\text{Area}=\text{det}(A)=\begin{vmatrix}a_1&a_2\\b_1&b_2\end{vmatrix}=a_1b_2-a_2b_1
+	\end{equation*}
+\end{defi}
+\begin{defi}[Third-order Determinant]
+	The volume formed by the parallelepiped of three vectors \([a_1,a_2,a_3]\), \([b_1,b_2,b_3]\) and \([c_1,c_2,c_3]\) is the third-order determinant of these vectors. \((b\times c)\cdot a\) is the determinant of the matrix:
+	\begin{equation*}
+		A=\begin{bmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{bmatrix}
+	\end{equation*}
+	and is denoted by det\((A)\).
+\end{defi}
+\begin{thm}[Determinant Criterion for Invertibility]
+	A square matrix \(A\) is invertible iff det\((A)\neq 0\). Equivelently, \(A\) is singular iff det\((A)=0\).
+\end{thm}
+\begin{cor}[Computation of determinants]
+	The determinant of an \(n\times n\) matrix \(A\) can be computed as follows:
+	\begin{enumerate}
+		\item Reduce \(A\) to an echelon form, using only row addition and row interchanges.
+		\item If any of the matrices appearing in the reduction contains a row of zeros, then det\((A)=0\)
+		\item Otherwise, det\((A)=(-1)^{r}\cdot(\text{product of pivots})\), where \(r\) is the number of row interchanges performed.
+	\end{enumerate}
+\end{cor}
+\begin{defi}[Minor Matrix]
+	The minor matrix \(A_{ij}\) of an \(n\times n\) matrix \(A=[a_{ij}]\) is the \((n-1)\times(n-1)\) matrix obtained by crossing out the \(i\)th and \(j\)th column of \(A\). Using \(\lvert A_{ij}\rvert\) as notation for the determinant of the minor matrix \(A_{ij}\), we can express the determinant of a \(3\times 3\) matrix \(A\) as:
+	\begin{equation*}
+		\text{det}(A)=a_{11}\lvert A_{11}\rvert-a_{12}\lvert A_{12}\rvert+a_{12}\lvert A_{12}\rvert
+	\end{equation*}
+\end{defi}
+\begin{defi}[Cofactor]
+	The cofactor of \(a'_{ij}\) in \(A\) is:
+	\begin{equation*}
+		a'_{ij}=(-1)^{i+j}\text{det}(A_{ij})
+	\end{equation*}
+\end{defi}
+\begin{cor}
+	The determinant of a \(1\times 1\) matrix is its sole entry; it is a first-order determinant. Let \(n\geq 1\), and assume that determinants of order less than \(n\) have been defined. Let \(A=[a_{ij}]\) be an \(n\times n\) matrix. The determinant of \(A\) is:\footnote{A consequence of this is that det\((A)=\)det\((A^T)\).}
+	\begin{equation*}
+		\text{det}(A)=\sum_{i=1}^{n}a_{1i}a'_{1i}
+	\end{equation*}
+\end{cor}
+\begin{defi}[Row-Interchange Property]
+	If two different rows of a square matrix \(A\) are interchanged, the determinant of the resulting matrix is \(-\)det\((A)\).
+\end{defi}
+\begin{defi}[Scalar-Multiplication Property]
+	If a single row of a square matrix \(A\) is multiplied by a scalar \(r\), the determinant of the resulting matrix is \(r\cdot\)det\((A)\).
+\end{defi}
+\begin{thm}[Determinant Criterion for Invertibility]
+	A square matrix \(A\) is invertible iff det\((A)\neq 0\).
+\end{thm}
+\begin{defi}[Multiplicitive Property]
+	If \(A\) and \(B\) are \(n\times n\) matrices, then det\((AB)=\)det\((A)\cdot\)det\((B)\).
+\end{defi}
+\begin{defi}[Row-Addition Property]
+	If the product of one row of a square matrix \(A\) by a scalar is added to a different row of \(A\), the determinant of the resulting matrix is the same as det\((A)\).
+\end{defi}
+\begin{defi}[Eigenvalues and Eigenvectors]
+	Let \(A\) be an \(n\times n\) matrix. A scalar \(\lambda\) is an \emph{eigenvalue} of \(A\) if there is a nonzero column vector \(v\) in \(\mathbb{R}^n\) such that \(Av=\lambda v\). The vector \(v\) is then an \emph{eigenvector} of \(A\) corresponding to \(\lambda\).
+\end{defi}
+\subsection{uses for eigenvectors and eigenvalues}
+Eigenvectors are good for calculating recursive transformations, because \(A^kv=\lambda^2v\). For many matrices \(A\), the computation of \(A^kx\) for a general vector \(x\) is greatly simplified by first finding all eigenvalues and eigenvectors of \(A\). Suppose that we can find a basis \(\{b_1,\ldots,b_n\}\) for \(\mathbb{R}^n\) consisting of eigenvectors of \(A\), so that for eigenvalues \(\lambda_1,\ldots,\lambda_n\) we have:
+\begin{equation*}
+	Ab_i=\lambda_ib_i\text{ for }1\leq i\leq n
+\end{equation*}
+To compute \(A^k\), we first express \(x\) as a linear combination of these basis eigenvectors:
+\begin{equation*}
+	x=d_1b_1+\ldots+d_nb_n
+\end{equation*}
+Because \(A^kb_i=\lambda_i^kb_i\), we obtain:
+\begin{equation*}
+	A^kx=\sum_{i=1}^n\lambda_i^kd_ib_i
+\end{equation*}
+\begin{thm}
+	Let \(A\) be an \(n\times n\) matrix.
+	\begin{enumerate}
+		\item If \(\lambda\) is an eigenvalue of \(A\) with \(v\) as a corresponding eigenvector, then \(\lambda^k\) is an eigenvalue of \(A^k\), again with \(v\) as a corresponding eigenvector, for any positive integer \(k\).
+		\item If \(\lambda\) is an eigenvalue of a invertible matrix \(A\) with \(v\) as a corresponding eigenvector, then \(\lambda\neq 0\) and \(1/\lambda\) is an eigenvalue of \(A^{-1}\), again with \(v\) as a corresponding eigenvector.
+		\item If \(\lambda\) is an eigenvector of \(A\), then the set \(E_\lambda\) consisting of the zero vector together with all eigenvectors of \(A\) for this eigenvalue \(\lambda\) is a subspace of \(n\)-space, the \emph{eigenspace} of \(\lambda\).
+	\end{enumerate}
+\end{thm}
+\begin{thm}
+	Let \(A\) be an \(n\times n\) matrix, and \(v_1,\ldots,v_n\) be nonzero vectors in \(n\)-space. Let \(C\) be the \(n\times n\) matrix having \(v_j\) as its \(j\)th column vector, and let \(D\) be a diagonal matrix with \(\lambda_1,\ldots,\lambda_n\) be its scalars from the (1)st to the \(n\)th columns respectively. Then \(AC=CD\) iff \(\lambda_1,\ldots,\lambda_n\) are eigenvalues of \(A\) and \(v_j\) is an eigenvector of \(A\) corresponding to \(\lambda_j\) for \(j=1,\ldots,n\).
+\end{thm}
+\begin{defi}[diagonalizable]
+	An \(n\times n\) matrix \(A\) is \emph{diagonalizable} if there exists an invertible matrix \(C\) such that \(C^{-1}AC=D\), a diagonal matrix. The matrix \(C\) is said to \emph{diagonalize} the matrix \(A\).
+\end{defi}
+\begin{cor}
+	An \(n\times n\) matrix \(A\) is diagonalizable if and only if \(n\)-space has a basis consisting of eigenvectors of \(A\).\footnote{This make sense because if two eigenvectors were linearly dependent, they would both correspond to the same eigenvalue. Linearly independent eigenvector can occur in the same eigenspace.}
+\end{cor}
+\begin{cor}
+	Let an \(n\times n\) matrix \(A\) have \(n\) eigenvectors and eigenvalues, giving rise to the matrices \(C\) and \(D\) so that \(AC=CD\) as described above. If the \(n\) eigenvectors are independent, then \(C\) is an invertible matrix and \(C^{-1}AC=D\). Under these conditions, we have:
+	\begin{equation*}
+		A^k=CD^kC^{-1}
+	\end{equation*}
+\end{cor}
+\begin{defi}
+	An \(n\times n\) matrix \(P\) is \emph{similar} to an \(n\times n\) matrix \(Q\) if there exists an invertible \(n\times n\) matrix \(C\) such that \(C^{-1}PC=Q\).
+\end{defi}
+\begin{defi}[Algebraic and Geometric Multiplicity]
+	The \emph{algebraic multiplicity} of an eigenvalue \(\lambda_i\) of \(A\) is its multiplicity as a root of the characteristic equation of \(A\). Its \emph{geometric multiplicity} is the dimension of the eigenspace \(E_\lambda\).
+\end{defi}
+\begin{thm}
+	An \(n\times n\) matrix \(A\) is diagonalizable iff the algebraic multiplicity of each (possible complex) eigenvalue is equal to its geometric multiplicity.
+\end{thm}
+\section{Projection}
+\begin{thm}
+	The projection \(p\) of \(b\) on \(sp(a)\) in \(\mathbb{R}^n\) is:
+	\begin{equation*}
+		p=\frac{b\cdot a}{a\cdot a}a
+	\end{equation*}
+\end{thm}
+\begin{defi}[Orthogonal Complement]
+	Let \(W\) be a subspace of \(\mathbb{R}^n\). The set of all vectors in \(\mathbb{R}^n\) that are orthogonal to every vector in \(W\) is the \emph{orthogonal complement} of \(W\), and is denoted \(W^\bot\). The orthogonal complement of the row space of \(A\), the generating set for \(W\), is the nullspace of \(A\).
+\end{defi}
+\begin{thm}[Orthogonal Bases]
+	Let \(\{v_1,\ldots,v_n\}\) be an orthogonal set of nonzero vectors in \(\mathbb{R}^n\). Then this et is independent and consequently is a basis for the subspace sp\((v_1,\ldots,v_n)\).
+\end{thm}
+\end{document}

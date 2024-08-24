@@ -1,0 +1,233 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+
+\title{Discreet Fall 2023 Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Relations}
+\begin{defi}[Relation]
+	Suppose \(A\) and \(B\) are sets. Then a set \(R\subseteq A\times B\) is called a relation from \(A\) to \(B\). A set \(R\subseteq A\times A\) is called a relation on \(A\).
+\end{defi}
+\begin{defi}[Relation Dom]
+	Suppose \(R\) is a relation from \(A\) to \(B\). Then the domain of \(R\) is the set:
+	\begin{equation*}
+		\text{Dom}(R)=\{a\in A\mid\exists b\in B((a,b)\in R)\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Relation Range]
+	Suppose \(R\) is a relation from \(A\) to \(B\). Then the domain of \(R\) is the set:
+	\begin{equation*}
+		\text{Ran}(R)=\{b\in B\mid\exists a\in A((a,b)\in R)\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Inverse Relation]
+	The inverse of a relation \(R\) from \(A\) to \(B\) is the relation \(R^{-1}\) from \(B\) to \(A\) defined:
+	\begin{equation*}
+		R^{-1}=\{(b,a)\in B\times A\mid (a,b)\in R\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Composition]
+	Suppose \(R\) a relation from \(A\) to \(B\), and \(S\) a relation from \(B\) to \(C\). Then the composition of \(S\) and \(R\) is the relation \(S\circ R\) from \(A\) to \(C\) defined as follows:
+	\begin{equation*}
+		S\circ R=\{(a,c)\in A\times C\mid\exists b\in B((a,b)\in R\wedge (b,c)\in S)\}
+	\end{equation*}
+\end{defi}
+\begin{defi}
+	Suppose \(R\) is a relation on \(A\)
+	\begin{enumerate}
+		\item \(R\) is \emph{reflexive} if \(\forall x\in A(xRx)\).
+		\item \(R\) is \emph{symmetric} if \(\forall x,y\in A(xRy\Rightarrow yRx)\).
+		\item \(R\) is \emph{transitive} if \(\forall x,y,z\in A((xRy\wedge yRz)\Rightarrow xRz)\).
+		\item \(R\) is \emph{antisymmetric} if \(\forall x\in A\forall y\in A((xRy\wedge yRx)\Rightarrow x=y)\).
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Partial and Total Orders]
+	Suppose \(R\) is a relation on set \(A\). Then \(R\) is called a \emph{partial order} on \(A\) if it is reflexive, transitive, and antisymmetric. It is called a \emph{total order} on \(A\) if it is a partial order, and \(\forall x,y\in A(xRy\vee yRx)\).
+\end{defi}
+\begin{defi}[R-smallest and R-minimal]
+	Suppose \(R\) is a partial order on a set \(A\) and \(B\subseteq A\). Then \(b\in B\) is called an \(R\)\emph{-smallest} element of \(B\) if \(\forall x\in B(bRx)\). It is called an \(R\)\emph{-minimal} element of \(B\) if \(\forall x\in B(xRb\Rightarrow x=b)\).
+\end{defi}
+\begin{defi}[R-greatest and R-maximal]
+	Suppose \(R\) is a partial order on a set \(A\) and \(B\subseteq A\). Then \(b\in B\) is called an \(R\)\emph{-greatest} element of \(B\) if \(\forall x\in B(xRb)\). It is called an \(R\)\emph{-maximal} element of \(B\) if \(\forall x\in B(bRx\Rightarrow x=b)\).
+\end{defi}
+\begin{defi}[Upper and Lower Bound]
+	Suppose \(R\) is partial order on \(A\), \(B\subseteq A\). Then \(a\in A\) is called an \(R\)\emph{-lower bound} for \(B\) if \(\forall x\in B(aRx)\). Similarly, \(a\in A\) is an \(R\)\emph{-upper bound} for \(B\) if \(\forall x\in B(xRa)\).
+\end{defi}
+\begin{defi}[l.u.b and g.l.b]
+	Suppose \(R\) is a partial order on \(A\), and \(B\subseteq A\). Let \(U\) be the set of all upper bounds for \(B\), and \(L\) the set of all lower bounds. If \(U\) has a smallest element, then this smallest element is called the \emph{least upper bound} of \(B\). If \(L\) has a largest element, then this largest element is called the \emph{greatest lower bound} of \(B\).
+\end{defi}
+\begin{defi}[Equivalence Relation]
+	Suppose that \(R\) is a relation of a set \(A\). Then \(R\) is called an \emph{equivalence relation} on \(A\) if it is reflexive, symmetric, and transitive.
+\end{defi}
+\begin{defi}[Equivalence Class]
+	Suppose \(R\) is an equivalence relation of set \(A\), and \(x\in A\). Then the \emph{equivalence class} of \(x\) with respect to \(R\) is the set:
+	\begin{equation*}
+		[x]_R=\{y\in A\mid yRx\}
+	\end{equation*}
+	The set of all equivalence classes of elements of \(A\) is called \(A\) \emph{modulo} \(R\), and is denoted \(A/R\). Thus:
+	\begin{equation*}
+		A/R=\{[x]_R\mid x\in A\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Pairwise Disjoint]
+	Let \(\mathcal{F}\) be a family of sets. We will say that \(\mathcal{f}\) is \emph{pairwise disjoint} if every pair of distinct elements of \(\mathcal{F}\) are disjoint, or in other words:
+	\begin{equation*}
+		\forall X,Y\in\mathcal{F}(X\neq Y\Rightarrow X\cap Y=\emptyset)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Congruence]
+	Suppose \(m\in\mathbb{Z}\setminus\{0\}\). for any \(x,y\in\mathbb{Z}\), we will say that \(x\) is congruent to \(y\) modulo \(m\) if \(\exists k\in\mathbb{Z}(x-y=km)\), denoted as \(x\equiv y\) (mod \(m\)).
+\end{defi}
+\section{Functions}
+\begin{defi}[Function]
+	Suppose \(F\) is a relation from \(A\) to \(B\). Then \(F\) is called a function from \(A\) to \(B\) if for every \(a\in A\) there is exactly one \(b\in B\) sucha that \((a,b)\in F\), i.e:
+	\begin{equation*}
+		\forall a\in A\exists !b\in B((a,b)\in F)
+	\end{equation*}
+\end{defi}
+\begin{notat}
+	Suppose \(f:A\rightarrow B\). If \(a\in A\), we write \(f(a)=b\) for \((a,b)\in f\), where \(b\) is called "the value of \(f\) at \(a\)", or "the image of \(a\) under \(f\)".
+\end{notat}
+\begin{defi}[Function Range]
+	The definition of range for relations can be used, or:
+	\begin{equation*}
+		\text{Ran}(f)=\{b\in B\mid \exists a\in A(f(a)=b)\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[One-To-One (Injective)]
+	\begin{equation*}
+		\forall a_1,a_2\in A(f(a_1)=f(a_2)\Rightarrow a_1=a_2)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Onto (Surjective)]
+	\begin{equation*}
+		\forall b\in B\exists a\in A(f(a)=b)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Image]
+	Suppose \(f:A\rightarrow B\) and \(X\subseteq A\). Then the \emph{image} of \(X\) under \(f\) is the set \(f(X)\) defined as follows:
+	\begin{equation*}
+		f(X)=\{f(x)\mid x\in X)\}
+	\end{equation*}
+	In particular, \(f(\emptyset)=\emptyset\) and \(f(A)=\)Ran\((f)\).
+\end{defi}
+\begin{defi}[Inverse Image]
+	Suppose \(f:A\rightarrow B\) and \(Y\subseteq B\). Then the \emph{inverse image} of \(Y\) under \(f\) is the set \(f^{-1}(Y)\) defined as follows:\footnote{If \(f\) is not injective and surjective, then \(f^{-1}\) is not a function, so the notation "\(f^{-1}(y)\)" is meaningless.}
+	\begin{equation*}
+		f^{-1}(Y)=\{a\in A\mid f(a)\in Y\}
+	\end{equation*}
+	In particular, \(f^{-1}(\emptyset)=\emptyset\), and:
+	\begin{equation*}
+		f^{-1}(B)=\{a\in A\mid f(a)\in B\}=A
+	\end{equation*}
+\end{defi}
+\section{Mathematical Induction}
+\subsection{Proof by Mathematical Induction}
+To prove a goal of the form \(\forall n\in\mathbb{N}(P(n))\), first prove \(P(0)\), and then prove \(\forall n\in\mathbb{N}(P(n)\rightarrow P(n+1))\). The first of these proofs is called the \emph{base case}, and the second the \emph{induction step}. \(P(n)\) is called the \emph{inductive hypothesis}.
+\subsection{Strong Induction}
+To prove a goal of the form \(\forall n\in\mathbb{N}P(n)\), prove that \(\forall n\in\mathbb{N}[(\forall k\in\mathbb{N}^{\leq n-1}P(k)\rightarrow P(n))]\), where \(\mathbb{N}^{\leq n-1}\) denotes all natural numbers no larger than \(n-1\).
+\begin{thm}[Division Algorithm]
+	For all \(n,m\in\mathbb{Z}\) with \(m\neq 0\), there exists unique \(q,r\in\mathbb{Z}\) with \(0\leq r<\rvert m\lvert\) such that \(n=mq+r\). The numbers \(q\) and \(r\) are called the quotient and remainder when \(n\) is divided by \(m\).
+\end{thm}
+\begin{defi}
+	Let \(m,n\in\mathbb{Z}\).
+	\begin{enumerate}
+		\item If \(d\mid m\) and \(d\mid n\) for some \(d\in\mathbb{Z}\setminus\{0\}\), we say that \(d\) is a \emph{common divisor} of \(m\) and \(n\).
+		\item Assume \(m\neq 0\) or \(n\neq 0\). The largest common (positive) divisior of \(m\) and \(n\) is called the \emph{greatest common divisor} of \(m\) and \(n\), denoted by gcd\((m,n)\), i.e.
+			\begin{equation*}
+			\end{equation*}
+	\end{enumerate}
+\end{defi}
+\section{Infinite Sets and Counting}
+\begin{defi}[Equinumerous]
+Let \(A\) and \(B\) be sets. We'll say that \(A\) is \emph{equinumerous} with \(B\) if there is a function \(f:A\rightarrow B\) that is one-to-one and onto. We'll write \(A\sim B\) to indicate that \(A\) is equinumerous with \(B\).
+\end{defi}
+\begin{defi}[Finite]
+	For each \(n\in\mathbb{N}\), let \(I_n=\{1,\ldots,n\}\). A set \(A\) is called \emph{finite} if there is an \(n\in\mathbb{N}\) such that \(I_n\sim A\). Otherwise, \(A\) is infinite.
+\end{defi}
+\begin{defi}[Cardinality]
+If \(A\) is a finite set and \(A\sim I_n\) for some \(n\in\mathbb{N}\), then the \emph{cardinality} of \(A\), denoted \(\lvert A\rvert\), is defined to be \(n\). In particular, \(\lvert\emptyset\rvert=0\).
+\end{defi}
+\begin{defi}[Denumerable]
+	A set \(A\) is called \emph{denumerable} is \(\mathbb{Z}^+\sim A\). It is called \emph{countable} if it is either finite of denumerable. Otherwise, it is \emph{uncountable}.
+\end{defi}
+\begin{cor}[Addition Rule]
+	Let \(A\) and \(B\) be finite sets and \(A\cap B=\emptyset\). Then:
+	\begin{equation*}
+		\lvert A\cup B\rvert=\lvert A\rvert+\lvert B\rvert
+	\end{equation*}
+\end{cor}
+\begin{thm}
+	Suppose \(A\) and \(B\) finite sets. Then:
+	\begin{equation*}
+		A\cup B=\lvert A\rvert+\lvert B\rvert-\lvert A\cap B\rvert
+	\end{equation*}
+	\begin{IEEEproof}
+		Suppose \(A\vee B\) is the empty set. Then \(A\cap B=\emptyset\) and \(\lvert A\cap B\rvert=0\). In the case that one of \(A\) or \(B\) is not the empty set, suppose (without loss of generality) \(A=\{a_1,\ldots,a_l\}\) and \(B=\emptyset\) and \(l\in\mathbb{N}\). Then \(A\cup B=A\) and \(\lvert B\rvert=0\) and thus \(\lvert A\cup B\rvert=\lvert A\rvert+\lvert B\rvert-\lvert A\cap B\rvert=l\). In the case \(A\wedge B=\emptyset\), trivially \(\lvert A\cup B\rvert=\lvert A\rvert +\lvert B\rvert -\lvert A\cap B\rvert\).\par
+		Suppose \(A\wedge B\) are not the empty set. Suppose then \(A=\{a_1,\ldots, a_l\}\) and \(B=\{b_1,\ldots, b_r\}\), with \(l,r\in\mathbb{Z^+}\) and \(\forall l\forall r(a_l\neq b_r)\). Then \(A\cup B=\{a_1,\ldots, a_l,b_1,\ldots, b_r\}\) and \(\lvert A\rvert=l\) and \(\lvert B\rvert=r\) and \(A\cap B=\emptyset\) so \(\lvert A\cap B\rvert=0\). It follows \(\lvert A\cup B\rvert=l+r=\lvert A\rvert+\lvert B\rvert+\lvert A\cap B\rvert\). Suppose now \(\exists l\exists r(a_l=b_r)\). For \(A\) with \(l\) elements and \(B\) with \(r\) elements as defined above, suppose \(A=\{a_1,\ldots, a_s,x_1,\ldots, x_n\}\) and \(B=\{b_1,\ldots b_t,x_1,\ldots, x_n\}\) and \(s,t,n\in\mathbb{Z^{+}}\) with \(s+n=l\) and \(t+n=r\). Then, because \(A\cap B=\{x_1,\ldots,x_n\}\), it follows \(\lvert A\cap B\rvert=n\) and \(\lvert A\cup B\rvert=s+t+n=\lvert A\rvert+\lvert B\rvert-\lvert A\cap B\rvert=l+r-n=s+n+t+n-n=s+t+n\).
+	\end{IEEEproof}
+\end{thm}
+\begin{cor}
+	Let \(A\) and \(B\) be finite sets. Then:
+	\begin{equation*}
+		\lvert A\setminus B\rvert=\lvert A\rvert-\lvert A\cap B\rvert
+	\end{equation*}
+\end{cor}
+\begin{defi}[Floor Function]
+	Let \(a\in\mathbb{R}\). Define the \emph{floor} funciton of \(a\) by:
+	\begin{equation*}
+		\lfloor a\rfloor=\text{max}\{n\in\mathbb{Z}\mid n\leq a\}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Addition Rule]
+\end{defi}
+Let \(A_1,\ldots, A_n\) be finite sets. Then:
+\begin{equation*}
+	\lvert A_1\cup\ldots\cup A_n\rvert=\lvert A_1\rvert+\ldots+\lvert A_n\rvert
+\end{equation*}
+\begin{defi}[Multiplication Rule]
+	Let \(A_1,\ldots,A_n\) be finite sets. Then:
+	\begin{equation*}
+		\lvert A_1\times\ldots\times A_n\rvert=\prod_{i=1}^n\lvert A_i\rvert
+	\end{equation*}
+\end{defi}
+\begin{defi}[Permutation]
+We define a permutation to be a set of distinct symbols which are arranged in order. An \(r\)-permutation of \(n\) symbols is a permutation of \(r\) of the \(n\) symbols. The number of \(r\)-permutations is:
+\begin{equation*}
+	P(n,r)=\frac{n!}{(n-r)!}
+\end{equation*}
+\end{defi}
+\begin{defi}[Combination]
+	An \(r\)-combination of \(n\) distinct objects is any collection of \(r\) objects. The number of \(r\)-combinations of \(n\) objects is:
+	\begin{equation*}
+		\begin{pmatrix}n//r\end{pmatrix}=\frac{P(n,r)}{r!}
+	\end{equation*}
+	or in other words:
+	\begin{equation*}
+		\frac{n!}{r!(n-r)!}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Pigeonhole Principle]
+	Let \(n,m\in\mathbb{Z}^+\) and \(n>m\). Suppose we have \(n\) objects that need to be placed in \(m\) boxes. Then at least one box has at least two objects in it.
+\end{defi}
+\end{document}

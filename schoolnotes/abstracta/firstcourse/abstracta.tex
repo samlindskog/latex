@@ -1,0 +1,155 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{A First Course in Abstract Algebra}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\begin{defi}[Binary Operation]
+	A binary operation \(*\) on  a set \(S\) is a function mapping \(S\times S\) into \(S\). For each \((a,b)\in S\times S\), we will denote the element \(*((a,b))\) of \(S\) by \(a*b\).
+\end{defi}
+\begin{defi}[Closed Under]
+	Let \(*\) be a binary operation on \(S\) and let \(H\) be a subset of \(S\). The subset \(H\) is closed under \(*\) if for all \(a,b\in H\) we also have \(a*b\in H\). In this case, the binary operation on \(H\) is the \emph{induced operation} of \(*\) on \(H\).
+\end{defi}
+\begin{defi}[Commutative]
+	A binary operation \(*\) on a set \(S\) is commutative iff \(a*b=b*a\) for all \(a,b\in S\).
+\end{defi}
+\begin{defi}[Associative]
+	A binary operation \(*\) on a set \(S\) is associative if \((a*b)*c=a*(b*c)\) for all \(a,b,c\in S\).
+\end{defi}
+\begin{defi}[Binary Algebraic Structure]
+	A binary algebraic structure \(\langle S, *\rangle\) is a set \(S\) together with a binary operation \(*\) on \(S\).
+\end{defi}
+\begin{defi}[Isomorphism]
+	Let \(\langle S,*\rangle\)  and \(\langle S', *'\rangle\) be binary algebraic structures. An isomorphism of \(S\) with \(S'\) is a one-to-one function\footnote{if no one-to-one function exists but the homomorphism property is satisfied, than phi is a homomorphism.} \(\phi\) mapping \(S\) onto \(S'\) such that:
+	\begin{IEEEeqnarray*}{c}
+		\phi(x*y)=\phi(x)*'\phi(y)\text{ for all }(x,y\in S).\\
+		\text{\emph{homomorphism property}}
+	\end{IEEEeqnarray*}
+	If such a function exists, then \(S\) and \(S'\) are isomorphic binary structures, which we denote by \(S\simeq S'\)
+\end{defi}
+\begin{defi}[Identity Element]
+	Let \(\langle S,*\rangle\) be a binary structure. An element \(e\) of \(S\) is an identity element for \(*\) if \(e*s=s*e=s\) for all \(s\in S\)
+\end{defi}
+\begin{thm}[Uniqueness of Identity Element]
+	A binary structure \(\langle S,*\rangle\) has at most one identity element.
+\end{thm}
+\begin{thm}
+	Suppose \(\langle S,*\rangle\) has an identity element \(e\) for \(*\). If \(\phi\;S\;\rightarrow\;S'\) is an isomorphism of \(\langle S,*\rangle\) with \(\langle S',*'\rangle\), then \(\phi(e)\) is an identity element for the binary operation \(*'\) on \(S'\).
+\end{thm}
+\begin{defi}[Group]
+	A group \(\langle G,*\rangle\) is a set \(G\), closed under a binary operation \(*\), such that the following axioms are satisfied:\footnote{A group \(G\) is \emph{abelian} if its binary operation is commutative.}
+\begin{enumerate}
+	\item For all \(a,b,c\in G\), we have \((a*b)*c=a*(b*c)\).
+	\item There is an element \(e\) in \(G\) such that for all \(x\in G\), \(e*x=x*e=x\).
+	\item Corresponding to each \(a\in G\), there is an element \(a'\) in \(G\) such that \(a*a'=a'*a=e\).
+\end{enumerate}
+\end{defi}
+\begin{thm}
+		If \(G\) is a group with binary operation \(*\), then the left and right cancellation laws hold in \(G\).
+		\begin{IEEEproof}
+			Suppose \(a*c=b*c\). It follows that \((a*c)*c^{-1}=(b*c)*c^-1\), and thus following the fact that group operations are associative, \(a*e=b*e\) and \(a=b\).
+		\end{IEEEproof}
+\end{thm}
+\begin{thm}
+	If \(G\) is a group with binary operation \(*\), and if \(a\) and \(b\) are any elements of \(G\), then the linear equations \(a*x=b\) and \(y*a=b\) have unique solutions \(x\) and \(y\) in \(G\).
+\end{thm}
+\begin{thm}
+	In a group \(G\) with binary operation \(*\), there is only one element \(e\) in \(G\) such that \(e*x=x*e=x\) for all \(x\) in \(G\). Likewise for each \(a\) in \(G\) there is only one element \(a'\) in \(G\) such that \(a'*a=a*a'=e\).\footnote{This follows trivially from the left and right cancellation laws.}
+\end{thm}
+\begin{cor}
+	Let \(G\) be a group. Then for all \(a,b\in G\), we have \((a*b)'=b'*a'\)
+\end{cor}
+\begin{defi}[Structural Property]
+	A structural property of a binary structure is one that must be shared by any isomorphic binary structure.\footnote{For example, the cardinality of set \(S\) is a structural property of \(\langle S,*\rangle\)}
+\end{defi}
+\begin{defi}[Semigroups and Monoids]
+	A \emph{semigroup} is a set with an associative binary operation. A \emph{monoid} is a semigroup what has an identity element.\footnote{Every group is a semigroup and a monoid.}
+\end{defi}
+\begin{prob}{1}
+	Show that every group \(G\) with identity \(e\) such that \(x*x=e\) for all \(x\in G\) is abelian.
+	\begin{IEEEproof}
+		Suppose \(a,b\) are two elements in \(G\), with \(a\neq b\). Trivially, \((a*b)*(b*a)=e\). Because \(x*x=e\) for all \(x\in G\), it follows that \((a*b)*(a*b)=e\), so \(a*b=b*a\).\footnote{The associative axiom of groups introduces the existence of a set of factors for any one element in the group.}
+	\end{IEEEproof}
+\end{prob}
+\begin{prob}{2}
+	Let \(G\) be a group with a finite number of elements. Show that for any \(a\in G\), there exists \(n\in Z^+\) s.t. \(a^n=e\).
+	\begin{IEEEproof}
+		Suppose \(G=\{e\}\). Then \(e^1=e\). Suppose \(G\) has two or more elements, \(n\in Z^+\), \(a\in G\). Because \(G\) is finite, there are a finite number of elements in \(G\) that \(a^n\) can assume. It follows that there exists \(k,j\in Z^+\) with \(k<j\) such that \(a^k=a^j\). Therefore there exists \(n\) such that \(a^k*a^n=a^j\), from which follows \(a^n=e\).
+	\end{IEEEproof}
+\end{prob}
+\begin{notat}
+	In place of the notation of \(a*b\), we can use \(a+b\) to be read as "the sum of \(a\) and \(b\)", or \(ab\) to be read as "the product of \(a\) and \(b\)". As a convention, \(a+b\) refers to commutative operations, while \(ab\) may be used if the operation may or may not be commutative. \(na\) refers to \(a+\ldots+a\) repeated \(n\) times.
+\end{notat}
+\begin{defi}[Subgroup]
+	If a subset \(H\) of a group \(G\) is closed under the binary operation of \(G\), and if \(H\) with the induced operation from \(G\) is itself a group, then \(H\) is a subgroup of \(G\).\footnote{If \(H\) is a subgroup of \(G\), this can be denoted \(H\leq G\), or \(H<G\).}
+\end{defi}
+\begin{defi}[Improper and Proper Subgroups]
+	If \(G\) is a group, then the subgroup consisting of \(G\) itself is the \emph{improper subgroup} of \(G\). All other subgroups are \emph{proper subgroups}. The subgroup \(\{e\}\) is the trivial subgroup of \(G\). All other subgroups are nontrivial.
+\end{defi}
+\begin{defi}[Klein 4-group]
+	\;\medbreak
+	\begin{tabular}{c||c|c|c|c}
+		&0&1&2&3\\
+		\hline\hline
+		0&0&1&2&3\\
+		\hline
+		1&1&2&3&0\\
+		\hline
+		2&2&3&0&1\\
+		\hline
+		3&3&0&1&2\\
+	\end{tabular}
+\end{defi}
+\begin{thm}
+	A subset \(H\) of a group \(G\) is a subgroup of \(G\) if and only if:
+	\begin{enumerate}
+		\item \(H\) is closed under the binary operation of \(G\)
+		\item The identity element \(e\) of \(G\) is in \(H\)
+		\item For all \(a\in H\) it is true that \(a^{-1}\in H\)
+	\end{enumerate}
+\end{thm}
+\begin{thm}
+	Let \(G\) be a group and let \(a\in G\). Then
+	\begin{equation*}
+		H=\{a^n\mid n\in\mathbb{Z}\}
+	\end{equation*}
+	is the smallest subgroup of \(G\) that contains \(a\).\footnote{Look at discreetmath notes for definitions. In this case, we are finding the r-smallest element of a partial order on \(\mathscr{P}(G)\) pairing each subgroup containing \(a\) with all containing groups.}
+\end{thm}
+\begin{defi}[Cyclic Subgroup]
+	Let \(G\) be a group and let \(a\in G\). Then the subgroup \(\{a^n\mid n\in\mathbb{Z}\}\) of \(G\) is called the \emph{cyclic subgroup of \(G\) generated by \(a\)}, and is denoted by \(\langle a\rangle\).\footnote{Take note that \(n\) can be negative.}
+\end{defi}
+\begin{defi}[Generator]
+	An element \(a\) of a group \(G\) generates \(G\) if \(\langle a\rangle=G\).
+\end{defi}
+\begin{defi}[Cyclic Group]
+	A group \(G\) is cyclic if there is some element \(a\) in \(G\) that generates \(G\).
+\end{defi}
+\begin{prob}{3}
+	Is a generator for a cyclic group unique?
+	\begin{IEEEproof}
+		No. Suppose \(G\) a group and \(\langle a\rangle=G\). Because \(a^n=(a^{-1})^{-n}\), we can clearly see \(\langle a^{-1}\rangle=G\).
+	\end{IEEEproof}
+\end{prob}
+\end{document}

@@ -1,0 +1,62 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{"Calculus: Early Trancendentals" Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Calc 1}
+\begin{defi}[Average Rate of Change]
+	The average rate of change of \(y=f(x)\) with respect to \(x\) over the interval \((x_1, x_2)\) is:
+	\begin{equation*}
+		\frac{\Delta y}{\Delta x}=\frac{f(x_2)-f(x_1)}{x_2-x_1}=\frac{f(x_1+h)-f(x_1)}{h}
+	\end{equation*}
+\end{defi}
+\begin{thm}[Limit Laws]
+	If \(L,M,c,k\) are real numbers and \(\lim_{x\rightarrow c}f(x)=L\), and \(\lim_{x\rightarrow c}g(x)=M\), then:
+	\begin{IEEEeqnarray*}{lCl}
+		\text{Sum rule:}&\qquad\qquad&\lim_{x\rightarrow c}(f(x)+g(x))=L+M\\
+		\text{Difference Rule:}&&\lim_{x\rightarrow c}(f(x)-g(x))=L-M\\
+		\text{Constant Multiple Rule:}&&\lim_{x\rightarrow c}(k\cdot f(x))=k\cdot L\\
+		\text{Product Rule:}&&\lim_{x\rightarrow c}(f(x)\cdot g(x))=L\cdot M\\
+		\text{Quotient Rule:}&&\lim_{x\rightarrow c}\frac{f(x)}{g(x)}=\frac{L}{M},\;M\neq 0\\
+		\text{Power Rule:}&&\lim_{x\rightarrow c}\bigl[f(x)\bigr]^n=L^n,\;n\text{ a positive integer}\\
+		\text{Root Rule:}&&\lim_{x\rightarrow c}\sqrt[n]{f(x)}=\sqrt[n]{L},\;\text{ n a positive integer}
+	\end{IEEEeqnarray*}
+(For the root rule, if \(n\) is even, we assume that \(f(x)\geq 0\) for \(x\) in an interval containing \(c\).)
+\end{thm}
+\begin{thm}[Sandwich Theorem]
+	Suppose that \(g(x)\leq f(x)\leq h(x)\) for all \(x\) in some neighborhood of \(c\). Suppose also that:
+	\begin{equation*}
+		\lim_{x\rightarrow c}g(x)=\lim_{x\rightarrow c}f(x)=L
+	\end{equation*}
+	Then \(\lim_{x\rightarrow c}f(x)=L\).
+\end{thm}
+\begin{defi}[Limit]
+	Let \(f(x)\) be defined on an open neighborhood of \(c\) not necessarily including \(c\). We say that the limit of \(f(x)\) as \(x\) approaches \(c\) is the number \(L\) if for every number \(\epsilon>0\), there exits a corresponding number \(\delta>0\) such that:
+	\begin{equation*}
+		0<\lvert x-c\rvert<\delta\Rightarrow\lvert f(x)-L\rvert<\epsilon
+	\end{equation*}
+\end{defi}
+\end{document}

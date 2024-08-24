@@ -1,0 +1,242 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+
+%work in progress
+%\theoremstyle{definition}\newtheorem{privdefi}{Definition}[section]
+%\renewenvironment{defi}[1][]{\addcontentsline{toc}{subsection}%
+%{\protect\tocsubsection{}{\thedefi}\if\relax\detokenize{#1}\relax\else#1}%
+%\begin{privdefi}[#1]}{\end{defi}}
+
+%\theoremstyle{definition}\newtheorem{privdef}{Definition}[section]
+%\newenvironment{defi}[1][]
+%{\expandafter\privdef\if\relax\detokenize{#1}\relax\else[#1]\fi
+%\addcontentsline{toc}{subsection}
+%{\protect\tocsubsection{}{\theprivdef}{Problem\if\relax\detokenize{#1}\relax\else\ (#1)\fi}}%
+%}
+%{\enddefi}
+
+\title{Proof Theory Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+%\tableofcontents
+%\setlength{\parindent}{0cm}
+
+\section{Fundamentals}
+\begin{defi}[Truth Functions]
+	Truth values are denoted by \(t\)(true) and \(f\)(false). An \(n\)-place truth function is an assignment of one truth value to each \(n\)-tuple of truth values.\footnote{As there are exactly \(2^n\) distinct \(n\)-tuples of truth values, there are \(2^{2^n}\) distinct \(n\)-place truth functions.}
+\end{defi}
+We use the following connectives as symbols for truth functions. \(\top\)(verum), and \(\bot\)(falsum), represent the \(0\)-place truth function with values \(top=true\) and \(\bot=false\). The connective \(\neg\) is a one-place truth function with values \(\neg(t)=f\) and \(\neg(f)=t\). The connectives \(\wedge\)(conjunction) and \(\vee\)(disjunction) are two-place truth functions with obvious values.
+\begin{defi}[Sentential Forms]
+Inductive definition:
+	\begin{enumerate}
+		\item Every sentential variable is a sentential form
+		\item Every \(0\)-place connective is a sentential form
+		\item If \(\phi\) is an \(n\)-place connective \((n\geq1)\) and \(A_1, \dots, A_n\) are sentential forms then \(\phi(A_1,\dots,A_n)\) is also a sentential form
+	\end{enumerate}
+\end{defi}
+The semantics of sentential calculus, i.e. the meaning of a sentential form, are determined by sentential valuations. Such a valuation is an assignment \(V\) of a truth value \(Vv\) to each sentential variable \(v\).\footnote{Two sentential forms are said to be semantically equivalent if \(VA\) equals \\\(VB\) for every sentential valuation \(V\).}
+\begin{defi}[Valuation]
+	For a given valuation \(V\) every sentential form \(A\) gets a truth value \(VA\) according to the following inductive definition.
+	\begin{enumerate}
+	\item A sentential form which is a sentential variable \(v\) alone gets the truth value \(Vv\) given by the valuation \(V\)
+	\item \(V\top=t,\quad V\bot=f\)
+	\item If \(\phi\) is an \(n\)-place connective \(n\geq 1\)  and \(A_1,\ldots,A_n\) are sentential forms, then \(V\phi(A_1,\ldots,A_n)\) is the truth value which the truth function represented by \(\phi\) assigns to the \(n\)-tuple of truth values \((VA_1,\ldots,VA_n)\).
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Complete System of Connectives]
+	A set \(M\) of connectives is said to be a complete system of connectives if to every sentential form \(A\) there is a semantically equivalent sentential form \(B\) all of whose connectives are in \(M\).
+\end{defi}
+\begin{thm}
+	The connectives \(\neg, \wedge, \vee\) form a complete system of connectives
+	\begin{IEEEproof}
+		We shall prove that that \(\neg, \wedge, \vee \) form a complete system of connectives through induction over sentential forms with \(n\) sentential variables.\par
+		Suppose \(A\) is a sentential form with \(0\) variables. Then \(A\) has the same truth value for any valuation \(V\), and \(VA=f\) or \(VA=t\) only. Then \(A\) is semantically equivalent to \(\wedge(v,\neg v)\) or \(\vee(v, \neg v)\) respectively.\par
+		Suppose \(A\) is a sentential form with \(n+1\) variables \(v_i\), with \(n\geq 0\). Let \(A_1\) and \(A_2\) be a sentential forms with \(n\) variables, semantically equivalent to \(A\) where \(v_{n+1}=\bot\) and \(v_{n+1}=\top\) respectively. It follows from the induction hypothesis that there exists sentential forms \(B_1\) and \(B_2\) comprised only of connectives \(\neg, \wedge, \vee\) semantically equivalent to \(A_1\) and \(A_2\) respectively. Then \(A\) is semantically equivalent to \(\vee\bigl(\wedge(B_1,\neg v_{n+1}),\wedge(B_2, v_{n+1})\bigr)\).
+	\end{IEEEproof}
+\end{thm}
+\begin{cor}
+	The connectives \(\neg, \vee\) form a complete system of connectives.
+\end{cor}
+\begin{defi}[Formal Language for SC]
+	\hskip1em
+	\begin{enumerate}
+		\item Every sentential variable is a formula
+		\item \(\bot\) is a formula
+		\item If \(A\) is a formula, then \(\neg A\) is a formula
+		\item if \(A\) and \(B\) are formulas then \((A\wedge B)\), \((A\vee B)\) and \((A\Rightarrow B)\) are also formulas
+	\end{enumerate}
+\end{defi}
+Formulas may be identified with particular sentential forms where \(\neg\) A stands for \(\neg(A)\) and so on. For any valuation \(V\), every formula gets a truth value as defined for sentential forms. A formula is said to be \emph{valid} if \(VA=t\) for all valuations \(V\).
+\begin{defi}[Positive and Negative Parts]
+	A formula \(A\) is part of formula \(F\). \(A\) is a positive(negative) part of formula \(F\) if \(VA=t(VA=f)\) implies \(VF=t\)
+\end{defi}
+\begin{defi}[Nominal Form]
+	An \(n\)-place simple nominal form is a finite string of symbols in which besides the primitive symbols of our formal language, the nominal symbols \(*_1,\ldots, *_n\) occur just once. If \(\mathscr{E}\) is an \(n\)-place simple nominal form \((n\geq 1)\) and \(r_1,\ldots, r_n\) are non-empty finite strings of symbols then \(\mathscr{E}[r_1,\ldots,r_n]\) denotes the result of replacing the nominal symbols \(*_1,\ldots,*_n\) in \(\mathscr{E}\) by \(r_1,\ldots,r_n\) respectively.
+\end{defi}
+\begin{defi}[\(P\)-forms and \(N\)-forms]
+	\(P\)-forms (positive forms) and \(N\)-forms (negative forms) are inductively defined as 1-place simple nominal forms as follows:
+	\begin{enumerate}
+		\item \(*_{1}\) is a \(P\)-form
+		\item If \(\mathscr{P}\) is a \(P\)-form and \(B\) is a formula, then \(\mathscr{P}[*_1\vee B]\),\\\(\mathscr{P}[B\vee *_1],\mathscr{P}[B\Rightarrow *_1]\) are \(P\)-forms and \(\mathscr{P}[\neg *_1]\) and \(\mathscr{P}[*_1\Rightarrow B]\) are \(N\)-forms.
+		\item If \(\mathscr{N}\) is a \(N\)-form and \(B\) is a formula, then \(\mathscr{N}[*_1\wedge B]\) and \(\mathscr{N}[B\wedge *_1]\) are \(N\)-forms, and \(\mathscr{N}[\neg *_1]\), \(\mathscr{N}[*_1\Rightarrow \bot]\) are \(P\)-forms.
+	\end{enumerate}
+\end{defi}
+\begin{cor}
+	Following the definition of \(P\)-forms and \(N\)-forms:
+	\begin{enumerate}
+		\item No \(P\)-form is an \(N\)-form.
+		\item If \(\mathscr{P}\) is a \(P\)-form and \(\mathscr{E}\) is a \(P\)-form(\(N\)-form), then \(\mathscr{P}[\mathscr{E}]\) is a \(P\)-form(\(N\)-form).
+		\item If \(\mathscr{E}\) is a \(P\)-form or an \(N\)-form and \(A\) is a formula, then \(\mathscr{E}[A]\) is also a formula.
+	\end{enumerate} 
+\end{cor}
+\begin{defi}
+	A formula \(A\) is said to be a positive (negative) part of a formula \(F\) if there is a \(P\)-form (\(N\)-form) \(\mathscr{E}\) such that \(\mathscr{E}[A]\) is the formula \(F\).
+\end{defi}
+\begin{thm}
+	If \(\mathscr{E}\) is a \(P\)-form (\(N\)-form) and \(V\) is a sentential valuation with \(VA=t\) (\(VA=f\)) then \(V\mathscr{E}[A]=t\).
+\begin{IEEEproof}
+	We will prove by induction on the possible combinations from the recursive definition of \(P\)-forms and \(N\)-forms of \(\mathscr{E}\)\par
+	Suppose \(\mathscr{E}\) is the \(P\)-form \(*\), and \(A\) is a formula such that \(VA=t\), then from the definition of a nominal form \(\mathscr{E}[A]=A\), and hence \(V\mathscr{E}[A]=t\)\par
+	Suppose \(\mathscr{E}\) is a \(P\)-form \(\mathscr{E}[(*\vee B)], \mathscr{E}[(B\vee *)]\), or \(\mathscr{E}[(B\Rightarrow *)]\). It follows that if \(VA=t\), then \(V(A\vee B)=V(B\vee A)=V(B\Rightarrow A)=t\), thus it follows from the induction hypothesis that \(V\mathscr{E}[A]=t\).\par
+	Similar Proof here of N-form P(N), N-form N(N), P-form N(P). All cases covered.
+\end{IEEEproof}
+\end{thm}
+\begin{defi}[Minimal Part]
+	A positive part is said to be \emph{minimal} if it is not of the form \(\neg A\), \((A\vee B)\) or \((A\Rightarrow B)\). A negative part is said to be \emph{minimal} if it is not of the form \(\neg A\), \((A\wedge B)\), or \((A\Rightarrow \bot)\).
+\end{defi}
+\begin{thm}
+	If, under a sentential valuation \(V\), every minimal positive part of a formula \(F\) takes the value \(f\) and every minimal negative part of \(F\) takes the value \(t\), then every positive part of \(F\) takes the value \(f\) and every negative part of \(F\) takes the value \(t\). (In particular, \(VF=f\), since \(F\) is a positive part of \(F\)).
+\end{thm}
+\begin{defi}[Reducable]
+	A formula is said to be reducible if it is of the form \(\mathscr{P}[(A\wedge B)],\mathscr{N}[(A\vee B)], \mathscr{N}[(A\Rightarrow B)]\) where, in the last case, \(B\) is not the formula \(\bot\). Otherwise it is said to be irreducable.
+\end{defi}
+\begin{thm}
+	An irreducible formula is valid iff it is of the form \(\mathscr{L}[v,v]\) or \(\mathscr{N}[\bot]\).
+\end{thm}
+\begin{thm}
+	The following hold for reducable formulas:
+	\begin{enumerate}
+		\item \(\mathscr{P}[A\wedge B]\) is valid iff \(\mathscr{P}[A]\) and \(\mathscr{P}[B]\) are valid.
+		\item \(\mathscr{N}(A\vee B)\) is valid iff \(\mathscr{N}[A]\) and \(\mathscr{N}[B]\) are valid.
+		\item \(\mathscr{N}(A\Rightarrow B)\) is valid iff \(\mathscr{N}[A\Rightarrow\bot]\) and \(\mathscr{N}[B]\) are valid.
+	\end{enumerate}
+\end{thm}
+\begin{defi}[Formal Systems]
+	Formal systems are defined syntactically in four steps:
+	\begin{enumerate}
+		\item Certain symbols (in general denumerably infinitely many) are introduced as \emph{primitive symbols}.
+		\item Certain finite strings of primitive symbols are selected as \emph{formulas} by an inductive function.
+		\item Formulas of a particular sort (in general determined by formula schemata) are defined to be \emph{axioms}.
+		\item Certain configurations\footnote{Not all configurations are basic inferences, for example permissible inferences.} of the form \(A_1,\ldots,A_n\vdash B\) where \(A_1,\ldots,A_n,B\) are formulas are defined to be \emph{basic inferences}. A formula on the left of \(\vdash\) is said to be the \emph{premise} of the given basic inference, and the formula on the right is said to be the \emph{conclusion}.
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Deducible Formulas]
+	Deducibility of formulas in a formal system is determined by the axioms and basic inferences according to the following inductive definition:
+	\begin{enumerate}
+		\item Every Axiom is deducible
+		\item If every premise of a basic inference is deducible, then the conclusion of the inference is deducible
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Order]
+	Deducibility of a formula can be specified by its order, defined by the following inductive definition:
+	\begin{enumerate}
+		\item Every axiom is deducible with order \(0\)
+		\item If the premises \(A_1,\ldots, A_n\) with \((n\geq 1)\) of a basic inference are \emph{deducible} with orders \(m_1,\ldots, m_n\), respectively, then the conclusion of the inference is deducible with order max\((m_1,\ldots, m_n)+1\).
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Consistency]
+	A formal system is said to be consistent if not every formula in the system is deducible.
+\end{defi}
+\begin{defi}[Permissible Inference]
+	A configuration \(A_1,\ldots, A_n\vdash B\) where \(A_1,\ldots, A_n\) are formulas \((n\geq 1)\) is said to be a permissible inference if the following holds: If \(A_1,\ldots, A_n\) are deducible, then \(B\) is also deducible.\footnote{All basic inferences are permissible inferences.}
+\end{defi}
+\begin{defi}[Weak Inference]
+	A weak inference is a permissible inference \(A\vdash B\) such that if the formula \(A\) is deducible with order \(m\), then the formula \(B\) is deducible with order \(\leq m\).
+\end{defi}
+\begin{defi}[Directly Derivable]
+	An inference is directly derivable if the conclusion is deducible from the premises using the axioms and further basic inferences.
+\end{defi}
+All directly derivable inferences remain permissible if further axioms are added to the system. However, not all permissible inferences remain permissible if further axioms are added to the system. Suppose we have a system with a single axiom:
+\begin{equation*}
+	(A\vee\neg A)
+\end{equation*}
+With basic inferences
+\begin{IEEEeqnarray*}{l}
+	A\vdash (A\vee B)\\
+	B\vdash (A\vee B)
+\end{IEEEeqnarray*}
+Using the basic inferences of the system, we can see that
+\begin{equation*}
+	A\vdash ((A\vee B)\vee C)
+\end{equation*}
+is a directly derivable inference, as it is formed directly from the basic inferences of the system. On the other hand,
+\begin{equation*}
+	(A\vee A)\vdash A
+\end{equation*}
+is a permissible inference because of the properties of deducibility of the system induced by its basic inferences.\footnote{\((A\vee A)\) is only deducible if \(A\) is deducible.} The properties of the system can be altered if a new axiom is introduced, therby rendering this inference not permissible. For example if we introduce the axiom
+\begin{equation*}
+	(A\vee A)
+\end{equation*}
+the above inference is no longer permissible.
+\begin{defi}[Sententially Closed]
+	A formal system is sententially closed if among its primitive symbols it contains the connectives from a complete set of connectives which are used for joining formulae as in the sentential calculus.
+\end{defi}
+\begin{defi}[Sententially Valid]
+	A formula of the system is sententially valid if it is obtained by substituting formulas of the formal system for the sentential variables in a valid formula \(A\) of the classical sentential calculus, where every sentential variable which occurs in more than one place in \(A\) is always replaced by the same formula in the formal system.
+\end{defi}
+\begin{defi}[Sententially Complete]
+	A formal system is sententially complete if it is s-closed and every s-valid formula of the system is deducible in the system.
+\end{defi}
+\begin{defi}[Sententially Consistent]
+	A formal system in which every formula \(A\) has a negation \(\neg A\) defined is said to be s-consistent if there is no formula \(A\) such that \(A\) and \(\neg A\) are both deducible in the system.\footnote{Every s-consistent system is obviously consistent. In many formal systems the converse is easily established.}
+\end{defi}
+\begin{defi}[The Formal System CS]
+	\begin{enumerate}
+		\item Primitive symbols: Denumerably infinitely many sentential variables, the connectives \(\bot, \neg, \wedge, \vee, \Rightarrow\), and round brackets.
+		\item Formulas: Defined as usual (\S 1.4 in the book).
+		\item Axioms: All formulas of the forms:
+			\begin{IEEEeqnarray*}{l}
+				\mathscr{L}[v,v]\\
+				\mathscr{N}[\bot]
+			\end{IEEEeqnarray*}
+		\item Basic Inferences: All inferences of the forms:
+			\begin{IEEEeqnarray*}{l}
+				\mathscr{P}[A],\mathscr{P}[B]\vdash\mathscr{P}[(A\wedge B)]\\
+				\mathscr{N}[A],\mathscr{N}[B]\vdash\mathscr{N}[(A\vee B)]\\
+				\mathscr{N}[(A\Rightarrow\bot)],\mathscr{N}[B]\vdash\mathscr{N}[(A\Rightarrow B)]
+			\end{IEEEeqnarray*}
+	\end{enumerate}
+\end{defi}
+\begin{thm}[Formal System CS Consistency]
+	Every deducible formula is valid.
+\end{thm}
+\begin{thm}[Formal System CS Completeness]
+	Every valid formula is deducible.
+	\begin{IEEEEproof}
+		Define the reducibility degree as the number of connectives between the minimal positive and negative parts of a reducible formula. All formulas within the system CS are either reducible or irreducible. Valid irreducible formulas are by definition axioms following thm 1.4.
+If a valid formula is reducible
+	\end{IEEEEproof}
+\end{thm}
+\subsection{Chapter Takeaways}
+Sentential forms and their truth functions are a base for logical syntactic definitions of fomulas.
+\section{Classical Predicate Calculus}
+\end{document}

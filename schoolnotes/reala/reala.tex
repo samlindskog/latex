@@ -1,0 +1,411 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{Real Analysis}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Naturals and Integers}
+\begin{axiom}[Principle of mathematical induction]
+	Let \(P(n)\) be an property pertaining to a natural number \(n\). Suppose that \(P(0)\) is true, and suppose that we have the implication that whenever \(P(n)\) is true, \(P(n+1))\) is true. Then \(P(n)\) is true for every natural number \(n\).
+\end{axiom}
+\begin{defi}[Peano Axioms]
+	The Peano axioms include the principle of induction and definition of equality, I just included the ones that define the natural numbers under this definition.
+	\begin{enumerate}
+		\item \(0\) is a natural number.
+		\item If \(n\) is a natural number, than \(S(n)\) (e.g. \(n++\)) is a natural number.
+		\item For all \(n\), if \(n\) is a natural number than \(S(n)\neq 0\).
+		\item For all \(n\), if \(S(n)=S(m)\), than \(n=m\).
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Addition]
+	\;
+	\begin{enumerate}
+		\item \(0+m=m\)
+		\item \((n++)+m=(n+m)++\)
+	\end{enumerate}
+\end{defi}
+\begin{lem}[Cancellation]
+	If \(a+b=a+c\), then \(b=c\).
+	\begin{IEEEproof}
+		Suppose \(0+b=0+c\). Then \(b=c\). By inductive hypothesis, \(a+b=a+c\Rightarrow b=c\). It follows that:
+		\begin{IEEEeqnarray*}{rCl}
+			(a++)+b&=&(a+b)++\\
+			(a+b)++&=&(a+c)++
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{lem}
+\begin{lem}[Commutivity of Addition]
+	For all natural numbers \(a,b\), we have \(a+b=b+a\).
+	\begin{IEEEproof}
+		First, we prove \(n+m++=(n+m)++\). \(0+m++=(0+m)++\) and by inductive hypothesis \(n+m++=(n+m)++\). It follows:
+		\begin{IEEEeqnarray*}{rCl}
+			(n++)+m++&=&(n+m++)++\\
+			&=&((n+m)++)++\\
+			&=&((n++)+m)++
+		\end{IEEEeqnarray*}
+		Next, we prove \(0+m=m+0\). \(0+0=0+0\), and by inductive hypothesis \(n+0=0+n\). It follows:
+		\begin{IEEEeqnarray*}{rCl}
+			(n++)+0&=&(n+0)++\\
+			&=&(0+n)++\\
+			&=&(0+n++)
+		\end{IEEEeqnarray*}
+		Lastly, we prove commutivity of addition. \(0+m=m+0\) and by inductive hypothesis \(n+m=m+n\). It follows:
+	\begin{IEEEeqnarray*}{rCl}
+		(n++)+m&=&(n+m)++\\
+		&=&(m+n)++\\
+		&=&(m+n++)
+	\end{IEEEeqnarray*}
+\end{IEEEproof}
+\end{lem}
+\begin{defi}[Ordering of Natural Numbers]
+	Let \(n\) and \(m\) be natural numbers. We say \(n\) is greater than or equal to \(m\), and write \(n\geq m\) or \(m\geq n\) iff we have \(n=m+a\) for some natural number \(a\). We say that n is strictly greater than \(m\) and write \(n>m\) or \(m<n\) iff \(n\geq m\) and \(n\neq m\).
+\end{defi}
+\begin{defi}[Strong Principle of Induction]
+	Let \(m_0\) be a natural number, and let \(P(m)\) be a property pertaining to an arbitrary natural number \(m\). Suppose that for each \(m\geq m_0\), we have the following implication: If \(P(m')\) is true for all natural numbers \(m_0\leq m'<m\), then \(P(m)\) is also true.\footnote{\(P(m_0)\) is true because for \(m_0\) the hypothesis is vacuous.} Then we can conclude that \(P(m)\) is true for all natural numbers \(m\geq m_0\).
+\end{defi}
+\begin{defi}[Multiplication]
+	\;
+	\begin{enumerate}
+		\item \(0\times m=0\)
+		\item \((n++)\times m=(n\times m)+m\)
+	\end{enumerate}
+\end{defi}
+\begin{lem}[Multiplication is Commutative]
+	For any natural numbers \(a,b\) we have \(a\times b=b\times a\).
+	\begin{IEEEproof}
+		\(0\times 0=0\times 0\) and by inductive hypothesis \(m\times 0=0\times m\). It follows that:
+		\begin{IEEEeqnarray*}{rCl}
+			(m++)\times 0&=&(m\times 0)+0\\
+			&=&(0\times m)+0\\
+			&=&0\times m
+		\end{IEEEeqnarray*}
+		So \(m\times 0=0\times m\). Using this fact as a base case, by inductive hypothesis \(n\times m=m\times n\). It follows that:
+		\begin{equation*}
+			(n++)\times m=(n\times m)+m=(m\times n)+m
+		\end{equation*}
+		We see that \(m\times n++=(n++)+(n++)+\ldots+(n++)\), with \(n++\) being added to itself \(m\) times as a consequence of the definition of multiplication. It follows from the commutivity of addition that:
+		\begin{IEEEeqnarray*}{rCl}
+			(n++)+(n++)+\ldots+(n++)&=&n+n+\ldots+n+(++)+(++)+\ldots +(++)\\
+			&=&(m\times n)+(m\times 1)\\
+			&=&(m\times n)+m\\
+			&=&(n\times m)+m\\
+			&=&(n++)\times m
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{lem}
+\begin{lem}[Multiplication is Distributive]
+	\(a(b+c)=ab+ac\) and \((b+c)a=ba+ca\)
+	\begin{IEEEproof}
+		\((b+c)a=ba+ca\) follows from the proof that \(a(b+c)=ab+ac\) and the commutivity of multiplication. \(a(b+0)=ab+0=ab+a0\), and by inductive hypothesis \(a(b+c)=ab+ac\). It follows:
+		\begin{IEEEeqnarray*}{rCl}
+			a(b+c++)&=&a((b+c)++)\\
+			&=&a(b+c)+a\\
+			&=&ab+ac+a\\
+			ab+a(c++)&=&ab+ac+a
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Euclidean Algorithm]
+	Let \(n\) be a natural number, and let \(q\) be a positive number. Then there exists natural numbers \(m,r\) such that \(0\leq r<q\) and \(n=mq+r\).\footnote{We can divide a natural number \(n\) by \(q\) to obtain a quotient \(m\) and a remainder \(r\).}
+\end{defi}
+\begin{defi}[Exponentiation]
+	Let \(m, n\) be natural numbers.
+	\begin{IEEEeqnarray*}{c}
+		m^0=1\\
+		m^{n++}=m^n\times m
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Integers]
+	An integer is an expression of the form \(a\text{---}b\), with \(a,b\in\mathbb{N}\). Two integers are considered to be equal, \(a\text{---}b=c\text{---}d\) iff \(a+d=c+b\).\footnote{The symbol "---" is a meaningless placeholder. When subtraction is defined we will see that \(a\text{---}b=a-b\).}
+\end{defi}
+\begin{defi}[Sum and Product of Integers]
+	The sum of two integers, \(a\text{---}b+c\text{---}d\) is defined:
+	\begin{equation*}
+		(a\text{---}b)+(c\text{---}d)=(a+c)\text{---}(b+d)
+	\end{equation*}
+	The product of two integers, \(a\text{---}b\times c\text{---}d\) is defined:
+	\begin{equation*}
+		(a\text{---}b)\times(b\text{---}c)=(ac+bd)\text{---}(ad+bc)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Negation of integers]
+	If \((a\text{---}b)\) is an integer, we define the negation \(-(a\text{---}b)\) to be the integer \(b\text{---}a\).
+\end{defi}
+\begin{rema}
+	We may identify the natural numbers with integers by setting \(n\equiv n\text{---}0\);
+\end{rema}
+\begin{thm}[Trichotomy of integers]
+	Let \(x\) be an integer. Then exactly one of the following three statments is true: (a) \(x\) is zero; (b) \(x\) is equal to a positive natural number; or (c) \(x\) is the negation \(-n\) of a positive natural number \(n\).\footnote{If \(n\) is a positive natural number, we call \(-n\) a negative integer.}
+\end{thm}
+\begin{defi}[Subtraction]
+	The subtraction \(x-y\) of two integers is defined:
+\begin{equation*}
+	x-y=x+(-y)
+\end{equation*}
+\end{defi}
+\begin{rema}
+	The integers form a commutative ring (adhere to familiar laws of algebra), and are well-defined. For more info see algebra notes.\footnote{By well defined we mean that equal inputs produce equal outputs.}
+\end{rema}
+\begin{defi}[Ordering of the Integers]
+	Let \(n\) and \(m\) be integers. We say that \(n\) is greater than or equal to \(m\) iff \(n=m+a\) for some natural number \(a\). We say that \(n\) is strictly greater than \(m\) iff \(n\geq m\) and \(n\neq m\).
+\end{defi}
+\begin{defi}[Rational Numbers]
+	A rational number is an expression of the form \(a//b\), where \(a\) and \(b\) are integers and \(b\neq 0\); \(a//0\) is not considered to be a natural number. Two rational numbers are considered to be equal, \(a//b=c//d\), iff \(ad=cb\).
+\end{defi}
+\begin{defi}[Sum, Product, and Negation of Rational Numbers]
+	If \(a//b\) and \(c//d\) are rational numbers, we define their sum:
+\begin{equation*}
+	(a//b)+(c//d)=(ad+bc)//(bd)
+\end{equation*}
+Their product:
+	\begin{equation*}
+		(a//b)\times(c//d)=(ac)//(bd)
+	\end{equation*}
+And the negation:
+	\begin{equation*}
+		-(a//b)=(-a)//b
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	The set of rationals form a field, a stronger classification than a commutative ring. The rationals are also well defined.
+\end{rema}
+\begin{defi}[Reciprocal of Rationals]
+	If \(x=a//b\) is a non-zero rational number, the we define the reciprocal \(x^{-1}\) of \(x\) to be the rational number:
+	\begin{IEEEeqnarray*}{c}
+		x=a//b\\
+		x^{-1}=b//a
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Quotient of Rational Numbers]
+	The quotient \(x/y\) of two rational numbers \(x\) and \(y\) provided that \(y\) is non-zero, is given by the formula:
+	\begin{equation*}
+		x/y=x\times y^{-1}
+	\end{equation*}
+\end{defi}
+\begin{defi}
+	A rational number \(x\) is said to be positive iff we have \(x=a/b\) for some positie integers \(a\) and \(b\). It is said to be \(negative\) iff we have \(x=-y\) for some positive rational \(y\).
+\end{defi}
+\begin{defi}[Trichotomy of Rationals]
+	Let \(x\) be a rational number. Then exactly one of the following three statements is true: (a) \(x\) is equal to \(0\). (b) \(x\) is a positive rational number. (c) \(x\) is a negative rational number.
+\end{defi}
+\begin{defi}[Ordering of rationals]
+	Let \(x\) and \(y\) be rational numbers. We say that \(x>y\) iff \(x-y\) is a positive rational number, and \(x<y\) iff \(x-y\) is a negative rational number. We write \(x\geq y\) iff either \(x>y\) or \(x=y\).
+\end{defi}
+\begin{defi}[Absolute Value]
+	If \(x\) is a rational number, the absolute value \(\lvert x\rvert\) of \(x\) is defined as follows. If \(x\) is positive, then \(\lvert x\rvert=x\). If \(x\) is negative, then \(\lvert x\rvert=-x\). If \(x\) is zero, then \(\lvert x\rvert=0\).
+\end{defi}
+\begin{defi}[Distance]
+	Let \(x\) and \(y\) be rational numbers. The quantity \(\lvert x-y\rvert\) is called the distance between \(x\) and \(y\) and is sometimes denoted \(d(x,y)\).
+\end{defi}
+\begin{defi}[Triangle Inequality for Rationals]
+	If \(a,b\) are rational numbers, then:
+	\begin{equation*}
+		\lvert a+b\rvert\leq\lvert a\rvert+\lvert b\rvert
+	\end{equation*}
+	\begin{IEEEproof}
+		Suppose \(a,b\in\mathbb{Q}\). If \(a,b\) are both positive or zero:
+		\begin{equation*}
+			\lvert a\rvert +\lvert b\rvert=a+b=\lvert a+b\rvert
+		\end{equation*}
+		If \(a,b\) are both negative:
+		\begin{equation*}
+			\lvert a\rvert +\lvert b\rvert=-a-b=\lvert a+b\rvert
+		\end{equation*}
+		Wlog we shall prove the case if \(a\) is negative and \(b\) is positive or zero. Suppose \(e,g\geq 0\) and \(f,h>0\). Then we can represent \(a=\frac{-e}{f}\) and \(b=\frac{g}{h}\), so:
+		\begin{IEEEeqnarray*}{rCl}
+			a+b&=&\frac{-eh+gf}{fh}\\
+			\lvert a\rvert+\lvert b\rvert&=&\frac{eh+gf}{fh}
+		\end{IEEEeqnarray*}
+		In the case \(a+b\geq 0\):
+		\begin{IEEEeqnarray*}{rCl}
+			\lvert a+b\rvert&=&\frac{-eh+gf}{fh}\\
+			&\leq&\frac{-eh+gf}{fh}+\frac{2eh}{fh}\\
+			&=&\frac{eh+gf}{fh}\\
+			&=&\lvert a\rvert +\lvert b\rvert
+		\end{IEEEeqnarray*}
+		In the case \(a+b<0\):
+		\begin{IEEEeqnarray*}{rCl}
+			\lvert a+b\rvert&=&\frac{eh-gf}{fh}\\
+			&\leq&\frac{eh-gf}{fh}+\frac{2gf}{fh}\\
+			&=&\frac{eh+gf}{fh}\\
+			&=&\lvert a\rvert +\lvert b\rvert
+		\end{IEEEeqnarray*}
+		so \(\lvert a+b\rvert\leq\lvert a\rvert +\lvert b\rvert\).
+	\end{IEEEproof}
+\end{defi}
+\begin{defi}[\(\epsilon\)-closeness]
+	Let \(\epsilon>0\) be a rational number, and let \(x,y\) be rational numbers. We say that \(y\) is \(\epsilon\)-close to \(x\) iff we have \(d(y,x)\leq\epsilon\).
+\end{defi}
+\begin{cor}
+	Let \(\epsilon,\delta > 0\). If \(x\) and \(y\) are \(\epsilon-close\) and \(z\) and \(w\) are \(\delta-close\), then \(xz\) and \(yw\) are \((\epsilon \lvert z\rvert +\delta \lvert x\rvert+\epsilon\delta)\)-close.
+	\begin{IEEEproof}
+		First, we can represent \(y=x+a\) with \(\lvert a\rvert<\epsilon\), and \(w=z+b\) with \(\lvert b\rvert<\delta\). It follows:
+		\begin{IEEEeqnarray*}{rCl}
+			yw=(x+a)(z+b)&=&xz+bx+az+ab\\
+			d(xz, yw)&=&\lvert bx+az+ab\rvert\\
+			&=&\lvert b\rvert \lvert x\rvert + \lvert a\rvert\lvert z\rvert +\lvert ab\rvert\\
+			&\leq&\delta \lvert x\rvert +\epsilon \lvert z\rvert + \delta\epsilon
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{cor}
+\begin{defi}[Exponentiation to a natural number]
+	Let \(x\) be a rational number.
+	\begin{IEEEeqnarray*}{c}
+		x^0=1\\
+		x^{n+1}=x^n\times x
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Exponentiation to a negative number]
+	Let \(x\) be a non-zero rational number. Then for any negative integer \(-n\), we define \(x^{-n}=1/x^n\).
+\end{defi}
+\section{Da Reals}
+\begin{defi}[Sequences]
+	Let \(m\) be an integer. A sequence \((a_n)_{n=m}^{\infty}\) of rational numbers is any function from the set \(\{n\in\mathbb{Z}\mid n\geq m\}\) to \(\mathbb{Q}\).
+\end{defi}
+\begin{defi}[Bounded Sequences]
+	Let \(M\geq 0\) be a rational. A finite sequence \(a_1, a_2, \ldots, a_n\) is bounded by \(M\) iff \(\lvert a_i\rvert\leq M\) for all \(1\leq i\leq n\). An infinite sequence \((a_n)_{n=1}^{\infty}\) is bounded by \(M\) iff \(\lvert a_i\rvert\leq M\) for all \(i\geq 1\).
+\end{defi}
+\begin{lem}[Finite Sequences are Bounded]
+	\;
+	\begin{IEEEproof}
+		Suppose \((a_n)_{n=1}^{k}\) an arbitrary finite sequence. If \(k=1\), then \(\lvert a_n\rvert\leq\lvert a_1\rvert\) for all \(n\). By induction hypothesis, the sequence \((a_n)_{n=1}^{k}\) is bounded, and therefore there exists \(M\) such that \(\lvert a_n\rvert\leq M\) for all \(n\). It follows from the properties of ordering that for all \(n\leq k\), \(\lvert a_n\rvert<M+\lvert a_{k+1}\rvert\) and \(\lvert a_{k+1}\rvert< M+\lvert a_{k+1}\rvert\). Therefore \((a_n)_{n=1}^{k+1}\) is bounded.
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Cauchy Sequence]
+	A sequence \((a_n)_{n=0}^{\infty}\) of rational numbers is said to be a cauchy sequence iff for every rational \(\epsilon>0\), there exists an \(N\geq 0\) such that \(d(a_j,a_k)\leq\epsilon\) for all \(j,k\geq N\).
+\end{defi}
+\begin{lem}[Cauchy Sequences are Bounded]
+	\;
+	\begin{IEEEproof}
+		Suppose \((a_n)_{n=1}^{\infty}\) is Cauchy. Then, if \(\epsilon\in\mathbb{Q}\) there exists \(N\in\mathbb{N}\) such that \(i,j\geq N\) implies that \(\lvert a_i-a_j\rvert\leq\epsilon\). Because the sequence \((a_n)_{n=1}^{N}\) is finite, it is bounded by a number \(\delta\in\mathbb{Q}\). Then \(\lvert a_N\rvert\leq\delta\) and it follows that for all \(i\geq N\),
+		\begin{IEEEeqnarray*}{rCl}
+			\lvert a_i-a_N\rvert&\leq&\epsilon\\
+			\lvert a_i-a_N\rvert + \lvert a_N\rvert&\leq&\epsilon + \delta\\
+			\lvert a_i\rvert&<&\epsilon + \delta
+		\end{IEEEeqnarray*}
+		But also \(\lvert a_n\rvert\leq\epsilon + \delta\) for all \(n\leq N\) so \(\lvert a_n\rvert\leq\epsilon+\delta\) for all \(n\).
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Equivalent Sequences]
+	Two sequences \((a_n)_{n=0}^{\infty}\) and \((b_n)_{n=0}^{\infty}\) are equivalent iff for each rational \(\epsilon>0\), there exists \(N\) such that \(n\geq N\) implies \(\lvert a_n-b_n\rvert\leq\epsilon\).\footnote{Symbolically, this means \(\forall\epsilon\exists N\forall n(n\geq N\Rightarrow\lvert a_n-b_n\rvert\leq\epsilon)\).}
+\end{defi}
+\begin{defi}[Real Numbers]
+	A real number is defined to be an object of the form \(\text{LIM}_{n\rightarrow\infty}a_n\), where \((a_n)_{n=1}^{\infty}\) is a Cauchy sequence of rational numbers. Two real numbers \(\text{LIM}_{n\rightarrow\infty}a_n\) and \(\text{LIM}_{n\rightarrow\infty}b_n\) are said to be equal iff \((a_n)_{n=1}^{\infty}\) and \((b_n)_{n=1}^{\infty}\) are equivalent Cauchy sequences.
+\end{defi}
+\begin{rema}
+	Like with the definition of subtraction and rational numbers, \(\text{LIM}_{n\rightarrow\infty}a_n\) is referred to as the formal limit of the sequence \((a_n)_{n=1}^{\infty}\).
+\end{rema}
+\begin{defi}[Addition of Reals]
+	Let \(x=\text{LIM}_{n\rightarrow\infty}a_n\) and \(y=\text{LIM}_{n\rightarrow\infty}b_n\) be real numbers. Then we define the sum \(x+y\) to be \(x+y=\text{LIM}_{n\rightarrow\infty}(a_n+b_n)\).
+\end{defi}
+\begin{lem}[Sum of Cauchy Sequences is Cauchy]
+	Let \(x=\text{LIM}_{n\rightarrow\infty}a_n\) and \(y=\text{LIM}_{n\rightarrow\infty}b_n\) be real numbers. Then \(x+y\) is also a real number.
+	\begin{IEEEproof}
+		Suppose \(a_n\) and \(b_n\) are Cauchy sequences. Then for all \(\epsilon\in\mathbb{Q}\) there exists \(N\in\mathbb{N}\) such that \(i,j\geq N\) implies \(\lvert a_i-a_j\rvert\leq\epsilon\), and for all \(\delta\in\mathbb{Q}\) there exists \(M\in\mathbb{N}\) such that \(l,m\geq M\) implies \(\lvert b_l-b_m\rvert\leq\epsilon\). If follows that if \(q,r\geq\text{max}\{N,M\}\):
+		\begin{IEEEeqnarray*}{rCl}
+			\lvert (a_q+b_q)-(b_r+a_r)\rvert&=&\bigg\lvert a_q+b_q-\big(a_q+(-a_q+a_r)+b_q+(-b_q+b_r)\big)\bigg\rvert\\
+			&=&\lvert (a_q-a_r)+(b_q-b_r)\rvert\\
+			&\leq&\lvert a_q-a_r\rvert +\lvert b_q-b_r\rvert\\
+			&\leq&\epsilon+\delta
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Multiplication of Reals]
+	Let \(x=\text{LIM}_{n\rightarrow\infty}a_n\) and \(y=\text{LIM}_{n\rightarrow\infty}b_n\) be real numbers. Then we define the product \(xy\) to be \(xy=\text{LIM}_{n\rightarrow\infty}a_nb_n\).
+\end{defi}
+\begin{rema}
+	The rationals can be embedded into the reals by identifying each rational number \(q\) with the real number \(\text{LIM}_{n\rightarrow\infty}q\).
+\end{rema}
+\begin{defi}[Sequences bounded away from zero]
+	A sequence \((a_n)_{n=1}^{\infty}\) of rational numbers is said to be bounded away from zero iff there exists a rational number \(c>0\) such that \(\lvert a_n\rvert >c\) for all \(n\geq 1\).
+\end{defi}
+\begin{lem}
+	Let \(x\) be a non-zero real number. Then \(x=\text{LIM}_{n\rightarrow\infty}a_n\) for some Cauchy sequence \((a_n)_{n=1}^{\infty}\) which is bounded away from zero.
+	\begin{IEEEproof}
+		If \(x\) is a non-zero real number, then \(x=\text{LIM}_{n\rightarrow\infty}a_n\) for some Cauchy sequence \((a_n)_{n=1}^{\infty}\). Because \(x\neq 0\), we know from the definition of equivalent sequences that \(\exists\alpha\forall\beta\exists n(n\geq\beta\wedge\lvert a_n\rvert>\alpha)\).\footnote{This is the negation of the definition of two equivalent sequences, with \(b_n=0\).} Because \(a_n\) is Cauchy, if we choose \(\epsilon<\frac{\alpha}{2}\), then \(\exists\delta(i,j\geq\delta\Rightarrow\lvert a_i-a_j\rvert\leq\epsilon)\). It follows \(\exists k(k\geq\delta\wedge\lvert a_k\rvert>\alpha)\).\footnote{This works because \(\beta\) is arbitrary.} If \(l\geq\delta\), it follows:
+		\begin{IEEEeqnarray*}{rCl}
+			\lvert a_k\rvert&>&\alpha\\
+			\lvert a_l-a_k\rvert&\leq&\epsilon<\frac{\alpha}{2}\\
+			\lvert a_l-a_k\rvert&\neq&\lvert a_k\rvert\\
+			a_l&=&a_k+(a_l-a_k)\\
+			\lvert a_l\rvert&>&\frac{\alpha}{2}
+		\end{IEEEeqnarray*}
+		The last line can be proven by cases whether \(a_l-a_k\) or \(a_k\) are negative or positive. So for all \(l\geq\delta\) we have \(\lvert a_l\rvert>\frac{\alpha}{2}\). An equivalent sequence bounded away from zero can now be easily constructed.
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Reciprocals of Real Numbers]
+	Let \(x\) be a non-zero real number. Let \((a_n)_{n=1}^{\infty}\) be a Cauchy sequence bounded away from zero such that \(x=\text{LIM}_{n\rightarrow\infty}a_n\). Then we define the reciprocal \(x^{-1}\) by the formula \(x^{-1}=\text{LIM}_{n\rightarrow\infty}a_n^{-1}\).
+\end{defi}
+\begin{defi}[Division of Reals]
+	Division \(x/y\) of two real numbers \(x,y\) provided \(y\) is non-zero is given by the formula \(x/y=x\times y^{-1}\).
+\end{defi}
+\begin{defi}[Positively Bounded Away From Zero]
+	Let \((a_n)_{n=1}^{\infty}\) be a sequence of rationals. We say that this sequence is positively bounded away from zero iff we have a positive rational \(c>0\) such that \(a_n>c\) for all \(n\geq 1\). You can fill in the blank for what negatively bounded away from zero means I hope.
+\end{defi}
+\begin{defi}[Positive and Negative Real Numbers]
+	A real number \(x\) is said to be positive or negative iff it can be written as \(x=\text{LIM}_{n\rightarrow\infty}a_n\) for some Cauchy sequence \((a_n)_{n=1}^{\infty}\) which is positively or negatively bounded away from zero respectively.
+\end{defi}
+\begin{defi}[Absolute Value]
+	Let \(x\) be a real number. We define the absolute value \(\lvert x\rvert\) of \(x\) to equal \(x\) if \(x\) is positive, \(-x\) when \(x\) is negative, and \(0\) when \(x\) is zero.
+\end{defi}
+\begin{defi}[Ordering of Real Numbers]
+	Let \(x\) and \(y\) be real numbers. We say that \(x\) is greater than \(y\) iff \(x-y\) is a positive real number, and \(x\) is less that \(y\) iff \(x-y\) is a negative real number. We define \(x\geq y\) iff \(x>y\) or \(x=y\), and similarly define \(x\leq y\).
+\end{defi}
+\begin{lem}[The Non-negative Reals are Closed]
+	Let \(a_1,a_2,\ldots\) be a Cauchy sequence of non-negative rational numbers. Then \(\text{LIM}_{n\rightarrow\infty}a_n\) is a non-negative real number.\footnote{The title of the lemma builds on the fact that non-negative rationals are closed under addition.}
+	\begin{IEEEproof}
+		Suppose to the contrary that \(\text{LIM}_{n\rightarrow\infty}a_n\) is a negative real number. Then there exists a Cauchy sequence \(b_n\) negatively bounded away from zero so that \(\text{LIM}_{n\rightarrow\infty}a_n=\text{LIM}_{n\rightarrow\infty}b_n\). Therefore there exists a negative rational \(-c\) such that \(b_n<-c\) for all \(n\). It follows from the hypothesis that for all \(n\)
+		\begin{IEEEeqnarray*}{rCl}
+			a_n&>&0\\
+			-b_n&>&c\\
+			a_n-b_n&>&c
+		\end{IEEEeqnarray*}
+		Because \(c\) is positive, \(\lvert a_n-b_n\rvert>c\) for all \(n\). Thus \((a_n)_{n=1}^{\infty}\) and \((b_n)_{n=1}^{\infty}\) are not equivalent.
+	\end{IEEEproof}
+\end{lem}
+\begin{cor}
+	Let \((a_n)_{n=1}^{\infty}\) and \((b_n)_{n=1}^{\infty}\) be Cauchy sequences of rationals such that \(a_n\geq b_n\) for all \(n\geq 1\). Then \(\text{LIM}_{n\rightarrow\infty}a_n\geq\text{LIM}_{n\rightarrow\infty}b_n\).
+	\begin{IEEEproof}
+		\(\text{LIM}_{n\rightarrow\infty}a_n-\text{LIM}_{n\rightarrow\infty}b_n=\text{LIM}_{n\rightarrow\infty}a_n-b_n\). It follows from lemma \(1.9\) that because \(a_n-b_n\geq 0\), \(\text{LIM}_{n\rightarrow\infty}a_n-b_n\) is a non-negative real number.
+	\end{IEEEproof}
+\end{cor}
+\begin{lem}[Archimedean Property]
+	Let \(x\) and \(\epsilon\) be any positive real numbers. Then there exists a positive integer \(M\) such that \(M\epsilon>x\).
+\end{lem}
+\begin{defi}[Upper Bound]
+	Let \(E\) be a subset of \(\mathbb{R}\), and let \(M\) be a real number. We say that \(M\) is an upper bound for \(E\), iff we have \(x\leq M\) for every element \(x\) in \(E\).
+\end{defi}
+\begin{defi}[Least Upper Bound] Let \(E\) be a subset of \(\mathbb{R}\), and let \(M\) be a real number. We say that \(M\) is a least upper bound for \(E\) iff:
+	\begin{enumerate}
+		\item \(M\) is an upper bound for \(E\).
+		\item Any other upper bound \(M'\) for \(E\) must be larger than or equal to \(M\).\footnote{Least upper bounds are unique.}
+	\end{enumerate}
+\end{defi}
+\begin{thm}[Existence of Least Upper Bound]
+	Let \(E\) be a nonempty subset of \(\mathbb{R}\). If \(E\) has an upper bound, then it must have exactly one least upper bound.
+\end{thm}
+\end{document}

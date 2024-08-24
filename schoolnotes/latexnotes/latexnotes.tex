@@ -1,0 +1,42 @@
+\documentclass[nobib]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+\title{Latex Notes}
+\author{Samuel Lindskog}
+\date{\today}
+\maketitle
+\newthought{Sometimes I like to create} a thought or two in order to test out the formatting system of my new latex template I downloaded.
+\section{Some Notes and Sheit}
+\subsection{vertical paragraph breaks}
+\verb|\vspace, \bigbreak, \medbreak, \smallbreak|
+\subsection{definitions}
+\verb|\renewcommand[nargs][argdefault]{body (#1, #2, ...)}|\\
+\verb|\newcommand[nargs][argdefault]{body (#1, #2, ...)}|\\
+\verb|\newenvironment{env}[nargs][argdefault]{begdef}{enddef}|\\
+\verb|\renewenvironment{env}[nargs][argdefault]{begdef}{enddef}|
+\subsection{theorems and definitions}
+make definitions or theorems with this. theorems are defined in the preamble.\medbreak
+\verb|\newtheorem{name}[numberedlike]{title}|\\
+\verb|\newtheorem{name}{title}[numberedwithin]|\medbreak
+\verb|\theoremstyle{definition, plain, remark}|\\
+\indent\verb|\newtheorem{name}[numberedlike]{title}|
+Usage:\medbreak
+\verb|\begin{name} stuff \end{name}|
+\subsection{counters}
+part, section, subsection, subsubsection, paragraph, subparagraph, page, equation, figure, table, footnote, etc...
+\subsection{matrices}
+\verb|\begin{bmatrix} [], \begin{pmatrix} (), \begin{Bmatrix} {}|
+\subsection{}
+\subsection{equation}
+Use only for single, nonwrapped lines.
+\begin{equation}
+	2+2=4
+\end{equation}
+\subsection{displaymath}
+use equation instead
+\end{document}

@@ -1,0 +1,589 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{Physics Dos}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Electric charge and electric field}
+\subsection{Positive and negative charge}
+Simple experiments show that there exist two different charges. Like charges repel, and opposite charges attract. These different charges were named positive and negative arbitrarily.
+\subsection{The structure of atoms}
+Atoms can be described as made up of three particles: protons, neutrons and electrons.\footnote{Protons and nuetrons are comprised of other particles called quarks.} The nucleus of an atom has dimensions on the order of \(10^{-15}\)m, while surrounding the nucleus electrons orbit out to distances of \(10^{-10}\)m. The masses of these particles are:
+\begin{IEEEeqnarray*}{rCl}
+	\text{Mass of electron i.e. \(m_c\)}&=&9.10938291(40)\times 10^{-31}\text{kg}\\
+	\text{Mass of proton i.e. \(m_p\)}&=&1.672621777(74)\times 10^{-27}\text{kg}\\
+	\text{Mass of neutron i.e. \(m_n\)}&=&1.674927351(74)\times 10^{-27}\text{kg}
+\end{IEEEeqnarray*}
+Because the proton and neutron are more than three levels of magnitude greater in mass than the electron, over \(99.9\%\) of the mass of an atom comes from its nucleus. \emph{The negative charge of an electron is exactly the same magnitude as the positive charge of the proton.} In a neutrally charged atom, the number of protons and electrons is the same. If electrons are removed, the atom becomes a positive ion, and if an electron is added becomes a negative ion.
+\begin{defi}[Principle of conservation of charge]
+	The algebraic sum of all the electric charges in any closed system is constant.\footnote{This is thought to be part of a universal conservation law.}
+\end{defi}
+\begin{rema}
+The magnitude of the charge of an electron or proton, because they are the same, is a natural unit of charge. Every observable amount of electric charge is an integer multiple of this unit.
+\end{rema}
+\subsection{Conductors, insulators, and induced charges}
+\begin{defi}[Conductors and insulators]
+Conductors permit charge to be transferred through them, while insulators do not.
+\end{defi}
+\subsection{Induction}
+We can charge a metal ball by connecting it with a negatively charged plastic rod. Now both the rod and the ball have a slightly negative charge and will repel each other. However, the plastic rod can also shift the charges in a metal ball without ever touching it, through a process called \emph{induction}.\footnote{Induction can also give an object an opposite charge through the strategic placement and removal of a conductor during and after an induced charge is created.} The movement of electrons on the surface of a neutrally charged conductor away from a negatively charged insulator creates a concentration of electrons on the surface of the conductor furthest away from the insulator. This concentration of charge is called an \emph{induced charge}, and the difference in charge on the positive and negative side is called \emph{polarization}.
+\subsection{Coulomb's law}
+Coulomb's law is named after Charles Augustin de Coulomb (1736-1806). It states that for two charged bodies seperated by distance \(r\), the electric force is proportional to \(\frac{1}{r^2}\). The electric force between two point charges, denoted \(q_1\) and \(q_2\), is proportional to the magnitude of these charges, i.e. proportional to \(q_1\cdot q_2\).
+\begin{defi}[Coulomb's law]
+	The magnitude \(F\) of the force that two point charges \(q_1\) and \(q_2\) a distance \(r\) apart exert on each other is:
+	\begin{equation*}
+		F=k\frac{\lvert q_1q_2\rvert}{r^2}
+	\end{equation*}
+	where \(k\) is a proportionality constant dependent on the system of units used. Coulomb's law can also be written as:
+	\begin{equation*}
+		F=\frac{1}{4\pi\epsilon_0}\frac{\lvert q_1q_2\rvert}{r^2}
+	\end{equation*}
+	where epsilon is called the electric constant.
+\end{defi}
+The directions of the forces between two charges are always along the line joining them. Opposite charges attract and like charges repel.
+\begin{rema}
+	The SI unit of electric charge is called the \emph{coulomb} (\(1\)C). 
+\end{rema}
+\begin{defi}[SI constants]
+	The value of \(k\) is closely related to the speed of light in a vacuum, \(c\).
+	\begin{IEEEeqnarray*}{rCl}
+		k&=&8.987551787\times10^9N\cdot m^2/C^2\\
+		k&=&(10^{-7}N\cdot s^2/C^2)c^2\\
+		\epsilon_0&=&8.854\times 10^{-12}C^2/N\cdot m^2\\
+		e&=&1.602176565(35)\times 10^{-19}C
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Principle of superposition of forces]
+	The total force acting on a charge by one or more different charges is the vector sum of the individual forces exerted by those vector charges.
+\end{defi}
+\section{Electric field}
+A charge \(A\) produces an electric field at a point \(p\), even if there is no charge at \(p\). If a charge \(q_0\) is placed at point \(p\), then it experiences a force \(\vec{F_0}\). A helpful point of view is that the field induced by \(A\) exerts a force on \(q_0\).\footnote{This point of view does not break the Newton's third law because of the structure of Coulomb's law.} We call the of \(A\) the source point, and the point \(p\) the field point.
+\begin{defi}[Electric field]
+	The electric field \(\vec{E}\) at a point is equal to the electric force per unit of charge at that point, i.e.
+	\begin{equation*}
+		\vec{E}=\frac{\vec{F_0}}{q_0}
+	\end{equation*}
+	With \(q_0\) the value of the test charge in Coulombs (can be positive or negative). Using Coulomb's law, and the unit vector \(\hat{r}\)\footnote{\(\hat{r}\) is the unit vector along the line from the source point to the field point}, we can write a vector equation using the magnitude and direction of the magnetic field as:
+	\begin{equation*}
+		\vec{E}=\frac{1}{4\pi\epsilon_0}\frac{q}{r^2}\hat{r}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Electric Flux]
+	Electric flux, denoted \(\Phi_E\), can be thought of as the magnitude of the flow of an electric field \(E\) through a surface \(A\). For a uniform electric field \(\vec{E}\) through a surface with orientation and area \(\vec{A}\), it can be expressed as
+	\begin{equation*}
+		\Phi_E=\vec{E}\cdot\vec{A}
+	\end{equation*}
+For a nonuniform electric field, the equation is
+	\begin{equation*}
+		\Phi_E=\int \vec{E}\cdot\vec{dA}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Gauss's law]
+	Gausses law relates the electric flux \(\Phi_{E}\) through a closed surface with the charge enclosed by that surface \(Q_{encl}\) by the equation
+	\begin{equation*}
+		\Phi_{E}=\oint \vec{E}\cdot\vec{dA}=\frac{Q_{encl}}{\epsilon_0}
+	\end{equation*}
+\end{defi}
+\section{Potential and other shit}
+\begin{rema}
+	Work done on a particle by a force \(\vec{F}\) from a point \(a\) to \(b\) can be expressed as the line integral
+	\begin{equation*}
+		W_{a\rightarrow b}=\int_a^b\vec{F}\cdot\vec{dl}
+	\end{equation*}
+	For a conservative force, the work done can be expressed by the difference in potential energy at starting point \(a\), denoted \(U_a\) to point \(b\) with potential energy \(U_b\)
+	\begin{equation*}
+		W_{a\rightarrow b}=U_a-U_b=-(U_b-U_a)=-\Delta U
+	\end{equation*}
+	The work done on a particle with charge \(q_0\) from points \(a\) to \(b\) by a uniform electric field over distance \(d\), and a nonuniform electric field, both over a line of length \(r\) radial from the source of the electric field can be expressed as
+	\begin{IEEEeqnarray*}{rCl}
+		W_{a\rightarrow b}&=&Eq_0d\\
+		W_{a\rightarrow b}&=&\int_{r_a}^{r_b} E_rdr
+	\end{IEEEeqnarray*}
+	If the line is not radial, the work done by a nonuniform electric field over a path \(L\) can be expressed as
+	\begin{equation*}
+		W_{a\rightarrow b}=\int_{r_a}^{r_b} F cos\theta\,dl
+	\end{equation*}
+	Conceptually, \(cos\theta\,dl=dr\), for a radial path \(r\) made by the projection of \(L\) on \(\vec{F}\).
+\end{rema}
+\begin{defi}[Electric potential]
+	Electric potential is potential energy per unit of charge. This can be expressed by the equation
+	\begin{equation*}
+		V=\frac{U}{q_0}
+	\end{equation*}
+	With \(U\) the potential energy of test charge \(q_0\). The SI unit of potential is the volt, with \(1V=1J/C\).
+\end{defi}
+\begin{defi}[Capacitance]
+	Capacitance is a measure of how much charge a capacitor can hold per volt, i.e.
+	\begin{equation*}
+		C=\frac{Q}{V_{ab}}
+	\end{equation*}
+	The SI unit of capacitance is the farad, with one farad equal to one coulomb per volt.
+\end{defi}
+\begin{rema}
+	For capacitors in series, with points \(a,b\) on opposite ends of the chain of capacitors, the voltage across the capacitors can be expressed as
+	\begin{IEEEeqnarray*}{rCl}
+		V_{ab}&=&V_1+V_2=\frac{Q}{C_1}+\frac{Q}{C_2}\\
+		V_{ab}&=&Q(\frac{1}{C_1}+\frac{1}{C_2})\\
+		\frac{V}{Q}&=&\frac{1}{C_1}+\frac{1}{C_2}
+	\end{IEEEeqnarray*}
+	In other words, \(\frac{1}{C_{eq}}=\frac{1}{C_1}+\frac{1}{C_2}\). For capacitors in parallel, the potential difference across each capacitor is the same. Therefore
+	\begin{IEEEeqnarray*}{rCl}
+		Q&=&Q_1+Q_2=(C_1+C_2)V\\
+		\frac{Q}{V}&=&C_1+C_2
+	\end{IEEEeqnarray*}
+	i.e. \(C_{eq}=C_1+C_2\).
+\end{rema}
+\begin{rema}
+	The potential energy stored in a charged capacitor is equal to the amount of energy needed to charge it. This can be calculated by the integral
+	\begin{IEEEeqnarray*}{rCl}
+		U&=&W=\int_{0}^{Q}\frac{q}{C}{dq}\\
+		U&=&\frac{Q^2}{2C}=\frac{1}{2}CV^2=\frac{1}{2}QV
+	\end{IEEEeqnarray*}
+\end{rema}
+\begin{defi}[Dielectrics]
+	Most capacitors have an insulating material between their conducting plates called a dielectric. This plate decreases the potential difference between the plates, thereby increasing the capacitance of the capacitor.
+\end{defi}
+\begin{defi}[Dielectric constant]
+	The ratio of the capacitance \(C_0\) of a capacitor with a vacuum dielectric to the capacitance \(C\) of that same capacitor with a specified material is called the dielectric constant \(K\).
+	\begin{equation*}
+		K=\frac{C}{C_0}
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	Polarization of the insulating dielectric material is what causes the voltage drop to occur. This is because the magnetic field produced by polarization in the material counteracts the direction of the magnetic field between the conducting plates of the capacitor.
+\end{rema}
+\section{Current, resistance and electromotive force}
+\begin{defi}[Conventional current]
+	The direction of flow of positive charge, which is opposite the flow of electrons in a conductor.
+\end{defi}
+\begin{defi}[Current]
+	Current \(I\) through a cross-sectional area \(A\) is defined as the net charge flowing through that area per unit time.\footnote{Current is not a vector.}
+	\begin{equation*}
+		I=\frac{dQ}{dt}
+	\end{equation*}
+	The SI unit of current is the ampere, defined as one coulomb per second (\(1\text{A}=1\text{C}/\text{S}\)).
+\end{defi}
+\begin{rema}
+	Current can be expressed in terms of its drift velocity with magnitude \(v_d\), the concentration of charged particles per meter cubed \(n\),\footnote{The SI unit of current density is \(m^{-3}\).} the charge of each particle \(q\), the cross sectional area, and the time elapsed \(dt\)
+	\begin{equation*}
+		I=\frac{dQ}{dt}=nqv_dA
+	\end{equation*}
+	The current per unit cross-sectional area is called the current density \(J\).\footnote{Current density is to current what volts are to potential.}
+	\begin{equation*}
+		J=\frac{I}{A}=nqv_d
+	\end{equation*}
+	The vector current density \(\vec{J}\) can be defined:
+	\begin{equation*}
+		\vec{J}=nq\vec{v_d}
+	\end{equation*}
+	Current density typically refers to vector current density, whearas current is a scalar value.
+\end{rema}
+\begin{defi}[Resistivity]
+	Resistivity \(\rho\) is the ratio of the magnitude of the electric field \(E\) to the magnitude of current density \(J\) caused by that electric field.\footnote{The reciprocal of resistivity is conductivity.}
+	\begin{equation*}
+		\rho=\frac{E}{J}
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	The resistivity of a metallic conductor nearly always increases with increasing temperature.
+\end{rema}
+\begin{defi}[Resistance]
+	Resistance \(R\) is the ratio of potential difference \(V\) to the current it induces \(I\). The SI unit of resistance is the ohm, equal to one volt per ampere \(1 \Omega = 1V/A\)
+\end{defi}
+\begin{defi}[Ohm's law]
+	Ohms law is an idealized model that implies \(\vec{J}\) is directly proportional to \(\vec{E}\).
+	\begin{equation*}
+		V=IR
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	An important equality for understanding what is resistance \(R\):
+	\begin{IEEEeqnarray*}{rCl}
+		E=\frac{V}{L}&=&\frac{I}{A}\rho=J\rho\\
+		V&=&\frac{\rho L}{A}I=\rho LJ\\
+		R&=&\frac{V}{I}=\frac{\rho L}{A}
+	\end{IEEEeqnarray*}
+	This equality is important because it exposes the machinery behind Ohm's law. With this equality we are relating the movement of charge created by an electric field with the potential energy of the charge created by the field.
+\end{rema}
+\begin{rema}
+	For a conductor to have current, it needs to be a closed loop or complete circuit. Otherwise charge would build up on one end of the conductor, creating an electric field which opposes the current, thus halting the current.
+\end{rema}
+\begin{defi}[Electromotive force]
+	The influence that makes current flow from lower to higher potential is called electromotive force, abbreviated emf. A circuit device which provides emf is called a source of emf, and the voltage it produces is represented by \(\mathcal{E}\).
+\end{defi}
+\begin{defi}[Power]
+	The rate of energy transferred into or out of a circuit element is called power, denoted by \(P\).
+	\begin{equation*}
+		P=V_{ab}I
+	\end{equation*}
+	The SI unit of power is the watt (\(1 W=1J/s\)).
+\end{defi}
+\begin{rema}
+	When the potential of a charge decreases, its energy is not converted into kinetic energy of the charge, but rather it is deposited into the medium through which it travels.
+\end{rema}
+\section{Magnetism and whatnot}
+\begin{rema}
+	A moving charge or a current creates a magnetic field in the surrounding space. This magnetic field exerts a force \(\vec{F}\) on any other moving charge or current that is present in that field.
+\end{rema}
+\begin{defi}[Magnetic force]
+	The magnetic force on a particle with charge \(q\), velocity \(\vec{v}\) in a magnetic field \(\vec{B}\), with angle \(\theta\) between these vectors has a magnitude of:
+	\begin{equation*}
+		G=\lvert q\rvert vBsin\theta
+	\end{equation*}
+	The magnetic force vector can be calculated by the equation
+	\begin{equation*}
+		\vec{F}=q\vec{v}\times\vec{B}
+	\end{equation*}
+	The SI unit of magnetic force is the Tesla, with \(1T=1N/A\cdot m=1N\cdot s/C\cdot m\). The Gauss denoted \(G\) is equal to \(10^{-4}T\).
+\end{defi}
+\begin{rema}
+	The force vector on a charge in both an electric and magnetic field can be found by the equation
+	\begin{equation*}
+		\vec{F}=q(\vec{E}+\vec{v}\times\vec{B})
+	\end{equation*}
+	In diagrams of magnetic fields, a dot represents a vector directed out of the plane, and a cross represents a vector directed into the plane.
+\end{rema}
+\begin{defi}[Magnetic Flux]
+Magnetic flux is defined almost identically to electric flux
+	\begin{equation*}
+		\phi_B=\int B\,\text{cos}\phi\,dA=\int\vec{B}\cdot\vec{dA}
+	\end{equation*}
+	The SI unit of magnetic flux is called the weber, with \(1Wb=1T\cdot m^2\).
+\end{defi}
+\begin{defi}[Gauss's law for magnetism]
+	The total magnetic flux through any closed surface is zero.
+	\begin{equation*}
+		\oint\vec{B}\cdot\vec{dA}=0
+	\end{equation*}
+\end{defi}
+\subsection{Magnetic field lines}
+	Magnetic field lines have no ends and never intersect. Where magnetic field lines are bunched closer, the magnetic field is stronger. Also, because the magnetic force is always at a right angle to the velocity, it cannot change the magnitude of the velocity, only its direction. This also means that the magnetic force can never do work on the particle.
+\subsection{Movement of particle in uniform magnetic field}
+A particle moving perpendicular to a magnetic field will always move in a circular orbit. We can then solve for the radius of this circle by using the equation for centripetal acceleration, as well as knowing the mass of the object, its charge, and the magnitude of it's velocity.
+\begin{IEEEeqnarray*}{rCl}
+	F&=&\lvert q\rvert vB=m\frac{v^2}{R}\\
+	R&=&\frac{mv}{\lvert q\rvert B}
+\end{IEEEeqnarray*}
+The angular speed can be found from the equation \(v=R\omega\). A charged particle with an element of its motion parallel to the magnetic field will move in a helical motion.
+\begin{defi}[Right-hand rule]
+	For the direction of \(\vec{a}\times\vec{b}\), use your right pointer finger for \(\vec{a}\), and your middle finger for \(\vec{b}\).
+\end{defi}
+\subsection{Magnetic field of a moving charge}
+The magnetic field line of a moving charge at any point is perpendicular to the line between the source point and field point, and the velocity vector of the charge inducing the field. Thus the magnetic field magnitude at point \(P\) is
+\begin{equation*}
+	B=\frac{\mu_0}{4\pi}\frac{\lvert q\rvert v\,\text{sin}\,\phi}{r^2}
+\end{equation*}
+The vector equation for \(\vec{B}\) is
+\begin{equation*}
+	\vec{B}=\frac{\mu_0}{4\pi}\frac{q\vec{v}\times\hat{r}}{r^2}
+\end{equation*}
+\begin{defi}[Magnetic constant]
+	\,
+	\begin{equation*}
+		\mu_0=4\pi\times 10^{-7}T\cdot m/A
+	\end{equation*}
+\end{defi}
+\begin{defi}[Principle of superposition of magnetic fields]
+	The total magnetic field caused by several moving charges is the vector sum of the fields caused by the individual charges.
+\end{defi}
+\begin{defi}[Magnetic dipole moment]
+	\,
+	\begin{equation*}
+		\mu=IA
+	\end{equation*}
+\end{defi}
+\begin{defi}[Magnitude of magnetic torque]
+	\,
+	\begin{equation*}
+		t=IBA\text{sin}\phi
+	\end{equation*}
+	also, this can be written as
+	\begin{equation*}
+		t=\mu B\text{sin}\phi
+	\end{equation*}
+\end{defi}
+\begin{defi}[Current element: vector magnetic field]
+	\,
+	\begin{equation*}
+		\vec{dB}=\frac{\mu_0}{4\pi}\frac{I\vec{dl}\times\hat{r}}{r^2}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Law of Biot and Savart]
+	\,
+	\begin{equation*}
+		\vec{B}=\frac{\mu_0}{4\pi}\int\frac{I\vec{dl}\times\hat{r}}{r^2}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Magnitude of magnetic field near infinite wire]
+	\,
+	\begin{equation*}
+		B=\frac{\mu_0I}{2\pi r}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Magnetic field on axis of a coil]
+	\,
+	\begin{equation*}
+		B_x=\frac{\mu_0NI}{2r}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Force per unit length parallel wires]
+	If the current in both wires moves the same direction, the force is attractive.
+	\begin{equation*}
+		\frac{F}{L}=\frac{\mu_0II'}{2\pi r}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Ampere]
+	One aptere is the current that if present in two parallel conductors of infinite length and one meter apart in empty space, causes each conductor to experience a force of exactly \(2\times 10^{-7}N\) per meter of length.
+\end{defi}
+\begin{defi}[Ampere's law]
+	Curl the fingers of your right hand around the integration path. Your thumb points in the direction of the positive current.
+	\begin{equation*}
+		\oint\vec{B}\cdot\vec{dl}=\mu_0 I_{encl}
+	\end{equation*}
+\end{defi}
+\section{Thermodynamics}
+\begin{defi}[Temperature]
+	Quantitative measure of hotness or coldness.
+\end{defi}
+\begin{defi}[Thermal equilibrium]
+	Two systems are in thermal equilibrium if and only if they have the same temperature
+\end{defi}
+\begin{defi}[Zeroth law of thermodynamics]
+	If \(C\) is initially in thermal equilibrium with both \(A\) and \(B\), then \(A\) and \(B\) are also in thermal equilibrium with each other.
+\end{defi}
+\begin{defi}[Kelvin Scale]
+	The ration of two tempertures in kelvin equals the ratio of corresponding pressures in constant-colume gas thermometer.
+	\begin{equation*}
+		\frac{T_2}{T_1}=\frac{p_2}{p_1}
+	\end{equation*}
+	Using the temperature and pressure triple point of water, \(T_{triple}\) and \(P_{triple}\), we can define \(T\) on the kelvin scale as:
+	\begin{equation*}
+		T=T_{triple}\frac{p}{p_{triple}}=(273.16\text{K})\frac{p}{p_{triple}}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Thermal Expansion]
+	Suppose a solid rod has a length \(L_0\) and some initial temperature \(T_0\). When the temperature changes by \(\Delta T\), the length changed by \(\Delta L\).
+	\begin{equation*}
+		\Delta L=\alpha L_0\Delta T
+	\end{equation*}
+	\(\alpha\) is the coefficient of linear expansion. Keep in mind some materials do not expand evenly e.g. crystals. The equation for volume thermal expansion is
+	\begin{equation*}
+		\Delta V=\beta V_0\Delta T
+	\end{equation*}
+	\(\beta\) is the coefficient of volume expansion.
+\end{defi}
+\begin{defi}[Heat]
+	Energy transfer that takes place solely because of a temperature difference is called heat transfer, and energy transferred in this way is called heat. 
+\end{defi}
+\begin{defi}[Units of heat]
+	\,
+	\begin{IEEEeqnarray*}{rCl}
+		1\text{cal}&=&4.186\text{J}\\
+		1\text{Btu}&=&252\text{cal}=1055\text{J}
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Specific Heat]
+	The quantity of heat \(Q\) required to increase the temperature of a mass \(m\) of a certain material from \(T_1\) to \(T_2\) is found to be approximately proportional to the temperature change \(\Delta T\).
+	\begin{equation*}
+		Q=mc\Delta T
+	\end{equation*}
+	Where \(c\) is the specific heat of a given material.
+\end{defi}
+\begin{defi}[Molar Heat]
+	\,
+	\begin{equation*}
+	Q=nC\Delta T
+	\end{equation*}
+	The constant \(C\) is known as the molar heat capacity, or molar specific heat.
+\end{defi}
+\subsection{Phase changes}
+A transition from one phase of matter to another is called a phase change, e.g. water turning to steam. Phase changes require heat to occur, called the \emph{heat of fusion}\footnote{Also sometimes called \emph{latent heat of fusion}.}, denoted by \(L_f\). For water at normal atmospheric pressure the heat of fusion is
+\begin{equation*}
+	L_f=3.34\times 10^5 ,\text{J/kg}
+\end{equation*}
+The heat transfer in a phase change is given by the equation
+\begin{equation*}
+	Q=\pm mL_f
+\end{equation*}
+Where \(m\) is the mass of the material, \(L\) is the latent heat for the phase change, and the sign positive if heat enters the material. Any time a phase transition occurs, heat transfer occurs.
+\medbreak
+\noindent The heat of vaporization \(L_v\) for water is
+\begin{equation*}
+	L_v=2.256\times 10^6 \text{J/kg}
+\end{equation*}
+\begin{defi}[Heat current]
+	When a quantity of heat \(dQ\) is transferred, the rate of heat flow \(dQ/dt\) is called heat current, denoted \(H\). For a rod with cross sectional area \(A\) and length \(L\), heat current is given by the equation
+	\begin{equation*}
+		H=\frac{dQ}{dt}=kA\frac{T_H-T_C}{L}
+	\end{equation*}
+	The quantity \(T_H-T_C/L\) is the temperature difference per unit length\footnote{This is called the magnitude of the temperature gradient.}, and \(k\) is the thermal conductivity. The SI unit of heat current is the watt.
+\medbreak
+\noindent Thermal resistance is given by the equation
+	\begin{equation*}
+		T=\frac{L}{K}
+	\end{equation*}
+This means that we can define heat as
+	\begin{equation*}
+		H=\frac{A(T_H-T_C)}{R}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Thermal Radiation/Stefan-Boltzmann law]
+	Radiation is the transfer of heat by electromagnetic waves such as visible light, infrared, and ultraviolet radiation. The rate of energy radiation from a surface is proportional to the surface area \(A\) and to the fourth power of the temperature \(T\).
+	\begin{equation*}
+		H=Ae\sigma T^4
+	\end{equation*}
+	The dimensionless constant \(e\) is the emissivity, and \(\sigma\) is the Stefan-Boltzmann constant. Emissivity depends somewhat on temperature\footnote{Emissivity is often larger for darker surfaces.}, and is between \(0\) and \(1\).
+	\begin{equation*}
+		\sigma=5.670373(21)\times 10^{-8}\, W/m^2\cdot K^4
+	\end{equation*}
+	An ideal radiator, with emissivity \(e=1\), is also an ideal absorber. Such an ideal surface is called an ideal black body, or simply a \emph{blackbody}.
+\end{defi}
+\begin{defi}[Molar Mass]
+	The molar mass \(M\) of a compound is the mass per mole. For \(n\) moles of a substance
+	\begin{equation*}
+		m_{total}=nM
+	\end{equation*}
+	Molar mass can be defined in terms of Avadodro's number and the mass \(m\) per molecule as
+	\begin{equation*}
+		M=N_Am
+	\end{equation*}
+\end{defi}
+\begin{defi}[Ideal Gasses]
+	An idea gas is one for which the following equation holds precisely for all temperatures and pressures.
+	\begin{equation*}
+		pV=nRT
+	\end{equation*}
+	In this equation, \(p\) is the pressure, \(V\) is the volume, \(n\) is the number of moles, \(R\) is the gas constant, and \(T\) is the temperature of the gas.
+	\begin{equation*}
+		R=8.3144621(75)\,J/mol\cdot K
+	\end{equation*}
+	For an ideal gas, the following equality holds:
+	\begin{equation*}
+		\frac{p_1V_1}{T_1}=\frac{p_2V_2}{T_2}=\,\text{constant}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Density]
+	Density \(\rho\) is given by
+	\begin{IEEEeqnarray*}{rCl}
+		\rho&=&\frac{pM}{RT}\\
+		&=&\frac{m_{total}}{V}
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Avagodro's number]
+	The number of molecules in a mole is called Avagodro's number, denoted \(N_A\).
+	\begin{equation*}
+		N_A=6.02214129(27)\times 10^{23}\text{molecules/mol}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Thermodynamic system]
+	A thermodynamic system is any collection of objects that is convenient to regard as a unit, and that may have the potential to exchange energy with its surroundings.
+\end{defi}
+\subsection{Heat and work in thermodynamics}
+We describe the energy relationships in any thermodynamic process in terms of the quantity of heat \(Q\) added to the system, and the work \(W\) done by the system. Both \(Q\) and \(W\) may be positive, negative, or zero.
+\begin{defi}[Work done in a volume change]
+	\,
+	\begin{equation*}
+		W=\int_{V_1}^{V_2}p\,dV
+	\end{equation*}
+\end{defi}
+\begin{defi}[Work done constant pressure vol change]
+	\,
+	\begin{equation*}
+		W=p(V_2-V_1)
+	\end{equation*}
+\end{defi}
+\begin{defi}[First law of thermodynamics]
+	\(U\) is the internal energy of the system.
+	\begin{equation*}
+		\Delta U=Q-W
+	\end{equation*}
+	Although \(Q\) and \(W\) are dependent of path, \(\Delta U\) is not. In other words, the internal energy of an isolated system where \(W=Q=0\) is constant.
+\end{defi}
+\begin{defi}[Adiabatic, isochoric, isobaric, isothermal]
+	\,
+	\begin{enumerate}
+		\item Adiabatic means no heat transfer
+		\item Isochoric means constant volume
+		\item isobaric means constant temperature
+		\item isothermal means constant temperature
+	\end{enumerate}
+\end{defi}
+\subsection{\(C_v\) and \(C_p\)}
+Molar heat capacity is usually measured at a constant volume, and is denoted \(C\). This can be referred to as the molar heat capacity at a constant volume, or \(C_V\). The molar heat capacity at a constant pressure is denoted \(C_P\). Because of the first law of thermodynamics, a gas which expands when heated exerts work \(W\) as it expands, thus \(C_P\) is usually larger than \(C_V\).
+\subsection{Internal energy in an ideal gas}
+The internal energy of an ideal gas is only determined by its temperature. In idealized models, a gas does not lose temperature as it expands. However in the real world, due to attractive forced between molecules, there is an increase in potential energy of a gas when it expands, which causes a decrease in temperature.
+\begin{defi}[Ideal gas heat capacity at a constant pressure]
+	The rate of change of specific heat and internal energy for a gas with constant volume are shown as follows, including the rate of change of work done by the expansion of a gas.
+	\begin{IEEEeqnarray*}{rCl}
+		dQ&=&nC_VdT\\
+		dU&=&nC_VdT\\
+		dW&=&pdV=nRdT
+	\end{IEEEeqnarray*}
+	Knowing these, we can calculate what \(C_P\) should be from \(C_V\). We can do this because the first law of thermodynamics allows the molar heat capacity at constant volume to be used in the calculation of specific heat at any volume.
+	\begin{IEEEeqnarray*}{rCl}
+		nC_PdT&=&nC_VdT+nRdT\\
+		C_P&=&C_V+R
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Ratio of heat capacities]
+	\,
+	\begin{equation*}
+		\gamma = \frac{C_P}{C_V}
+	\end{equation*}
+\end{defi}
+\subsection{Adiabatic ideal gas}
+In an adiabatic ideal gas, no heat flow occurs, so \(Q=0\). As a consequence of this, because \(dU=nC_vdT\), the work done on the gas determines the internal energy and \(nC_vdT=-pdV\). As a consequence of this, the following equation holds:
+\begin{equation*}
+	\frac{dT}{T}+(\gamma -1)\frac{dV}{V}=0
+\end{equation*}
+Because \(\gamma\) is always greater than unity for a gas, \(dV\) and \(dT\) always have opposite signs. Integrating the above equation we see that
+\begin{equation*}
+	ln(TV^{\gamma-1})=\,\text{constant}
+\end{equation*}
+The work done by an ideal gas in an adiabatic process is
+\begin{equation*}
+	W=nC_V(T_1-T_2)
+\end{equation*}
+\begin{defi}[Heat engine]
+	Any device that transforms heat partly into work or mechanical energy is called a heat engine. When a system is carried through a cyclic process, its intitial and final internal energies are equal, so the first law of thermodynamics requires that \(Q=W\) as evidenced by the following equation:
+	\begin{equation*}
+		U_2-U_1=0=Q-w
+	\end{equation*}
+	Due to the second law of thermodynamics, heat is not perfectly converted into work.
+\end{defi}
+\begin{defi}[Thermal efficiency]
+	Thermal efficiency of a heat engine, where \(Q_H\) is the heat absorbed and \(Q_C\) is the heat rejected (inefficiency) is given by the following equation:
+	\begin{equation*}
+		e=\frac{W}{Q_H}=1-\lvert\frac{Q_C}{Q_H}\lvert
+	\end{equation*}
+\end{defi}
+\begin{defi}[Second law of thermodynamics]
+	It is impossible for any system to undergo a process in which it absorbs heat from a reservoir at a single temperature and converts the heat completely into mechanical work, with the system ending in the same state in which it began.
+	\medbreak
+	In other words, it is impossible for any process to have its sole result the transfer of heat from a cooler to a hotter body.
+\end{defi}
+\end{document}

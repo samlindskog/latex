@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+\title{W.H.Greub Linear Algebra Notes}
+\author{Samuel Lindskog}
+\date{August 23, 2023}
+\maketitle
+\renewcommand{\abstractname}{}
+
+\setcounter{secnumdepth}{2}
+
+\section{Axioms of Linear Spaces}
+\subsection*{Notation}
+Parentheses refer to either a tuple or a list. Variables with a superscript (\(\zeta^{n}\)) refer to indexed coefficients. Variables with a subscript (\(x_{n}\)) refer to indexed vectors. Summing the components of a vector outputs a vector, for example in the equation \(f=\sum_{a\in A}f(a)\), \(f\) is a vector equal to the sum of the components produced by \(f\) over the set \(A\).
+\subsection{Additive Groups}
+A set \(E=\{x,y,\ldots\}\) is called an \emph{additive group} if to every pair \(x\) and \(y\) there is assigned a third element of \(E\), called the \emph{sum} of \(x\) and \(y\) as written as \(x+y\), such that the following axioms hold:
+\begin{align*}
+	&x+y=y+x\text{\;(commutative law)}\\
+	&(x+y)+z=x+(y+z)\text{\;(associative law)}\\
+	&\text{There exists a zero-element \(0\) such that \(x+0=x\) for every 
+	\(x\in E\)}\\
+	&\text{To every element \(x\) there exists an \emph{inverse element}\;\(-x\) such that \(x+(-x)=0\)}
+\end{align*}
+\subsection{Real Linear Spaces}
+A \emph{real linear space} or \emph{real vector space} is an additive group with the following additional structure:: There is defined a multiplication between real numbers \(\lambda,\mu,\ldots\) and the elements of \(E\), i.e. for every pair \((\lambda,x)\)\footnote{\(\lambda\) is a scalar, \(x\) is a vector} an element \(\lambda x\) of \(E\) is assigned, subject to the following axioms:
+\begin{align*}
+	&(\lambda\mu)x=\lambda(\mu x)\quad\text{\;(associative law)}\\
+	&\left.\begin{aligned}&(\lambda+\mu)x=\lambda x+\mu x\\
+	&\lambda(x+y)=\lambda x+\lambda y\end{aligned}\right\}\quad\text{(distributive laws)}\\
+	&1\cdot x=x
+\end{align*}
+The elements of a linear space are called \emph{vectors} and the coefficients \emph{scalars}.
+\subsubsection{Example}
+Denote by \(C\) the set of all real valued continuous functions \(f\) in the interval \(0\leq t\leq 1\). Defining addition and multiplication by a real number as \((f+g)(t)=f(t)+g(t)\) and \((\lambda f)(t)=\lambda f(t)\), we obtain a linear space. The zero-vector in this case is the identically vanishing function \(f(t)=0\). Each 'vector' in this case is the output of each function along it's domain.
+\subsection{Linear Dependence}
+A system of \(p\geq 1\) vectors \(x_1\ldots x_p\) of a linear space E is called \emph{linearly dependent} if there exist coefficients \((\lambda^{1}\ldots \lambda^{p})\), at least one of which is not 0, such that:
+\begin{displaymath}
+	\sum_{v}\lambda^{v}x_v=0
+\end{displaymath}
+The system of vectors is considered \emph{linearly independent} if such coefficients do not exist. If the system \((x_1\ldots x_p)\) is linearly dependent, so is any other system containing these vectors, e.g. \((x_1\ldots x_p\ldots x_q)\) is linearly dependent.
+\subsection{Cartesian Product}
+Consider two linear spaces \(E\) and \(F\). Form the product set \(E\times F\), defined as the set of all pairs \((x,y)\) with \(x\in E\) and \(y\in F\).
+\subsection{Linear Subspaces}
+A nonempty subset \(E_1\) of a linear space \(E\) is called a \emph{linear subspace} if the following conditions hold:
+\begin{align*}
+	&\text{if\;} x\in E_1 \text{\;and\;} y\in E_1 \text{\;then\;} x+y\in E_1\\
+	&\text{if\;} x\in E_1 \text{\;then\;}\lambda x\in E_1\text{\;for all coefficients\;}\lambda
+\end{align*}
+Every nonempty set \(S\) in \(E\) determines a subspace called the \emph{linear closure} of \(S\). It consists of all possible finite linear combinations \(x=\sum_{v}\xi^{v}x_v\),\;\(x_v\in S\) with arbitrary coefficients \(\xi^v\)
+\subsection{Intersection and Sum}
+Consider a linear space \(E\), with subspaces \(E_1\in E,E_2\in E\). The set of all vectors contained within \(E_1\) and \(E_2\) is called the \emph{intersection} of \(E_1\) and \(E_2\), denoted \(E_1\cap E_2\). The sum of \(E_1\) and \(E_2\) is the set of all vectors \(x=x_1 +x_2, x_1\in E_1, x_2\in E_2\).\footnote{The sum \(E_1 + E_2\) has to be distinguished from union \(E_1\cup E_2\), which is not a linear space, unlike \(E_1 +E_2\) which is.}
+\subsubsection{Direct Sum}
+\(E_1 +E_2\) is a subspace of \(E\), containing \(E_1\) and \(E_2\). A vector \(x\) of this sum can be decomposed as:
+\begin{align*}
+	&x=x_1 +x_2\quad x_1\in E_1, x_2\in E_2\\
+	&x=x'_1 +x'_2\quad x'_1\in E_1, x'_2\in E_2\\
+	&x_1 -x'_1=x'_2 -x_2\\
+\end{align*}
+From this, the vector \(z=x_1-x'_1\) is contained in the intersection \(E_1\cap E_2\). It follows:
+\begin{align*}
+	&x'_2=x_2+z\\
+	&x'_1=x_1-z\\
+\end{align*}
+\(x_1\) and \(x_2\) are uniquely determined by \(x\) iff \(E_1\cap E_2=0\). In this case, \(E_1+E_2\) is called the \emph{direct sum} of \(E_1\) and \(E_2\), and is denoted by \(E_1\oplus E_2\). The sum of finitely many subspaces \(E_i(i=1\ldots p)\) is defined. If any two spaces \(E_i\) and \(E_j\) have the zero vector in common, the space \(\sum_{i=1}^{p}E_i\) is also called the \emph{direct sum}.
+\subsection{Factor Space}
+Let \(E_1\) be a subspace of \(E\). Then, an equivalence relation among vectors of \(E\) can be defined as:
+\begin{displaymath}
+	\text{Two vectors are equivalent, }x\sim x'\text{ if }x'-x\in E_1\\
+\end{displaymath}
+This relation has the properties of equivalence, derived from the axioms of a linear subspace:
+\begin{align*}
+	&\text{reflexivity: }x\sim x\text{ for }\forall x\in E\\
+	&\text{commutivity: }x\sim x'\Rightarrow x'\sim x\\
+	&\text{transivity: }x\sim x'\text{ and }x'\sim x''\Rightarrow x\sim x''
+\end{align*}
+An equivalence relation can be viewed as a decomposition of the whole space \(E\) into classes of equivalent vectors. Two vectors \(x\) and \(x'\) are in the same class if they are equivalent. Any two classes \(C_1\) and \(C_2\) are either disjoint or coincide. This is because if \(x\in C_1\cap C_2\), then through the transitive property all vectors within \(C_1\) and \(C_2\) are equivalent. Thus, every vector \(x\in E\) is contained in exactly one class. Classes are not subspaces, as they do not contain the zero vector (except for the class which does contain the zero vector).
+\subsubsection{The Linear Structure of Factor-space}
+The set of all equivalence classes with respect to \(E_1\) is a linear space, with operations defined as follows
+\footnote{Because equivalence classes are all parallel, the set of vectors defined by \(x\) and \(x'\) remains the same distance at all points from the set of vectors defined by \(y\) and \(y'\).}\\
+\begin{align*}
+	\text{define }x\in\bar{x}\text{, }y\in\bar{y}&\text{ and } x'-x\in E_1\text{, }y'-y\in E_1\text{. Then:}\\
+	&x'+y'\sim x+y\\
+	&\overline{x'+y'}=\overline{x+y}\text{ (addition)}\\
+	&\lambda\bar{x}=\overline{\lambda x}\text{ (scalar multiplication)}\\
+	&0\in\bar{0}\text{ (zero element)}
+\end{align*}
+\subsection{Linear Spaces of Finite Dimension}
+
+\end{document}

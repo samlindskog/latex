@@ -1,0 +1,281 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[thm]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{definition}\newtheorem*{ident}{Identity}
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+
+%work in progress
+%\theoremstyle{definition}\newtheorem{privdefi}{Definition}[section]
+%\renewenvironment{defi}[1][]{\addcontentsline{toc}{subsection}%
+%{\protect\tocsubsection{}{\thedefi}\if\relax\detokenize{#1}\relax\else#1}%
+%\begin{privdefi}[#1]}{\end{defi}}
+
+%\theoremstyle{definition}\newtheorem{privdef}{Definition}[section]
+%\newenvironment{defi}[1][]
+%{\expandafter\privdef\if\relax\detokenize{#1}\relax\else[#1]\fi
+%\addcontentsline{toc}{subsection}
+%{\protect\tocsubsection{}{\theprivdef}{Problem\if\relax\detokenize{#1}\relax\else\ (#1)\fi}}%
+%}
+%{\enddefi}
+
+\title{Math 313 Notes}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Complex Numbers}
+\subsection{Complex Numbers as Ordered Pairs}
+Complex numbers can be defined as ordered pairs \((x,y)\), that are to be interpreted as points in the complex plane. Real numbers \(x\) are displayed as points \(x, 0\) on the real axis, and complex numbers \(y\) are displayed as \(0, y\) on the imaginary axis.
+\begin{defi}[Real and Imaginary Parts]
+	For the imaginary number \(z=(x,y)\), \(x\) is the real part and \(y\) is the imaginary part, and we write:
+	\begin{IEEEeqnarray*}{c}
+		x=\text{Re}\;z\\
+		y=\text{Im}\;z
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{ident}[Sum of Complex Numbers]
+	\begin{equation*}
+		(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2)
+	\end{equation*}
+\end{ident}
+\begin{ident}[Product of Complex Numbers]
+	\begin{equation*}
+		(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,y_1x_2+x_1y_2)
+	\end{equation*}
+\end{ident}
+\subsection{Algebraic Properties of Imaginary Numbers}
+	Addition and multiplication of imaginary numbers are both commutative and associative. Additionaly, the additive identity \(0=(0,0)\) and multiplicitive identity \(1=(1,0)\) for real numbers carry over to the complex number system. These identities are also unique. All nonzero complex numbers have a unique inverse, given by the equation:
+\begin{defi}[Inverse of Complex Numbers]
+	\begin{IEEEeqnarray*}{c}
+		z=(x,y)\\
+		z^{-1}=\bigg(\frac{x}{x^2+y^2},\frac{-y}{x^2+y^2}\bigg)
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{ident}[Subtraction of Complex Numbers]
+	\begin{equation*}
+		z_1-z_2=z_1+(-z_2)
+	\end{equation*}
+\end{ident}
+\begin{ident}[Division of Complex Numbers]
+	For \(z_2\neq 0\):
+	\begin{IEEEeqnarray*}{rCl}
+		\frac{z_1}{z_2}&=&z_1z_2^{-1}\\
+		&=&\bigg(\frac{x_1x_2+y_1y_2}{x_2^2+y_2^2},\frac{y_1x_2-x_1y_2}{x_2^2+y_2^2}\bigg)
+	\end{IEEEeqnarray*}
+\end{ident}
+\begin{thm}[Binomial Formula]
+	\begin{equation*}
+		(z_1+z_2)^n=\sum_{k=0}^{n}\binom{n}{k}=z_1^kz_2^{n-k}
+	\end{equation*}
+	where
+	\begin{equation*}
+		\binom{n}{k}=\frac{n!}{k!(n-k)!}
+	\end{equation*}
+\end{thm}
+\begin{defi}[Modulus]
+	The modulus \(\lvert z\rvert\) is defined as follows:
+	\begin{IEEEeqnarray*}{rCl}
+		z&=&x+iy\\
+		\lvert z\rvert&=&\sqrt{x^2+y^2}
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Triangle Inequality]
+	\begin{equation*}
+		\lvert z_1+z_2\rvert\leq\lvert z_1\rvert+\lvert z_2\rvert
+	\end{equation*}
+\end{defi}
+\begin{defi}[Complex Conjugate]
+	The complex conjegate of a complex number \(z=x+iy\), denoted \(\overline{z}\) is:
+	\begin{equation*}
+		\overline{z}=x-iy
+	\end{equation*}
+\end{defi}
+\begin{ident}[Sums of Conjugates]
+	\begin{equation*}
+		\overline{z_1+z_2}=\overline{z_1}+\overline{z_2}
+	\end{equation*}
+\end{ident}
+\begin{ident}[Product of Conjugates]
+	\begin{equation*}
+		\overline{z_1z_2}=\overline{z_1}\;\overline{z_2}
+	\end{equation*}
+\end{ident}
+\begin{ident}[Modulus of Conjugates]
+	\begin{IEEEeqnarray*}{c}
+		\overline{\overline{z}}=z\\
+		\lvert\overline{z}\rvert=\lvert z\rvert
+	\end{IEEEeqnarray*}
+\end{ident}
+\begin{ident}[Sum of Complex Number and its Conjugate]
+	\begin{IEEEeqnarray*}{c}
+		\text{Re}\;z=\frac{z+\overline{z}}{2}\\
+		\text{Im}\;z=\frac{z-\overline{z}}{2i}
+	\end{IEEEeqnarray*}
+\end{ident}
+\begin{ident}
+	\begin{equation*}
+		z\overline{z}=\lvert z\rvert^2
+	\end{equation*}
+\end{ident}
+\begin{defi}[Polar Form of Complex Numbers]
+	\begin{equation*}
+		z=r(\text{cos}\theta+i\,\text{sin}\theta)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Principle Value]
+	Each value of \(\theta\) is called an argument of \(z\), and the set of all such values is denoted by arg\,\(z\). The principal value of arg\,\(z\), denoted by Arg\,\(z\), is the unique value \(\Theta\) such that \(-\pi<\Theta<\pi\). Then:
+	\begin{equation*}
+		\text{arg}\,z=\text{Arg}\,z+2n\pi\qquad (n\in\mathbb{Z})
+	\end{equation*}
+\end{defi}
+\begin{thm}[Euler's Formula]
+	\begin{equation*}
+		re^{i\theta}=r(\text{cos}\,\theta+i\text{sin}\,\theta)
+	\end{equation*}
+\end{thm}
+\begin{cor}
+	With \(z\) a complex number, we have:
+	\begin{equation*}
+		z=re^{i\theta}
+	\end{equation*}
+\end{cor}
+\begin{ident}
+	\begin{equation*}
+		e^{i\theta_1}e^{i\theta_2}=\text{cos}(\theta_1+\theta_2)+i\,\text{sin}(\theta_1+\theta_2)=e^{i(\theta_1+\theta_2)}
+	\end{equation*}
+\end{ident}
+\begin{ident}
+	\begin{equation*}
+		\frac{z_1}{z_2}=\frac{r_1e^{i\theta_1}}{r_2e^{i\theta_2}}=\frac{r_1}{r_2}e^{i(\theta_1-\theta_2)}
+	\end{equation*}
+\end{ident}
+\begin{ident}
+	\begin{equation*}
+		\text{arg}(z_1z_2)=\text{arg}(z_1)+\text{arg}(z_2)
+	\end{equation*}
+\end{ident}
+\begin{ident}[Roots of Complex Numbers]
+	\begin{IEEEeqnarray*}{rCl}
+		z&=&re^{i\theta}\\
+		\sqrt[n]{z}&=&\sqrt[n]{r}\,\text{exp}\bigg[i\frac{\theta}{n}+\frac{2k\pi}{n}\bigg]
+	\end{IEEEeqnarray*}
+\end{ident}
+\begin{defi}[\(\epsilon\) Neighborhood]
+	\begin{equation*}
+		\lvert z-z_0\rvert<\epsilon
+	\end{equation*}
+\end{defi}
+\begin{defi}[Deleted Neighborhood]
+	\begin{equation*}
+		0<\lvert z-z_0\rvert <\epsilon
+	\end{equation*}
+\end{defi}
+\begin{defi}[Exterior, Boundary, and Interior points]
+	A point \(z_0\) is said to be an \emph{interior point} of a set \(S\) whenever there is some neighborhood of \(z_0\) that contains only points of \(S\); it is called an \emph{exterior point}  of \(S\) when there exists a neighborhood of \(z_0\) containing no points of \(S\). If \(z_0\) is neither an interior point or exterior point of \(S\), then it is a \emph{boundary point} of \(S\).
+\end{defi}
+\begin{defi}[Open and Closed Sets]
+	A set is \emph{open} if it contains none of its boundary points. It is \emph{closed} if it contains all of its boundary points. The \emph{closure} of a set \(S\) is a set consisting of all points in \(S\) together with all boundary points of \(S\).\footnote{There exists sets that are neither open or closed, e.g. a set containing only one of its boundary points.}
+\end{defi}
+\begin{defi}[Bounded and Unbounded Sets]
+	A set \(S\) is \emph{bounded} if every point of \(S\) lies inside some circle \(\lvert z\rvert=R\); otherwise it is \emph{unbounded}.
+\end{defi}
+\begin{defi}[Accumulation Point]
+	A point \(z_0\) is called an \emph{accumulation point} of a set \(S\) if each deleted neighborhood of \(z_0\) contains at least one point of \(S\).\footnote{If a set is closed, it contains all of its accumulation points.}
+\end{defi}
+\section{Analytic Functions}
+\begin{notat}
+	\begin{IEEEeqnarray*}{rCl}
+		w&=&u+iv=f(x+iy)\\
+		f(z)&=&u(x,y)+iv(x,y)\\
+		u+iv&=&f(re^{i\theta})\\
+		f(z)&=&u(r,\theta)+iv(r,\theta)
+	\end{IEEEeqnarray*}
+\end{notat}
+\begin{defi}[Limit]
+	We say that \(\lim_{z\rightarrow z_0}f(z)=w_0\) if for all real \(\epsilon\) greater than zero there exists \(\delta\) such that \(0<\lvert z-z_0\rvert<\delta\) implies that \(\lvert f(z)-w_0\rvert<\epsilon\).
+\end{defi}
+\begin{defi}[Continuity]
+	A function \(f\) is continuous at a point \(z_0\) if all three of the following conditions are satisfied:
+	\begin{enumerate}
+		\item \(\lim_{z\rightarrow z_0}f(z)\) exists
+		\item \(f(z_0)\) exists
+		\item \(\lim_{z\rightarrow z_0}f(z)=f(z_0)\)
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Derivative]
+	\begin{IEEEeqnarray*}{rCl}
+		f'(z_0)&=&\lim_{z\rightarrow z_0}\frac{f(z)-f(z_0)}{z-z_0}\\
+		f'(z_0)&=&\lim_{\Delta z\rightarrow 0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{notat}
+	\begin{IEEEeqnarray*}{rCl}
+		\Delta w&=&f(z+\Delta z)-f(z)\\
+		f'(z)&=&\frac{dw}{dz}=\lim_{\Delta z\rightarrow 0}\frac{\Delta w}{\Delta z}
+	\end{IEEEeqnarray*}
+\end{notat}
+\begin{defi}[Cauchy-Reimann equations]
+	\begin{IEEEeqnarray*}{rCl}
+		u_x&=&v_y\\
+		u_y&=&-v_x
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{thm}
+	If a function is defined in some \(\epsilon\) neighborhood of a point \(z_0\), the first order partial derivatives with respect to \(x\) and \(y\) exist everywhere in this neighborhood, and these partial derivatives are continuous at \(x_0, y_0\) and satisfy the cauchy-reimann equations, then \(f'(z_0)\) exists.
+\end{thm}
+\begin{defi}[Analytic Function]
+	A function \(f\) of the complex variable \(z\) is \emph{analytic at a point \(z_0\)} if it has a derivative at each point in some neighborhood of \(z_o\).
+\end{defi}
+\begin{defi}[Entire Function]
+	An entire function is a function that is analytic at each point in the entire finite plane.
+\end{defi}
+\begin{defi}[Harmonic Function]
+	A real-valued function \(H\) of two real variables \(x\) and \(y\) is said to be \emph{harmonic} in a given domain of the \(xy\) plane if, throughout that domain, it has continuous partial derivatives of the first and second order and satisfies the partial differential equation:
+\begin{equation*}
+	H_{xx}(x,y)+H_{yy}(x,y)=0
+\end{equation*}
+\end{defi}
+\begin{thm}
+	If a function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\), then its component functions \(u\) and \(v\) are harmonic in \(D\).\footnote{This is a consequence of cauchy-reimann equations.}
+\end{thm}
+\begin{defi}[Harmonic Conjugate]
+	If two given functions \(u\) and \(v\) are harmonic in a domain \(D\) and their first-order partial derivatives satisfy the Cauchy-Reimann equations throughout \(D\), then \(v\) is said to be the \emph{harmonic conjugate} of \(u\).
+\end{defi}
+\begin{thm}
+	A function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\) if and only if \(v\) is a harmonic conjugate of \(u\).
+\end{thm}
+\section{Elementary Functions}
+\begin{ident}
+	\begin{equation*}
+		e^z=e^xe^{iy}=e^x(\text{cos}y+i\text{sin}y)
+	\end{equation*}
+\end{ident}
+\begin{cor}
+	\begin{IEEEeqnarray*}{rCl}
+		\lvert e^z\rvert&=&e^x\\
+		\text{arg}(e^z)&=&y+2n\pi
+	\end{IEEEeqnarray*}
+\end{cor}
+\begin{ident}
+	\begin{IEEEeqnarray*}{c}
+		z=e^w\\
+		w=\text{ln}r+i(\Theta+2n\pi)=\text{log}z
+	\end{IEEEeqnarray*}
+\end{ident}
+\end{document}
