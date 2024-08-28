@@ -1,0 +1,136 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{physics}
+\usepackage{IEEEtrantools}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{Physics 3}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+\setcounter{tocdepth}{1}
+
+\section{Mechanical waves}
+\begin{defi}[Mechanical wave]
+	A mechanical wave is a disturbance that travels through some medium or substance called the \emph{medium} for the wave.
+\end{defi}
+\begin{defi}[Transverse and longitudinal waves]
+	A transverse wave is when the displacements of the medium are perpendicular to the direction of travel of the wave. The displacement of the medium in longitudinal waves is parallel to the direction of travel of the wave.
+\end{defi}
+\begin{defi}[Frequence and other stuff]
+	\,
+	\begin{IEEEeqnarray*}{rCl}
+		f&=&\text{\,frequency}\\
+		\omega &=&2\pi f=\text{\,angular frequency}\\
+		T&=&\frac{1}{f}=\frac{2\pi}{\omega}=\text{\,period}
+	\end{IEEEeqnarray*}
+\end{defi}
+\begin{defi}[Wave speed]
+	Wave speed \(v\) is described by the equation
+	\begin{equation*}
+		v=\lambda f
+	\end{equation*}
+	Where \(\lambda\) is the wavelength. In this section, we will only be discussing waves with speed dependent on the mechanical properties of the medium.
+\end{defi}
+\begin{defi}[Compression and rarefaction]
+	Compression and rarefaction are the names f.
+\end{defi}
+\begin{defi}[Wave number]
+	The wave number \(k\) is given by the following equation:
+	\begin{equation*}
+		k=\frac{2\pi}{\lambda}
+	\end{equation*}
+	We can now express \(\omega\) in terms of \(k\) and \(v\) as
+	\begin{equation*}
+		\omega =vk
+	\end{equation*}
+\end{defi}
+\begin{defi}[Wave equation]
+	The wave equation can be expressed in different ways.
+	\begin{IEEEeqnarray*}{rCl}
+		y(x,y)&=&A\,\text{cos}\bigg[\omega\bigg(\frac{x}{v}-t\bigg)\bigg]\\
+		y(x,y)&=&A\,\text{cos}\bigg[2\pi\bigg(\frac{x}{\lambda}-\frac{t}{T}\bigg)\bigg]\\
+		y(x,y)&=&A\,\text{cos}(kx-\omega t)
+	\end{IEEEeqnarray*}
+	For a wave travelling in the negative \(x\) direction, the wave equation can be expressed as
+	\begin{equation*}
+		A\,\text{cos}(kx+\omega t)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Phase]
+	The phase of a wave is equal to
+	\begin{equation*}
+		kx\pm\omega t
+	\end{equation*}
+\end{defi}
+\begin{defi}[Transverse velocity]
+	The transverse velocity of a particle in a transverse wave is given by the equation
+	\begin{equation*}
+		v_y(x,t)=\pdv{y(x,t)}{t}=\omega A\,\text{sin}(kx-\omega t)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Partial derivatives of wave equation]
+	As a consequence of the fact that \(\omega=kv\), we have
+	\begin{equation*}
+		\pdv[2]{y(x,t)}{x}=\frac{1}{v^2}\pdv[2]{y(x,t)}{t}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Momentum]
+	Momentum \(p\) can be expressed by the equation
+	\begin{equation*}
+		p=mv
+	\end{equation*}
+	In this case, we are referring to the magnitude of momentum \(\vec{p}\)
+\end{defi}
+\begin{defi}[Impulse]
+	Impulse \(I\) can be expressed by the equation
+	\begin{equation*}
+		I=F\Delta t
+	\end{equation*}
+	In this case, we are referring to the magnitude of impulse \(\vec{J}\)
+\end{defi}
+\begin{defi}[Impulse-momentum theorem]
+	\,
+	\begin{equation*}	
+		\vec{J}=\vec{p_2}-\vec{p_1}=\Delta\vec{p}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Specific Impulse]
+	Specific Impulse\footnote{This is here because I like rockets.} \(I_{sp}\) is given by the equation
+	\begin{equation*}
+		I_{sp}=\frac{F\Delta t}{m}
+	\end{equation*}
+	where \(m\) is the mass of fuel.
+\end{defi}
+\begin{defi}[Speed of a transverse wave on a string]
+	The speed \(v\) of a transverse wave in a string with tension \(F\) and mass per unit length \(\mu\) is given by the following equation:
+	\begin{equation*}
+		v=\sqrt\frac{F}{\mu}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Boundary conditions]
+	The conditions at the end of a string such as a rigid support or the complete absence of transverse force are called boundary conditions.
+\end{defi}
+\begin{defi}[Standing wave]
+	A wave pattern that appears to remain in the same position is called a standing wave. The points of zero displacement in the wave pattern are called \emph{nodes}, and the points of maximum displacement are called \emph{antinodes}.
+\end{defi}
+\end{document}
