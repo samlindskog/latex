@@ -29,7 +29,6 @@
 \maketitle
 
 \setcounter{section}{1}
-\setcounter{tocdepth}{1}
 
 \section{Open and closed sets}
 \begin{defi}[Metric]
@@ -111,4 +110,108 @@
 \begin{defi}[Closed subset]
 	The subset \(Y\) is closed if \(Y=\overline{Y}\).\footnote{The empty set \(\emptyset\) and \(X\) are closed subsets of \(X\). Interestingly, \(X\) is also open in \(X\).}
 \end{defi}
+\begin{thm}
+If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is closed, i.e.
+	\begin{equation*}
+		\overline{\overline{Y}}=\overline{Y}
+	\end{equation*}
+\begin{IEEEproof}
+	\(\overline{Y}\) contains all \(x\in X\) such that for all \(r>0\) in \(B(x,r)\cap Y\neq\emptyset\). Let \(y\in X\) with \(B(y,r')\cap\overline{Y}\neq\emptyset\) for \(r'>0\). Suppose to the contrary that there does not exist \(x\in X\) such that \(x=y\). Then there exists \(a=\text{min}\big(d(x,y)\big)>0\) such that \(\forall x\,(x\notin B(y,a))\), therefore \(B(y,a)\cap\overline{Y}=\emptyset\), a contradiction.
+\end{IEEEproof}
+\end{thm}
+\begin{thm}
+	A subset \(Y\) of a metric space \(X\) is closed iff the complement of \(Y\) is open.
+	\begin{IEEEproof}
+		If \(Y\) is closed, then \(Y\) contains all \(x\in X\) such that for all \(r>0\), \(B(x,r)\cap Y\neq\emptyset\). Therefore iff \(y\in Y^c\) the negation is true, i.e. there exists \(r'>0\) such that \(B(y,r')\cap Y=\emptyset\), and because \(Y^c\cup Y=X\) we have \(B(y,r')\subset Y^c\) and \(Y^c\) is open.
+	\end{IEEEproof}
+\end{thm}
+\begin{thm}
+	The intersection of any family of closed sets is closed. The union of any finite family of closed sets is closed.
+	\begin{IEEEproof}
+		Let \(\{Y_\alpha\}\) be a family of closed sets in \(X\), and \(\alpha\in A\), the number of elements in \(\{Y_\alpha\}\). Following the fact that a union of open subsets is open, and the intersection of finite open subsets is open, as well as the previous theorem, we see
+		\begin{IEEEeqnarray*}{rCl}
+			X\setminus\bigcup_{\alpha\in A}Y_{\alpha}&=&\bigcap_{\alpha\in A}X\setminus Y_\alpha\\
+			X\setminus\bigcap_{\alpha\in A}Y_{\alpha}&=&\bigcup_{\alpha\in A}X\setminus Y_\alpha
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{thm}
+\begin{defi}[Convergent sequence]
+	A sequence \(\{x_n\}_{n=1}^{\infty}\) in a metric space \(X\) converges to \(x\in X\) if
+	\begin{equation*}
+		\lim_{n\rightarrow\infty}d(x_n, x)=0
+	\end{equation*}
+	In this case, \(x\) is the limit of \(\{x_n\}\) and we write \(x_n\rightarrow x\), or
+	\begin{equation*}
+		\lim_{n\rightarrow\infty}x_n=x.
+	\end{equation*}
+\end{defi}
+\begin{lem}
+	The limit of a convergent sequence in a metric space is unique
+	\begin{IEEEproof}
+		Let \(lim_{n\rightarrow\infty}x_n=x,y\) and suppose to the contrary that \(x\neq y\). Then \(d(x,y)>0\) and for all \(\epsilon>0\) there exits \(\delta\) such that \(d(x_n,x)\) and \(d(x_n,y)\) are both less than \(\frac{\epsilon}{2}\). But then if \(\epsilon<d(x,y)\) then \(d(x_n,x)+d(x_n,y)<d(x,y)\), a contradiction.
+	\end{IEEEproof}
+\end{lem}
+\begin{thm}
+	Let \(Y\) be a subset of the metric space \(X\), then \(x\in X\) is adherent to \(Y\) iff there is a sequence in \(Y\) that converges to \(x\).
+	\begin{IEEEproof}
+		If \(x\) is adherent to \(Y\), then \(\forall r>0\), \(B(x,r)\cap Y\neq\emptyset\), i.e. for all \(r\) there exits \(y\in Y\) such that \(d(x,y_n)<r\). Using this fact we can construct a sequence that converges to \(x\). Let \(y_n\in Y\), and \(\{y_n\}\) be a sequence such that for all \(\epsilon>0\) there exists \(N\in\mathbb{N}\) such that \(n>N\) implies \(d(x,y)<\epsilon\).\bigbreak
+		Let \(\{y_n\}\) be a sequence with \(y_n\in Y\), and let \(x\in X\). Let \(\{y_n\}\) be such that for all \(\epsilon>0\), \(n\in\mathbb{N}\) with \(n>N\) implies \(d(x,y_n)<\epsilon\). Then for all \(r>0\) there exists \(r=\epsilon\) such that \(y_n\in B(x,r)\), and thus \(B(x,r)\cap Y\neq\emptyset\) for all \(r>0\).
+	\end{IEEEproof}
+\end{thm}
+\stepcounter{section}
+\section{Completeness}
+\begin{defi}[Cauchy sequence]
+	A sequence \(\{x_n\}_{n=1}^{\infty}\) in a metric space \(X\) is a Cauchy sequence if
+	\begin{equation*}
+		\lim_{m,n\rightarrow\infty}d(x_n,x_m)=0.
+	\end{equation*}
+\end{defi}
+\begin{lem}
+	A convergent sequence is a cauchy sequence.
+	\begin{IEEEproof}
+		Suppose \(\{x_n\}\) a sequence that converges to \(x\). Then
+		\begin{equation*}
+			\forall\epsilon>0,\exists n,m>N\,\big(d(x_n,x),d(x_m,x)<\epsilon\big).
+		\end{equation*}
+		If we choose \(N\) such that \(d(x_n,x),d(x_m,x)<\frac{\epsilon}{2}\) then
+		\begin{equation*}
+			d(x_n,x)+d(x_m,x)<\epsilon\Rightarrow d(x_n,d_m)<\epsilon.
+		\end{equation*}
+	\end{IEEEproof}
+\end{lem}
+\begin{lem}
+	If \(\{x_n\}\) is a Cauchy sequence and if there is a subsequence \(\{x_{n_k}\}_{k=1}^{\infty}\) of \(\{x_n\}\) that converges to \(x\), then \(\{x_n\}\) converges to \(x\).
+	\begin{IEEEproof}
+		Suppose \(\{x_n\}\) a convergent sequence and \(\{x_{n_k}\}_{k=1}^{\infty}\) a subsequence which converges to \(x\) then
+		\begin{IEEEeqnarray*}{c}
+			\forall\delta>0,\exists N\,(n_k>N\Rightarrow d(x_{n_k},x)<\delta)\\
+			\forall\epsilon>0,\exists M\,(n>M\wedge n_k>M,N\Rightarrow d(x_n,x_{n_k})<\epsilon).
+		\end{IEEEeqnarray*}
+		Because \(d(x_n,x_{n_k})+d(x_{n_k},x)<\epsilon+\delta\) then \(d(x_n,x)<\epsilon+\delta\).
+	\end{IEEEproof}
+\end{lem}
+\begin{defi}[Complete metric space]
+	A metric space \(X\) is complete if every cauchy sequence in \(X\) converges.
+\end{defi}
+\begin{thm}
+	A complete subspace \(Y\) of a metric space \(X\) is closed in \(X\)
+\end{thm}
+\begin{defi}[Uniform convergence]
+	Let \(\{f_n\}_{n=1}^{\infty}\) be a sequence of functions from a set \(S\) to a metric space \(X\) and let \(f\) be a function from \(S\) to \(X\). The sequence \(\{f_n\}\) converges uniformly to \(f\) on \(S\) if for each \(\epsilon>0\) there exists an integer \(N\) such that \(d(f_n(s),f(s))<\epsilon\) for all integers \(n\geq N\) and for all \(s\in S\).
+\end{defi}
+\begin{defi}
+	A sequence \(\{f_n\}\) of functions from \(S\) to \(X\) is a Cauchy sequence of functions if for each \(\epsilon>0\) there exists an integer \(N\) such that
+	\begin{equation*}
+		d(f_n(s),f_m(s))<\epsilon,\qquad\text{all }s\in S,\; n,m\geq N.
+	\end{equation*}
+\end{defi}
+\begin{thm}
+	Let \(S\) be a set, and let \(X\) be a complete metric space. If \(\{f_n\}_{n=1}^{\infty}\) is a Cauchy sequence of functions from \(S\) to \(X\), then there exists a function \(f\) from \(S\) to \(X\) such that \(\{f_n\}\) converges uniformly to \(f\)
+\end{thm}
+\begin{defi}[Dense subsets]
+	A subset \(T\) of a metric space \(X\) is dense in \(X\) if \(\overline{T}=X\).
+\end{defi}
+\begin{thm}[Baire Category Theorem]
+	Let \(\{U_n\}_{n=1}^{\infty}\) be a sequence of dense open subsets of a complete metric space \(X\). Then \(\bigcap_{n=1}^{\infty}U_n\) is also dense in \(X\).
+\end{thm}
 \end{document}

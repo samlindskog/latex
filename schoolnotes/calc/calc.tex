@@ -15,6 +15,7 @@
 \theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
 \theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
 \theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
 \theoremstyle{definition}\newtheorem{problem}{Problem}
 %\renewcommand{\theproblem}{\arabic{problem}}
 \newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
@@ -26,7 +27,7 @@
 \setcounter{section}{1}
 \setcounter{tocdepth}{1}
 
-\section{Calc 1}
+\section{Limits}
 \begin{defi}[Average Rate of Change]
 	The average rate of change of \(y=f(x)\) with respect to \(x\) over the interval \((x_1, x_2)\) is:
 	\begin{equation*}
@@ -46,7 +47,7 @@
 	\end{IEEEeqnarray*}
 (For the root rule, if \(n\) is even, we assume that \(f(x)\geq 0\) for \(x\) in an interval containing \(c\).)
 \end{thm}
-\begin{thm}[Sandwich Theorem]
+\begin{thm}[Sandwich theorem]
 	Suppose that \(g(x)\leq f(x)\leq h(x)\) for all \(x\) in some neighborhood of \(c\). Suppose also that:
 	\begin{equation*}
 		\lim_{x\rightarrow c}g(x)=\lim_{x\rightarrow c}f(x)=L
@@ -58,5 +59,42 @@
 	\begin{equation*}
 		0<\lvert x-c\rvert<\delta\Rightarrow\lvert f(x)-L\rvert<\epsilon
 	\end{equation*}
+\end{defi}
+\section{Extreme Values}
+\begin{defi}[Absolute maximum and minimum]
+	Let \(f\) be a function with domain \(D\). Then \(f\) has an absolute maximum value on \(D\) at point \(c\) if
+	\begin{equation*}
+		f(x)\leq f(c)\qquad\text{for all \(x\) in \(D\)}
+	\end{equation*}
+	and an absolute minimum value on \(D\) at \(c\) if
+	\begin{equation*}
+		f(x)\geq f(c)\qquad\text{for all \(x\) in \(D\).}
+	\end{equation*}
+\end{defi}
+\begin{thm}[Extreme value theorem]
+	If \(f\) is continuous on a finite closed interval \([a,b]\), then \(f\) attains both an absolute maximum value \(M\) and an absolute minimum value \(m\) in \([a,b]\).
+\end{thm}
+\begin{defi}[Local maximum and minimum]
+	A function \(f\) has a local maximum value (or minimum) at a point \(c\) within its domain \(D\) if \(f(x)\leq f(c)\) (or \(f(x)\geq f(c)\)) for all \(x\in D\) lying in some open interval containing \(c\).\footnote{Local extrema are also called relative extrema.}
+\end{defi}
+\begin{rema}
+	A set of all local maxima (minima) will automatically include the absolute maximum (minimum) if there is one. 
+\end{rema}
+\begin{thm}[First derivative theorem for local extreme values]
+	If \(f\) has a local maximum or minimum value at an interior point \(c\) of its domain, and if \(f'\) is defined at \(c\), then
+	\begin{equation*}
+		f'(c)=0.
+	\end{equation*}
+\end{thm}
+\begin{rema}
+	The only places where a function \(f\) can possibly have an extreme value (local or global) are
+	\begin{enumerate}
+		\item interior points where \(f'=0\),
+		\item interior points where \(f'\) is undefined,
+		\item endpoints of the domain of \(f\)
+	\end{enumerate}
+\end{rema}
+\begin{defi}[Critical point]
+	An interior point of the domain of a function \(f\) where \(f'\) is zero or undefined is a critical point of \(f\).
 \end{defi}
 \end{document}

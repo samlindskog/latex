@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\title{Homework}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle %This command prints the title based on information entered above
+
+\subsection*{Problem 1}
+Let \(n\in\mathbb{N}\) be a positive integer. Suppose \(x_1,\ldots, x_n\), \(y_1,\ldots, y_n\), \(z_1,\ldots,z_n\in\mathbb{R}\). Show that
+\begin{equation*}
+	\sqrt{\sum_{i=1}^{n}(x_i-z_i)^2}\leq\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}+\sqrt{\sum_{i=1}^{n}(y_i-z_i)^2}.
+\end{equation*}
+\bigskip
+\begin{IEEEproof}
+	We shall prove by induction on \(n\). Suppose \(n=1\). Then
+	\begin{IEEEeqnarray*}{rCl}
+		\sqrt{(x_i-y_i)^2}+\sqrt{(y_i-z_i)^2}&=&(x_i-y_i)+(y_i-z_i)\\
+		&=&(x_i-z_i)\\
+		&=&\sqrt{(x_i-z_i)^2}
+	\end{IEEEeqnarray*}
+	Suppose by inductive hypothesis that
+	\begin{IEEEeqnarray*}{rCl}
+		\sqrt{\sum_{i=1}^n(x_i-z_i)^2}\leq\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}+\sqrt{\sum_{i=1}^{n}(y_i-z_i)^2}.
+	\end{IEEEeqnarray*}
+	It follows that \(\sum_{i=1}^{n}(x_i-z_i)\leq\sum_{i=1}^{n}(x_i-y_i)+\sum_{i=1}^{n}(x_i-z_i)\). Suppose \(x,y,z,w\in\mathbb{R}\). Then
+	\begin{IEEEeqnarray*}{rCl}
+		\sqrt{x^2+w^2}+\sqrt{y^2+z^2}&\geq&\sqrt{(x+y)^2+(w+z)^2}\\
+		x^2+y^2+w^2+z^2+2\sqrt{x^2+w^2}\sqrt{y^2+z^2}&\geq&x^2+y^2+w^2+z^2+2xy+2wz\\
+	\end{IEEEeqnarray*}
+\end{IEEEproof}
+\subsection*{Problem 2}
+\begin{IEEEproof}
+	For all \((x,y)\in (0,1)\times (0,1)\), \(0<x,y<1\). So, for any \((x,y)\) if \(r=\text{min}\big(\lvert x-1\rvert, x, \lvert y-1\rvert, y\big)\) and \((z,w)\in B((x,y), r)\), then \(\sqrt{(x-z)^2+(y-w)^2}<\frac{r}{2}\). Therefore \(z=x\pm\frac{r}{2}\) and \(w=y\pm\frac{r}{2}\), so \((z,w)\in U\).
+\end{IEEEproof}
+\medbreak
+\begin{IEEEproof}
+	Suppose \((x,y)\in \{(0,1)\times (0,1)\}\). Then \(d\big((x,y), (0,0)\big)=\sqrt{x^2+y^2}\). Because there exists \(r>0\) such that \(B(x,r)\subset U\), if \(r>\text{min}\big(\lvert x-1\rvert, x, \lvert y-1\rvert, y\big)\), then \(B(x,r)\not\subset U\). But because \(x,y>0\), we see that \(d\big((x,y), (0,0)\big)>r\), so \(\exists a\in B\bigg((0,0), d\big((x,y), (0,0)\big)-r\bigg)\)\footnote{Not the empty set} such that \(a\notin B((x,y), r)\) for any open ball.
+\end{IEEEproof}
+\subsection*{Problem 3}
+\begin{IEEEproof}
+	Let \(X=\mathbb{R}\). If \(U_i\in\{(\frac{-1}{i},\frac{1}{i})\}_{i=1}^{\infty}\) is a sequence of open subsets, then \(\cap_{i=1}^{\infty}U_i={0}\). Let \(x\in U_i\), then \(\forall\epsilon>0,\exists N=\frac{2}{\epsilon}\,(i>N\Rightarrow \lvert x\rvert>\epsilon\Rightarrow x\notin U_N)\). So \(\cap_{i=1}^{\infty}U_i=\{0\}\), and \(\{0\}\) is a closed subset of \(X\).
+\end{IEEEproof}
+\end{document}
