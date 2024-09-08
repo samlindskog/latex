@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm,257mm},
+left=20mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+
+\title{Homework 2}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle %This command prints the title based on information entered above
+
+\subsection*{Problem 1}
+\begin{enumerate}
+	\item Show that \(f_n\) converges to \(0\) pointwisely
+		\begin{IEEEproof}
+			For all \(x\) in \((0,1)\), for all real \(\epsilon>0\) there exists an integer \(N=\ceil{\text{log}_x\epsilon}\) such that for all integers \(n>N\) we have \(d(x^n,0)<\epsilon\).
+		\end{IEEEproof}
+	\item Does \(f_n\) converge to \(0\) uniformly?
+		\begin{IEEEproof}
+			No. Suppose to the contrary that \(\{f_n\}\) converges uniformly. Then \(\forall\epsilon>0,\exists N\in\mathbb{Z}\) such that \(n>N\) implies \(\forall x\in X,d(f_n(x),0)<\epsilon\). But there exists \(\epsilon\) in \((0,1)\) such that \(\forall N\in\mathbb{Z}\), there exists \(x_n=\epsilon^{1/(n+1)}\) with \(n>0, N\) such that \((x_n)^n>\epsilon\).
+		\end{IEEEproof}
+\end{enumerate}
+\subsection*{Problem 2}
+Let \(Y\) be a subspace of \(X\) and let \(S\) be a subset of \(Y\). show that the closure of \(S\) in \(Y\) coincides with \(\overline{S}\cap Y\) where \(\overline{S}\) is the closure of \(S\) in \(X\).
+\begin{IEEEproof}
+	Suppose \(y\) is in the closure of \(S\) in \(Y\). Then for all \(r>0\) there exists \(B(y,r)\cap S\neq 0\). Then a sequence \(\{y_n\}_{n=1}^{\infty}\) exists with \(y_n\in Y\) such that \(\forall r>0\) there exists \(N\in\mathbb{N}\) such that \(n>N\) implies \(d(y_n,y)<r\). Therefore \(\{y_n\}\) is a sequence in \(Y\) which converges to \(y\) and following theorem \(1.11\), because \(y\in X\) this implies \(y\in\overline{S}\wedge y\in Y\), which is logically equivalent to \(y\in\overline{S}\cap Y\).
+\end{IEEEproof}
+\subsection*{Problem 3}
+A sequence \(\{x_k\}_{k=1}^{\infty}\) in a metric space \((X,d)\) is a fast cauchy sequence if
+\begin{equation*}
+	\sum_{k=1}^{\infty}d(x_k,x_{k+1})<\infty.
+\end{equation*}
+Show that a fast Cauchy sequence is a Cauchy sequence.
+\begin{IEEEproof}
+	If \(\{x_k\}_{k=1}^{\infty}\) a fast sequence then the sum of all \(x_k\) is a finite real number. Then there exists \(a\in\mathbb{R}\) with \(a>0\), and \(N\in\mathbb{N}\) such that
+	\begin{IEEEeqnarray}{c}
+		a-\lim_{n\rightarrow\infty}\sum_{k=1}^{n}d(x_k,x_{k+1})=0\\
+		a-\sum_{k=1}^{N}d(x_k,x_{k+1})=\lim_{n\rightarrow\infty}\sum_{N+1}^{n}d(x_k,x_{k+1}).
+	\end{IEEEeqnarray}
+	It follows from the definition of a metric that for \(l,m\in\mathbb{N}\) with \(l,m>N\)
+	\begin{IEEEeqnarray}{c}
+		a-\sum_{k=1}^{N}d(x_k,x_{k+1})\geq d(x_l,x_m).
+	\end{IEEEeqnarray}
+	Following equation one, we can establish that for all \(\epsilon>0\), with \(\epsilon>a-\sum_{k=1}^{N}d(x_k,x_{k+1})\), there exists \(N\) such that \(l,m>N\) implies \(d(x_l,x_m)<\epsilon\), and thus \(\{x_k\}\) is Cauchy.
+\end{IEEEproof}
+\end{document}

@@ -195,6 +195,9 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \end{defi}
 \begin{thm}
 	A complete subspace \(Y\) of a metric space \(X\) is closed in \(X\)
+	\begin{IEEEproof}
+		If \(x\in\overline{Y}\), then \(\forall r>0,\exists B(x,r)\) such that \(B(x,r)\cap Y\neq\emptyset\), so \(\exists y\in Y\) such that \(d(x,y)<r\). It follows there exists a Cauchy sequence \(\{y_n\}\) in \(Y\) with limit \(x\) such that \(\forall r,\exists N\;(n>N\Rightarrow d(x,y_n)<r)\). And because every Cauchy sequence in \(Y\) converges, \(x\in Y\) and \(\overline{Y}=Y\).
+	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Uniform convergence]
 	Let \(\{f_n\}_{n=1}^{\infty}\) be a sequence of functions from a set \(S\) to a metric space \(X\) and let \(f\) be a function from \(S\) to \(X\). The sequence \(\{f_n\}\) converges uniformly to \(f\) on \(S\) if for each \(\epsilon>0\) there exists an integer \(N\) such that \(d(f_n(s),f(s))<\epsilon\) for all integers \(n\geq N\) and for all \(s\in S\).
@@ -207,6 +210,8 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \end{defi}
 \begin{thm}
 	Let \(S\) be a set, and let \(X\) be a complete metric space. If \(\{f_n\}_{n=1}^{\infty}\) is a Cauchy sequence of functions from \(S\) to \(X\), then there exists a function \(f\) from \(S\) to \(X\) such that \(\{f_n\}\) converges uniformly to \(f\)
+	\begin{IEEEproof}
+	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Dense subsets]
 	A subset \(T\) of a metric space \(X\) is dense in \(X\) if \(\overline{T}=X\).
