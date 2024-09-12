@@ -1,0 +1,54 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+\usepackage{enumitem}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{Differential Equations}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+
+\section{First-Order Differential Equations}
+\begin{defi}[Order]
+	The order of a differential equation is the order of the highest dericatice appearing in the equation.
+\end{defi}
+\begin{defi}[Normal form]
+	The normal form of a first-order equation is a function \(f\) which relates a function \(x=x(t)\) with its first derivative.
+	\begin{equation*}
+		x'=f(t,x).
+	\end{equation*}
+	A function \(x=x(t)\) is a solution of this equation on the time interval \(I:a<t<b\) if it is differentiabe on \(I\) and, when substituted into the equation, it satisfies the equation identically for every \(t\in I\), i.e.
+	\begin{equation*}
+		x'(t)=f(t,x(t)),\text{ for every }t\in I.
+	\end{equation*}
+	In other words to check if a function is a solution, substitute the function in question into the differential equation and check that it reduces to an identity.
+\end{defi}
+\begin{defi}[Initial value problem]
+	Subjecting a differential equation involving \(x(t)\) and its derivatives to a condition \(x(t_0)=x_0\) is called an initial value problem. The interval of existance of an IVP is the largest time interval where the solution is valid.
+\end{defi}
+\begin{defi}[General solution]
+	The infinite set of solutions of a first-order equation is called the general solution of the equation.
+\end{defi}
+\end{document}

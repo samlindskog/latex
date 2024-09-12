@@ -219,4 +219,79 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \begin{thm}[Baire Category Theorem]
 	Let \(\{U_n\}_{n=1}^{\infty}\) be a sequence of dense open subsets of a complete metric space \(X\). Then \(\bigcap_{n=1}^{\infty}U_n\) is also dense in \(X\).
 \end{thm}
+\begin{defi}[Nowhere dense]
+	A subset \(Y\) of \(X\) is nowhere dense if \(\overline{Y}\) has no interior points, that is, if
+	\begin{equation*}
+		\text{int}(\overline{Y})=\emptyset.
+	\end{equation*}
+\end{defi}
+\section{Products of metric spaces}
+\begin{thm}
+	Suppose that \(d\) is a metric on \(X=X_1\times\ldots\times X_n\) that satisfies property \(4.4\) defined in Gamelin "Introduction to Topology". Then the open sets in \((X,d)\) are the unions of product sets of the form \(U_1\times\ldots\times U_n\), where \(U_j\) is an open subset of \(X_j,\;1\leq j\leq n\).
+\end{thm}
+\section{Compactness}
+\begin{defi}[Cover]
+	A family \(\{U_{\alpha}\}_{\alpha\in A}\) of sets is said to cover a set \(S\) if \(S\) is contained in the union of the \(U_{\alpha}\)'s.
+\end{defi}
+\begin{defi}[Open cover]
+	An open cover of a metric space \(X\) is a family of open subsets of \(X\) that covers \(X\).
+\end{defi}
+\begin{defi}[Compactness]
+	A metric space \(X\) is compact if every open cover has a finite subcover.
+\end{defi}
+\begin{defi}[Totally bounded]
+	A metric space \(X\) is totally bounded if for each \(\epsilon>0\), there exists a finite number of open balls of radius \(\epsilon\) that cover \(X\).
+\end{defi}
+\begin{thm}
+	The following are equivalent for a metric space \(X\):
+	\begin{enumerate}
+		\item \(X\) is compact.
+		\item Every sequence in \(X\) has a convergent subsequence.
+		\item \(X\) is totally bounded and complete.
+	\end{enumerate}
+\end{thm}
+\begin{defi}[Bounded]
+	A metric space \(X\) is bounded if there exists \(b>0\) such that \(d(x,y)<b\) for all \(x,y\in X\).
+\end{defi}
+\begin{lem}
+	A totally bounded metric space is bounded.
+\end{lem}
+\begin{lem}
+	Any subspace of a totally bounded metric space is totally bounded.
+\end{lem}
+\begin{lem}
+	A subset \(E\) of \(\mathbb{R}^n\) is totally bounded iff \(E\) is bounded.
+\end{lem}
+\begin{thm}[Heine-Borel theorem]
+	The following are equivalent for a subspace \(E\) of \(\mathbb{R}^n\).
+	\begin{enumerate}
+		\item \(E\) is compact.
+		\item Every sequence in \(E\) has a convergent subsequence.
+		\item \(E\) is closed and bounded.
+	\end{enumerate}
+\end{thm}
+\begin{thm}
+	Let \(X\) be a totally bounded metric space. Then every sequence in \(X\) has a Cauchy subsequence.
+\end{thm}
+\begin{defi}[Seperability]
+	A metric space \(X\) is seperable if there is a dense subset of \(X\) that is countable. In other words, \(X\) is seperable iff there is a sequence \(\{x_j\}_{j=1}^{\infty}\) in \(X\) that is dense in \(X\).
+\end{defi}
+\begin{thm}
+	A subspace of a separable metric space is separable.
+\end{thm}
+\begin{defi}[Base]
+	A base of open sets for a metric space \(X\) is a family \(\mathscr{B}\) of open subsets of \(X\) such that every open subset of \(X\) is the union of sets in \(\mathscr{B}\).
+\end{defi}
+\begin{lem}
+	A family \(\mathscr{B}\) of open subsets of a metric space \(X\) is a base of open sets iff for each \(x\in X\) and each open neighborhood \(U\) of \(x\), there exists \(V\in\mathscr{B}\) such that \(x\in V\) and \(V\subseteq U\).
+\end{lem}
+\begin{defi}[Second-countable]
+	A metric is second-countable if there is a base of open sets that is at most countable.
+\end{defi}
+\begin{thm}
+	A metric space is second-countable iff it is seperable.
+\end{thm}
+\begin{thm}[Lindelof's theorem]
+	Suppose the metric space \(X\) is second-countable. Then every open cover of \(X\) has a countable subcover.
+\end{thm}
 \end{document}

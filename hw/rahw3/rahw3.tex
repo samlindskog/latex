@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+
+\title{Homework 3}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle
+\subsection*{Problem 1}
+False. \(A\subset\mathbb{Z}\) a proper subset of \(\mathbb{Z}\), let \(\mathbb{Z}_{even}\) be the set of all even integers, and \(\mathbb{Z}_{odd}\) be the set of all odd integers. Let \(f:\mathbb{Z}\rightarrow\mathbb{Z}\) with \(f(\mathbb{Z}_{even})=A\) and \(f(\mathbb{Z}_{odd})=A^c\), and let \(g:\mathbb{Z}\rightarrow\mathbb{Z}\) with \(g(\mathbb{Z}_{odd})=A\) and \(g(\mathbb{Z}_{even})=A^c\). Iff \(x\in\mathbb{Z}\), then \(x\in A\cup A^c\), so \(f^{-1}(\{x\})\cap\mathbb{Z}\neq\emptyset\) and \(g^{-1}(\{x\})\cap\mathbb{Z}\neq\emptyset\), so \(f\) and \(g\) are both onto. Let \(h:\mathbb{Z}\rightarrow\mathbb{Z}\) be defined by
+\begin{equation*}
+	h(k)=\begin{cases}f(k)&\text{if \(k\) is even}\\g(k)&\text{if \(k\) is odd}\end{cases}
+\end{equation*}
+Then if \(k\) is even \(h(k)=f(k)\in A\), and if \(k\) is odd \(h(k)=g(k)\in A\), so \(h(\mathbb{Z})\subseteq A\). But then \(\mathbb{Z}\setminus h(\mathbb{Z})\neq\emptyset\), so \(h\) is not onto.
+\subsection*{Problem 2}
+Let \(S=[0,\infty)\), \(T=\mathbb{R}\), and \(f:S\rightarrow T\) defined by
+\begin{equation*}
+	f(x)=\begin{cases}\phantom{-}x-\floor{\frac{x}{2}}&\text{if }\ceil{x}\text{ is odd}\\
+	-x+\ceil{\frac{x}{2}}&\text{if }\ceil{x}\text{ is even}\end{cases}
+\end{equation*}
+\subsection*{Problem 3}
+Assuming \(0\notin\mathbb{N}\), let \(S=\mathbb{N}\times\{0,1\}\), \(T=\mathbb{Z}\), and \((x,y)\in S\). Let \(f:S\rightarrow T\) be defined by
+\begin{equation*}
+	f\big((x,y)\big)=\begin{cases}\phantom{-}x&\text{if }y=0\\-x+1&\text{if }y=1\end{cases}
+\end{equation*}
+\subsection*{Problem 4}
+\begin{enumerate}[label=(\alph*)]
+	\item By definition, \(f^{-1}\big(\{f(a)\}\big)=\big\{x\in A|f(x)\in\{f(a)\}\big\}\), and because \(f(a)\in\{f(a)\}\), \(a\in f^{-1}\big(\{f(a)\}\big)\).
+	\item If \(c\neq a\) and \(c\in f^{-1}\big(\{f(a)\}\big)\), then as described above, \(f(c)\in\{f(a)\}\). Because \(f(a)\) is the only element of \(\{f(a)\}\), this implies \(f(c)=f(a)\), and because \(c\neq a\), \(f\) is not one-to-one.
+\end{enumerate}
+\subsection*{Problem 5}
+Suppose \(f:\mathbb{R}\rightarrow\mathbb{R}\) and \(g:\mathbb{R}\rightarrow\mathbb{R}\) are functions, where \(f\) is onto and \(g\circ f\) is one-to-one. This implies \(f\) is one-to-one, because if \(x,y\in\mathbb{R}\) with \(x\neq y\) and \(f(x)=f(y)\), then \(g\big(f(x)\big)=g\big(f(y)\big)\), a contradiction. Suppose to the contrary that \(g\) is not one-to-one. Then there exists \(a,b\in\mathbb{R}\), with \(a\neq b\) such that \(g(a)=g(b)\). Because \(f\) is onto and one-to-one, there exists \(a',b'\in\mathbb{R}\) with \(a'\neq b'\) such that \(f(a')=a\) and \(f(b')=b\). But then \(g\big(f(a')\big)=g\big(f(b')\big)\), a contradiction.
+\end{document}
