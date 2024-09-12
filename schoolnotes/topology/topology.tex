@@ -225,10 +225,29 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 		\text{int}(\overline{Y})=\emptyset.
 	\end{equation*}
 \end{defi}
+\stepcounter{section}
 \section{Products of metric spaces}
+	The properties and metric definitions that follow are numbered after the properties in the Gamelin "Introduction to Topology book". Let \((X_1,d_1),\ldots,(X_n,d_n)\) be metric spaces. The product set \(X=X_1\times\ldots\times X_n\) consists of all n-tuples \((x_1,\ldots,x_n)\), where \(x_k\in X_k,\; 1\leq k\leq n\).
+\begin{enumerate}[label=(4.\arabic*)]
+	\item \(d(x,y)=\big[d_1(x_1,y_1)^2+\ldots+d_n(x_n,y_n)^2\big]^{1/2}\).
+	\item \(\text{max}\big(d_1(x_1,y_1),\ldots,d_n(x_n,y_n)\big)\).
+	\item \(d(x,y)=d(x_1,y_1)+\ldots+d_n(x_n,y_n)\).
+	\item A sequence \(\{x^{j}=x_k^j\}_{j=1}^{\infty}\) converges to \(x=(x_1,\ldots,x_n)\) in \(X\) iff for each \(k\) the sequence of component entries \(\{x_k^j\}_{j=1}^{\infty}\) converges to \(x_k\) in \(X_k\).
+	\item \(d_k(x_k,y_k)\leq d(x,y),\qquad x,y\in X, 1\leq K\leq n\).
+\end{enumerate}
 \begin{thm}
-	Suppose that \(d\) is a metric on \(X=X_1\times\ldots\times X_n\) that satisfies property \(4.4\) defined in Gamelin "Introduction to Topology". Then the open sets in \((X,d)\) are the unions of product sets of the form \(U_1\times\ldots\times U_n\), where \(U_j\) is an open subset of \(X_j,\;1\leq j\leq n\).
+	Suppose that \(d\) is a metric on \(X=X_1\times\ldots\times X_n\) that satisfies property \(4.4\). Then the open sets in \((X,d)\) are the unions of product sets of the form \(U_1\times\ldots\times U_n\), where \(U_j\) is an open subset of \(X_j,\;1\leq j\leq n\).
 \end{thm}
+\begin{thm}
+	Let \((X_1,d_1),\ldots,(X_n,d_n)\) be complete metric spaces. Let \(d\) be a metric on \(X=X_1\times\ldots\times X_n\) that satisfies \((4.4)\) and \((4.5)\). Then \((X,d)\) is complete.
+\end{thm}
+\begin{cor}
+	The \(n\)-dimensional Euclidean space \(\mathbb{R}^n\), with the usual metric
+	\begin{equation*}
+		\lvert x-y\rvert=\big[(x_1-y_1)^2+\ldots+(x_n-y_n)^2\big]^{1/2},\qquad x,y\in\mathbb{R}^n,
+	\end{equation*}
+	Is complete.
+\end{cor}
 \section{Compactness}
 \begin{defi}[Cover]
 	A family \(\{U_{\alpha}\}_{\alpha\in A}\) of sets is said to cover a set \(S\) if \(S\) is contained in the union of the \(U_{\alpha}\)'s.
