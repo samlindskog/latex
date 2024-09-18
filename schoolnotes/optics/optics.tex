@@ -6,6 +6,7 @@
 \usepackage{mathrsfs}
 \usepackage{physics}
 \usepackage{IEEEtrantools}
+\usepackage{enumitem}
 
 \renewcommand{\IEEEQED}{\IEEEQEDopen}
 
@@ -135,5 +136,189 @@
 \end{defi}
 \begin{defi}[Standing wave]
 	A wave pattern that appears to remain in the same position is called a standing wave. The points of zero displacement in the wave pattern are called \emph{nodes}, and the points of maximum displacement are called \emph{antinodes}.
+\end{defi}
+\section{Electromagnetic Waves}
+\begin{defi}[Maxwell's equations]
+	\,
+	\begin{enumerate}[label=\phantom{-}]
+		\item \(\oint \vec{E}\cdot d\vec{A}=\frac{Q_{encl}}{\epsilon_0}\)\text{ (Gauss's law)}
+		\item \(\oint \vec{B}\cdot d\vec{A}=0\)\text{ (Gauss's law for magnetism)}
+		\item \(\oint \vec{E}\cdot d\vec{l}=-\frac{d\Phi_B}{dt}\)\text{ (Faraday's law)}
+		\item \(\oint \vec{B}\cdot d\vec{l}=\mu_0(i_C+\epsilon_0\frac{d\Phi_E}{dt})_{encl}\)\text{ (Apere's law)}
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Electromagnetic wave in vacuum]
+	The electric field magnitude \(E\), the speed of light \(c\), and the magnetic field magnitude \(B\) are related by the equation
+	\begin{equation*}
+		E=cB
+	\end{equation*}
+\end{defi}
+\section{The nature and propogation of light}
+\begin{defi}[c]
+	The speed of light, \(c\) is
+	\begin{equation*}
+		c=2.99792458\times10^8 m/s.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Index of refraction]
+	The index of refraction \(n\) is the ratio between the speed of light in vacuum \(c\) and the speed of light in the material
+	\begin{equation*}
+		n=\frac{c}{v}.
+	\end{equation*}
+	Light always travels more slowly in a material than in a vacuum.
+\end{defi}
+\begin{rema}
+	The incident, reflected, and refracted rays and the normal to the surface all lie in the same plane. This plane is called the \emph{plane of incidence}, is perpendicular to the plane of the boundary surface between the two materials. The angle of reflection \(\theta_r\) is equal to the angle of incidence \(\theta_a\) for all wavelengths and for any pair of materials. These properties are referred to collectively as the \emph{law of reflection}.
+\end{rema}
+\begin{defi}[Snell's law]
+	For a given pair of materials \(a\) and \(b\), on opposite sides of the interface, the ratio of the sines of the angles \(\theta_a\) and \(\theta_b\), where both angles are measured from the normal to the surface, is equal to the inverse ratio of the two indexes of refraction, i.e.
+	\begin{equation*}
+		n_a\text{sin}\,\theta_a=n_b\text{sin}\,\theta_b
+	\end{equation*}
+\end{defi}
+\begin{defi}[Wavelength of light in a material]
+	The wavelength of light in a material, \(\lambda\), is described by
+	\begin{equation*}
+		\lambda=\frac{\lambda_0}{n}
+	\end{equation*}
+	where \(\lambda_0\) is the wavelength of light in vacuum, and \(n\) is the index of refraction of the material.
+\end{defi}
+\begin{defi}[Critical angle]
+	The angle of incidence for which the refracted ray emerges tangent to the surface is called the critical angle, denoted \(\theta_{crit}\).
+	\begin{equation*}
+		\text{sin}\,\theta_{crit}=\frac{n_b}{n_a}.
+	\end{equation*}
+If the angle of incidence is larger than the critical angle, the ray cannot pass into the upper material, and is reflected at the boundary surface. This is called \emph{total internal reflection}, and occurs only when a ray in material \(a\) is incident on a second material \(b\) whose index of refraction is smaller than that of material \(a\).
+\end{defi}
+\begin{rema}
+	The speed of light in a material substance is different for different wavelengths. Therefore the index of refraction of a material depends on the wavelength.\footnote{This dependence of wave speed and index of refraction is called \emph{dispersion}.} It is this which is the driving force behind rainbows.
+\end{rema}
+\begin{defi}[Polarization]
+	When a wave has only \(y\)-displacement, we say that it is linearly polarized in the \(y\)-direction; a wave with only \(z\)-displacements is linearly polarized in the \(z\)-direction. We always define the direction of polarization of an electromagneic wave to be the direction of the electric-field vector \(\vec{E}\), not the magnetic field.
+\end{defi}
+\begin{defi}[Polarizing angle]
+	Unpolarized light can be polarized either partially or totally by reflection. If the angle of incicence is not equal to the polarizing angle, the waves for which the electric field vector \(\vec{E}\) is perpendicular to the plane of incidence, i.e. parallel to the reflecting surface, are reflected more strongly that those for which \(\vec{E}\) lies in the place of incidence, thereby partially polarizing the light.\footnote{Polarization by reflection is the reason polarizing filters are used in sunglasses. The polarizing axis of the lens material is made parallel to the angle of incidence (vertically), which reduces glare caused by reflection of light off of surfaces parallel to the ground).} If the light reflects at the polarizing angle, the light for which \(\vec{E}\) lies in the plane of incidence is completely refracted. In this case the light which lies perpenducular to the plane of incidence is partially reflected and partially refracted. The reflected light is therefore completely polarized perpendicular to the plane of incidence. The refracted light is partially polarized parallel to the plane of incidence. The polarizing angle is known as brewsters angle.
+\end{defi}
+\begin{defi}[Brewster's law]
+	The when the angle of incidence is equal to the polarizing angle \(\theta_p\), the refracted and reflected rays are perpendicular to each other. Therefore \(\theta_p\) can be calculated via brewsters law
+	\begin{equation*}
+		\text{tan}\,\theta_p=\frac{n_b}{n_a}.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Scattering]
+	Light is absorbed and re-radiated by a material through a process called scattering.
+\end{defi}
+\section{Geometric Optics}
+\begin{defi}[Object and image point]
+	An object is anything from which light rays radiate, and the object point is where the objects rays originate from. The image point is the point from which the rays of light appear to have originated from after reflection/refraction. We say that the reflecting surface forms an image of the object point. If the outgoing rays don't actually pass through the image point, we call the image a virtual image.
+\end{defi}
+\begin{defi}[Virtual and real images]
+	If outgoing rays don't actually pass through the image point, we call the image a virtual image. If they do, the resulting image is a real image.
+\end{defi}
+\begin{rema}
+	Sign rules for object distance. Incoming refers to light moving towards the reflecting/refracting surface.
+	\begin{enumerate}
+		\item Sign rule for the object distance: When the object is on the same side of the reflecting or refracting surface as the incoming light, object distance \(s\) is positive\footnote{Incoming light refers to light coming from an image towards a reflecting/refracting surface. Outgoing light refers to light moving away from a reflecting/refracting surface towards an image point.}. Otherwise \(s\) is negative.
+		\item Sign rule for the image distance: When the image is on the same side of the reflecting or refracting surface as the outgoing light, image distance \(s'\) is positive; Otherwise \(s'\) is negative.
+		\item Sign rule for the radius of curvature of a spherical surface: When the center of curvature \(C\) is on the same side as the outgoing light, the radius of curvature is positive; Otherwise \(C\) is negative.
+	\end{enumerate}
+\end{rema}
+\begin{rema}
+	For a plane mirror, \(s=-s'\).
+\end{rema}
+\begin{defi}[Optic axis]
+	The line that goes from the center of curvature to the vertex of the mirror is called the optic axis.\footnote{Rays that are nearly parallel to the optic axis are called paraxial rays.}
+\end{defi}
+\begin{defi}[Object-image relationship, spherical mirror]
+	The object and image distances from the vertex, \(s\) and \(s'\) respectively, can be calculated from the radius of curvature \(R\) by the equation
+	\begin{equation*}
+		\frac{1}{s}+\frac{1}{s'}=\frac{2}{R}.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Focal point]
+	The point \(F\) at which the incident parallel rays converge is called the focal point. For mirrors, the distance from the vertex to the focal point is called the focal length, denoted \(f\). For thin lenses, the distance from the center of the lens to the focal point is the focal length.\footnote{For thin lenses, the focal distance is the same for both focal points.}
+\end{defi}
+\begin{defi}[Lateral magnification]
+	The lateral magnification \(m\) can be calculated from the image height \(y'\) and the object height \(y\) by
+	\begin{equation*}
+	m=\frac{y'}{y}.
+	\end{equation*}
+	If \(m\) is positive, the image is erect in comparison to the object. If \(m\) is negative, the image is inverted relative to the object.
+\end{defi}
+\begin{defi}[Lateral magnification, spherical mirror]
+	\,
+	\begin{equation*}
+		m=\frac{y'}{y}=-\frac{s'}{s}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Converging and diverging lens]
+	A converging lens is one which is thicker at its center than at its edges, a diverging lense is thicker at its edges than it is at its center.
+\end{defi}
+\begin{defi}[Object-image relationship, spherical refracting surface]
+	\,
+	\begin{equation*}
+		\frac{n_a}{s}+\frac{n_b}{s'}=\frac{n_b-n_a}{R}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Object-image relationship, thin lens]
+	This equation applies to both converging and diverging lenses.
+	\begin{equation*}
+		\frac{1}{s}+\frac{1}{s'}=\frac{1}{f}
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	For a converging lens, paraxial rays converge to the focal point. For a diverging lens, paraxial rays diverge, but appear to converge to a focal point on the other side of the lens, and therefore the focal distance is negative. Rays that travel through the center of the lens are not deviated, and their intersection with paraxial rays that have been deviated through the second focal point will be the same as the intersection of rays incident rays that pass through the first focal point.\footnote{Any ray from the object that strikes the lens will pass through the image point.} This is useful for calculating the image point.
+\end{rema}
+\begin{defi}[Lensmaker's equation]
+	Focal length can be calculated from the index of refraction of the lens material \(n\), and the radius of curvature of the first and second surface (relative to the incident light), \(R_1\) and \(R_2\) respectively.
+	\begin{equation*}
+		\frac{1}{f}=(n-1)\big(\frac{1}{R_1}-\frac{1}{R_2}\big)
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	Longer focal length lenses in cameras are more zoomed-in. This is because the angles of view for photons are tighter with larger focals lengths, given the same lens width. Therefore a smaller fov is packed onto the same camera sensor.
+\end{rema}
+\begin{defi}[\(f\)-number of a lens]
+	The \(f\)-number can be calculated from the focal length \(f\) and aperture diameter \(D\) by the equation
+	\begin{equation*}
+		f\text{-number}=\frac{f}{D}.
+	\end{equation*}
+		The intensity of light reaching the sensor or film is proportional to \(\frac{D^2}{f^2}\).
+\end{defi}
+\begin{rema}
+	The exposure (total amount of light reaching the sensor or film) is proportional to both the aperture area and the time of exposure.
+\end{rema}
+\begin{defi}[Farsighted and nearsighted]
+	Nearsighted eyes are not able to focus objects at infinity, because they form an image in front of the cornea. In farsighted eyes, the image of an infinitely distant object is formed behind the cornea.
+\end{defi}
+\begin{defi}[Angular magnification]
+	The angular magnfication \(M\) is the ratio between the angle subtended at the eye by an object at the near point\footnote{The near point is the closest distance an object can be from the eye at which the eye can form an image of that object on the retina. For a healthy adult it is 25cm.} \(\theta\), and the angle subtended at the magnifier \(\theta'\), and is given by the equation
+	\begin{equation*}
+		M=\frac{\theta'}{\theta}.
+	\end{equation*}
+	Assuming for small \(\theta\) that \(\text{tan}\,\theta\) is equal to \(\theta\), we can express \(M\) as
+	\begin{equation*}
+		M=\frac{y/f}{y/25\text{cm}}=\frac{25\text{cm}}{f}.
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	Telescopes and microscopes use a converging lens to form a real, enlarged image at the first focal point of a converging eyepiece lens. The difference between a micrscope and a telescope, is that in a microscope the objective lens forms its real image from an object just beyond the first focal point, and a telescope objective lens forms a real image from an object at infinity.
+\end{rema}
+\begin{defi}[Angular magnification, microscope]
+	The angular magnification \(M\) of a compound microscope is the product of two factors. The first factor is the lateral magnification \(m_1\) of the objective, which determines the linear size of the real image. Because the object distance \(s_1\) is so close to the focal length \(f_1\), and because \(f_1\) is very small in comparison to the image distance \(s_1'\), the objective lens produces a very large negative\footnote{(inverted)} magnification which we can approximate as
+	\begin{equation*}
+		m_1=-\frac{s_{1}^{'}}{f_1}
+	\end{equation*}
+	The second factor is the angular magnification of the eyepiece \(M_2\), which because \(\theta\) is small, we can approximate as the ratio between the human near point, and the focal length of the eyepiece. Thus
+	\begin{equation*}
+		M=m_1M_2=\frac{(25\text{cm})s_{1}^{'}}{f_1f_2}.
+	\end{equation*}
+	Customarily, the negative sign is ignored. The final image is inverted with respect to the object.
+\end{defi}
+\begin{defi}[Angular magnification, refracting telescope]
+	Because the image is formed at the second focal point of the objective lens \(F_1'\), and because this focal point is located at the first focal point of the eyepiece \(F_2\), the length of the telescope is equal to \(f_1+f_2\). The angular magnification of the telescope \(M\) is equal to the angle subtended by the incident light ray, and the angle subtended at the eye by the image, i.e.
+	\begin{equation*}
+		M=\frac{\theta'}{\theta}=-\frac{y'/f_2}{y'}{f_1}=\frac{-f_1}{f_2}
+	\end{equation*}
 \end{defi}
 \end{document}

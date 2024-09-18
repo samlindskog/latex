@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\title{Homework 4}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle
+\subsection*{Problem 1}
+Suppose \(n\in\mathbb{N}\). By definition \(a_1=4\), and \(a_2=9\). By inductive hypothesis if \(n\geq 2\) then \(a_{n}> a_{n-1}\). Suppose to the contrary that \(a_{n+1}\leq a_{n}\). Then
+\begin{IEEEeqnarray*}{c}
+	3(a_n-1)\leq a_n\\
+	a_n\leq\frac{3}{2}
+\end{IEEEeqnarray*}
+a contradiction because \(a_2=9\). Let \(n,m\in\mathbb{N}\), and suppose to the contrary that \(a_n=a_m\) with \(n\neq m\). But if \(n\neq m\), then wlog \(n<m\) and \(a_n<a_m\), a contradiction because \(<\) is transitive.
+\subsection*{Problem 2}
+\end{document}

@@ -20,7 +20,7 @@ top=20mm,
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
-\title{Homework}
+\title{Homework 3}
 \author{Samuel Lindskog}
 \date\today
 %\clearpage clears page
@@ -28,4 +28,14 @@ top=20mm,
 \begin{document}
 \maketitle
 \subsection*{Problem 1}
+Let \((X_1,d_1)\), \((X_2,d_2)\) be two metric spaces. Let \(X=X_1\times X_2\), with \((X,d)\) a metric space, and \(d\) satisfying property \((4.4)\), let \(U_1,U_2\) be open subsets of \(X_1,X_2\), and \(x=(x_1,x_2)\in U_1\times U_2\). There exists \(r_1,r_2>0\in\mathbb{R}\) such that \(B(x_1, r_1)\subseteq U_1\) and \(B(x_2,r_2)\subseteq U_2\). Suppose \(n\in\mathbb{N}\) with \(r_n>0\in\mathbb{R}\) and \(\{x_n=(x_{1n},x_{2n})\}_{n=1}^{\infty}\) a sequence in X such that \(x_n\in B(x,r_n)\) and
+\begin{equation*}
+	\forall\epsilon> 0\in\mathbb{R},\exists N\in\mathbb{N}\text{ such that } n\geq N \Rightarrow r_n\leq\epsilon.
+\end{equation*}
+Therefore \(\lim_{n\rightarrow\infty}x_n=x\). Following property (4.4), \(x_{1n}\) and \(x_{2n}\) converge to \(x_{1}\) and \(x_{2}\) respectively, so
+\begin{IEEEeqnarray*}{c}
+	\exists M \in\mathbb{N}\text{ such that }n\geq M\Rightarrow d(x_{1n},x_1)<r_1\text{ and}\\
+	\exists L \in\mathbb{N}\text{ such that }n\geq L\Rightarrow d(x_{2n},x_2)<r_2.
+\end{IEEEeqnarray*}
+For all \(\epsilon\), there exists \(N\) arbitrarily large so that \(N\geq\text{max}(M,L)\), and thus if \(n=N\), \(x_n\in B(x,r_n)\) implies \(x_{1n}\in B(x_1,r_1)\) and \(x_{2n}\in B(x_2,r_2)\), so \(B(x,r_n)\subseteq X\).
 \end{document}
