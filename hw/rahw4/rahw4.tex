@@ -28,11 +28,17 @@ top=20mm,
 \begin{document}
 \maketitle
 \subsection*{Problem 1}
-Suppose \(n\in\mathbb{N}\). By definition \(a_1=4\), and \(a_2=9\). By inductive hypothesis if \(n\geq 2\) then \(a_{n}> a_{n-1}\). Suppose to the contrary that \(a_{n+1}\leq a_{n}\). Then
+Suppose \(n\in\mathbb{N}\). Suppose to the contrary that there exists \(n\geq 2\) such that \((a_{n}> a_{n-1}\geq 4)\) and (\(a_{n+1}\leq a_{n} \vee a_n,a_{n+1}<4\)). It follows
 \begin{IEEEeqnarray*}{c}
 	3(a_n-1)\leq a_n\\
 	a_n\leq\frac{3}{2}
 \end{IEEEeqnarray*}
-a contradiction because \(a_2=9\). Let \(n,m\in\mathbb{N}\), and suppose to the contrary that \(a_n=a_m\) with \(n\neq m\). But if \(n\neq m\), then wlog \(n<m\) and \(a_n<a_m\), a contradiction because \(<\) is transitive.
+and a contradiction arises because \(a_n>4\). Therefore
+\begin{equation*}
+	\forall n\geq 2\in N,\;(a_n>a_{n-1}\geq 4)\Rightarrow(a_{n+1}>a_{n}\geq 4)
+\end{equation*}
+and because \(a_1=4\) and \(a_2=9\), for all \(n>2\) we have \(a_n>a_{n-1}\). Let \(n,m\in\mathbb{R}\), and suppose to the contrary that \(a_n=a_m\) with \(n\neq m\). But if \(n\neq m\), then wlog \(n<m\) and \(a_n<a_m\), a contradiction because \(<\) is transitive.
 \subsection*{Problem 2}
+\subsection*{Problem 3}
+\subsection*{Problem 4}
 \end{document}

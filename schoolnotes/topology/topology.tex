@@ -167,9 +167,9 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 	\end{equation*}
 \end{defi}
 \begin{lem}
-	A convergent sequence is a cauchy sequence.
+	A convergent sequence is a cauchy sequence.\footnote{In a complete metric space the reverse is true.}
 	\begin{IEEEproof}
-		Suppose \(\{x_n\}\) a sequence that converges to \(x\). Then
+		Suppose \(\{x_n\}\) in \(X\) a sequence that converges to \(x\) in \(X\). Then
 		\begin{equation*}
 			\forall\epsilon>0,\exists n,m>N\,\big(d(x_n,x),d(x_m,x)<\epsilon\big).
 		\end{equation*}
@@ -211,6 +211,7 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \begin{thm}
 	Let \(S\) be a set, and let \(X\) be a complete metric space. If \(\{f_n\}_{n=1}^{\infty}\) is a Cauchy sequence of functions from \(S\) to \(X\), then there exists a function \(f\) from \(S\) to \(X\) such that \(\{f_n\}\) converges uniformly to \(f\)
 	\begin{IEEEproof}
+		If \(\{x_n\}\) a Cauchy sequence in a complete metric space \(X\), then \(\{x_n\}\) converges. Therefore, for each \(s\in S\), there exists \(a_s\in X\) such that \(lim_{n\rightarrow\infty}f_n(s)=a_s\). Let a \(f\) be a function from \(S\) to \(X\) defined by \(f(s)=a_s\). It follows from the definition of a Cauchy sequence of functions that for all \(\epsilon>0\) there exists \(N\in \mathbb{N}\) such that for all \(s\in S\), \(n>N\) implies \(d(f_n(s),f(s))<\epsilon\), so \(\{f_n\}\) converges uniformly.
 	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Dense subsets]
@@ -221,7 +222,7 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 	\begin{IEEEproof}
 		We shall prove that \(\bigcap_{n=1}^{\infty}U_n\) is dense in \(X\) by showing that for any ball with \(r>0\) and \(x\in X\)  there exists \(y\in\bigcap_{n=1}^{\infty}U_n\) such that \(y\in B(x,r)\).\bigbreak
 		If \(\epsilon>0\) there exists \(y_1\in U_1\) such that \(y_1\in B(x,\epsilon)\). Because \(B(x,\epsilon)\) and \(U_1\) are both open, there exists \(1>r_1>0\) such that \(B(y_1,r_1)\subseteq U_1\cap B(x,\epsilon)\) and by shrinking \(r_1\) we have \(\overline{B(y_1,r_1)}\subseteq U_1\cap B(x,\epsilon)\). This procedure can be repeated by replacing \(B(x,\epsilon)\) by \(B(y_1,r_1)\), and finding \(y_2\in U_2\cap B(y_1,r_1)\) with \(1/2>r_2>0\) such that \(\overline{B(y_2,r_2)}\subseteq U_2\cap B(y_1,r_1)\).\footnote{Such \(y_2,r_2\) exist because \(y_1\in X\) and \(U_2\) is dense in \(X\), so for every \(r_1\)-ball of \(y_1\) there exists \(y_2\in U_2\) such that \(y_2\) is in this ball.}
-		We can then define a cauchy sequence \(\{y_n\}_{n=1}^{\infty}\) with each \(y_n\) satisfying \(\overline{B(y_n,r_n)}\subseteq U_{n}\cap B(y_{n-1}, r_{n-1})\) with \(1/n>r_n>0\). Because \(X\) is complete, we know that \(\lim_{n\rightarrow\infty}y_n=y\) with \(y\in X\). If \(y\notin\bigcap_{n=1}^{\infty}U_n\) then there exists \(n\) such that \(y\notin B(y_n,r_n)\). If \(m>n\) Then \(y_m\in \overline{B(y_m,r_m)}\cap B(y_n,r_n)\). But then \((y\in B(y_n,r_n)\), a contradiction. Therefore \(y\in\bigcap_{n=1}^{\infty}U_n\).
+		We can then define a cauchy sequence \(\{y_n\}_{n=1}^{\infty}\) with each \(y_n\) satisfying \(\overline{B(y_n,r_n)}\subseteq U_{n}\cap B(y_{n-1}, r_{n-1})\) with \(1/n>r_n>0\). Because \(X\) is complete, we know that \(\lim_{n\rightarrow\infty}y_n=y\) with \(y\in X\). If \(y\notin\bigcap_{n=1}^{\infty}U_n\) then there exists \(n\) such that \(y\notin B(y_n,r_n)\). If \(m>n\) Then \(y_m\in \overline{B(y_m,r_m)}\cap B(y_n,r_n)\). Because the limit of any convergent sequence in \(B(y_m,r_m)\) is in \(\overline{B(y_m,r_m)}\), it follows that \(y\in B(y_n,r_n)\), a contradiction. Therefore \(y\in\bigcap_{n=1}^{\infty}U_n\).
 	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Nowhere dense]
@@ -317,5 +318,8 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \end{thm}
 \begin{thm}[Lindelof's theorem]
 	Suppose the metric space \(X\) is second-countable. Then every open cover of \(X\) has a countable subcover.
+\end{thm}
+\begin{thm}
+	A compact metric space is seperable and second-countable.
 \end{thm}
 \end{document}

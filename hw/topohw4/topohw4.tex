@@ -1,0 +1,51 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\title{Homework 4}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle
+\subsection*{Problem 1}
+Let \(E\subseteq\mathbb{R}^n\) be bounded. Then there exists \(b\in\mathbb{R}\) with \(b>0\) such that for all \(f,g\in E\) we have \(d(f,g)<b\). Let \(x=(x_1,\ldots,x_n)\in E\) with \(x_{mabs}=\text{max}\big(\big\{\lvert x_i\rvert\big\}_{i=1}^{n}\big)\) and \(l=b+x_{mabs}\). Suppose to the contrary that \(E\not\subseteq [-l,l]^n\). Then there exists \(y=(y_1,\ldots,y_n)\in E\) such that \(y\notin[-l,l]^n\), so there exists \(k\in\mathbb{N}\) with \(k\leq n\) such that \(\lvert y_k\rvert >l\). It follows that
+\begin{IEEEeqnarray*}{rCl}
+	d(x,y)&=&\sqrt{(x_1-y_1)^2+\ldots+(x_n-y_n)^2}\\
+			&\geq&\sqrt{(x_k-y_k)^2}.
+\end{IEEEeqnarray*}
+Because \(\lvert y_k\rvert=l+a\) for some \(a\in\mathbb{R}\) with \(a>0\), it follows that
+\begin{IEEEeqnarray*}{rCl}
+	\sqrt{(x_k-y_k)^2}&=&\big\lvert x_k\pm(b+x_{mabs}+a)\big\rvert\\
+	&\geq&\big\lvert \pm(b+a)\big\rvert\\
+	&>&b.
+\end{IEEEeqnarray*}
+This contradicts the fact that \(d(x,y)<b\).
+\subsection*{Problem 2}
+Suppose \([-l,l]^n\subseteq\mathbb{R}^n\) with \(l>0\), let \(c=\ceil{\frac{ln}{\epsilon}}\), let \(k\in\mathbb{N}\) with \(k\leq n\), let \(\epsilon\in\mathbb{R}\) with \(\epsilon>0\), and \(A\) a set of \(n\)-tuples with
+\begin{equation*}
+	A=\{(a_1,\ldots,a_n)\;| \;a_k=\frac{i\epsilon}{n},\; -c\leq i\leq c,\;i\in\mathbb{Z}\}
+\end{equation*}
+Suppose \(x=(x_1,\ldots,x_n)\in[-l,l]^n\). For all \(x\) there exists \(y=(y_1,\ldots,y_n)\in A\) such that for all \(j\in\mathbb{N}\) with \(j\leq n\) we have component \(x_j\) of \(x\) and component \(y_j\) of \(y\) with \(\lvert x_j-y_j\rvert<\frac{\epsilon}{n}\). It follows from the triangle inequality that \(d(x,y)<\epsilon\), so \(x\in B(y,\epsilon)\), and \(\bigcap_{\alpha\in A}B(\alpha,\epsilon)\) a cover for \([-l,l]\), and therefore is totally bounded.
+\subsection*{Problem 3}
+Because \(\mathbb{Q}\) is equinumerous with \(\mathbb{N}\), and thus \(\mathbb{Q}^n\) is equinumerous with \(\mathbb{N}\), it suffices to show that each open set in \(\mathbb{R}^n\) is the union of rational-radius open balls centered at elements in \(\mathbb{Q}^n\). Because each real number can be expressed as the limit of a series of rational numbers, \(\mathbb{Q}^n\) is dense in \(\mathbb{R}^n\). If \(U\) is an open set in \(\mathbb{R}^n\), then for each \(y_1\in U\) there exists \(r_1\in\mathbb{R}, r_1>0\) such that \(B(y_1,r_1)\subseteq U\). But because \(\mathbb{Q}^n\) is dense in \(\mathbb{R}^n\) there exists \(q\in\mathbb{Q}^n\) such that \(d(y_1, q)<r_1/2\), and thus if \(r_2\in\mathbb{Q}\) and \(d(y_1,q)<r_2<r_1/2\) then \(y_1\in B(q,r_2)\subseteq B(y_1,r_1)\). Therefore \(U\), and by extension all open sets in \(\mathbb{R}^n\), are the union of rational-radius open balls centered at elements in \(\mathbb{Q}^n\).
+\end{document}

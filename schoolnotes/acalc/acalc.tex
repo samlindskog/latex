@@ -1,0 +1,73 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+\usepackage{enumitem}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{Advanced Calculus}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+
+\section{Test 1}
+\begin{defi}[Relation]
+	A relation between \(A\) and \(B\) is any subset \(R\) of \(A\times B\). If \((a,b)\in R\), then we say \(aRb\).
+\end{defi}
+\begin{defi}[Equivalence Relation]
+	A relation \(R\) on a set \(S\) is an equivalence relation if it has the following properties for all \(x,y,z\) in \(S\):
+	\begin{enumerate}
+		\item \(xRx\)\qquad\text{(reflexive property)}
+		\item \(xRy\Rightarrow yRx\)\qquad\text{(Symmetric property)}
+		\item \(xRy\wedge yRz\Rightarrow xRz\)\qquad\text{(Transitive property)}
+	\end{enumerate}
+\end{defi}
+A partition of a set \(S\) is a collection \(\mathscr{P}\) of nonempty subsets such that
+\begin{enumerate}
+	\item \(x\in S\Rightarrow x\in\bigcup_{A\in\mathscr{P}}A\)
+	\item \(\forall A,B\in\mathscr{P}, A\neq B\Rightarrow A\cap B=\emptyset\)
+\end{enumerate}
+\begin{defi}[Function]
+	Let \(A\) and \(B\) be sets. A function from \(A\) to \(B\) is a nonempty relation \(f\subseteq A\times B\) that satisfies the following two conditions:
+	\begin{enumerate}
+		\item \(\forall a\in A,\exists b\in B, (a,b)\in f\)
+		\item \((a,b)\in f\wedge (a,c)\in f\Rightarrow b=c\)
+	\end{enumerate}
+\end{defi}
+\begin{defi}[Upper bound]
+	Let \(S\subseteq\mathbb{R}\). If there exists a real number \(m\) such that \(m\geq s\) for all \(s\in S\), then \(m\) is an upper bound of \(S\)
+\end{defi}
+\begin{defi}[Maximum]
+If an upper bound \(m\) of \(S\) is a member of \(S\), then \(m\) is called the maximum of \(S\).
+\end{defi}
+\begin{defi}[Supremum]
+	Let \(S\) be a nonempty subset of \(\mathbb{R}\). If \(S\) is bounded above, then the least upper bound of \(S\) is called the supremum. Thus \(m=\text{sup}\,S\) iff
+	\begin{enumerate}
+		\item \(\forall s\in S, m\geq s\)
+		\item \(m'<m\Rightarrow \exists s'\in S, s'>m'\)
+	\end{enumerate}
+\end{defi}
+\begin{axiom}[Completeness of \(\mathbb{R}\)]
+	Every nonempty subset \(S\) of \(\mathbb{R}\) that is bounded above has a least upper bound, i.e. \(\text{sup}\,S\) exists.
+\end{axiom}
+\end{document}
