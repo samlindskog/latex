@@ -246,7 +246,7 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \begin{thm}
 	Suppose that \(d\) is a metric on \(X=X_1\times\ldots\times X_n\) that satisfies property \(4.4\). Then the open sets in \((X,d)\) are the unions of product sets of the form \(U_1\times\ldots\times U_n\), where \(U_j\) is an open subset of \(X_j,\;1\leq j\leq n\).
 	\begin{IEEEproof}
-		Suppose that \(U\) an open subset of \(X\) and \(y=(y_1,\ldots, y_n)\in U\). If \(1\leq m\leq\infty\), Because \(y_n\in B(y_n,1/m)\) it follows that \(y\) is an element of the product of open balls \(B(y_1,1/m)\times\ldots\times B(y_n,1/m)\). Suppose to the contrary that there does not exist \(\epsilon>0\) such that \(B(y_1,\epsilon)\times\ldots\times B(y_n,\epsilon)\subseteq U\). Then for all \(m\) there exist \(x^m=(x^{m}_{1},\ldots,x^{m}_{n})\in U^{c}\) such that for all \(k\), \(1\leq k\leq n\), we have \(x^{m}_{k}\in B(y_k,1/m)\), i.e.
+		Suppose that \(U\) an open subset of \(X\) and \(y=(y_1,\ldots, y_n)\in U\). If \(1\leq m\leq\infty\) and \(1\leq k\leq n\), because each \(y_k\in B(y_k,1/m)\) it follows that \(y\) is an element of the product of open balls \(B(y_1,1/m)\times\ldots\times B(y_n,1/m)\).\footnote{Note that these could be closed balls as well. Open balls are used to satisfy the proof.} Suppose to the contrary that there does not exist \(\epsilon>0\) such that \(B(y_1,\epsilon)\times\ldots\times B(y_n,\epsilon)\subseteq U\). Then for all \(m\) there exist \(x^m=(x^{m}_{1},\ldots,x^{m}_{n})\in U^{c}\) such that \(x^m\in B(y_1,1/m)\times\ldots\times B(y_n,1/m)\) i.e. for all \(k\), \(x^{m}_{k}\in B(y_k,1/m)\). It follows
 		\begin{equation*}
 			\lim_{m\rightarrow\infty}d_{k}(x^{m}_{k}, y_k)=0.
 		\end{equation*}
@@ -254,7 +254,7 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 		\begin{equation*}
 			\lim_{m\rightarrow\infty}d(x^{m},y)=0.
 		\end{equation*}
-		It follows that because \(x^{m}\in U^{c}\), \(y\in \overline{U^{c}}\). \(U^{c}\) is closed, so it follows that \(y\in U^{c}\), a contradiction.
+		It follows that because \(x^{m}\in U^{c}\), \(y\in \overline{U^{c}}\). \(U^{c}\) is closed so \(y\in U^{c}\), a contradiction. Therefore each \(y\in U\) is contained in a subset of \(U\) which is the product of open balls in \(X_k\).
 	\end{IEEEproof}
 \end{thm}
 \begin{thm}
