@@ -46,9 +46,175 @@
 	In other words to check if a function is a solution, substitute the function in question into the differential equation and check that it reduces to an identity.
 \end{defi}
 \begin{defi}[Initial value problem]
-	Subjecting a differential equation involving \(x(t)\) and its derivatives to a condition \(x(t_0)=x_0\) is called an initial value problem. The interval of existance of an IVP is the largest time interval where the solution is valid.
+	Subjecting a differential equation involving \(x(t)\) and its derivatives to a condition \(x(t_0)=x_0\) is called an initial value problem. The interval of existance of an IVP is the largest time interval where the solution is valid.\footnote{A solution to an IVP is called a particular solution.}
 \end{defi}
 \begin{defi}[General solution]
 	The infinite set of solutions of a first-order equation is called the general solution of the equation.
 \end{defi}
+\begin{defi}[Nullclines and isoclines]
+	The sets of points \((t,x)\) where the slope field is zero are called nullclines\footnote{These constant solutions \(f(t,x)=k\) for some constant \(k\) are called equilibrium solutions.}, i.e. where
+	\begin{equation*}
+		x'=f(t,x)=0.
+	\end{equation*}
+	The set of points \(t,x\) where \(f(t,x)=k\) for some constant \(k\) are called isoclines.
+\end{defi}
+\begin{thm}[Fundamental theorem of calculus]
+	\,
+	\begin{equation*}
+		\frac{d}{dt}\int_{a}^{t}g(s)ds=g(t)
+	\end{equation*}
+\end{thm}
+\begin{defi}[Seperable equation]
+	A differential equation of the form
+	\begin{equation*}
+		x'=f(x)g(t)
+	\end{equation*}
+	is called a seperable equation. We can obtain \(x\) through the following procedure:
+	\begin{IEEEeqnarray*}{rCl}
+		\frac{dx}{dt}&=&f(x)g(t)\\
+		\int\frac{1}{f(x)}\frac{dx}{dt}dt&=&\int g(t)dt\\
+		\int\frac{1}{f(x)}dx&=&\int g(t)dt+C
+	\end{IEEEeqnarray*}
+	The final form of the seperable equation is made possible by the chain rule, and a helpful step forward towards finding the solution is
+	\begin{equation*}
+		e^{\int g(t)dt}=f(x)+c.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Linear equation]
+	A differential equation of the form
+	\begin{equation*}
+		x'+p(t)x=q(t)
+	\end{equation*}
+	is called a first-order linear equation\footnote{This is also called the normal form of a first-order linear equation.}. If a first-order equation can not be put into this form, the equation is called nonlinear.
+\end{defi}
+\begin{defi}[Homogeneous equation]
+	A first-order linear differential equation is called homogeneous\footnote{A homogenous equation is seperable.} if it is of the form
+	\begin{equation*}
+		x'+p(t)x=0.
+	\end{equation*}
+The solution is
+\begin{equation*}
+	Ce^{-\int p(t)dt}.
+\end{equation*}
+\end{defi}
+\begin{defi}[Integrating factor]
+	A function \(\mu(t)\) exists such that
+	\begin{equation*}
+		\mu(t)(x'+p(t)x)=(\mu(t)x)'.
+	\end{equation*}
+	The function \(\mu(t)\) is called an integrating factor and is given by
+	\begin{equation*}
+		\mu(t)=e^{\int p(t)dt}
+	\end{equation*}
+	This can be used to solve linear equations by multiplying both sides by the integrating factor.
+\end{defi}
+\begin{defi}[Autonomous equation]
+	An autonomous differential equation is a differential equation with no explicit time dependence, i.e.
+	\begin{equation*}
+		\frac{dx}{dt}=f(x).
+	\end{equation*}
+	As described above, constant solutions to an autonomous equation are called steady-state or equilibrium solutions.
+\end{defi}
+\begin{defi}[Stable and unstable equilibrium]
+	For stable equilibrium solutions, solutions with values of \(x\) close to the phase-line converge to the phase line. For unstable equilibrium solutions are not stable.\footnote{If solutions near the phase line converge or diverge depending on how they approach, the solution is semi-stable. If all perturbations converge to the phase line, the solution is globally stable.} The roots of \(f(x)=0\) are the equilibrium solutions.
+\end{defi}
+\begin{thm}
+	Let \(x^*\) be an isolated critical point, or equilibrium, for the autonomous equation
+	\begin{equation*}
+		\frac{dx}{dt}=f(x).
+	\end{equation*}
+	If \(f'(x^*)<0\), then \(x^*\) is stable. If \(f'(x^*)>0\), then \(x^*\) is unstable. If \(f'(x^*)=0\) then higher derivatives must be analysed to find information about stability.
+\end{thm}
+\begin{thm}[Existence and uniqueness]
+	Assume the function \(f(t,x)\) and its partial derivative \(f_x(t,x)\) are continuous in a rectangle \(a<t<b, c<x<d\). Then, for any value \(t_0\) in \(a<t<b\) and \(x_0\) in \(c<x<d\), the initial value problem
+	\begin{IEEEeqnarray*}{c}
+		x'=f(t,x)\\
+		x(t_0)=x_0
+	\end{IEEEeqnarray*}
+	has a unique solution valid on some open interval \(a<\alpha<t<\beta<b\) containing \(t_0\).
+\end{thm}
+\section{Second-order linear equations}
+\begin{rema}
+	Chapter two in the book deals with second-order differential equations of the form
+	\begin{equation}
+		\label{rema:eqn}
+		ax''+bx'+cx=f(t).
+	\end{equation}
+\end{rema}
+\begin{defi}[Hooke's law]
+	Let \(x\) be displacement from equilibrium and \(k\) be the spring constant. Then
+	\begin{equation*}
+		F_s=-kx
+	\end{equation*}
+\end{defi}
+\begin{defi}[Spring-mass equation]
+	The spring-mass equation relates the acceleration of a mass on a spring with the force applied by the spring given by Hooke's law:
+	\begin{equation*}
+		mx''=-kx.
+	\end{equation*}
+	For initial conditions \(x(0)=x_0\) and \(x'(0)=0\) we find \(x(t)\) is
+	\begin{equation*}
+		x(t)=x_0\text{cos}\,\sqrt{k/m}t.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Damped Oscillator]
+	If there is friction as the mass moves, the frictional force is a function of the velocity \(x'\) and the damping coefficient \(\gamma\)
+	\begin{equation*}
+		F_d=-\gamma x'.
+	\end{equation*}
+	Therefore the equation of motion is
+	\begin{equation*}
+		mx''=-\gamma x'-kx.
+	\end{equation*}
+\end{defi}
+\begin{rema}
+	The damped spring-mass equation has the form\footnote{An equation of this form is called a homogenour linear equation with constant coefficients.}
+	\begin{equation*}
+		ax''+bx'+cx=0.
+	\end{equation*}
+	For such an equation, there are always exactly two independent solutions \(x_1(t)\) and \(x_2(t)\), and so the general solution \(\phi(t)\)is of the form
+	\begin{equation*}
+		\phi(t)=c_1x_1(t)+c_2x_2(t).
+	\end{equation*}
+\end{rema}
+\begin{defi}[Characteristic equation]
+	To solve equation \ref{rema:eqn}, first note that \(x(t)=e^{\lambda t}\) for some constant \(\lambda\). Substituting \(e^{\lambda t}\), we can solve for \(\lambda\) with the characteristic equation\footnote{The roots of this equation are called eigenvalues.}
+	\begin{equation*}
+		a\lambda^2+b\lambda+c=0.
+	\end{equation*}
+	The values of \(\lambda\) can be real or complex. If \(b^2-4ac>0\), then there are two real unequal eigenvalues, and hence there are two indpendent solutions, so the general solution is
+	\begin{equation*}
+		x(t)=c_1e^{\lambda_1 t}+c_2e^{\lambda_2 t}.
+	\end{equation*}
+	In this case, if \(\lvert\lambda_1\rvert=\lvert\lambda_2\rvert\), then the general solution is
+	\begin{equation*}
+		x(t)=c_1e^{\alpha t}+c_2e^{-\alpha t}
+	\end{equation*}
+	Which is exponential. If \(\lvert \lambda_1\rvert=a\), this equation can be written in terms of hyperbolic functions cosh and sinh as
+	\begin{equation*}
+		x(t)=c_1\text{cosh}\,at+c_2\text{sinh}\,at
+	\end{equation*}
+	If \(b^2-4ac=0\) then the general solution is
+	\begin{equation*}
+		x(t)=c_1e^{\lambda t}+c_2te^{\lambda t}.
+	\end{equation*}
+	If \(b^2-4ac<0\) then the eigenvalues are complex.
+\end{defi}
+\begin{defi}[Euler's formula]
+	\,
+	\begin{equation*}
+		e^{i\beta t}=\text{cos}\,\beta t+i\text{sin}\,\beta t.
+	\end{equation*}
+\end{defi}
+\begin{thm}
+	\label{thm:csolutions}
+If \(x(t)=g(t)+ih(t)\) is a complex-valued solution of differential equation \ref{rema:eqn}, then its real and imaginary parts \(x_1(t)=g(t)\) and \(x_2(t)=h(t)\) are real-valued solutions.
+\end{thm}
+\begin{rema}
+	As a consequence of theorem \ref{thm:csolutions}, if \(\lambda_1=\alpha+i\beta\), then the general solution to equation \ref{rema:eqn} is
+	\begin{equation*}
+		x(t)=c_1e^{\alpha t}\text{cos}\,\beta t+c_2e^{\alpha t}\text{sin}\,\beta t.
+	\end{equation*}
+	If \(\alpha<0\), these solutions represent decaying oscillations, and if \(\alpha>0\) then these solutions represent growing oscillations. If \(\alpha=0\) then the solutions are purely oscillatory with frequency \(\beta\) and period \(2\pi/\beta\).
+\end{rema}
 \end{document}

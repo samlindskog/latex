@@ -1,0 +1,62 @@
+\documentclass[nobib,notoc]{tufte-handout}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+\usepackage{enumitem}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\title{thingies and doodads}
+\author{Samuel Lindskog}
+\maketitle
+\setcounter{section}{1}
+\section{Misc algebra}
+\subsection{Partial fractions}
+Rational expressions can be split into the sum of two rational expressions. Use the following to solve for \(A\) and \(B\).
+\begin{IEEEeqnarray*}{rCl}
+	\frac{x+7}{(x-3)(x+2)}&=&\frac{A}{x-3}+\frac{B}{x-2}\\
+	x+7&=&A(x+2)+B(x-3)
+\end{IEEEeqnarray*}
+\subsection{Quadratic formula}
+\begin{equation*}
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation*}
+\subsection{Factoring quadratics}
+\subsection{Completing the square}
+\subsection{Factoring cubics}
+
+\section{Trig identities}
+
+\section{Integration procedures}
+\subsection{Integration by parts}
+\subsection{Trig integrals}
+
+\section{Standard integrals}
+%complete up to here today
+
+\section{Misc calculus}
+\subsection{Taylor series}
+\subsection{Convergence tests}
+\subsection{Optimization}
+\begin{defi}[Lagrange multipliers]
+\end{defi}
+
+\end{document}
