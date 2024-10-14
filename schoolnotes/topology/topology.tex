@@ -4,8 +4,10 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{mathrsfs}
+\usepackage{mathtools}
 \usepackage{IEEEtrantools}
 \usepackage{enumitem}
 
@@ -23,6 +25,9 @@
 \theoremstyle{definition}\newtheorem{problem}{Problem}
 %\renewcommand{\theproblem}{\arabic{problem}}
 \newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 
 \title{Topology}
 \author{Samuel Lindskog}
@@ -167,9 +172,14 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 	\begin{equation*}
 		\lim_{m,n\rightarrow\infty}d(x_n,x_m)=0.
 	\end{equation*}
+	In other words
+	\begin{equation*}
+		\forall\epsilon>0,\exists N\,(n,m\geq N\Rightarrow d(x_n,x_m)<\epsilon)
+	\end{equation*}
 \end{defi}
 \begin{lem}
-	A convergent sequence is a cauchy sequence.\footnote{In a complete metric space the reverse is true.}
+	\label{conviscauchy}
+	A convergent sequence is a Cauchy sequence.\footnote{In a complete metric space the reverse is true.}
 	\begin{IEEEproof}
 		Suppose \(\{x_n\}\) in \(X\) a sequence that converges to \(x\) in \(X\). Then
 		\begin{equation*}
@@ -182,6 +192,7 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 	\end{IEEEproof}
 \end{lem}
 \begin{lem}
+	\label{cauchysubconverge}
 	If \(\{x_n\}\) is a Cauchy sequence and if there is a subsequence \(\{x_{n_k}\}_{k=1}^{\infty}\) of \(\{x_n\}\) that converges to \(x\), then \(\{x_n\}\) converges to \(x\).
 	\begin{IEEEproof}
 		Suppose \(\{x_n\}\) a convergent sequence and \(\{x_{n_k}\}_{k=1}^{\infty}\) a subsequence which converges to \(x\) then
@@ -222,9 +233,15 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \begin{thm}[Baire Category Theorem]
 	Let \(\{U_n\}_{n=1}^{\infty}\) be a sequence of dense open subsets of a complete metric space \(X\). Then \(\bigcap_{n=1}^{\infty}U_n\) is also dense in \(X\).
 	\begin{IEEEproof}
-		We shall prove that \(\bigcap_{n=1}^{\infty}U_n\) is dense in \(X\) by showing that for any ball with \(r>0\) and \(x\in X\)  there exists \(y\in\bigcap_{n=1}^{\infty}U_n\) such that \(y\in B(x,r)\).\bigbreak
-		If \(\epsilon>0\) there exists \(y_1\in U_1\) such that \(y_1\in B(x,\epsilon)\). Because \(B(x,\epsilon)\) and \(U_1\) are both open, there exists \(1>r_1>0\) such that \(B(y_1,r_1)\subseteq U_1\cap B(x,\epsilon)\) and by shrinking \(r_1\) we have \(\overline{B(y_1,r_1)}\subseteq U_1\cap B(x,\epsilon)\). This procedure can be repeated by replacing \(B(x,\epsilon)\) by \(B(y_1,r_1)\), and finding \(y_2\in U_2\cap B(y_1,r_1)\) with \(1/2>r_2>0\) such that \(\overline{B(y_2,r_2)}\subseteq U_2\cap B(y_1,r_1)\).\footnote{Such \(y_2,r_2\) exist because \(y_1\in X\) and \(U_2\) is dense in \(X\), so for every \(r_1\)-ball of \(y_1\) there exists \(y_2\in U_2\) such that \(y_2\) is in this ball.}
-		We can then define a cauchy sequence \(\{y_n\}_{n=1}^{\infty}\) with each \(y_n\) satisfying \(\overline{B(y_n,r_n)}\subseteq U_{n}\cap B(y_{n-1}, r_{n-1})\) with \(1/n>r_n>0\). Because \(X\) is complete, we know that \(\lim_{n\rightarrow\infty}y_n=y\) with \(y\in X\). If \(y\notin\bigcap_{n=1}^{\infty}U_n\) then there exists \(n\) such that \(y\notin B(y_n,r_n)\). If \(m>n\) Then \(y_m\in \overline{B(y_m,r_m)}\cap B(y_n,r_n)\). By theorems \ref{thm:1:converge} and \ref{thm:1:closure}, the limit of any convergent sequence in \(\overline{B(y_m,r_m)}\) is in \(\overline{B(y_m,r_m)}\), it follows that \(y\in B(y_n,r_n)\), a contradiction. Therefore \(y\in\bigcap_{n=1}^{\infty}U_n\).
+		We shall prove that \(\bigcap_{n=1}^{\infty}U_n\) is dense in \(X\) by showing that for any open ball \(B(x,\epsilon)\) with \(\epsilon>0\) and \(x\in X\)  there exists \(y\in\bigcap_{n=1}^{\infty}U_n\) such that \(y\in B(x,\epsilon)\).\bigbreak
+		Because for all \(n\), \(U_n\) is dense in \(X\), there exists \(y_1\in U_1\) such that \(y_1\in B(x,\epsilon)\). Because \(B(x,\epsilon)\) and \(U_1\) are both open, there exists \(0<r_1<1\) such that \(B(y_1,r_1)\subseteq U_1\cap B(x,\epsilon)\), and by shrinking \(r_1\) we have \(\overline{B(y_1,r_1)}\subseteq U_1\cap B(x,\epsilon)\). This procedure can be repeated in \(B(y_1,r_1)\) by finding \(y_2\in U_2\cap B(y_1,r_1)\) with \(0<r_2<1/2\) such that \(\overline{B(y_2,r_2)}\subseteq U_2\cap B(y_1,r_1)\).\footnote{Such \(y_2,r_2\) exist because \(B(y_1,r_1)\subseteq B(x,\epsilon)\subseteq X\), and \(U_2\) is dense in and open in \(X\). Therefore for every \(r_1\)-ball of \(y_1\) contains an \(r_2\) ball of \(y_2\).} We can then define a Cauchy sequence \(\{y_n\}_{n=1}^{\infty}\) using this procedure by
+		\begin{equation*}
+			y_n=\begin{cases}
+				\text{if }n=1,&y_n\in B(x,\epsilon)\\
+				\text{if }n>1,&\overline{B(y_n,r_n)}\subseteq B(y_{n-1}, r_{n-1})
+			\end{cases}
+		\end{equation*}
+		with each \(r_n\) satisfying \(0<r_n<1/n\). Because \(X\) is complete, we know that \(\lim_{n\rightarrow\infty}y_n=y\) with \(y\in X\). Suppose to the contrary that \(y\notin\bigcap_{n=1}^{\infty}U_n\). Then there exists \(k\geq 1\) such that \(y\notin B(y_k,r_k)\). If \(m>k\) Then \(y_m\in \overline{B(y_m,r_m)}\cap B(y_k,r_k)\). By theorems \ref{thm:1:converge} and \ref{thm:1:closure}, the limit of any convergent sequence in \(\overline{B(y_m,r_m)}\) is in itself. It follows that \(y\in B(y_k,r_k)\), a contradiction. Therefore \(y\in\bigcap_{n=1}^{\infty}U_n\text{ and } y\in B(x,\epsilon)\).
 	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Nowhere dense]
@@ -259,6 +276,17 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 \end{thm}
 \begin{thm}
 	Let \((X_1,d_1),\ldots,(X_n,d_n)\) be complete metric spaces. Let \(d\) be a metric on \(X=X_1\times\ldots\times X_n\) that satisfies \((4.4)\) and \((4.5)\). Then \((X,d)\) is complete.
+	\begin{IEEEproof}
+		Suppose \(\{y_m\}_{m=1}^{\infty}\) a Cauchy sequence in \(X\). Then
+		\begin{equation*}
+			\forall\epsilon,\,\exists N\big(l,l'>N\Rightarrow d(y_l,y_{l'})<\epsilon\big).
+		\end{equation*}
+		Because \(X\) satisfies property 4.5, for \(1\leq k\leq n\)
+		\begin{equation*}
+			\forall\epsilon,\,\exists N\big(l,l'>N\Rightarrow d(y_{l_k},y_{l'_k})<\epsilon\big).
+		\end{equation*}
+	And thus \(\{y_{m_k}\}_{m=1}^{\infty}\) is a Cauchy sequence in \(X_k\). Because \(X_k\) is complete, this Cauchy sequence converges to a point \(z_k\in X_k\). Following property 4.4, \(\{y_m\}_{m=1}^{\infty}\) converges to \(z=(z_1,\ldots,z_n)\in X\).
+	\end{IEEEproof}
 \end{thm}
 \begin{cor}
 	The \(n\)-dimensional Euclidean space \(\mathbb{R}^n\), with the usual metric
@@ -287,18 +315,59 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 		\item Every sequence in \(X\) has a convergent subsequence.
 		\item \(X\) is totally bounded and complete.
 	\end{enumerate}
+	\begin{IEEEproof}
+		\label{betterhb}
+		\emph{PROOF 1 IMPLES 2} - Suppose \(X\) is compact, and \(\{x_n\}_{n=1}^{\infty}\) a sequence in \(X\). Suppose to the contrary that for all \(x\in X\) there exists \(\epsilon(x)>0\) such that only a finite number of terms in \(\{x_n\}\) lie in each \(B(x,\epsilon(x))\). The set of all such \(B(x,\epsilon(x))\) form an open cover for \(X\), so a finite subcover of said cover exists, and thus \(\{x_n\}\) has a finite number of elements. This implies \(\mathbb{N}\) is finite, a contradiction. Therefore there exists \(x\in X\) such that for all \(\epsilon\), an infinite number of elements in \(x_n\) lie in \(B(x,\epsilon)\). We can now construct a Cauchy subsequence of \(\{x_n\}\) using diagonalization\footnote{This technique is cracked and will be used again.} which converges to \(x\). Let \(\{x_{1n}\}\) be the original sequence \(\{x_n\}\). Let \(\{x_{kn}\}\), \(k\geq 2\) be a subsequence of \(\{x_{(k-1)n}\}\) such that \(x_{kn}\in B(x,1/k)\). Then the sequence \(\{x_{nn}\}_{n=1}^{\infty}\) is a Cauchy subsequence of \(\{x_n\}\) which converges to \(x\).
+		\bigbreak
+		\emph{PROOF 2 IMPLIES 3} - If every sequence in \(X\) has a convergent subsequence, then by lemma \ref{cauchysubconverge}, every Cauchy sequence in \(X\) converges and \(X\) is complete. Suppose \(\mathscr{F}=\{B(x,\epsilon)\,|\,x\in X\text{ and } \epsilon>0\}\). Then there exists \(\mathscr{T}\subseteq\mathscr{F}\) such that \(\mathscr{T}\) is finite and covers \(X\), so \(X\) is totally bounded.
+		\bigbreak
+		\emph{PROOF 3 IMPLIES 1} - Suppose \(X\) is totally bounded and complete. Following theorem \ref{tbcontcauchy}, every sequence in \(X\) contains a Cauchy subsequence, and thus every sequence in \(X\) has a convergent subsequence. If \(X\) is totally bounded and complete, and every sequence in \(X\) has a convergent subsequence, then following theorems \ref{tbseperable} and \ref{scsep} \(X\) is second-countable, and following theorem \ref{lindelofs} every open cover of \(X\) has a countable subcover. Let \(\{U_n\}_{n=1}^{\infty}\) cover \(X\). Suppose to the contrary that no finite subcover \(\{U_n\}_{n=1}^{m}\) exists. Then for all \(m\) we see that \(X\setminus\bigcup\{U_n\}_{n=1}^{m}\neq\emptyset\). We can then define a sequence \(\{x_j\}_{j=1}^{\infty}\) such that
+		\begin{equation*}
+			x_j\in X\setminus\bigcup\{U_n\}_{n=1}^{j}
+		\end{equation*}
+		The complement of any union of open sets is closed, and every sequence in \(X\) has a convergent subsequence. Therefore following lemma \ref{conviscauchy} a Cauchy subsequence of \(\{x_j\}\) exists such that this subsequence converges to a point \(x\) not in the open cover \(\{U_n\}\), and therefore not in \(X\). Thus \(X\) is not complete, a contradiction.
+	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Bounded]
 	A metric space \(X\) is bounded if there exists \(b>0\) such that \(d(x,y)<b\) for all \(x,y\in X\).
 \end{defi}
 \begin{lem}
 	A totally bounded metric space is bounded.
+	\begin{IEEEproof}
+		Let \(X\) be a totally bounded metric space. Then every point \(x,y\in X\) is contained in an element of a finite family \(\mathscr{F}\) of \(\epsilon\)-balls centered at \(z,w\in X\) respectively. It follows that
+		\begin{IEEEeqnarray*}{rCl}
+			d(x,y)&<&d(x,z)+d(z,w)+d(w,y)\\
+			&<&2\epsilon+d(z,w).
+		\end{IEEEeqnarray*}
+		Because \(z,w\) are in a finite number of \(\epsilon\)-balls, let
+		\begin{equation*}
+		c=\text{max}\{d(z,w)\,|\,B(z,\epsilon),B(w,\epsilon)\in\mathscr{F}\}.
+		\end{equation*}
+		It follows that
+		\begin{equation*}
+			d(x,y)<2\epsilon+c.
+		\end{equation*}
+		Thus \(X\) is bounded.
+	\end{IEEEproof}
 \end{lem}
+\begin{rema}
+	A bounded metric space is not necessarily totally bounded. For example an infinite set with the discreet metric.
+\end{rema}
 \begin{lem}
 	Any subspace of a totally bounded metric space is totally bounded.
+	\begin{IEEEproof}
+		If \(X\) be totally bounded and \(L\subseteq X\), then for each \(x\in L\) we have \(x\in X\) and thus \(x\) is an element of any open cover of \(X\), and \(L\) is totally bounded.
+	\end{IEEEproof}
 \end{lem}
 \begin{lem}
 	A subset \(E\) of \(\mathbb{R}^n\) is totally bounded iff \(E\) is bounded.
+	\begin{IEEEproof}
+	Suppose \(E\subseteq [-l,l]^n\subseteq\mathbb{R}^n\) with \(l>0\), let \(c=\ceil{\frac{ln}{\epsilon}}\), let \(k\in\mathbb{N}\) with \(k\leq n\), let \(\epsilon\in\mathbb{R}\) with \(\epsilon>0\), and \(A\) a set of \(n\)-tuples with
+	\begin{equation*}
+			  A=\{(a_1,\ldots,a_n)\;| \;a_k=\frac{i\epsilon}{n},\; -c\leq i\leq c,\;i\in\mathbb{Z}\}
+	\end{equation*}
+		Suppose \(x=(x_1,\ldots,x_n)\in[-l,l]^n\). For all \(x\) there exists \(y=(y_1,\ldots,y_n)\in A\) such that for all \(j\in\mathbb{N}\) with \(j\leq n\) we have component \(x_j\) of \(x\) and component \(y_j\) of \(y\) with \(\lvert x_j-y_j\rvert<\frac{\epsilon}{n}\). It follows from the triangle inequality that \(d(x,y)<\epsilon\), so \(x\in B(y,\epsilon)\), and \(\bigcap_{\alpha\in A}B(\alpha,\epsilon)\) is a cover for \([-l,l]\). It follows that because \(E\subseteq [-l,l]^n\) then \(E\) is totally bounded.
+	\end{IEEEproof}
 \end{lem}
 \begin{thm}[Heine-Borel theorem]
 	The following are equivalent for a subspace \(E\) of \(\mathbb{R}^n\).
@@ -309,30 +378,153 @@ If \(Y\) is a subset of a metric space \(X\), then the closure of \(Y\) is close
 	\end{enumerate}
 \end{thm}
 \begin{thm}
-	Let \(X\) be a totally bounded metric space. Then every sequence in \(X\) has a Cauchy subsequence.
+	\label{tbcontcauchy}
+	Let \(X\) be a totally bounded metric space. Then every sequence in \(X\) has a Cauchy subsequence.\footnote{Proof of this in the first implication of theorem \ref{betterhb}.}
 \end{thm}
 \begin{defi}[Seperability]
 	A metric space \(X\) is seperable if there is a dense subset of \(X\) that is countable. In other words, \(X\) is seperable iff there is a sequence \(\{x_j\}_{j=1}^{\infty}\) in \(X\) that is dense in \(X\).
 \end{defi}
 \begin{thm}
 	A subspace of a separable metric space is separable.
+	\begin{IEEEproof}
+		Suppose \(X\) seperable metric space, and \(E\subseteq X\). Then there exists a sequence \(\{x_n\}_{n=1}^\infty\) in \(X\) such that \(\{x_n\}\) is dense in \(X\). It follows \(\overline{E}\subseteq\overline{\{x_n\}}\). Let \(y\) be an adherent point of \(E\). Then \(y\) is adherent to \(X\) and there exists \(x_n\) such that for all \(k\in\mathbb{N}\) we have \(y\in B(x_n, 1/2k)\). Define a sequence \(\{y_n\}_{n=1}^\infty\) by choosing single element of the intersection of \(B(x_n, 1/2k)\) and \(E\) for all \(k\).\footnote{Such a sequence is possible because all combinations of these balls are countable}. It follows that
+		\begin{equation*}
+			d(y_n,y)\leq d(y_n,x_n)+d(x_n, y)\leq 1/k
+		\end{equation*}
+		So \(\{y_n\}\) is dense and countable in \(E\), and \(E\) is seperable.
+	\end{IEEEproof}
+\end{thm}
+\begin{thm}
+	\label{tbseperable}
+	A totally bounded metric space is separable.
+	\begin{IEEEproof}
+		Let \(X\) be a metric space and \(\mathscr{F}\) be a family containing finite covers of \(X\) comprised of open \(1/k\)-balls, \(k\in\mathbb{N}\) with one cover for each \(k\). \(\mathscr{F}\) is obviously countable. If \(B(x_\alpha, 1/k)\in\mathscr{F}\) then \(\{x_\alpha\}_{\alpha\in\mathscr{F}}\) is a countable dense subset of \(X\), and \(X\) is separable.
+	\end{IEEEproof}
 \end{thm}
 \begin{defi}[Base]
 	A base of open sets for a metric space \(X\) is a family \(\mathscr{B}\) of open subsets of \(X\) such that every open subset of \(X\) is the union of sets in \(\mathscr{B}\).
 \end{defi}
 \begin{lem}
+	\label{baseinocover}
 	A family \(\mathscr{B}\) of open subsets of a metric space \(X\) is a base of open sets iff for each \(x\in X\) and each open neighborhood \(U\) of \(x\), there exists \(V\in\mathscr{B}\) such that \(x\in V\) and \(V\subseteq U\).
+	\begin{IEEEproof}
+		Suppose \(\mathscr{B}\) is a base for \(X\). Evidently, every open neighborhood of any point in \(X\) is a union of sets in \(\mathscr{B}\). Suppose \(U\) an open neighborhood of \(x\in X\). Then there is an open ball \(B(x,\epsilon)\subseteq U\), and \(B(x,\epsilon)\) is a union of sets in \(\mathscr{B}\). Therefore there exists \(V\) such that \(x\in V\subseteq B(x,\epsilon)\) and \(x\in V\subseteq U\).
+	\end{IEEEproof}
 \end{lem}
 \begin{defi}[Second-countable]
 	A metric is second-countable if there is a base of open sets that is at most countable.
 \end{defi}
 \begin{thm}
+	\label{scsep}
 	A metric space is second-countable iff it is seperable.
+	\begin{IEEEproof}
+		Suppose \(X\) is second countable, and \(\{U_n\}_{n=1}^{\infty}\) a countable base for \(X\). If \(y\in X\) then for all \(\epsilon>0\) there exists an open set \(U_k\), \(k\geq 1\) such that
+		\begin{equation*}
+		U_k\subseteq B(y,\epsilon)
+		\end{equation*}
+		Thus we can construct a sequence \(\{x_n\,|\, x\in U_n\}_{n=1}^\infty\) where for every \(\epsilon\)-ball of \(y\) there exists \(k\geq 1\) such that \(x_k\) in this ball. Therefore \(\{x_n\}\) is countable and dense in \(X\) and \(X\) is seperable.\footnote{Note that a countable base does not mean a countable amount of open sets, i.e. \(\lvert\mathbb{N}\rvert<\lvert\mathscr{P}(\mathbb{N})\rvert\).}\bigbreak
+		Suppose \(X\) is seperable. Then there exists a sequence \(\{x_n\}_{n=1}^\infty\) that is dense in \(X\). Let \(U\) be an open subset of \(X\) and \(y\in U\). Then there exists \(k\in\mathbb{N}\) such that \(B(y,2/k)\subseteq U\). Because \(\{x_n\}\) is dense in \(X\) there exists \(x_n\in B(y,1/k)\), and it follows from the triangle inequality that \(y\in B(x_n,1/k)\subseteq U\). Thus \(\{B(x_n,1/k)\,|\,n\geq 1,\,k\in\mathbb{N}\}\) is a countable base for \(X\) and \(X\) is second-countable.
+	\end{IEEEproof}
 \end{thm}
 \begin{thm}[Lindelof's theorem]
+	\label{lindelofs}
 	Suppose the metric space \(X\) is second-countable. Then every open cover of \(X\) has a countable subcover.
+	\begin{IEEEproof}
+		Suppose \(\mathscr{B}\) a countable base of \(X\), and \(\{U_\alpha\}_{\alpha\in A}\) an open cover of \(X\). For all \(x\) there exists an open ball of \(x\), therefore \(x\) is contained in a set \(V\in\mathscr{B}\). We know that \(X\subseteq\bigcup\{U_\alpha\}_{\alpha\in A}\), so following lemma \ref{baseinocover}, for all \(x\) there exists \(\alpha(V)\) such that \(x\in U_{\alpha(V)}\) and \(V\subseteq U_{\alpha(V)}\). Therefore \(\{U_{\alpha(v)}\,|\,V\in\mathscr{B}\}\) is a countable subcover of \(\{U_{\alpha}\}_{\alpha\in A}\).
+	\end{IEEEproof}
 \end{thm}
 \begin{thm}
 	A compact metric space is seperable and second-countable.
+\end{thm}
+\section{Continuity}
+\begin{defi}[Continuous function]
+	Let \((X,d)\) and \((Y,\rho)\) be metric spaces. A function \(f:X\rightarrow Y\) is continuous at \(x\in X\) if whenever \(\{x_n\}\) is a sequence in \(X\) such that \(x_n\rightarrow x\), then \(f(x_n)\rightarrow f(x)\).
+\end{defi}
+\begin{thm}
+	The function \(f:X\rightarrow Y\) is continuous at the point \(x\in X\) iff for each \(\epsilon>0\) there exists \(\delta>0\) such that whenever \(z\in X\) satisfies \(d(x,z)<\delta\) then \(\rho(f(x),f(x))<\epsilon\).
+\end{thm}
+\begin{thm}
+	The following are equivalent for a function \(f\) from a metric space \(X,d\) to a metric space \((Y,\rho)\):
+	\begin{enumerate}
+		\item \(f\) is continuous
+		\item For each \(x\in X\) and \(\epsilon>0\), there exists \(\delta>0\) such that whenever \(z\in X\) satisfies \(d(x,z)<\delta\), then \(\rho(f(x),f(z))<\epsilon\)
+		\item \(f^{-1}(V)\) is an open subset of \(X\) for every open subset \(V\) of \(Y\).
+	\end{enumerate}
+\end{thm}
+\begin{defi}[Uniform continuity]
+	A function \(f:X\rightarrow Y\) is uniformly continuous if for each \(\epsilon>0\) there exists \(\delta>0\) such that whenever \(x,z\in X\) satisfies \(d(x,z)<\delta\), then \(\rho(f(x),f(z))<\epsilon\).
+\end{defi}
+\begin{thm}
+	Let \(X\) and \(Y\) be metric spaces and suppose that \(X\) is compact. Then every continuous function \(f\) from \(X\) to \(Y\) is uniformly continuous.
+\end{thm}
+\begin{defi}[Homeomorphism]
+	A function \(f\) from one metric space to another is a homeomorphism if \(f\) is continuous, one-to-one, and onto, and if the inverse function \(f^{-1}\) is continuous.\footnote{Such a function \(f\) is called bicontinuous. A homeomorphism preserves all properties of a metric space that are definable in terms of open sets only.}
+\end{defi}
+\clearpage
+\section{Topological spaces}
+\begin{defi}[Topology]
+	Let \(X\) be a set. A family \(\mathscr{T}\) of subsets of \(X\) is a topology for \(X\) if \(\mathscr{T}\) has the following three properties
+	\begin{enumerate}
+		\item Both \(X\) and the empty set belong to \(\mathscr{T}\).
+		\item Any union of sets in \(\mathscr{T}\) belongs to \(\mathscr{T}\).
+		\item Any finite intersection of sets in \(\mathscr{T}\) belongs to \(\mathscr{T}\).
+	\end{enumerate}
+	A \emph{topological space} is a pair \((X,\mathscr{T})\) where \(X\) is a set and \(\mathscr{T}\) is a topology for \(X\). The sets in \(\mathscr{T}\) are called open sets.
+\end{defi}
+\begin{defi}[Metrizable]
+	A topological space is metrizable if the topology for \(X\) is the metric topology associated with some metric \(X\).\footnote{Some topologies cannot be determined by any metric i.e. their open sets are not open under any metric.}
+\end{defi}
+\begin{defi}[Closed subset]
+	A subset \(S\) of \(X\) is defined to be closed if \(X\setminus S\) is open.
+\end{defi}
+\begin{defi}[Neighborhood]
+	A subset \(S\) of \(X\) is a neighborhood of a point \(x\) is there is an open set \(U\) such that \(x\in U\) and \(U\subseteq S\).
+\end{defi}
+\begin{defi}[Interior point]
+	A point \(x\in X\) is an interior point of \(S\) if \(S\) is a neighborhood of \(x\). The set of interior points of \(S\) is called the interior of \(S\) and is denoted \(\text{int}(S)\).
+\end{defi}
+\begin{thm}
+	A subset \(S\) of a topological space \(X\) is open iff \(S=\text{int}(S)\).
+\end{thm}
+\begin{thm}
+	If \(S\) is a subset of a topological space \(X\), then \(\text{int}(S)\) is an open subset of \(X\).
+\end{thm}
+\begin{defi}[Adherent point]
+	A point \(x\in X\) is adherent to a subset \(S\) of \(X\) if \(S\) meets every neighborhood of \(x\). The closure of \(S\), denoted \(\overline{S}\), is the set of points in \(X\) which are adherent to \(S\).
+\end{defi}
+\begin{thm}
+	A subset \(S\) of a topological space \(X\) is closed iff \(S=\overline{S}\)
+\end{thm}
+\begin{thm}
+	If \(S\) is a subset of topological space \(X\), then \(\overline{S}\) is closed.
+\end{thm}
+\begin{defi}[Convergence]
+	A sequence of points \(\{x_i\}\) in a topological space \(X\) coverges to \(x\in X\) if for every open neighborhood \(U\) of \(x\), there is an integer \(N\) such that \(x_i\in U\) for all \(i>N\).
+\end{defi}
+\begin{thm}
+	If \(S\) is a subset of a topological space \(X\) and if a sequence \(\{x_i\}_{i=1}^{\infty}\) is \(S\) converges to \(x\in X\), then \(x\in\overline{S}\).
+\end{thm}
+\begin{defi}[Boundary point]
+	A point \(x\in X\) is a boundary point of a subset \(S\) of \(X\) if \(x\) is adherent to both \(S\) and \(X\setminus S\). The boundary of \(S\), denoted \(\partial S\), is the set of boundary points of \(S\).
+\end{defi}
+\begin{thm}
+	\(\overline{S}\) is the disjoint union of \(\text{int}(S)\) and \(\partial S\).
+\end{thm}
+\section{Subspaces}
+\begin{defi}[Relative topology]
+	Let \((x,\mathscr{T})\) be a topological space and let \(S\) be a subset of \(X\). Then the family
+	\begin{equation*}
+		\mathscr{L}=\{U\cap S|U\in\mathscr{T}\}
+	\end{equation*}
+	of subsets of \(S\) is a topology for \(S\) called the relative topology inherited from \((X,\mathscr{T})\). The sets \(V\in\mathscr{L}\) are relatively open subsets of \(S\), and the sets \(S\setminus V,\,V\in\mathscr{L}\) are relatively closed subsets of \(S\). We call \((S,\mathscr{L})\) a subspace of \((X,\mathscr{T})\).
+\end{defi}
+\begin{rema}
+	If \(X\) is a metric space and if \(Y\) is a metric subspace of \(X\), then the metric topology for \(Y\) coincides with the relative topology for \(Y\) inherited from the metric topology of \(X\).\footnote{Going forward subspace will often refer to the relative topology inherited from a parent space.}
+\end{rema}
+\begin{thm}
+Let \(S\) be a subspace of a topological space \(X\). A subset \(E\) of \(S\) is relatively closed in \(S\) iff \(E\) is the intersection of \(S\) and a closed subset of \(X\).
+\end{thm}
+\begin{thm}
+	Let \(S\) be a subspace of a topological space \(X\) and let \(E\) be a subset of \(S\). Then the relative closure of \(E\) in \(S\) is \(\overline{E}\cap S\), where \(\overline{E}\) is the closure of \(E\) in \(X\).
 \end{thm}
 \end{document}

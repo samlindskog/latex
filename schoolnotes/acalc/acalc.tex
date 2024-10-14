@@ -70,4 +70,25 @@ If an upper bound \(m\) of \(S\) is a member of \(S\), then \(m\) is called the 
 \begin{axiom}[Completeness of \(\mathbb{R}\)]
 	Every nonempty subset \(S\) of \(\mathbb{R}\) that is bounded above has a least upper bound, i.e. \(\text{sup}\,S\) exists.
 \end{axiom}
+\section{Test 2}
+\begin{defi}[Convergence]
+	A sequence \((s_n)\) is said to converge to the real number \(s\) provided that
+	\begin{equation*}
+		\forall\epsilon>0,\exists N\in\mathbb{N},\forall n\in\mathbb{N},n\geq N\Rightarrow \lvert s_n-s\rvert<\epsilon.
+	\end{equation*}
+	If \((s_n)\) converges to \(s\), then \(s\) is called the limit of the sequence \((s_n)\), and we write \(\text{lim}_{n\rightarrow\infty}s_n=s\). If a sequence does not converge it diverges.
+\end{defi}
+\begin{thm}
+	Let \((s_n)\) and \((a_n)\) be sequences of real numbers and let \(s\in\mathbb{R}\). If for some \(k>0\) and some \(m\in\mathbb{N}\) we have
+	\begin{equation*}
+		\lvert s_n-s\rvert\leq k\lvert a_n\rvert,\quad\text{for all \(n\geq m\),}
+	\end{equation*}
+	and if \(\text{lim}\,a_n=0\), then it follows that \(\text{lim}\,s_n=s\).
+\end{thm}
+\begin{thm}
+	Every convergent sequence is bounded.
+\end{thm}
+\begin{thm}
+	If a sequence converges, its limit is unique.
+\end{thm}
 \end{document}

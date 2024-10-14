@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\title{Homework 5}
+\author{Samuel Lindskog}
+\date\today
+%\clearpage clears page
+
+\begin{document}
+\maketitle
+\subsection*{Problem 1}
+Suppose suppose \(S\subseteq\mathbb{R}\) a nonempty set bounded above, and \(x=\text{sup}(S)\). Let \(N(x,\epsilon)\), with \(\epsilon>0\) be an arbitrary \(\epsilon\)-neighborhood of \(x\). If \(a\in N(x,\epsilon)\), then
+\begin{IEEEeqnarray*}{c}
+	x-\epsilon<a<x+\epsilon\text{, i.e.}\\
+	a\in(x-\epsilon,x+\epsilon).
+\end{IEEEeqnarray*}
+If \(a<x\), it follows from the definition of supremum that there exists \(s\in S\) such that \(a<s<x\), and thus \(s\in N(x,\epsilon)\). If \(a>x\), then because all elements of \(S\) are less than \(x\), \(a\) is not is \(S\) and thus \(a\in\mathbb{R}\setminus S\). Thus for all \(\epsilon\), the intersection of \(N(x,\epsilon)\) with \(S\) as well as its intersection with \(\mathbb{R}\setminus S\) are nonempty, so \(x\) is a boundary point of \(S\).
+\subsection*{Problem 2}
+Suppose \(S\subseteq T\subseteq\mathbb{R}\). If \(x\) is an interior point of \(S\), then there exists \(\epsilon>0\) such that \(N(x,\epsilon)\subseteq S\). Because \(S\subseteq T\), it follows that \(N(x,\epsilon)\subseteq T\), so \(x\) is an interior point of \(T\), i.e. \(\text{int}(S)\subseteq T\).
+\subsection*{Problem 3}
+\begin{enumerate}[label=(\alph*)]
+	\item \(S=(1,4)\). The interior of \(S\) is equal to \(S\) because the interval is open.
+	\item \(S=[0,1)\). The interior of \(S\) is \((0,1)\).
+\end{enumerate}
+\subsection*{Problem 4}
+\begin{enumerate}[label=(\alph*)]
+	\item \(S=(-\sqrt{2},-1)\cup(1,\sqrt{2})\). The interior of \(S\) is equal to \(S\) because the interval is open.
+	\item \(S=(-1,1)\). The interior of \(S\) is equal to \(S\) similarly to the above.
+\end{enumerate}
+\subsection*{Problem 5}
+Assuming \(n\in\mathbb{N}\), an open cover for \(S\) such that no finite subcover of \(S\) is contained in \(S\) is
+\begin{equation*}
+	\bigg\{N_n\bigg(x,\;\frac{1}{2n}-\frac{1}{2(n+1)}\bigg)\;\bigg|\;n\in\mathbb{N}\bigg\}
+\end{equation*}
+The center point of each neighborhood \(N_n\) is positioned such that the \(N_{n-1}\) neighborhood includes all points closer to it's center than the center of \(N_n\). Therefore, if any element of the open cover \(N_k\) with \(k\in\mathbb{N}\) is removed, then the \(k\)\textsuperscript{th} element of \(S\) will not be in the union of the subcover.
+\end{document}
