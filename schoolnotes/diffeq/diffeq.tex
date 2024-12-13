@@ -385,4 +385,68 @@ If \(x(t)=g(t)+ih(t)\) is a complex-valued solution of differential equation \re
 		\mathcal{L}^{-1}[e^{-as}F(s)]=H(t-a)f(t-a).
 	\end{equation*}
 \end{defi}
+\section{Linear systems}
+\begin{rema}
+	Consider the second order autonomous\footnote{not time dependent}, homogenous equation
+	\begin{equation}
+		\label{lineq1}
+		mx''+\gamma x'+kx=0.
+	\end{equation}
+	This can be re-written in terms of \(x\) and \(y=x'\):
+	\begin{equation*}
+		my'=-kx-\gamma y\;\Rightarrow\begin{cases}x'=y\\y'=-\frac{k}{m}x-\frac{\gamma}{m}y\end{cases}.
+	\end{equation*}
+	In fact, we can always reduce a second order linear equation of form \ref{lineq1} be defining \(y=x'\) to the form
+	\begin{IEEEeqnarray*}{l}
+		x'=ax+by\\
+		y'=cx+dy.
+	\end{IEEEeqnarray*}
+	Systems of linear equations of this form\footnote{\(y\) does not need to be the derivative of \(x\)} can be  can be expressed with matrix multiplication as
+	\begin{IEEEeqnarray*}{l}
+		\textbf{x}(t)=
+		\begin{pmatrix}
+			x(t)\\y(t)
+		\end{pmatrix},\quad
+		\textbf{x'}(t)=
+		\begin{pmatrix}
+			x'(t)\\y'(t)
+		\end{pmatrix}\\
+		\textbf{x'}=A\textbf{x},\quad A=
+		\begin{pmatrix}
+			a&b\\
+			c&d
+		\end{pmatrix}
+	\end{IEEEeqnarray*}
+\end{rema}
+Due to the nature of this system of differential equation \(x'\) and \(y'\) must be comprised of a combination of their antiderivatives \(x\) and \(y\). The only function which satisfies this requirement is \(\alpha\,\text{exp}(\lambda t)\). Therefore \(\mathbf{x}(t)=(\alpha\,\text{exp}(\lambda t),\beta\,\text{exp}(\lambda t))^{T}\). It follows that \(\mathbf{x}'\) is linearly dependent with \(\mathbf{x}\). Thus solutions for \(\textbf{x}\) are of the form \(v\,\text{exp}(\lambda t)\), where \(v\) is an eigenvector of \(A\) and \(\lambda\) its corresponding eigenvalue.
+\begin{rema}
+	To find the eigenvalues for a \(2\times 2\) matrix, find the roots of the following equation:
+	\begin{equation*}
+		\lambda^2-(a+d)\lambda+(ad-cb)=0.
+	\end{equation*}
+	In other words,
+	\begin{equation*}
+		\lambda^2-\text{tr}(A)+\text{det}(A)=0.
+	\end{equation*}
+	Eigenvectors and values determine the nature of possible solution.
+\end{rema}
+\section{Nonlinear systems}
+\begin{rema}
+	The phase diagram of a nonlinear system of equations \(x'=f(x,y)\) and \(y'=g(x,y)\) can be approximated by finding its equilibrium points, and then approximating the behavior near these equilibrium points using taylor series of each partial derivative.
+	\begin{equation*}
+		\begin{pmatrix} (x-x_0)'\\(y-y_0)'\end{pmatrix}=\begin{pmatrix}f'(x_0)&f'(y_0)\\g'(x_0)&g'(y_0)\end{pmatrix}\begin{pmatrix}(x-x_0)\\(y-y_0)\end{pmatrix}
+	\end{equation*}
+\end{rema}
+\begin{defi}[Conservative force]
+	Obviously, energy is conserved in any closed physical system. For our purposes, we shall consider the system in question to be a mass \(m\) with position \(x\), velocity \(x'\). If a force \(F=F(x)\) is applied to the mass, the potential energy \(V\) of the system can be expressed as a function of the amount of force applied over a distance, V(x). Because potential energy is usually a function of the distance over which a force is applied, if \(F=F(x,x')\), this is typically interpreted\footnote{Alternatively, \(F(x,x')\) could just be a more complicated forcing function.} as a second force on the object which increases/decreases the kinetic energy of the mass. Therefore the force is not conservative. Mathematically, such a second force could be the friction on the mass as it moves, or negative friction. The relationship between newtons second law, and the total energy of a system with a conservative force is derived below:
+	\begin{IEEEeqnarray*}{l}
+		F(x)=mx''\\
+		x'=y,\quad y'=\frac{1}{m}F(x)\\
+		F(x)=my'\\
+		F(x)\cdot y=my'\cdot y\\
+		F(x)dx=mydy\\
+		\int F(x)dx+C=\int mydy=\frac{m}{2}y^2\\
+		\frac{m}{2}y^2+V(x)=E
+	\end{IEEEeqnarray*}
+\end{defi}
 \end{document}

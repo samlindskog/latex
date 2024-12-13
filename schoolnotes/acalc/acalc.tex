@@ -70,6 +70,12 @@ If an upper bound \(m\) of \(S\) is a member of \(S\), then \(m\) is called the 
 \begin{axiom}[Completeness of \(\mathbb{R}\)]
 	Every nonempty subset \(S\) of \(\mathbb{R}\) that is bounded above has a least upper bound, i.e. \(\text{sup}\,S\) exists.
 \end{axiom}
+\begin{defi}[Open and closed set]
+	Let \(S\subseteq\mathbb{R}\). If \(\text{bd}\,S\subseteq S\), then \(S\) is said to be closed. If \(\text{bd}\,S\subset\mathbb{R}\setminus S\), then \(S\) is said to be open.
+\end{defi}
+\begin{defi}[Accumulation point]
+	Let \(S\) be a subset of \(\mathbb{R}\). A point \(x\) in \(\mathbb{R}\) is an accumulation point of \(S\) if every deleted neighborhood of \(x\) contains a point of \(S\).
+\end{defi}
 \section{Test 2}
 \begin{defi}[Convergence]
 	A sequence \((s_n)\) is said to converge to the real number \(s\) provided that
@@ -90,5 +96,126 @@ If an upper bound \(m\) of \(S\) is a member of \(S\), then \(m\) is called the 
 \end{thm}
 \begin{thm}
 	If a sequence converges, its limit is unique.
+\end{thm}
+\begin{defi}[Monotone sequence]
+	A sequence \((s_n)\) of real numbers is increasing if \(s_n\leq s_{n+1}\) for all \(n\in\mathbb{N}\) and is decreasing if \(s_n\geq s_{n+1}\) for all \(n\in N\). A sequence is monotone if it is increasing or decreasing.
+\end{defi}
+\begin{defi}[Liminf and limsup]
+	Let \((s_n)\) be a bounded sequence. A subsequential limit of \((s_n)\) is any real number that is the limit of some subsequence of \((s_n)\). If \(S\) is the set of all subsequential limits of \((s_n)\), then we define the limit superior of \((s_n)\) to be
+	\begin{equation*}
+		\text{lim sup}\,s_n=\text{sup}\,S.
+	\end{equation*}
+	The limit inferior of \((s_n)\) is
+	\begin{equation*}
+		\text{lim inf}\,s_n=\text{inf}\,S.
+	\end{equation*}
+\end{defi}
+\section{Test 3}
+\begin{defi}[Limit]
+	Let \(f:D\rightarrow\mathbb{R}\), \(c\) be an accumulation point of \(D\), and \(x\in D\). We say that a real number \(L\) is a limit of \(f\) at \(c\) if
+	\begin{equation*}
+		\forall\epsilon>0\,\exists\delta>0\,\big(0<\lvert x-c\rvert<\delta\Rightarrow\lvert f(x)-L\rvert<\epsilon\big)
+	\end{equation*}
+\end{defi}
+\begin{defi}[Right-hand limit]
+	Let \(f:\mathbb{R}\rightarrow\mathbb{R}\), \(a\) be an accumulation point of \((a,b)\), and \(x\in (a,b)\). \(L\) is a right hand limit of \(f\), denoted \(\lim_{x\rightarrow a^{+}}f(x)=L\) if \(g:(a,b)\rightarrow\mathbb{R}\) with \(g\big((a,b)\big)=f\big((a,b)\big)\) and \(\lim_{x\rightarrow a}g(x)=L\).
+\end{defi}
+\begin{defi}[Continuity]
+	Let \(f:D\rightarrow\mathbb{R}\) and let \(c\in D\). We say that \(f\) is continuous at \(c\) if
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists\delta>0,\,\big(\lvert x-c\rvert<\delta\Rightarrow\lvert f(x)-f(c)\rvert<\epsilon\big).
+	\end{equation*}
+	If \(f\) is continuous at each point of a subset \(S\) of \(D\), then \(f\) is said to be continuous on \(S\). If \(f\) is continuous on its domain \(D\), then \(f\) is said to be a continuous function.
+\end{defi}
+\begin{thm}
+	Let \(D\) be a compact subset of \(\mathbb{R}\) and suppose that \(f:D\rightarrow\mathbb{R}\) is continuous. Then \(f(D)\) is compact.
+	\begin{IEEEproof}
+		Let \(\mathscr{B}\) be an open cover of \(f(D)\), and let \(U\in\mathscr{B}\). Suppose to the contrary that \(f^{-1}(U)\) is not open in \(D\). Then there exists a sequence \((x_n)\) in \((f^{-1}(U))^c\) which converges to a point \(a\) in \(f^{-1}(U)\). Because \(f\) is continuous we know that \(\lim_{n\rightarrow\infty}f(x_n)=f(a)\), a contradiction because \((f(x_n))\) is a sequence in \(U^c\). From this result define an open cover of \(D\), \(\mathscr{T}=\{f^{-1}(U)\,|\,U\in\mathscr{B}\}\). If a finite subcover of \(\mathscr{T}\) exists, then clearly a finite subcover of \(f(D)\) exists.
+	\end{IEEEproof}
+\end{thm}
+\begin{thm}[Intermediate value theorem]
+	Suppose that \(f:[a,b]\rightarrow\mathbb{R}\) is continuous. If \(k\) is any value between \(f(a)\) and \(f(b)\) then there exists \(c\in(a,b)\) such that \(f(c)=k\).
+\end{thm}
+\begin{defi}[Uniform continuity]
+	Let \(f:D\rightarrow\mathbb{R}\). We say that \(f\) is uniformly continuous on \(D\) if
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists\delta>0\,\big(\lvert x-y\rvert<\delta\Rightarrow\lvert f(x)-f(y)\rvert<\epsilon\big)
+	\end{equation*}
+\end{defi}
+\begin{thm}
+	Suppose \(f:D\rightarrow\mathbb{R}\) is continuous on compact set \(D\). Then \(f\) is uniformly continuous on \(D\).
+\end{thm}
+\begin{thm}
+	Let \(f:D\rightarrow\mathbb{R}\) be uniformly continuous on \(D\) and suppose that \((x_n)\) is a Cauchy sequence in \(D\). Then \((f(x_n))\) is a Cauchy sequence.
+\end{thm}
+\begin{thm}
+	A function \(f:(a,b)\rightarrow\mathbb{R}\) is uniformly continuous on \((a,b)\) iff it can be extended to a function \(\overline{f}\) that is continuous on \([a,b]\).
+\end{thm}
+\clearpage
+\begin{defi}[differentiability]
+	Let \(f\) be a real-valued function defined on an open interval \(I\) containing the point \(c\). We say that \(f\) is differentiable at \(c\) if the limit
+	\begin{equation*}
+		\lim_{x\rightarrow c}\frac{f(x)-f(c)}{x-c}
+	\end{equation*}
+	exists and is finite. We denote the derivative of \(f\) at \(c\) by \(f'(c)\) so that
+	\begin{equation*}
+		f'(c)=\lim_{x\rightarrow c}\frac{f(x)-f(c)}{x-c}.
+	\end{equation*}
+	If the function \(f\) is differentiable at each point of the set \(S\subseteq I\), then \(f\) is said to be differentiable at each point of the set \(S\subseteq I\), then \(f\) is said to be differentiable on \(S\), and the function \(f':S\rightarrow\mathbb{R}\) is called the derivative of \(f\) on \(S\).
+\end{defi}
+\begin{thm}
+	If \(f\) is differentiable on an open interval \((a,b)\) and if \(f\) assumes its maximum or minimum at a point \(c\in(a,b)\), then \(f'(c)=0\).
+\end{thm}
+\begin{thm}[Rolle's theorem]
+	Let \(f\) be a continuous function on \([a,b]\) that is differentiable on \((a,b)\) and such that \(f(a)=f(b)\). Then there exists at least one point \(c\) in \((a,b)\) such that \(f'(c)=0\).
+\end{thm}
+\begin{thm}[MVT]
+	Let \(f\) be a continuous function on \([a,b]\) that is differentiable on \((a,b)\). Then there exists at least one point \(c\in(a,b)\) such that
+	\begin{equation*}
+		f'(c)=\frac{f(b)-f(a)}{b-a}.
+	\end{equation*}
+\end{thm}
+\begin{thm}[IVT for derivatives]
+	Let \(f\) be differentiable on \([a,b]\) and suppose that \(k\) is a number between \(f'(a)\) and \(f'(b)\). Then there exists a point \(c\in(a,b)\) such that \(f'(c)=k\).
+\end{thm}
+\begin{thm}[Cauchy MVT]
+	Let \(f\) and \(g\) be functions that are continuous on \([a,b]\) and differentiable on \((a,b)\). Then there exists at least one point \(c\in(a,b)\) such that
+	\begin{equation*}
+		[f(b)-f(a)]g'(c)=[g(b)-g(a)]f'(c).
+	\end{equation*}
+\end{thm}
+\begin{thm}[Chain rule]
+	Let \(I\) and \(J\) be intervals in \(\mathbb{R}\), let \(f:I\rightarrow\mathbb{R}\) and \(g:j\rightarrow\mathbb{R}\), where \(f(I)\subseteq J\), and let \(c\in I\). If \(f\) is differentiable at \(c\) and \(g\) is differentiable at \(f(c)\), then the composite function \(g\circ f\) is differentiable at \(c\) and
+	\begin{equation*}
+		(g\circ f)'(c)=g'(f(c))\cdot f'(c)
+	\end{equation*}
+\end{thm}
+\begin{thm}[L'Hospital's rule]
+	Let \(f\) and \(g\) be continuous on \([a,b]\) and differentiable on \((a,b)\). Suppose that \(c\in[a,b]\) and that \(f(c)=g(c)=0\). Suppose also that \(g'(x)\neq 0\) for \(x\in U\), where \(U\) is the intersection of \((a,b)\) and some deleted neighborhood of \(c\). If
+	\begin{equation*}
+		\lim_{x\rightarrow c}\frac{f'(x)}{g'(x)}=L\quad\text{with }L\in\mathbb{R}
+	\end{equation*}
+	then
+	\begin{equation*}
+		\lim_{x\rightarrow c}\frac{f(x)}{g(x)}=L.
+	\end{equation*}
+\end{thm}
+\begin{defi}[limit]
+	Let \(f:(a,\infty)\rightarrow\mathbb{R}\). We say that \(L\in\mathbb{R}\) is the limit of \(f\) as \(x\rightarrow\infty\), and we write
+	\begin{equation*}
+		\lim_{x\rightarrow\infty}f(x)=L,
+	\end{equation*}
+	provided that for all \(\epsilon>0\) there exists a real number \(N>a\) such that \(x>N\) implies that \(\lvert f(x)-L\rvert<\epsilon\).
+\end{defi}
+\begin{defi}
+	Let \(f:(a,\infty)\rightarrow\mathbb{R}\). We say that \(f\) tends to \(\infty\) as \(x\rightarrow\infty\) and we write
+	\begin{equation*}
+		\lim_{x\rightarrow\infty}f(x)=\infty,
+	\end{equation*}
+	provided that for all \(\alpha\in\mathbb{R}\), there exists a real number \(N>a\) such that \(x>N\) implies that \(f(x)>\alpha\).
+\end{defi}
+\begin{thm}[lhop rule2]
+\end{thm}
+\begin{thm}[Taylor's theorem]
 \end{thm}
 \end{document}
