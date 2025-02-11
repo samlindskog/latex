@@ -1,0 +1,189 @@
+\documentclass{article}
+
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Partial Differential Equations}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Heat Equation}
+\subsection{One-dimensional heat equation}
+\begin{definition}[Thermal energy density]
+	\(e(x,t)\) represents thermal energy density of a one-dimensional rod with heat energy flowing only longitudinally. Heat energy in a small slice of width \(\Delta x\) is therefore \(e(x,t)A\Delta x\).
+\end{definition}
+\begin{definition}[Heat flux]
+	\(\phi(x,t)\) represents heat flux, and is the amount of thermal energy per unit time flowing to the right per unit surface area.
+\end{definition}
+\begin{definition}[Conservation of heat energy]
+	The conservation of heat energy equation is
+	\begin{equation*}
+		\diffp{e}{t}=-\diffp{\phi}{x}+Q.
+	\end{equation*}
+	\(Q\) is heat energy per unit volume generated per unit time.
+	\begin{IEEEproof}
+		The change in thermal energy with respect to time of a slice in a system with one-dimensional heat flux is given by the equation
+		\begin{IEEEeqnarray*}{l}
+			\diff{}{t}\int_a^be\,dx=\phi(a)-\phi(b)+\int_a^bQ(x)\,dx\\
+			\int_a^b\diffp{e}{t}dx=\int_a^b\bigg(-\diffp{\phi}{x}+Q(x)\bigg)dx\\
+			\int_a^b\bigg(\diffp{e}{t}+\diffp{\phi}{x}-Q(x)\bigg)dx=0\\
+			\diffp{e}{t}=-\diffp{\phi}{x}+Q(x)
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{definition}
+\begin{proposition}
+	The relation between thermal energy density and temperature \(u\) is given by the following equation:
+	\begin{equation*}
+		e(x,t)=c(x)\rho(x)u(x,t).
+	\end{equation*}
+	\(\rho\) is mass density, and \(c\) is specific heat.
+\end{proposition}
+\begin{definition}[Fourier's law of heat conduction]
+	Heat flux is related to temperature by the following equation, known as Fourier's law of heat conduction:
+	\begin{equation*}
+		\phi=-K_0\diffp{u}{x}.
+	\end{equation*}
+	\(K_0\) is the thermal conductivity of the material. Thermal diffusivity \(k\) is given by the equation
+	\begin{equation*}
+		k=\frac{K_0}{c\rho}.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	Subbing in Fourier's law of heat conduction, the conservation of heat energy equation becomes
+	\begin{equation*}
+		c\rho\diffp{u}{t}=K_0\diffp[2]{u}{x}+Q(x).
+	\end{equation*}
+\end{proposition}
+\begin{definition}[Newton's law of cooling]
+	Newton's law of cooling states that heat flux at the left boundary is negatively proportional to the difference in temperature between an outside medium and the left side of a one-dimensional system, i.e.
+	\begin{equation*}
+		-K_0(0)\diffp{u}{x}=-H\big(u(0,t)-u_B(t)\big).
+	\end{equation*}
+	\(H\) is the heat transfer coefficient, or the convection coefficient. For the right boundary, \(H\) does not have a negative sign.
+\end{definition}
+\begin{proposition}
+	If a boundary is perfecty insulated, heat flux at the boundary is zero.
+\end{proposition}
+\begin{definition}[Perfect thermal contact]
+	Two one-dimensional rods are said to be in perfect thermal contact if temperature is continuous at the boundary and thermal flux is the the same as \(x\) approaches the boundary in both rods.
+\end{definition}
+\begin{definition}[Equilibrium temperature distribution]
+	In solving differential equations involving heat transfer, we are often interested in the equilibrium temprature distribution. This is the temperature distribution a system will reach regardless of the initial temperature distribution. The answer will be a function of \(x\) only.
+\end{definition}
+\begin{proposition}
+	Because of conservation of energy, a perfectly insulated rod with no internal energy source will maintain the total thermal energy given by its initial conditions \(f(x)\) as it approaches equilibrium. Thus the equilibrium temperature distribution must be a constant \(u(x)\) given by the equation
+	\begin{equation*}
+		u(x)=\int_0^Lf(x)dx.
+	\end{equation*}
+\end{proposition}
+\section{Seperation of variables}
+\begin{definition}[Linear operator]
+	A linear operator \(L\) satisfies the linearity property if for \(c_1,c_2\in\mathbb{R}\) and \(u_1,u_2\in\{f\,|\,f:\mathbb{R}\rightarrow\mathbb{R}\}\)
+	\begin{equation*}
+		L(c_1u_1+c_2u_2)=c_1L(u_1)+c_2L(u_2).
+	\end{equation*}
+\end{definition}
+\begin{definition}[Linear equation]
+	A linear equation for the unknown function \(u\) with linear operator \(L\) is
+	\begin{equation*}
+		L(u)=f.
+	\end{equation*}
+	If \(f=0\), then this is a linear homogeneous equation.
+\end{definition}
+\begin{proposition}
+	It follows from the definition of a linear operator \(L\) that \(L(0)=0\). Therefore \(0\) is a solution to any linear homogeneous equation, also known as the trivial solution.
+\end{proposition}
+\begin{definition}[Principle of superposition]
+	If \(u_1\) and \(u_2\) satisfy a linear homogeneous equation, then any linear combination of these solutions is itself a solution.
+\end{definition}
+\subsection{Method of seperation of variables}
+The method of seperation of variables attempts to determine solutions of linear homogeneous equations by assuming \(u\) takes the form
+\begin{equation*}
+	u(x,t)=\phi(x)G(t).
+\end{equation*}
+	This is helpful because when this is subbed in for \(u\) in the equation, two functions of independent variables \(x\) and \(t\) are equated with each other. The only way this is possible is if these functions are constants. Knowing this, we can solve for the heat equation with the following boundary and initial conditions:
+	\begin{IEEEeqnarray*}{l}
+		\text{PDE:}\;\diffp{u}{x}=k\diffp[2]{u}{x},\quad 0<x<L,\;t>0\\
+		\text{BC:}\;u(0,t)=0,\;u(L,t)=0\\
+		\text{IC:}\;u(x,0)=f(x)
+	\end{IEEEeqnarray*}
+	This is a linear homogenous differential equation with linear homogenous boundary conditions. Homogeniety of boundary conditions and the properties of linear operators allows for easy manipulation of solutions to meet initial conditions, as we will see. To begin, sub in product solution \(u(x,t)=\phi(x)G(t)\):
+	\begin{IEEEeqnarray*}{l}
+		\phi(x)\diff{G}{t}=k\diff[2]{\phi}{x}G(t)\\
+		\frac{1}{kG}\diff{G}{t}=\frac{1}{\phi}\diff[2]{\phi}{x}=-\lambda
+	\end{IEEEeqnarray*}
+	The latter conclusion is reached as a result of the fact that the derivative operation is a linear operator. A consequence of this is that we can equate a linear combination of derivatives with respect to \(x\) with derivatives with respect to \(t\), while maintaining seperation between independent variables established by the product equation \(u(x,t)=\phi(x)G(t)\). Because \(x\) and \(t\) are independent variables, this equation seperated by its independent parts must be a constant. This yields two ODEs in \(x\) and \(t\):
+	\begin{IEEEeqnarray*}{l}
+		\diff[2]{\phi}{x}=-\lambda\phi\\
+		\diff{G}{t}=-\lambda kG
+	\end{IEEEeqnarray*}
+	To meet boundary conditions, either \(G(t)=0\) in which case \(u(x,t)=0\), or \(\phi(0)\text{ and }\phi(L)=0\). In the latter case if \(G(t)\neq 0\) then \(G(t)=ce^{-\lambda kt}\). Next, we solve the ODE with homogenous boundary conditions for \(\phi(x)\).
+	\begin{IEEEeqnarray*}{l}
+		\diff[2]{\phi}{x}=-\lambda\phi\\
+		\phi(0)=0,\phi(L)=0
+	\end{IEEEeqnarray*}
+	Obviously, there is the trivial solution for \(\phi\). Nontrivial solutions exist for values of \(\lambda\) called eigenvalues. Such nontrivial solutions are called eigenfunctions, which correspond to their particular eigenvalue. This equation has two independent solutions in the form of exponentials \(\phi=e^{rx}\). The roots \(r\) are as follows:
+\begin{enumerate}
+	\item\(\lambda>0,\;r=\pm i\sqrt{\lambda}\).
+	\item\(\lambda=0,\;r=0\).
+	\item\(\lambda<0,\;r=\pm\sqrt{-\lambda}\).
+\end{enumerate}
+For \(\lambda>0\), \(r\) is imaginary and thus
+\begin{equation*}
+	\phi=c_1\text{cos}\,\sqrt{\lambda}x+c_2\text{sin}\,\sqrt{\lambda}x.
+\end{equation*}
+To meet boundary conditions, \(c_1=0\) and \(0=c_2\text{sin}\,\sqrt{\lambda}L\). The eigenvalues that satisfy this initial condition are
+\begin{equation*}
+	\lambda=\bigg(\frac{n\pi}{L}\bigg)^2,\quad n=1,2,\ldots.
+\end{equation*}
+For \(\lambda\leq 0\), \(\phi=c_1+c_2x\) which with these boundary conditions is the trivial solution. For this problem with \(\lambda\leq 0\), \(\phi\) is the trivial solution. Thus, product solutions of the heat equation are
+\begin{equation*}
+	u(x,t)=B\text{sin}\,\frac{n\pi x}{L}e^{-k(n\pi/L)^2}t,\quad n=1,2,\ldots,
+\end{equation*}
+with \(B\) an arbitrary constant.
+\subsection{Superposition}
+Using the principle of superposition, we see that for solutions \(u_1,\ldots,u_M\), any linear combination of these solutions is itself a solution. Utilizing the theory of Fourier series, we know that
+\begin{enumerate}
+	\item Most functions can be approximated by a finite linear combination of \(\text{sin}\,n\pi x/L\).
+	\item This approximation becomes arbitrarily accurate as \(M\) increases.
+	\item As \(M\) approaches infinity, the resulting infinite series converges to \(f(x)\), with some restrictions of \(f(x)\).
+\end{enumerate}
+Thus for most initial conditions \(f(x)\),
+\begin{equation*}
+	f(x)=\sum_{n=1}^{\infty}B_n\text{sin}\frac{n\pi x}{L}.
+\end{equation*}
+Therefore,
+\begin{equation}
+	\label{forsereq}
+	u(x,t)=\sum_{n=1}^{\infty}B_n\text{sin}\,\frac{n\pi x}{L}e^{-k(n\pi/L)^2t}.
+\end{equation}
+\begin{proposition}
+	\label{orthofsins}
+	Eigenfunctions \(\text{sin}\,\frac{n\pi x}{L}\) satisfy the following property:
+	\begin{equation*}
+		\int_0^L\text{sin}\,\frac{n\pi x}{L}\text{sin}\,\frac{m\pi x}{L}dx=
+		\begin{cases}
+			0,&m\neq n\\L/2,&m=n
+		\end{cases}
+	\end{equation*}
+	In other words, solutions of differential equations using the product method form an orthogonal set of functions.
+\end{proposition}
+\noindent We can use proposition \ref{orthofsins} to calculate the coefficient \(B_m\) in equation \ref{forsereq} by way of the following equation:
+\begin{equation*}
+	B_m=\frac{2}{L}\int_0^Lf(x)\text{sin}\frac{m\pi x}{L}dx.
+\end{equation*}
+\end{document}

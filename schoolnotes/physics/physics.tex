@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Physics}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Periodic Motion}
+\subsection{Frequency}
+\begin{definition}[Period]
+	The period \(T\) is the time to complete one cycle, measured in seconds.
+\end{definition}
+\begin{definition}[Angular Frequency]
+	Angular frequency \(\omega\) is radians per second, with units \(\text{s}^{-1}\). Radians are unitless.
+	\begin{equation*}
+		\omega=\frac{2\pi}{T}.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Frequency]
+	Frequency is a measure of cycles per second, or \(\omega/2\pi\). It is measured in hertz (Hz) with units \(\text{s}^{-1}\). Cycles are unitless.
+\end{definition}
+\begin{definition}[Restoring force]
+	The restoring force \(F_x\) relative to displacement from equlibrium \(x\) is
+	\begin{equation*}
+		F_x=-kx.
+	\end{equation*}
+	\(k\) is the spring constant with units \(\text{N}/\text{m}\).
+\end{definition}
+\begin{definition}
+	The equation used to derive the equation for simple harmonic motion with respect to time is
+	\begin{equation*}
+		\frac{d^2x}{dt^2}=-\frac{k}{m}x.
+	\end{equation*}
+	Eigen values for this equation are \(\pm i\sqrt{\frac{k}{m}}\), so displacement from equilibrium for simple harmonic motion with respect to time is
+	\begin{equation*}
+		x=c_1\text{cos}\bigg(\sqrt{\frac{k}{m}t}\bigg)+c_2\text{sin}\bigg(\sqrt{\frac{k}{m}t}\bigg).
+	\end{equation*}
+	In phase-amplitude form this equation is
+	\begin{equation*}
+		x=A\text{cos}(\omega t+\phi).
+	\end{equation*}
+\end{definition}
+\begin{definition}[SHM frequency]
+	It follows from the displacement equation for SHM that angular frequency for SHM is
+	\begin{equation*}
+		\omega=\sqrt{\frac{k}{m}}.
+	\end{equation*}
+\end{definition}
+\subsection{Energy in SHM}
+\begin{definition}[Mechanical energy]
+	Work in Joules (Nm) is equal to displacement times force in simple scenarios. For forces that vary with one-dimensional displacement \(x\) from \(a\) to \(b\), work is expressed by equation
+	\begin{equation*}
+		E=\int_a^b F(x)dx.
+	\end{equation*}
+\end{definition}
+\end{document}

@@ -1,47 +1,52 @@
 \documentclass{article}
-\usepackage{settings}
-
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
 \geometry{
-a4paper,
+	a4paper,
 total={140mm,257mm},
 left=35mm,
 top=20mm,
 }
 
-\title{Abstract Algebra}
-\author{Samuel Lindskog}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
 
 \begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\title{MATH322, modern algebra}
+\author{Samuel Lindskog}
 \maketitle
-\addtocontents{toc}{\protect\hypertarget{toc}{}}
-\tableofcontents
-\pagenumbering{gobble}
-\clearpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
 \section{Background}
-\begin{definition}[Injective/surjective/bijective]
-	Suppose \(f:A\rightarrow B\), \(a_1,a_2\in A\) and \(f(a_1)=b_2,f(a_2)=b_2\). \(f\) is injective iff \(a_1\neq a_2\) implies \(b_1\neq b_2\). \(f\) is surjective iff \(\forall b\in B,\,\exists a\in A,\,f(a)=b\). \(f\) is bijective iff \(f\) is surjective and injective
-\end{definition}
-\begin{definition}[Left/right inverse]
+\begin{defi}[Left/right inverse]
 	Let \(f:A\rightarrow B\). \(f\) has a left inverse if there is a function \(g:B\rightarrow A\) such that \(g\circ f:A\rightarrow A\) is the identity map on \(A\). \(f\) has a right inverse if there is a function \(h:B\rightarrow A\) such that \(f\circ h:B\rightarrow B\) is the identity map on \(B\).
-\end{definition}
-\begin{proposition}
-	Let \(f:A\rightarrow B\). The map \(f\) is injective iff it has a left inverse. The map \(f\) is surjective iff it has a right inverse.
-	\begin{IEEEproof}
-		Suppose \(f\) has a left inverse. If \(f\) is not injective, there exists \(a_1,a_2\in A\) with \(a_1\neq a_2\) such that \(f(a_1)=f(a_2)\). But then \(g\circ f(a_1)=g\circ f(a_2)\) a contradiction. Suppose \(f\) is injective, and \(b_1\in f(A)\) with \(b_1\neq b_2\). Then for each \(b_1\) there exists a unique \(f^{-1}(b_1)\in A\) such that \(f(f^{-1}(b_1))=b_1\). Define \(g:B\rightarrow A\) by \(b_1 \mapsto f^{-1}(b_1)\). Then \(g\circ f:A\rightarrow A\) is the identity function on \(A\).\smallbreak
-		Suppose \(f\) has a right inverse \(g\), and suppose to the contrary that \(f\) is not surjective. Then \(f(A)\) is a proper subset of \(B\). Because \(g(B)\subseteq A\), then \(f(g(B))\) is a proper subset of \(B\), a contradiction. Suppose \(f\) is surjective. Then for all \(b\in B\) there exists an \(a\in A\) such that \(f(a=b)\). Define \(g:B\rightarrow A\) by \(b\mapsto a\). Then \(f\circ g(b)=b\) for all \(b\in B\).
-
-	\end{IEEEproof}
-\end{proposition}
-\begin{definition}[Permutation]
-	A permutation of a set \(A\) is a bijection from \(A\) to \(A\).
-\end{definition}
-\begin{definition}[Relation]
+\end{defi}
+\begin{defi}[Relation]
 	Suppose \(A\) and \(B\) are sets. A subset \(R\subseteq A\times B\) is a relation from \(A\) to \(B\).
-\end{definition}
-\begin{definition}
+\end{defi}
+\begin{defi}
 	Suppose \(R\) a relation on \(A\). Then:
 	\begin{enumerate}
 		\item \(R\) is reflexive on \(A\) if \(\forall x\in A,\,xRx\)
@@ -49,45 +54,45 @@ top=20mm,
 		\item \(R\) is antisymmetric on \(A\) if \(\forall a,b\in A,\,aRb\wedge bRa\Rightarrow a=b\)
 		\item \(R\) is transitive on \(A\) if \(\forall a,b,c\in A,\,aRb\wedge bRc\Rightarrow aRc\)
 	\end{enumerate}
-\end{definition}
-\begin{definition}[Equivalence relation]
+\end{defi}
+\begin{defi}[Equivalence relation]
 	Suppose \(R\) a relation on \(A\). \(R\) is an equivalence relation if \(R\) is reflexive, symmetric, and transitive.
-\end{definition}
-\begin{definition}[Well ordering of \(\mathbb{Z}\)]
+\end{defi}
+\begin{defi}[Well ordering of \(\mathbb{Z}\)]
 	If \(A\) is any nonempty subset of \(\mathbb{Z^+}\),
 	\begin{equation*}
 		\exists m\in A\,\forall a\in A,\,m\leq a
 	\end{equation*}
-\end{definition}
-\begin{definition}[Divisibility]
+\end{defi}
+\begin{defi}[Divisibility]
 	If \(a,b\in\mathbb{Z}\) with \(a\neq 0\), we say \(a\) divides \(b\) (denoted \(a|b\)) is there is an element \(c\in\mathbb{Z}\) such that \(b=ac\).
-\end{definition}
-\begin{definition}[GCD]
+\end{defi}
+\begin{defi}[GCD]
 	If \(a,b\in\mathbb{Z}\setminus\{0\}\), there is a unique positive integer \(d\), called the greatest common divisor of \(a\) and \(b\), satisfying:
 	\begin{enumerate}
 		\item \(d|a\) and \(d|b\)
 		\item if \(e|a\) and \(e|b\), then \(e|d\)
 	\end{enumerate}
 	If the GCD of \(a\) and \(b\) is \(1\), then we say \(a\) and \(b\) are relatively prime.
-\end{definition}
-\begin{definition}[LCM]
+\end{defi}
+\begin{defi}[LCM]
 	If \(a,b\in\mathbb{Z}\setminus\{0\}\), there is a unique positive integer \(l\) called the least common multiple of \(a\) and \(b\) satisfying:
 	\begin{enumerate}
 		\item \(a|l\) and \(b|l\)
 		\item if \(a|m\) and \(b|m\), then \(l|m\)
 	\end{enumerate}
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	The relationship between the GCD \(d\) and the LCM \(l\) is \(dl=ab\). For intuition, think of \(a\) and \(b\) seperated into their prime factors, LCM by necessity is the product of the union of prime factors from \(a\) and \(b\). The product of intersection of prime factors is the GCD.
-\end{remark}
-\begin{definition}[Division algorithm]
+\end{rema}
+\begin{defi}[Division algorithm]
 	If \(a,b\in\mathbb{Z}\setminus\{0\}\), then there exist unique \(q,r\in\mathbb{Z}\) such that
 	\begin{equation*}
-		a=qb+r\text{ and }0\leq r<\abs{b},
+		a=qb+r\text{ and }0\leq r<\lvert b\rvert,
 	\end{equation*}
 	where \(q\) is the quotient and \(r\) the remainder.
-\end{definition}
-\begin{lemma}
+\end{defi}
+\begin{lem}
 	\label{gcdrecursion}
 	If \(a,b\in\mathbb{Z}\setminus\{0\}\) and using the division algorithm
 	\begin{equation*}
@@ -99,8 +104,8 @@ top=20mm,
 		\smallbreak
 		In the case that \(r=0\), \(b|qb\) so \(b|a\) and \(b|b\). Clearly condition two of the definition of GCD is satisfied by \(b\), so \(b\) is the \(GCD\) of \(a\) and \(b\).
 	\end{IEEEproof}
-\end{lemma}
-\begin{definition}[Euclidean algorithm]
+\end{lem}
+\begin{defi}[Euclidean algorithm]
 	This procedure produces a GCD of two integers \(a\) and \(b\) by iterating the division algorithm. If \(a, b\in\mathbb{Z}\setminus\{0\}\), inductively define the sequence \(\{r_n\}_{n=0}^k\) as follows:
 	\begin{IEEEeqnarray*}{c}
 		\begin{cases}	
@@ -111,32 +116,25 @@ top=20mm,
 	\end{IEEEeqnarray*}
 	The last element in the sequence is the GCD of \(a\) and \(b\).
 	\begin{IEEEproof}
-		Following lemma \ref{gcdrecursion}, the last element of \(r_k\) of \(\{r_n\}\) is the GCD of its pair \(r_{k-1},r_{k}\) because \(r_{k+1}=0\), and thus is the GCD of each pair in the sequence.
+		Following lemma \ref{gcdrecursion}, the last element of \(r_k\) of \(\{r_n\}\) is the GCD of its pair \(r_{k-1},r_{k}\) because \(r_{k+1}=0\), and thus is the GCD of each preceding pair in the sequence.
 	\end{IEEEproof}
-\end{definition}
-\begin{definition}[Prime]
-	An element \(p\in\mathbb{Z}^+\) is called a prime if \(p>1\) and the only positive divisors of \(p\) are \(1\) and \(p\).
-\end{definition}
-\begin{theorem}[Fundamental theorem of arithmetic]
-	If \(n\in\mathbb{Z}\) with \(n>1\), then \(n\) can be factored uniquely into the product of primes.
-\end{theorem}
-\begin{definition}[Partition]
+\end{defi}
+\begin{defi}[Partition]
 	Suppose \(A\) is a set and \(\mathcal{F}\subseteq\mathcal{P}(A)\). \(\mathcal{F}\) is called a partition of \(A\) if it has the following properties:
 	\begin{enumerate}
 		\item \(\bigcup\mathcal{F}=A\)
 		\item \(\mathcal{F}\) is pairwise disjoint.
 		\item \(\forall X\in\mathcal{F},\,X\neq\emptyset\)
 	\end{enumerate}
-\end{definition}
-\section{Group theory}
-\subsection{Binary operators, groups and subgroups}
-\begin{definition}[Binary operation]
+\end{defi}
+\section{Binary operators, groups and subgroups}
+\begin{defi}[Binary operation]
 	A binary operation \(*\) on a set \(S\) is a function
 	\begin{equation*}
 		*:(S\times S)\rightarrow S
 	\end{equation*}
-\end{definition}
-\begin{definition}[Group]
+\end{defi}
+\begin{defi}[Group]
 	A group \((G,\cdot)\) is a set \(G\) with the operation \(\cdot\) defined
 	\begin{equation*}
 		\cdot:G\times G\rightarrow G
@@ -148,8 +146,8 @@ top=20mm,
 		\item \(\forall a\,\exists a',\,a'\cdot a=e=a\cdot a'\). (inverse element)
 	\end{enumerate}
 	Commutivity of the inverse and identity elements is a consequence of 
-\end{definition}
-\begin{theorem}[Identity of a group is unique]
+\end{defi}
+\begin{thm}[Identity of a group is unique]
 	\,
 	\begin{IEEEproof}
 		Suppose \(e\) and \(\overline{e}\) identity elements of a group. Then
@@ -157,8 +155,8 @@ top=20mm,
 			e\cdot\overline{e}=e=\overline{e}.
 		\end{equation*}
 	\end{IEEEproof}
-\end{theorem}
-\begin{lemma}
+\end{thm}
+\begin{lem}
 	\label{lrcancel}
 	If \((G,\cdot)\) is a group, then for all \(a,b,c\in G\),
 	\begin{IEEEeqnarray*}{l}
@@ -181,60 +179,52 @@ top=20mm,
 			b=c
 		\end{IEEEeqnarray*}
 	\end{IEEEproof}
-\end{lemma}
-\begin{corollary}
+\end{lem}
+\begin{cor}
 	For elements \(a,c\in(G,\cdot)\) the element \(b\in G\) such that \(a\cdot b=c\), is unique.
-\end{corollary}
-\begin{definition}[Abelian]
+\end{cor}
+\begin{defi}[Abelian]
 	An abelian group is one for which it's group operator is commutative.
-\end{definition}
-\begin{remark}[Multiplicative and additive groups]
+\end{defi}
+\begin{rema}[Multiplicative and additive groups]
 	The use of \(+\) or \(\cdot\) as the group operator is notational preference, however additive groups usually refer to an abelian group. By default, when we say that \(G\) is a group, we mean that \((G,\cdot)\) is a multiplicative group, and utilize notation accordingly.
-\end{remark}
-\begin{definition}[Subgroup]
+\end{rema}
+\begin{defi}[Subgroup]
 	We say that \(H\) is a subgroup of \(G\), denoted \(H\leq G\), if \(G,H\) are groups with the same group operation and \(G\subseteq H\).
-\end{definition}
-\begin{theorem}[Subgroup test]
+\end{defi}
+\begin{thm}[Subgroup test]
 	Let \(G\) be a group. Then \(H\leq G\) iff
 	\begin{enumerate}
 		\item \(\emptyset\neq H\subseteq G\)
 		\item \(a,b\in H\Rightarrow ab^{-1}\in H\)
 	\end{enumerate}
 	\begin{IEEEproof}
-		We must prove that the \(\cdot\) operation on \(H\) is defined on \(H\times H\), and that group axioms hold on \(H\). Suppose \(G\) a group, and \(H\) meets the above criteria. If \(a\in H\) then \(aa^{-1}=e\in H\). It follows that \(ea^{-1}=a^{-1}\in H\), and thus every element in \(H\) has an inverse in \(H\). Therefore for any \(b,c\in H\), \(c^{-1}\in H\) so \(bc\in H\) and \(H\) is closed under the group operation on \(G\). The group operation on \(H\) is associative by definition, so \(H\) is a subgroup. The right implication is trivial.
+		We must prove that the \(\cdot\) operation on \(H\) is defined on \(H\times H\), and that group axioms hold on \(H\). Suppose \(G\) a group, and \(H\) meets the above criteria. If \(a\in H\) then \(aa^{-1}=e\in H\). It follows that \(ea^{-1}=a^{-1}\in H\), and thus every element in \(H\) has an inverse in \(H\). Therefore for any \(b,c\in H\), \(c^{-1}\in H\) and \(bc\in H\) so \(H\) is closed under the group operation on \(G\). The group operation on \(H\) is associative by definition, so \(H\) is a subgroup. The right implication is trivial.
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Modulo and equivalence classes]
+\end{thm}
+\begin{defi}[Modulo and equivalence classes]
 	If \(a,b\in\mathbb{Z}\), \(a\) \emph{modulo} \(b\), denoted \(a\text{ mod }b\) is the remainder of \(a|b\). Suppose \(\sim\) is an equivalence relation on a set \(A\), and \(x\in A\). Then the \emph{equivalence class} of \(x\) with respect to \(\sim\) is the set
 	\begin{equation*}
 		[x]=\{y\in A\,|\,y\sim x\}.
 	\end{equation*}
 	The set of all equivalence classes of elements \(A\) is called \(A\emph{ modulo }\sim\) and denoted \(A/\sim\). The equivalence class mod \(n\) of \(a\) is the set of all integers which differ from \(a\) by some integer multiple of \(n\). The integers modulo \(n\), denoted \(\mathbb{Z}/n\mathbb{Z}\), is the set of equivalence classes mod \(n\) of all integers.
-\end{definition}
-\begin{proposition}
-	If \(a=a_n10^n+\ldots+a_110+a_0\) is any positive integer then \(a\equiv a_n+a_{n-1}+\ldots+a_0\).
-	\begin{IEEEproof}
-		\(10\) is equivalent to \(1\Mod{9}\), therefore \(a\) is equivalent to \(a_n\Mod{9}+\ldots+a_0\Mod{9}\) which is equivalent to \(a_n+a_{n-1}+\ldots+a_0\).
-	\end{IEEEproof}
-\end{proposition}
-\begin{remark}
-	This fact is why an integer is divisible by \(9\) iff the sum of its digits are divisible by \(9\).
-\end{remark}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	\label{equivpartition}
 	Suppose \(\sim\) is an equivalence relation on \(A\neq\emptyset\). Then \(A/\sim\) is a partition of \(A\).
 	\begin{IEEEproof}
-		\(A/\sim\) contains \([x]\) for each \(x\in A\). Because \(\sim\) is reflexive, \(x\in[x]\), so \(A\subseteq\bigcup A/\sim\). Because \(\sim\) a relation on \(A\), \(\bigcup A/\sim\,\subseteq A\), and thus \(\bigcup A/\sim\,=A\). Suppose \([a],[b]\in A/\sim\) with \([a]\neq [b]\), and suppose to the contrary there exists \(c\in A\) such that \(c\in[a]\cap[b]\). Because \(aRc\) and \(cRb\) we have \(aRb\) and \(bRa\). Then if \(x\in[a]\) and \(y\in[b]\), by transitivity we have \(xRb\) and \(yRa\), so \([a]=[b]\), a contradiction. Therefore \([a]\cap[b]=\emptyset\). Each \([a]\in A\) contains \(a\in A\) because \(\sim\) reflexive, so \([a]\neq\emptyset\).
+		\(A/\sim\) contains \([x]\) for each \(x\in A\). Because \(\sim\) is reflexive, \(x\in[x]\), so \(A\subseteq\bigcup A/\sim\). Because \(\sim\) a relation on \(A\), \(\bigcup A/\sim\,\subseteq A\), and thus \(\bigcup A/\sim\,=A\). Suppose \([a],[b]\in A/\sim\), and suppose to the contrary there exists \(c\in A\) such that \(c\in[a]\cap[b]\). Because \(aRc\) and \(cRb\) we have \(aRb\). Then if \(x\in[a]\) and \(y\in[b]\) we have \(xRa\) and \(bRy\), so \(xRy\) and thus \([a]=[b]\), a contradiction. Therefore \([a]\cap[b]=\emptyset\). Each \([a]\in A\) contains \(a\in A\) because \(\sim\) reflexive, so \([a]\neq\emptyset\).
 	\end{IEEEproof}
-\end{theorem}
-\subsection{Cosets, normal subgroups, cyclic groups}
-\begin{definition}
-	Let \(H\leq G\). define the relation \(\sim\) on \(G\) by \(a\sim b\) if \(b^{-1}a\in H\).
-\end{definition}
-\begin{remark}
+\end{thm}
+\clearpage
+\section{Cosets, normal subgroups, cyclic groups}
+\begin{defi}
+	Let \(H\leq G\). Define the relation \(\sim\) on \(G\) by \(a\sim b\) if \(b^{-1}a\in H\).
+\end{defi}
+\begin{rema}
 	For the remainder of discussion of groups within these notes, \(\sim\) represents the above relation.
-\end{remark}
-\begin{theorem}
+\end{rema}
+\begin{thm}
 	\(\sim\) is an equivalence relation on \(G\).
 	\begin{IEEEproof}
 	\begin{enumerate}
@@ -251,15 +241,15 @@ top=20mm,
 			so \(\sim\) is transitive.
 	\end{enumerate}
 	\end{IEEEproof}
-\end{theorem}
-\begin{lemma}
+\end{thm}
+\begin{lem}
 	If \(a\notin H\), then \(e\notin [a]\)
 	\label{eincoset}
 	\begin{IEEEproof}
 		If \(e\in [a]\), then \(a^{-1}e\in H\) and thus \(a\in H\).
 	\end{IEEEproof}
-\end{lemma}
-\begin{lemma}
+\end{lem}
+\begin{lem}
 	\(a\in H\) and \(b\in [a]\) iff \(b\in H\).
 	\begin{IEEEproof}
 		Following lemma \ref{eincoset}, \(eRa\). Because \(\sim\) is transitive and symmetric,
@@ -268,52 +258,52 @@ top=20mm,
 		\end{equation*}
 		If \(a,b\in H\), \(ab\in H\).
 	\end{IEEEproof}
-\end{lemma}
-\begin{definition}[Left coset]
+\end{lem}
+\begin{defi}[Left coset]
 	Let \(H\leq G\) and \(a\in G\). We say that
 	\begin{equation*}
 		aH=\{ah\,|\,h\in H\}=[a]
 	\end{equation*}
 	is the left coset of \(H\) containing \(a\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	For additive groups, we would write the left coset of \(H\) containing \(a\) as
 	\begin{equation*}
 		a+H.
 	\end{equation*}
-\end{remark}
-\begin{remark}
+\end{rema}
+\begin{rema}
 	Let \(H\leq G\). Set
 	\begin{equation*}
 		G//H=\{aH\,|\,a\in G\}
 	\end{equation*}
-\end{remark}
-\begin{theorem}[Lagrange's theorem]
-	\label{lagrangetheorem}
+\end{rema}
+\begin{thm}[Lagrange's theorem]
+	\label{lagrangethm}
 	Let \(\lvert G\rvert<\infty\) and \(H\leq G\). Then \(\lvert H\rvert\) divides \(\lvert G\rvert\).
 	\begin{IEEEproof}
 		We know from lemma \ref{equinumerouscoset} that for all \(a\), \(\lvert aH\rvert=\lvert H\rvert\). Following lemma \ref{equivpartition}, \(G//H\) is a partition of \(G\), so \(\lvert G\rvert=\lvert G//H\rvert\,\lvert H\rvert\).
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Index]
-	Let \(H\leq G\). define the index \([G:H]\) of \(H\) in \(G\) by
+\end{thm}
+\begin{defi}[Index]
+	Let \(H\leq G\). Define the index \([G:H]\) of \(H\) in \(G\) by
 	\begin{equation*}
 		[G:H]=\lvert G//H\rvert
 	\end{equation*}
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	Lagrange's theorem implies that
 	\begin{equation*}
 		[G:H]=\lvert G\rvert /\lvert H\rvert.
 	\end{equation*}
-\end{remark}
-\begin{definition}
+\end{rema}
+\begin{defi}
 	Let \(H\leq G\). We say that \(H\) is a normal subgroup of \(G\), written \(H\trianglelefteq G\), if \(aH=Ha\) for all \(a\in G\).
-\end{definition}
-\begin{lemma}
+\end{defi}
+\begin{lem}
 	Let \(H\leq G\). Then \(H\trianglelefteq G\) iff \(aHa^{-1}=H\) for all \(a\in G\).
-\end{lemma}
-\begin{lemma}
+\end{lem}
+\begin{lem}
 	If \(G\) is an abelian group and \(H\leq G\), then \(H\trianglelefteq G\).
 	\begin{IEEEproof}
 		Because \(G\) is abelian,
@@ -321,8 +311,8 @@ top=20mm,
 			aH=\{ah\,|\,h\in H\}=\{ha\,|\,h\in G\}=Ha.
 		\end{equation*}
 	\end{IEEEproof}
-\end{lemma}
-\begin{theorem}
+\end{lem}
+\begin{thm}
 	Let \(H\leq G\). Then left coset multiplication is well defined by the equation
 	\begin{equation*}
 		(aH)(bH)=(ab)H
@@ -346,36 +336,36 @@ top=20mm,
 			&=&a_1b_1H
 		\end{IEEEeqnarray*}
 	\end{IEEEproof}
-\end{theorem}
-\begin{remark}
+\end{thm}
+\begin{rema}
 	Let \(H\trianglelefteq G\). Then
 	\begin{equation*}
 		G//H=\{aH\,|\,a\in G\}
 	\end{equation*}
 	is a group under the binary operation \((aH)(bH)=(ab)H\). The notation \(G/H\) will be used instead of \(G//H\) from now on.
-\end{remark}
-\begin{definition}[Homomorphism]
+\end{rema}
+\begin{defi}[Homomorphism]
 	Let \(\phi:G\rightarrow G'\) be a map of groups. We say that \(\phi\) is a group homomorphism if
 	\begin{equation*}
 		\forall a,b\in G,\,\phi(ab)=\phi(a)\phi(b).
 	\end{equation*}
 	A group homomorphism \(\phi\) is called a group isomorphism if \(\phi\) is bijective. We then say \(G\) and \(G'\) are isomorphic, and write \(G\cong G'\).
-\end{definition}
-\begin{definition}[Exponentials]
+\end{defi}
+\begin{defi}[Exponentials]
 	Let \(G\) be a group, \(a\in G\), and \(n\in\mathbb{Z^+}\). We define
 	\begin{equation*}
 		a^n:=a\cdot a\cdot\ldots\cdot a.
 	\end{equation*}
 	for \(n\) \(a\)'s.
-\end{definition}
-\begin{definition}[Order]
-	Let \(G\) be a group. define the order of \(G\), denoted by \(\lvert G\rvert\), to be the cardinality of \(G\).
-\end{definition}
-\begin{definition}[Cyclic group]
+\end{defi}
+\begin{defi}[Order]
+	Let \(G\) be a group. Define the order of \(G\), denoted by \(\lvert G\rvert\), to be the cardinality of \(G\).
+\end{defi}
+\begin{defi}[Cyclic group]
 	Let \(G\) be a group and \(a\in G\). Then the subgroup \(\langle a\rangle:=\{a^n\,|\,n\in\mathbb{Z}\}\) of \(G\) is called the cyclic subgroup of \(G\) generated by \(a\). In this case we say \(a\) is a generator of \(G\).
-\end{definition}
-\begin{lemma}
-	\label{generatorlemma}
+\end{defi}
+\begin{lem}
+	\label{generatorlem}
 	Let \(G\) be a group and \(a\in G\). If \(a^m=1\) for some \(m\in\mathbb{Z}\setminus\{0\}\), then
 	\begin{equation*}
 		\langle a\rangle=\{a^k\,|\,k=0,1,\ldots,\lvert m\rvert-1\}
@@ -383,8 +373,8 @@ top=20mm,
 	\begin{IEEEproof}
 	Suppose \(b\in \langle a\rangle\). Then \(b=a^n\) for some \(n\in\mathbb{Z}\). Because \(n=qm+r\) for some \(q,r\in\mathbb{Z}\) with \(0\leq r<\lvert m\rvert\), and because \(a^{qm}=e^q=e\), then \(a^{n}=a^{qm+r}=ea^{r}=a^{r}=b\). Trivially \(a^r\in\langle a\rangle\).
 	\end{IEEEproof}
-\end{lemma}
-\begin{lemma}
+\end{lem}
+\begin{lem}
 	\label{equinumerouscoset}
 	Let \(H\leq G\). Then for \(a\in G\), \(\lvert aH\rvert=\lvert H\rvert\).
 	\begin{IEEEproof}
@@ -394,8 +384,8 @@ top=20mm,
 		\end{equation*}
 		is injective. \(\phi\) is clearly surjective.
 	\end{IEEEproof}
-\end{lemma}
-\begin{remark}
+\end{lem}
+\begin{rema}
 	Let \(G\) be a group and \(a\in G\). Then
 	\begin{equation*}
 		\lvert a\rvert=\begin{cases}
@@ -403,36 +393,40 @@ top=20mm,
 			\infty
 		\end{cases}
 	\end{equation*}
-\end{remark}
-\begin{lemma}
-	\label{finitegroupgenlem}
-	If \(G\) is finite and \(a\in G\), then \(\langle a\rangle\) is a finite group.
-	\begin{IEEEproof}
-		Suppose \(a\in G\), and suppose to the contrary that \(\forall n,m\in\mathbb{N},\,n\neq m\Rightarrow a^n\neq a^m\). Then \(\abs{\langle a\rangle}\) is infinite, a contradiction. Therefore for all \(a\in G\) there exists \(l,r\in\mathbb{N}\) with \(l<r\) such that \(a^l=a^r\). But then \(a^r=a^la^{r-l}\) so \(a^{2(r-l)}=e\). Therefore \(aa^{2(r-l)-1}=e\), and \(a\) has an inverse element in \(\langle a\rangle\). Obviously \(e\in\langle a\rangle\), and associativity is inherited from \(G\).
-	\end{IEEEproof}
-\end{lemma}
-\begin{lemma}
-	\label{uniquecyclic}
+\end{rema}
+\begin{lem}
 	For \(1\leq n\leq\lvert a\rvert\), \(a^n\) is unique.
 	\begin{IEEEproof}
 		Suppose \(1\leq n,m\leq\lvert a\rvert\) and \(a^n=a^m\). If \(n\neq m\), then wlog \(n<m\), and \(a^n=a^{n+(m-n)}=a^na^{m-n}\Rightarrow a^{m-n}=1\), a contradiction.
 	\end{IEEEproof}
-\end{lemma}
-\begin{lemma}
-	\label{finitegenlemma}
+\end{lem}
+\begin{lem}
+	\label{finitegenlem}
 	If \(\langle a\rangle\) is finite, then \(\lvert a\rvert=\lvert\langle a\rangle\rvert\).
 	\begin{IEEEproof}
-		Suppose \(n=\abs{a}\). If \(m>a\) then by the division algorithm \(m=qn+r\) and \(a^m=a^{qn}a^r=a^r\). Because \(0\leq r<n\) then by lemma \ref{uniquecyclic}, \(\abs{\langle a\rangle}=\abs{a}\).
+		Suppose \(\lvert a\rvert<\lvert\langle a\rangle\rvert\). Because for any \(n\in\mathbb{Z}\), \(a^n=a^{n\text{ mod }\lvert a\rvert}\), it follows from the previous lemma that \(\lvert\langle a\rangle\rvert=\lvert a\rvert\), a contradiction.
 	\end{IEEEproof}
-\end{lemma}
-\subsection{Direct product}
-\begin{definition}
+\end{lem}
+\begin{cor}
+	If \(\lvert\langle a\rangle\rvert=n\) then \(a^n=1\).
+	\begin{IEEEproof}
+	If \(\lvert\langle a\rangle\rvert=n\) and \(m\in\mathbb{N}\) such that \(m<n\) with \(a^m=1\), then for any \(l\in\mathbb{N}\), \(a^{l}=a^{qn+r}=a^{r}\) with \(0\leq r<n\), a contradiction. It follows from cancellation laws that \(a^n\) must be unique, thus \(a^n=1\).
+	\end{IEEEproof}
+\end{cor}
+\begin{lem}
+	Let \(G\) be a finite group and \(a\in G\). Then \(a^{\lvert G\rvert}=1\).
+	\begin{IEEEproof}
+		It follows from lemma \ref{finitegenlem} and theorem \ref{lagrangethm} that \(\lvert\langle a\rangle\rvert\) divides \(\lvert G\rvert\). Therefore if \(\lvert a\rvert=n\) then for some \(q\in\mathbb{N}\), \(a^{\lvert G\rvert}=a^{nq}=1^{q}=1\).
+	\end{IEEEproof}
+\end{lem}
+\section{Direct product}
+\begin{defi}
 	Let \(G_1,\cdots, G_n\) be groups. We use \(\prod_{i=1}^nG_i\) to denote the cartesian product \(G_1\times\cdot\times G_n\).
-\end{definition}
-\begin{theorem}[Direct product]
+\end{defi}
+\begin{thm}[Direct product]
 	Let \(G_1,\cdots, G_n\) be groups. Then \(\prod_{i=1}^{n}G_i\) is a group under componentwise multiplication. It is called the direct product of these groups.
-\end{theorem}
-\begin{lemma}
+\end{thm}
+\begin{lem}
 	Let \(G_1,\cdots, G_n\) be groups. Then
 	\begin{equation*}
 		\bigg\lvert\prod_{i=1}^{n}G_i\bigg\rvert =\prod_{i=1}^{n}\lvert G_i\rvert.
@@ -440,9 +434,9 @@ top=20mm,
 	\begin{IEEEproof}
 		This follows directly from properties of the cartesian product.
 	\end{IEEEproof}
-\end{lemma}
-\begin{definition}
-	Let \(n\in\mathbb{Z^{+}}\). Let \(Z_n=\{0,1,\ldots,n-1\}\). define an operation \(+_n:Z_n\times Z_n\rightarrow Z_n\) by
+\end{lem}
+\begin{defi}
+	Let \(n\in\mathbb{Z^{+}}\). Let \(Z_n=\{0,1,\ldots,n-1\}\). Define an operation \(+_n:Z_n\times Z_n\rightarrow Z_n\) by
 	\begin{equation*}
 		a+_nb=\begin{cases}
 			a+b&0\leq a+b\leq n-1\\
@@ -450,11 +444,11 @@ top=20mm,
 		\end{cases}
 	\end{equation*}
 	then \(Z_n\) is a group under the operation \(+_n\). We use \(Z_n\) to denote the cyclic group of order \(n\).
-\end{definition}
-\begin{remark}
-	By theorem \ref{lagrangetheorem} we have \(Z_n\cong\mathbb{Z}/n\mathbb{Z}\).
-\end{remark}
-\begin{theorem}[The first group isomorphism theorem]
+\end{defi}
+\begin{rema}
+	By theorem \ref{lagrangethm} we have \(Z_n\cong\mathbb{Z}/n\mathbb{Z}\).
+\end{rema}
+\begin{thm}[The first group isomorphism theorem]
 	Let \(\phi:G\rightarrow G'\) be a group homomorphism with
 	\begin{equation*}
 		\text{Ker}(\phi):=\phi^{-1}(1')=\{a\in G\,|\,\phi(a)=1'\}.
@@ -464,42 +458,42 @@ top=20mm,
 		\mu:G/\text{Ker}(\phi)\rightarrow\phi(G)\\
 		{[a]}\rightarrow\phi(a).
 	\end{IEEEeqnarray*}
-\end{theorem}
-\subsection{Permutations and dihedral groups}
-\begin{definition}[Permutation]
-	A permutation of \(A\) is a bijective function \(\phi:A\rightarrow A\). define the set \(S_A\) by
+\end{thm}
+\section{Permutations and dihedral groups}
+\begin{defi}[Permutation]
+	A permutation of \(A\) is a bijective function \(\phi:A\rightarrow A\). Define the set \(S_A\) by
 	\begin{equation*}
 		S_A:=\{\sigma\,|\,\sigma\text{ is a permutation of }A\}.
 	\end{equation*}
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	\((S_A,\circ)\) is a group.
-\end{remark}
-\begin{definition}[Symmetric group]
+\end{rema}
+\begin{defi}[Symmetric group]
 	\(S_A\) is called the symmetric group on \(A\). In particular, when \(n\in\mathbb{Z}^{+}\) and \(A=\{1,\ldots,n\}\), the symmetric group on \(A\) is denoted \(S_n\), and is called the symmetric group of degree \(n\).
-\end{definition}
-\begin{lemma}
+\end{defi}
+\begin{lem}
 	Let \(G\) be a group of \(\lvert G\rvert=p\), where \(p\) is prime. Then \(G\cong Z_p\).
-\end{lemma}
-\begin{lemma}
+\end{lem}
+\begin{lem}
 	If \(G\) is a group with \(\lvert G\rvert\leq 5\), then \(G\) is abelian.
-\end{lemma}
-\subsection{Group actions and counting}
-\begin{definition}[Action]
+\end{lem}
+\section{Group actions and counting}
+\begin{defi}[Action]
 	Let \(X\) be a set and \(G\) be a group. An action of \(G\) on \(X\) is a function \(\cdot:G\times X\rightarrow X\) such that
 	\begin{enumerate}
 		\item\(\forall x\in X,\, 1\cdot x=x\)
 		\item\(\forall g_1,g_2\in G\,\forall x\in X,\,g_1\cdot(g_2\cdot x)=(g_1\cdot g_2)\cdot x\)
 	\end{enumerate}
 	Under these conditions, we say that \(X\) is a \(G\)-set.
-\end{definition}
-\begin{definition}
+\end{defi}
+\begin{defi}
 Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for \(x_1,x_2\in X\), we say \(x_1\sim x_2\) if there exists \(g\in G\) such that \(g\cdot x_1=x_2\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	For the remainder of the section \(\sim\) refers to the above relation when working in \(X\).
-\end{remark}
-\begin{theorem}
+\end{rema}
+\begin{thm}
 	Let \(X\) be a \(G\)-set. Then \(\sim\) is an equivalence relation.
 	\begin{IEEEproof}
 		\begin{enumerate}
@@ -508,38 +502,37 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 			\item Transitivity: Suppose \(x,y,z\in X\), \(x\sim y\) and \(y\sim z\). Then for \(g_1,g_2\in G\), \(y=g_1x\) and \(z=g_2y\). Therefore \(z=g_2g_1x\), and because \(g_2g_1\in G\), \(x\sim z\).
 		\end{enumerate}
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Orbit]
+\end{thm}
+\begin{defi}[Orbit]
 	Let \(X\) be a \(G\)-set. For \(x\in X\), the equivalence class \([x]\) is called the orbit of \(x\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	Let \(X\) be a \(G\)-set. Then for each \(x\in X\),
 	\begin{equation*}
 		[x]=G\cdot x:=\{g\cdot x\,|\,g\in G\}.
 	\end{equation*}
-\end{remark}
-\subsection{Finitely generated abelian groups}
-\begin{theorem}
+\end{rema}
+\section{Finitely generated abelian groups}
+\begin{thm}
 	The group \(Z_m\times Z_n\cong Z_{mn}\) iff gcd\((m,n)=1\).
-\end{theorem}
-\subsection{Quotient group computations and simple groups}
-\begin{definition}
+\end{thm}
+\section{Quotient group computations and simple groups}
+\begin{defi}
 	pass
-\end{definition}
-\section{Ring theory}
-\subsection{Rings and fields}
-\begin{definition}[Ring]
+\end{defi}
+\section{Rings and fields}
+\begin{defi}[Ring]
 	A ring \((R,+,\cdot)\) is a set \(R\) together with the two operations \(+\) and \(\cdot\) such that the following axioms are satisfied:
 	\begin{enumerate}
 		\item \((R,+)\) is an abelian group.
 		\item \(\cdot\) is closed and associative.
 		\item \(\forall a,b,c\in R\), the left distributive law \(a\cdot (b+c)=(a\cdot b)+(a\cdot c)\) and the right distributive law \((a+b)\cdot c=(a\cdot c)+(b\cdot c)\) hold.
 	\end{enumerate}
-\end{definition}
-\begin{definition}[Direct product]
+\end{defi}
+\begin{defi}[Direct product]
 	Let \(R_1,\ldots,R_n\) be rings. The direct product \(R_1\times\cdots\times T_n\) of rings \(R_i\) is a ring under addition and multiplication by components.
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	\label{ringproperties}
 	If \(R\) is a ring, then for any \(a,b\in R\) we have
 	\begin{enumerate}
@@ -555,46 +548,46 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 			\item Because \(-a(b-b)=(-a)b+(-a)(-b)=0\) we have \((-a)(-b)=-((-a)b)=ab\).
 		\end{enumerate}
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Ring homomorphism]
+\end{thm}
+\begin{defi}[Ring homomorphism]
 	For rings \(R\) and \(R'\), a map \(\phi:R\rightarrow R'\) is a ring homomorphism if the following two conditions are satisfied for all \(a,b\in R\):
 	\begin{enumerate}
 		\item \(\phi(a+b)=\phi(a)+\phi(b)\).
 		\item \(\phi(ab)=\phi(a)\phi(b)\).
 	\end{enumerate}
-\end{definition}
-\begin{definition}[Ring isomorphism]
+\end{defi}
+\begin{defi}[Ring isomorphism]
 	A ring isomorphism \(\phi:R\rightarrow R'\) is a ring homomorphism that is bijective. The rings \(R\) and \(R'\) are the isomorphic.
-\end{definition}
-\begin{definition}[Commutative ring]
+\end{defi}
+\begin{defi}[Commutative ring]
 	A ring in which multiplication is commutative is a commutative ring.
-\end{definition}
-\begin{definition}[Unity]
+\end{defi}
+\begin{defi}[Unity]
 	An element \(1\) is called the multiplicative identity or unity if \(1a=a=a1\) for all \(a\in R\).
-\end{definition}
-\begin{lemma}
+\end{defi}
+\begin{lem}
 	If a ring \(R\) has a unity, then it is unique.
 	\begin{IEEEproof}
 		Suppose \(1,1'\) are both unities of ring \(R\). Then \(1\cdot1'=1'=1'\cdot 1=1\).
 	\end{IEEEproof}
-\end{lemma}
-\begin{remark}
+\end{lem}
+\begin{rema}
 	Let \(R\) be a ring with unity \(1\). Then \(1=0\) iff \(R\) is a zero ring. This follows from the fact that if \(1+1=0+0=0\) then \(R=\{0\}\). \(\{0\}\) is obviously closed under multiplication.
-\end{remark}
-\begin{definition}[Unit]
+\end{rema}
+\begin{defi}[Unit]
 	Let \(R\) be a ring with unity \(1\neq 0\). An element \(u\in R\) is a unit of \(R\) if there exists \(v\in R\) such that \(vu=1=uv\), where we call \(v\) the multiplicative inverse of \(u\), denoted by \(u^{-1}\). Let \(R^\times\) be the set of units in \(R\), i.e.
 	\begin{equation*}
 		R^\times:=\{u\in R\,|\,u\text{ is a unit}\}.
 	\end{equation*}
 	In other words, \(R^\times\) is the set of elements in \(R\) that have a multiplicative inverse.
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	Let \(R\) be a ring with unity \(1\neq 0\), then \(0\notin R^\times\).
 	\begin{IEEEproof}
 		By theorem \ref{ringproperties}, for any \(a\in R\), \(a0=0a=0\).
 	\end{IEEEproof}
-\end{remark}
-\begin{lemma}
+\end{rema}
+\begin{lem}
 	Let \(R\) be a ring with unity \(1\neq 0\). If \(u\in R^\times\), then its multiplicative inverse is unique.
 	\begin{IEEEproof}
 		Let \(u\in R\) and \(a,b\in R\) be multiplicative inverses of \(u\). Then
@@ -602,27 +595,27 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 			a=a(ub)=(au)b=b.
 		\end{equation*}
 	\end{IEEEproof}
-\end{lemma}
-\begin{definition}[Division ring]
+\end{lem}
+\begin{defi}[Division ring]
 	A ring with unity \(1\neq 0\) is called a division ring if \(R^\times=R\setminus\{0\}\). A noncommutative division ring is called a skew field. A commutative division ring is called a field.
-\end{definition}
-\begin{definition}[Subring]
+\end{defi}
+\begin{defi}[Subring]
 	A subring of a ring is a subset of the ring that is a ring under induced operations from the whole ring.
-\end{definition}
-\subsection{Integral domains}
-\begin{remark}
+\end{defi}
+\section{Integral domains}
+\begin{rema}
 	Let \(R\) be a ring in this section.
-\end{remark}
-\begin{definition}[0-divisor]
+\end{rema}
+\begin{defi}[0-divisor]
 	An element \(a\in R\setminus\{0\}\) is called a \(0\)-divisor if \(ab=0\) or \(ba=0\) for some \(b\in R\setminus\{0\}\). Let \(ZD(R)\) be the set of \(0\)-divisors of \(R\). An element \(a\in R\setminus \{0\}\) is called a non-\(0\)-divisior if it is not a \(0\)-divisor. Let \(NZD(R)\) be the set of non-\(0\)-divisors of \(R\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	\(a\in NZD(R)\) iff \(ab=ba=0\Rightarrow b=0\).
-\end{remark}
-\begin{remark}
+\end{rema}
+\begin{rema}
 	The zero ring has no \(0\)-divisors.
-\end{remark}
-\begin{lemma}
+\end{rema}
+\begin{lem}
 	\(ZD(R)=\emptyset\) for any division ring \(R\).
 	\begin{IEEEproof}
 		Let \(a\in R\) with \(a\neq 0\) and \(b\in ZD(R)\) with \(b^{-1}\) the multiplicative inverse of \(b\). Then
@@ -631,23 +624,23 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 		\end{equation*}
 		It follows \(a\) is not a unit of \(R\), a contradiction.
 	\end{IEEEproof}
-\end{lemma}
-\begin{definition}[Cancellation laws]
+\end{lem}
+\begin{defi}[Cancellation laws]
 	The cancellation laws hold in \(R\) if \(ab=ac\) with \(a\neq 0\) implies \(b=c\), and \(ba=ca\) with \(a\neq 0\) implies \(b=c\).
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	The cancellation laws hold in a ring \(R\) iff \(ZD(R)=\emptyset\).
 	\begin{IEEEproof}
 		To prove the left implication, suppose \(ab=ac\) with \(b\neq c\) and \(a\neq 0\). Then \(b=(c+g)\) for some \(g\in R\) with \(g\neq 0\). It follows that \(ac+ag=ac\) and thus \(ag=0\), so \(a\) is a zero divisor. To prove the right implication, suppose \(ZD(R)\neq\emptyset\). Suppose \(a,c\in R\) and \(g\in ZD(R)\) with \(ag=0\). Then \(ac+ag=ac\) and \(a(c+g)=ac\). But \(c+g\neq c\), so cancellation laws do not hold.
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Integral domain]
+\end{thm}
+\begin{defi}[Integral domain]
 	An integral domain \(D\) is a commutative ring with unity \(1\neq 0\) and \(ZD(R)=\emptyset\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	Every field is an integral domain.
-\end{remark}
-\begin{theorem}
+\end{rema}
+\begin{thm}
 	Every finite integral domain is a field.
 	\begin{IEEEproof}
 		Cancellation laws imply the function \(\delta_a\) with \(a\in R\) and \(a\neq 0\) defined by
@@ -657,80 +650,71 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 		\end{IEEEeqnarray*}
 		is onto. Because \(\lvert R\rvert<\infty\), \(\delta_a\) is surjective. Thus for every element of \(a\neq 0\), there exists an element \(b\in R\) such that \(ab=ba=1\).
 	\end{IEEEproof}
-\end{theorem}
-\begin{theorem}
-	\label{unitgroupthm}
+\end{thm}
+\begin{thm}
 	Let \(R\) be a ring and \(R^\times\) the set of units in \(R\). Then \((R^\times,\cdot)\) is a group.
 	\begin{IEEEproof}
-		Every element clearly has an inverse, and \(1\) is the identity element. Because \(R\) is a ring we know that \(\cdot\) is associative.
+		Every element clearly has an inverse, and \(1\) is an identity element. Because \(R\) is a ring we know that \(\cdot\) is associative.
 	\end{IEEEproof}
-\end{theorem}
-\begin{lemma}
-	\(Z_n^\times=\{a\in Z_n\,|\,\text{gcd(a,n)}=1\}\).
-	\begin{IEEEproof}
-		Suppose \(a\in Z_n\) is a unit. Then under integer multiplication \(ab\equiv 1\Mod{n}\), and \(ab=qn+1\) for some \(q\in\mathbb{Z}\). gcd\((qn+1,n)=1\) so \(ab\) and \(n\) are relatively prime, thus \(a\) and \(b\) are relatively prime with \(n\). If \(a\in Z_n\) and \(a,n\) are relatively prime, then by lemma \ref{multinversezn}, \(a\) has a multiplicative inverse and is thus a unit.
-	\end{IEEEproof}
-\end{lemma}
-\begin{definition}
+\end{thm}
+\begin{defi}
 	For \(n\in\mathbb{Z}^+\), define
 	\begin{equation*}
 		G_n:=Z_n^\times=\{a\in Z_n\,|\,\text{gcd}(a,n)=1\}.
 	\end{equation*}
-\end{definition}
-\begin{definition}[Euler phi-function]
-	The Euler phi-function \(\varphi:Z^+\rightarrow Z^+\) is defined
+\end{defi}
+\begin{defi}[Euler phi-function]
+	The Euler phi-function \(\phi:Z^+\rightarrow Z^+\) is defined
 	\begin{equation*}
-		\varphi(n)=\lvert\{a\in\{1,\ldots,n\}\,|\,\text{gcd(a,n)=1}\}\rvert.
+		\phi(n)=\lvert\{a\in\{1,\ldots,n\}\,|\,\text{gcd(a,n)=1}\}\rvert.
 	\end{equation*}
-\end{definition}
-\begin{lemma}
+\end{defi}
+\begin{lem}
 	For \(n\in\mathbb{Z}^+\),
 	\begin{equation*}
-		\varphi(n)=\lvert Z_n^\times\rvert.
+		\phi(n)=\lvert Z_n^\times\rvert.
 	\end{equation*}
-\end{lemma}
-\begin{lemma}
-	\label{multinversezn}
-	If \(a\in Z_n\), then \(a^{\abs{Z_n}}=1\).
+\end{lem}
+\begin{lem}
+	If \(a\in Z_n^+\), then \(a^{\lvert Z_n^+\rvert}=1\).
 	\begin{IEEEproof}
-		This follows from lemma \ref{finitegroupgenlem} and theorem \ref{lagrangetheorem}.
 	\end{IEEEproof}
-\end{lemma}
-\begin{theorem}[Euler's Theorem]
-	Let \(n\in\mathbb{Z}^+\). Then \(a^{\varphi (n)}\equiv 1(\text{mod }n)\) for any \(a\in\mathbb{Z}\) with gcd\((a,n)=1\).
+\end{lem}
+\begin{thm}[Euler's Theorem]
+	Let \(n\in\mathbb{Z}^+\). Then \(a^{\phi(n)}\equiv 1(\text{mod }n)\) for any \(a\in\mathbb{Z}\) with gcd\((a,n)=1\).
 	\begin{IEEEproof}
-		Let \(a,n\in\mathbb{Z^+}\), with gcd\((a,n)=1\). If \(n=1\), clearly \(a^{\varphi (n)}=a^1=a\), and \(a\equiv a\Mod{n}\). If \(n>1\), because \(n\) and \(a\) are relatively prime we know that for \(q,r\in\mathbb{N}\) with \(0<r<n\) that \(a=qn+r\), and that gcd\((r,n)=1\). Therefore \(r\in Z_n^\times\),  and by Lagranges theorem \(r^{\varphi (n)}=r^{\lvert Z_n^\times\rvert}=r^{\lvert r\rvert\cdot\lvert Z_n^\times/\langle r\rangle\rvert}\equiv 1(\text{mod }n)\). Therefore \(a^{\varphi (n)}\equiv 1(\text{mod }n)\).
+		Let \(a,n\in\mathbb{Z^+}\), with gcd\((a,n)=1\). If \(n=1\), clearly \(a^{\rho(n)}=a^1=a\), and \(a\equiv a(\text{ mod }n)\). If \(n>1\), because \(n\) and \(a\) are relatively prime we know that for \(q,r\in\mathbb{N}\) with \(0<r<n\) that \(a=qn+r\), and that gcd\((r,n)=1\). Therefore \(r\in Z_n^\times\), and by Lagranges theorem \(r^{\rho(n)}=r^{\lvert Z_n^\times\rvert}=r^{\lvert r\rvert\cdot\lvert Z_n^\times/\langle r\rangle\rvert}\equiv 1(\text{mod }n)\). Therefore \(a^{\rho(n)}\equiv 1(\text{mod }n)\).
 	\end{IEEEproof}
-\end{theorem}
-\begin{theorem}[Fermat's little theorem]
+\end{thm}
+\begin{thm}[Fermat's little theorem]
 	Let \(a\in\mathbb{Z}\) and \(p\) be a prime. If \(p\) does not divide \(a\), then \(a^{p-1}\equiv 1(\text{mod }p)\).
-\end{theorem}
-\begin{definition}[Mersenne primes]
+\end{thm}
+\begin{defi}[Mersenne primes]
 	Primes of the form \(2^{p}-1\) where \(p\) is prime are known as Mersenne primes.
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	Let \(n\in\mathbb{Z}^+\). Let \(a,b\in Z_n\). The equation \(ax=b\) has a unique solution in \(Z_n\) iff gcd\((a,n)=1\).
-\end{theorem}
-\subsection{The quotient field of an integral domain}
-\begin{remark}
+\end{thm}
+\section{The quotient field of an integral domain}
+\begin{rema}
 	In this section, let \(D\) be an integral domain and
 	\begin{equation*}
 		S:=\{(a,b)\,|\,a,b\in D\text{ and }b\neq 0\}=D\times(D\setminus\{0\})=D\times NZD().
 	\end{equation*}
-\end{remark}
-\begin{definition}
-	define a relation \(\sim\) on \(S\) as follows: for \((a,b),(c,d)\in S\) we say \((a,b)\sim(c,d)\) if \(ad=bc\).
-\end{definition}
-\begin{remark}
+\end{rema}
+\begin{defi}
+	Define a relation \(\sim\) on \(S\) as follows: for \((a,b),(c,d)\in S\) we say \((a,b)\sim(c,d)\) if \(ad=bc\).
+\end{defi}
+\begin{rema}
 	\(\sim\) is an equivalence relation.
-\end{remark}
-\begin{definition}
+\end{rema}
+\begin{defi}
 	In this section, let \(F\) be the set of equivalence classes with respect to \(\sim\),
 	\begin{equation*}
 		F:=S/\sim=\{[(a,b)]\,|\,(a,b)\in S\}.
 	\end{equation*}
-\end{definition}
-\begin{definition}
+\end{defi}
+\begin{defi}
 	For \([(a,b)],[(c,d)]\in F\), the equations
 	\begin{equation*}
 		[(a,b)]+[(c,d)]=[(ad+bc, bd)]
@@ -740,45 +724,45 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 		[(a,b)][(c,d)]=[(ac,bd)]
 	\end{equation*}
 	Give well-defined operations of addition and multiplication on \(F\).
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	\((F,+,\cdot)\) is a field.
-\end{theorem}
-\begin{lemma}
+\end{thm}
+\begin{lem}
 	We have an injective ring homomorphism
 	\begin{IEEEeqnarray*}{l}
 		i:D\rightarrow F
 		a\rightarrow[(a,1)].
 	\end{IEEEeqnarray*}
 	Thus, \(D\) can be regarded as a subring of \(F\).
-\end{lemma}
-\begin{theorem}
+\end{lem}
+\begin{thm}
 	Any integral domain \(D\) can be embedded in a field \(F\) such that every element of \(F\) can be expressed as a quotient of two elements of \(D\). Such a field \(F\) is a quotient field of \(D\), and denoted by \(Q(D)\).
-\end{theorem}
-\subsection{Ideals and quotient rings}
-\begin{definition}[Kernel]
+\end{thm}
+\section{Ideals and quotient rings}
+\begin{defi}[Kernel]
 	Let \(\phi:R\rightarrow R'\) be a ring homomorphism. The subring
 	\begin{equation*}
 		\text{Ker}(\phi):=\phi^{-1}(0')=\{a\in R\,|\,\phi(a)=0'\}
 	\end{equation*}
 	is the kernel of \(\phi\).
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	Let \(\phi:R\rightarrow R'\) be a ring homomorphism with Ker\((\phi):=H\). Let \(a\in R\). Then
 	\begin{equation*}
 		\phi^{-1}(\{\phi(a)\})=a+H=H+a.
 	\end{equation*}
-\end{theorem}
-\begin{definition}[Ideal]
+\end{thm}
+\begin{defi}[Ideal]
 	An additive subgroup \(N\) of a ring \(R\) satisfying the properties \(aN\subseteq N\) and \(Nb\subseteq N\) for alll \(a,b\in R\) is called an ideal, denoted by \(N\leq R\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	If \(R\neq\{0\}\), then \(aN\) is not a coset, because \(0\) has no multiplicative inverse.
-\end{remark}
-\begin{lemma}
+\end{rema}
+\begin{lem}
 	If \(R\) is a ring and \(N\leq R\), then \(N\) is a subring of \(R\).
-\end{lemma}
-\begin{theorem}
+\end{lem}
+\begin{thm}
 	Let \(H\) be a subring of \(R\). Multiplication of additive cosets of \(H\) is well-defined by the equation
 	\begin{equation*}
 		(r+H)(s+H)=rs+H
@@ -787,24 +771,24 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 	\begin{IEEEproof}
 		To prove the right implication, suppose that \(H\leq R\). Then for \(h_1,h_2\in H\), \((r+H)(s+H)=(r+h_1+H)(s+h_2+H)=(r+h_1)(s+h_2)+H\). Because \(H\leq R\), we know that \(rh_2+sh_1+h_1h_2\in H\), therefore \(rs+rh_2+sh_1+h_2h_1+H=rs+H\). To prove the left implication, suppose this operation is well-defined. The left implication will be proven later by me :)
 	\end{IEEEproof}
-\end{theorem}
-\begin{corollary}
+\end{thm}
+\begin{cor}
 	Let \(N\) be an ideal of a ring \(R\). Then \(R/N,+,\cdot\) forms a ring. This is called the factor ring (or quotient ring) of \(R\) and \(N\). This follows from the fact \(H\trianglelefteq R\), thus \(H/R\) is an abelian group, and that \(H/R\) is well-defined under the operation given above.
-\end{corollary}
-\begin{theorem}
+\end{cor}
+\begin{thm}
 	Let \(\phi:R\rightarrow R'\) be a ring homomorphism. If \(H\subseteq R\) is a subring, then as subrings \(\phi(H)\subseteq\phi(R)\subseteq R'\). Also, if \(H'\subseteq R'\) is a subring, then \(\phi^{-1}(H')\subseteq R\) is a subring.
-\end{theorem}
-\begin{theorem}
+\end{thm}
+\begin{thm}
 	Let \(\phi:R\rightarrow R'\) be a ring homomorphism. If \(I\leq R\), then \(\phi(I)\leq\phi(R)\). Also, if \(I'\leq R'\), then \(\phi^{-1}(I')\leq R\).
-\end{theorem}
-\begin{theorem}[1st ring isomorphism theorem]
+\end{thm}
+\begin{thm}[1st ring isomorphism theorem]
 	Let \(\phi:R\rightarrow R'\) be a ring homomorphism with Ker\((\phi)=:N\). Then \(N\leq R\) and there is a ring isomorphism
 	\begin{IEEEeqnarray*}{l}
 		\mu:R/N\rightarrow\phi(R)\\
 		a+N\rightarrow\phi(a).
 	\end{IEEEeqnarray*}
-\end{theorem}
-\begin{theorem}[4th ring isomorphism theorem]
+\end{thm}
+\begin{thm}[4th ring isomorphism theorem]
 	Let \(R\) be a ring, \(I\leq R\), and \(\pi:R\rightarrow R/I\) the natural projection. Then there is a bijection:
 	\begin{IEEEeqnarray*}{l}
 		\{S | S\subseteq R/I\text{ is a subring}\}\leftrightarrow\{J|I\subseteq J\subseteq R\text{ are subrings}\}.
@@ -812,42 +796,42 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 	\begin{IEEEproof}
 
 	\end{IEEEproof}
-\end{theorem}
-\begin{definition}[Proper ideal]
+\end{thm}
+\begin{defi}[Proper ideal]
 	A proper ideal is any ideal that is a strict subset of the ring.
-\end{definition}
-\begin{definition}[Maximal ideal]
+\end{defi}
+\begin{defi}[Maximal ideal]
 	Let \(R\) be a ring. A proper ideal \(m\leq R\) if for all \(J\leq R\) we have
 	\begin{equation*}
 		m\subseteq J\Rightarrow J=m\vee J=R.
 	\end{equation*}
-\end{definition}
-\begin{theorem}
+\end{defi}
+\begin{thm}
 	Let \(R\) be a commutative ring with unity \(1\neq 0\). Then \(m\leq R\) is a maximal ideal iff \(R/m\) is a field.
-\end{theorem}
-\begin{definition}
+\end{thm}
+\begin{defi}
 	Let \(R\) be a commutative ring. We say that a proper ideal \(p\leq R\) is a prime ideal if \(ab\in p\) for \(a,b\in R\) then \(a\in p\) or \(b\in p\), i.e. \(ab\in R\setminus p\) for any \(a,b\in R\setminus p\).
-\end{definition}
-\begin{definition}
+\end{defi}
+\begin{defi}
 	Let \(R\) be an integral domain.
 	\begin{enumerate}
 		\item An element \(r\in R\setminus\{R^\times\cup\{0\}\}\) is irriducible in \(R\) if \(r=ab\) with \(a,b\in R\) implies \(a\in R^\times\) or \(b\in R^\times\). Otherwise, \(r\) is said to be reducible.
 		\item An element \(p\in R\setminus\{R^\times\cup\{0\}\}\) is prime in \(R\) if \(pR\leq R\) is a prime ideal.
 	\end{enumerate}
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	In an integer domain \(R\), a prime, \(p\in R\) is allways irreducible.
-\end{remark}
-\begin{lemma}
+\end{rema}
+\begin{lem}
 	Let \(R\) be a commutative ring with unity \(1\neq 0\). Then \(p\leq R\) is a prime ideal iff \(R/p\) is an integral domain.
-\end{lemma}
-\begin{definition}
+\end{lem}
+\begin{defi}
 	An integral domain \(R\) is a PID if every ideal \(I\) of \(R\) can be written in the form \(xR\) for some \(x\in R\).
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	\(\mathbb{Z}\) is a PID.
-\end{remark}
-\begin{definition}
+\end{rema}
+\begin{defi}
 	Let \(R\) be a ring and \(I,J\leq R\).
 	\begin{enumerate}
 		\item The sum \(I+J\) of \(I\) and \(J\) is defined by
@@ -859,17 +843,17 @@ Let \(X\) be a \(G\)-set. We define a relation \(\sim\) on \(X\) as follows: for
 				IJ=\bigg\{\sum_i^{\text{finite}}\,\bigg|\,a_i\in I\text{ and }b_i\in J\bigg\}.
 			\end{equation*}
 	\end{enumerate}
-\end{definition}
-\begin{remark}
+\end{defi}
+\begin{rema}
 	\(I+J,IJ\leq R\).
-\end{remark}
-\begin{theorem}
+\end{rema}
+\begin{thm}
 	\(\mathbb{R}[x]\) is a PID.
-\end{theorem}
-\begin{lemma}
+\end{thm}
+\begin{lem}
 	Let \(R\) be a PID. \(p\leq R\) is a prime idea iff it is a maximal ideal.
-\end{lemma}
-\begin{lemma}
+\end{lem}
+\begin{lem}
 	In a PID \(R\), \(p\in R\setminus\{R^\times\cup\{0\}\}\) is prime iff it is irreducible.
-\end{lemma}
+\end{lem}
 \end{document}

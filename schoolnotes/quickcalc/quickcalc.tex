@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{"Calculus: Early Transcendantals" Notes}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Section 1}
+\subsection{Subsection 1}
+\begin{theorem}[Fubini's theorem]
+	Let \(f(x,y)\) be continuous on a region \(R\).
+	\begin{enumerate}
+		\item If \(R\) is defined by \(a\leq x\leq b,\;g_1(x)\leq y\leq g_2(x)\), with \(g_1\) and \(g_2\) continuous on \([a,b]\), then
+			\begin{equation*}
+				\iint_R f(x,y)dA=\int_a^b\int_{g_1(x)}^{g_2(x)}f(x,y)dydx.
+			\end{equation*}
+	\end{enumerate}
+\end{theorem}
+\begin{proposition}
+	The area of a closed, bounded plane region \(R\) is
+	\begin{equation*}
+		A=\iint_R dA.
+	\end{equation*}
+\end{proposition}
+\begin{definition}[Path independence]
+	Let \(\textbf{F}\) be a vector field defined on an open region \(D\) in space, and suppose that for any two points \(A\) and \(B\) in \(D\) the line integral \(\int_C \textbf{F}\cdot d\textbf{r}\) along a path \(C\) from \(A\) to \(B\) in \(D\) is the same over all paths from \(A\) to \(B\). Then the integral \(\int_C\textbf{F}\cdot d\textbf{r}\) is path independent in \(D\) and the field \(\textbf{F}\) is conservative in \(D\).
+\end{definition}
+\begin{theorem}[Fundamental theorem of line integrals]
+	Let \(C\) be a smooth curve joining the point \(A\) to the point \(B\) in the plane or in space and parametrized by \(\textbf{r}(t)\). Let \(f\) be a differentiable function with a continuous gradient vector \(\textbf{F}=\nabla f\) on a domain \(D\) containing \(C\). Then
+	\begin{equation*}
+		\int_C\textbf{F}\cdot d\textbf{r}=f(B)-f(A).
+	\end{equation*}
+\end{theorem}
+\end{document}

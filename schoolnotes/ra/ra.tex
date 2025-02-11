@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Real Analysis}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{The natural numbers}
+\subsection{Peano axioms}
+\begin{definition}[Peano axioms]
+	Using \(++\) as the successor operation, the natural numbers are defined as follows:
+	\begin{enumerate}
+		\item \(0\) is a natural number.
+		\item If \(n\) is a natural number, then \(n++\) is also a natural number.
+		\item For all natural numbers \(n\), \(n++\neq 0\).
+	\end{enumerate}
+\end{definition}
+\begin{definition}[Addition of natural numbers]
+	Let \(m\) be a natural number. \(0+m\coloneq m\) and \((n++)+m\coloneq(n+m)++\).
+\end{definition}
+\begin{proposition}
+	\label{zerocommute}
+	\(m+0=m\).
+	\begin{IEEEproof}
+		Let \(n\in\mathbb{N}\). \(0+0\coloneq 0\), so by inductive hypothesis \(n+0=n\). \((n++)+0\coloneq(n+0)++\), and from the inductive hypothesis equals \(n++\).
+	\end{IEEEproof}
+\end{proposition}
+\begin{lemma}
+	\label{rightaddition}
+	For any natural numbers \(n\) and \(m\), \(n+(m++)=(n+m)++\).
+	\begin{IEEEproof}
+		Suppose \(n,m\in\mathbb{N}\). \(0+(m++)\coloneq m++=(0+m)++\). By inductive hypothesis \(n+(m++)=(n+m)++\). From the definition of addition \((n++)+(m++)=(n+(m++))++\) and from the inductive hypothesis \(n+(m++)=(n+m)++\) so we have
+		\begin{IEEEeqnarray*}{rCl}
+			(n++)+(m++)&=&(n+(m++))++\\
+			&=&((n+m)++)++\\
+			&=&((n++)+m)++
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{lemma}
+\begin{proposition}[Commutivity of addition]
+	For \(n,m\in\mathbb{N}\), \(n+m=m+n\).
+	\begin{IEEEproof}
+		Let \(n,m\in\mathbb{N}\). From proposition \ref{zerocommute}, \(0+m=m+0\), so by inductive hypothesis \(n+m=m+n\). \((n++)+m=(n+m)++\) and from inductive hypothesis this equals \((m+n)++\). From lemma \ref{rightaddition}, this equals \(m+(n++)\).
+	\end{IEEEproof}
+\end{proposition}
+\begin{proposition}[Associativity of addition]
+	Let \(a,b,c\in\mathbb{N}\). Then \((a+b)+c=a+(b+c)\).
+	\begin{IEEEproof}
+		exercise
+	\end{IEEEproof}
+\end{proposition}
+\begin{proposition}[Cancellation law]
+	Let \(a,b,c\in\mathbb{N}\). Iff \(a+b=a+c\), then \(b=c\).
+	\begin{IEEEproof}
+		If \(0+b=0+c\) then from the definition of addition \(b=c\). By inductive hypothesis for any \(n\in\mathbb{N}\), \(n+b=n+c\). \((n++)+b=(n+b)++\) and \((n++)+c=(n+c)++\), so from the inductive hypothesis and the axioms of natural numbers, \((n++)+b=(n++)+c\).
+	\end{IEEEproof}
+\end{proposition}
+\begin{definition}[Positive natural number]
+	A natural number \(n\) is said to be positive iff it is not \(0\).
+\end{definition}
+\begin{definition}[Ordering of natural numbers]
+	Let \(n,m\in\mathbb{N}\). We write \(n\geq m\) or \(m\geq n\) iff \(n=m+a\) for some \(a\in\mathbb{N}\).
+\end{definition}
+\begin{proposition}
+	Let \(m_0,m,m'\in\mathbb{N}\), and let \(P(x)\) be a property of arbitrary \(x\in\mathbb{N}\). Suppose that for each \(m\geq m_0\) the following implication holds:
+	\begin{equation*}
+		\bigg(\forall m'\in[m_0,m),\,P(m')\bigg)\Rightarrow P(m).
+	\end{equation*}
+	Then we can conclude \(P(m)\) is true for all natural numbers \(m\geq m_0\).
+\end{proposition}
+\subsection{Multiplication}
+\begin{definition}[Multiplication of natural numbers]
+	Let \(m\) be a natural number. \(0\times m\coloneq 0\) and \((n++)\times m\coloneq (n\times m)+m\).
+\end{definition}
+\begin{lemma}[Commutivity of multiplication]
+	Let \(n,m\in\mathbb{N}\). Then \(n\times m=m\times n\).
+	\begin{IEEEproof}
+		exercise
+	\end{IEEEproof}
+\end{lemma}
+\begin{lemma}
+	Let \(n,m\in\mathbb{N}\). Then \(n\times m=0\) iff \(n\) or \(m\) is zero.
+	\begin{IEEEproof}
+		exercise
+	\end{IEEEproof}
+\end{lemma}
+\begin{proposition}[Distributive law]
+	For any natural numbers \(a,b,c,\) we have \(a(b+c)=ab+ac\).
+\end{proposition}
+\begin{proposition}[Associativity of multiplication]
+	If \(a,b,c\in\mathbb{N}\) then \((a\times b)\times c=a\times(b\times c)\).
+\end{proposition}
+\begin{proposition}
+	If \(a,b\) are natural numbers such that \(a<b\), and \(c\) is positive, then \(ac<bc\).
+\end{proposition}
+\begin{corollary}
+	Let \(a,b,c\in\mathbb{N}\) such that \(ac=bc\) and \(c\) is non-zero. Then \(a=b\).
+\end{corollary}
+\begin{proposition}[Euclid's division lemma]
+	Let \(n\) be a natural number, and let \(q\) be a positive number. Then there exist natural numbers \(m,r\) such that \(0\leq r<q\) and \(n=mq+r\).
+\end{proposition}
+\begin{definition}[Exponentiation for natural numbers]
+	Let \(m\in\mathbb{N}\). \(m^0\coloneq 1\), and \(m^{n++}=m^n\times m\).
+\end{definition}
+\end{document}

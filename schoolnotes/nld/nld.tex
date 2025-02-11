@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Nonlinear Dynamics}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Flows on the line}
+\subsection{Introduction}
+\begin{definition}[Fixed points]
+	A fixed point on a phase diagram is a point in which there is no flow, i.e. \(x'=0\). Fixed points represent equilibrium solutions.
+\end{definition}
+\begin{definition}[Phase point]
+	A phase point is an imaginary particle placed at a point \(x_0\) from which we can observe how it is carried along with the "flow". As time increases, the phase point moves along the \(x\)-axis according to some function \(x(t)\). \(x(t)\) is called the trajectory based at \(x_0\).
+\end{definition}
+\begin{theorem}
+	Consider the IVP
+	\begin{IEEEeqnarray*}{l}
+		x'=f(x),\\
+		x(0)=x_0.
+	\end{IEEEeqnarray*}
+	If \(f(x)\) and \(f'(x)\) are continuous on an open interval \(R\) of the \(x\)-axis, and \(x_0\in R\), then the initial value problem has a unique solution on some time interval \(-\tau,\tau\) about \(t=0\).
+\end{theorem}
+\end{document}

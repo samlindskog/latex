@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{corrolary}{Corollary}
+\theoremstyle{definition}\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+\theoremstyle{remark}\newtheorem*{notation}{Notation}
+
+\title{HW2}
+\author{Samuel Lindskog}
+\maketitle
+\subsection*{Problem 1}
+Let \(a\) be a positive number. Then there exists exactly one natural number \(b\) such that \(b++=a\).
+\medbreak
+\begin{IEEEproof}
+	Suppose \(a,b,c\in\mathbb{N}\), and suppose to the contrary that \(b\neq c\) with \(b++=a\) and \(c++=a\). By the trichotomy of order for natural numbers (proposition 2.2.13), wlog \(b>c\) and thus there exists \(n\in\mathbb{N}^+\) such that \(c+n=b\). From the definition of addition, \(b++=(c+n)++=(c++)+n\) so \(b++>c++\), a contradiction.
+\end{IEEEproof}
+\subsection*{Problem 2}
+Let \(a,b,c,d\in\mathbb{N}\). If \(a<b\) and \(c<d\) then \(a+c<b+d\).
+\begin{IEEEproof}
+	Let \(a,b,c,d\in\mathbb{N}\) with \(a<b\) and \(c<d\). Then there exists \(x,y\in\mathbb{N}^+\) such that \(a+x=b\) and \(c+y=d\). Therefore \(a+x+c+y=b+d\) and by commutivity and associativity of addition (propositions 2.2.4 and 2.2.5) \(a+c+(x+y)=b+d\). By proposition 2.2.8, \(x+y\) is positive so \(a+c<b+d\).
+\end{IEEEproof}
+\subsection*{Problem 3}
+Let \(n,m\) be natural numbers. Then \(n\times m=0\) iff at least one of \(n,m\) is equal to zero.
+\begin{IEEEproof}
+	Let \(n,m\in\mathbb{N}\) with \(n=0\). Then from the definition of multiplication, and commutivity of multiplication (lemma 2.3.2), \(n\times m=m\times n=0\). Redefine \(n,m\in\mathbb{N}\) and let \(n\times m=0\). Suppose to the contrary that \(n\) and \(m\) are nonzero. Then from the definition of multiplication, \(n\times m=m+m+\ldots+m\) with \(n\) \(m\)'s added together. By proposition 2.2.8 this is a positive quantity, a contradiction.
+\end{IEEEproof}
+\end{document}

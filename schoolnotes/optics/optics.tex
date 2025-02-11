@@ -657,4 +657,94 @@ If the angle of incidence is larger than the critical angle, the ray cannot pass
 		\Delta t\Delta E\geq\frac{h}{4\pi}\\
 	\end{IEEEeqnarray*}
 \end{defi}
+\section{Quantum mechanics}
+\begin{defi}
+	\,
+	\begin{equation*}
+		\hbar=\frac{h}{2\pi}.
+	\end{equation*}
+\end{defi}
+\begin{defi}[Sinudoidal string wave]
+	The position on a point of a string wave at position \(x\) and time \(t\) is given by the equation
+	\begin{equation*}
+		y(x,t)=A\text{cos}(kx-\omega t)+B\text{sin}(kx-\omega t).
+	\end{equation*}
+	In this case the wave number \(k=2\pi/\lambda\), and the angular frequency \(\omega=2\pi f\). \(A\) and \(B\) are constants that determine the amplitude and phase of the wave.
+\end{defi}
+\begin{defi}[Free particle]
+	A free particle in one dimension is a particle which experiences no force at all as it moves along the \(x\)-axis.
+\end{defi}
+\begin{rema}
+	For simplicity, the energy of a free particle is equal to its kinetic energy, which we can express in terms of its momentum \(p\):
+	\begin{IEEEeqnarray*}{rCl}
+		E&=&\frac{1}{2}mv^2\\
+		&=&\frac{p^2}{2m}.
+	\end{IEEEeqnarray*}
+	The relationship between \(\omega\) and \(k\) for a free particle is:
+	\begin{equation*}
+		\hbar\omega=\frac{\hbar^2k^2}{2m}.
+	\end{equation*}
+	Congruent to this relationship is the relationship between energy and momentum, which can be expressed in terms of \(k\) and \(\omega\) as:
+	\begin{IEEEeqnarray*}{l}
+		E=\hbar\omega\\
+		p=\hbar k
+	\end{IEEEeqnarray*}
+\end{rema}
+\begin{defi}[One-dimensional Schrodinger equation]
+	\begin{equation*}
+		-\frac{\hbar^2}{2m}=\frac{\delta^2\Psi(x,t)}{\delta x^2}+U(x)\Psi(x,t)=i\hbar\frac{\delta\Psi(x,t)}{\delta t}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Probability distribution function]
+	The probability distribution function \(\lvert \Psi\rvert^2=\Psi^*\Psi\) gives probability density, whereras \(\lvert \Psi\rvert^2dx\) gives the probability for a slice of \(x\) or \(t\).
+\end{defi}
+\begin{defi}[Wave function for a state of definite energy]
+	It follows from heisenberg uncertainty principle that if energy is known, then time is unknown. Thus the wave function for a definite energy \(E\) is not dependent on time.
+	\begin{equation*}
+		\Psi(x,t)=\psi(x)e^-iEt/\hbar.
+	\end{equation*}
+	A state of definite energy is commonly called a stationary state. This is because
+	\begin{equation*}
+		\lvert \Psi(x,t)\rvert^2=\lvert \psi(x)\rvert^2.
+	\end{equation*}
+	A stationary state does not mean a physically stationary particle.
+\end{defi}
+\begin{defi}[Time-independent schrodinger equation]
+	\begin{equation*}
+		-\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+U(x)\psi(x)=E\psi(x).
+	\end{equation*}
+\end{defi}
+\begin{defi}[Energy level, particle in a box]
+	With \(L\) the width of the box and \(m\) the mass, possible energy levels of a particle in a box are
+	\begin{equation*}
+		E_n=\frac{p_n^2}{2m}=\frac{n^2h^2}{8mL^2}
+	\end{equation*}
+	A particle cannot have no energy. The box is a potential well whose function is infinity outside the box and zero inside the box. This is what creates the boundary conditions.
+\end{defi}
+\begin{defi}[Stationary state wave function, particle in box]
+	\begin{equation*}
+		\psi_n(x,t)=\sqrt{\frac{2}{L}}\text{sin}(\frac{n\pi x}{L})e^{-iE_n t/\hbar}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Square well potential]
+	A potential function that is zero over a closed interval, and \(U_0\) outside that interval. If \(E\) is greater than \(U_0\) the particle is not bound. Otherwise it is bound.
+\end{defi}
+\section{Atomic structure}
+\begin{defi}[Energy levels, three dimensional box]
+	\,
+	\begin{equation*}
+		E_{n_X,n_Y,n_Z}=\frac{(n_X^2+n_Y^2+n_Z^2)\pi^2\hbar^2}{2mL^2}
+	\end{equation*}
+\end{defi}
+\begin{defi}[Orbital angular momentum, H]
+	\(l\) is the principle quantum number.
+	\begin{equation*}
+		L=\sqrt{l(l+1)}\hbar
+	\end{equation*}
+\end{defi}
+\begin{defi}[Orbital magnetic interaction energy]
+	\begin{equation*}
+		U=-\mu_zB=m_l\frac{e\hbar}{2m}B=m_l\mu_BB.
+	\end{equation*}
+\end{defi}
 \end{document}

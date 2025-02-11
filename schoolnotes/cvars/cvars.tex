@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Complex Variables}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\noindent All proofs are original work with hints taken occasionally :). Definitions, theorems, and other material contained within is partially or completely copied, or paraphrased from Complex Analysis by Theodore W. Gamelin.
+\section{Complex numbers}
+\subsection{Fundamental definitions and identities}
+\begin{definition}[Complex number]
+	A complex number is an expression with of the form \(z=x+iy\), where \(x\) and \(y\) are real numbers.
+\end{definition}
+\begin{definition}
+	Ever complex number \(z\neq 0\) has a multiplicative inverse given by
+	\begin{equation*}
+		\frac{1}{z}=\frac{x-iy}{x^2+y^2}.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Modulus]
+	The modulus of a complex number \(z=x+iy\) is the length of the vector \((x,y)\), and is denoted \(\abs{z}\).
+	\begin{equation*}
+		\abs{z}=\sqrt{x^2+y^2}.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	For \(z,w\in\mathbb{C}\), it follows from the triangle inequality that
+	\begin{IEEEeqnarray*}{l}
+		\abs{z+w}\leq\abs{z}+\abs{w}\\
+		\abs{z-w}\geq\abs{z}-\abs{w}
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{definition}[Multiplication]
+	\((x+iy)(u+iv)=xu-yv+i(xv+yu)\).
+\end{definition}
+\begin{definition}[Complex conjugate]
+	The complex conjugate of a complex number \(z=x+iy\) is defined to be \(\overbar{z}=x-iy\).
+\end{definition}
+\begin{proposition}
+	For \(z,w\in\mathbb{C}\), the following identities hold:
+	\begin{IEEEeqnarray*}{l}
+	\overbar{\overbar{z}}=z\\
+		\overbar{z+w}=\overbar{z}+\overbar{w}\\
+		\overbar{zw}=\overbar{z}\overbar{w}\\
+		\overbar{z\overbar{w}}=\overbar{z}w\\
+		\abs{z}=\abs{\overbar{z}}\\
+		\abs{z}^2=z\overbar{z}
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{proposition}
+	The real and imaginary parts of \(z\) can recovered from \(z\) by
+	\begin{IEEEeqnarray*}{l}
+		\text{Re}\,z=(z+\overbar{z})/2\\
+		\text{Im}\,z=(z-\overbar{z})/2i
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{definition}[Triangle inequality]
+	Suppose \(a,b\in\mathbb{R}^n\), with \(\abs{a}\) the distance from \(a\) to \(0\) under the euclidean metric. Then
+	\begin{equation*}
+		\abs{a+b}\leq\abs{a}+\abs{b}.
+	\end{equation*}
+	\begin{IEEEproof}
+		If dot product of two vectors is zero, they are LI. Prove basis exists such that each vector dotted with all vectors in basis is zero (use nullity potentially). if \(a,b\) vectors such that \(b\cdot a=0\), then \(a\cdot(a+b)=a\cdot a\). If \(\abs{a+b}<a\) then \(a\cdot(a+b)<a\cdot a\), so \(\abs{a+b}\geq\abs{a}\). \(\abs{a},\abs{b}\) are both geq than magnitude of their sides made of a scalar multiple of \(a+b\).
+	\end{IEEEproof}
+\end{definition}
+\begin{proposition}
+	Let \(a,b\in{\mathbb{C}}\). Then
+	\begin{equation*}
+		\abs{a+b}^2=\abs{a}^2+\abs{b}^2+a\overline{b}+b\overline{a}=\abs{a}^2+\abs{b}^2+2\text{Re}\,a\overline{b}.
+	\end{equation*}
+\end{proposition}
+\begin{definition}[Cauchy's inequality]
+	\begin{equation*}
+		\bigg\lvert\sum_{i=1}^{n}a_ib_i\bigg\rvert^2\leq\sum_{i=1}^n\abs{a_i}^2+\sum_{i=1}^n\abs{b_i}^2
+	\end{equation*}
+\end{definition}
+\subsection{Polar representation}
+\begin{definition}[Polar representation]
+	The polar representation of a complex number \(z=x+iy\) is
+	\begin{equation*}
+		re^{i\theta}=r(\text{cos}\,\theta+i\text{sin}\,\theta).
+	\end{equation*}
+	Here \(r=\abs{z}\). The \emph{argument} of \(z\) is a multivalued function of \(\theta\), with
+	\begin{equation*}
+		\text{arg}\,z\in\{\theta+2\pi k\,|\,k\in\mathbb{Z}\}.
+	\end{equation*}
+	The principle value of \(\text{arg}\,z\) denoted \(\text{Arg}\,z\) is the unique member of \(\text{arg}\,z\) such that \(-\pi<\text{Arg}\,z\leq\pi\).
+\end{definition}
+\begin{definition}[de Moiver's formulae]
+	The identies obtained by equating the imaginary and real parts of the expansions of \(e^{in\theta}\) and \((e^{in})^\theta\) are known as de Moivre's formulae, e.g.
+	\begin{IEEEeqnarray*}{l}
+		e^{2i\theta}=(e^{i\theta})^2\\
+		\text{cos}\,2\theta+i\text{sin}\,2\theta=\text{cos}^2\,\theta+2i\text{cos}\,\theta\text{sin}\,\theta-\text{sin}^2\,\theta\\
+		\text{cos}\,2\theta=\text{cos}^2\,\theta-\text{sin}^2\,\theta\\
+		\text{sin}\,2\theta=2\text{cos}\,\theta\text{sin}\,\theta
+	\end{IEEEeqnarray*}
+\end{definition}
+\begin{definition}[\(n\)th root]
+	A number \(z\in\mathbb{C}\) is the \(n\)th root of \(w\in\mathbb{C}\) if \(z^n=w\). If \(w=\rho e^{i\varphi}\neq 0\), then the \(n\)th roots of \(w\) are
+	\begin{equation*}
+		\rho^{1/n}e^{i\varphi/n+2\pi k/n},\quad k=0,1,\ldots,n-1.
+	\end{equation*}
+	This is equivalent to multiplying \(\rho^{1/n}e^{i\varphi/n}\) by the \(n\)th roots of unity, i.e. all \(n\)th roots of \(1\).
+\end{definition}
+\subsection{Exp, log, and power functions}
+\begin{definition}[Extended complex plane]
+	The extended complex plane is the complex plane together with the point at infinity, denoted \(\mathbb{C}^*=\mathbb{C}\cup\{\infty\}\).
+\end{definition}
+\begin{proposition}
+	If \(z\in\mathbb{C}\) with \(z=x+iy\) then
+	\begin{equation*}
+		e^z=e^xe^{iy}=e^{x}(\text{cos}\,y+i\text{sin}\,y).
+	\end{equation*}
+\end{proposition}
+\begin{definition}
+\end{definition}
+\end{document}

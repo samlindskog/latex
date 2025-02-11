@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{
+	a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+\theoremstyle{definition}\newtheorem{defi}{Definition}[section]
+\theoremstyle{definition}\newtheorem{axiom}{Axiom}[section]
+\theoremstyle{definition}\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{cor}{Corollary}[section]
+\theoremstyle{definition}\newtheorem{lem}{Lemma}[section]
+\theoremstyle{remark}\newtheorem*{notat}{Notation}
+\theoremstyle{remark}\newtheorem*{rema}{Remark}
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+%\renewcommand{\theproblem}{\arabic{problem}}
+\newenvironment{prob}[1]{\protect\setcounter{problem}{#1}\addtocounter{problem}{-1}\begin{problem}}{\end{problem}}
+
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+
+\title{Linear Algebra}
+\author{Samuel Lindskog}
+\maketitle
+\section{Fundamentals}
+\begin{defi}[Vector space]
+	A vector space \(V\) over a field \(F\) consists of a set on which two operations are defined so that for all \(x,y\in V\) there is a unique element \(x+y\) in \(V\), and for each \(a\in F\) and \(x\in V\) there is a unique element \(ax\in V\) such that
+	\begin{enumerate}
+		\item For all \(x,y\in V\), \(x+y=y+x\).
+		\item For all \(x,y,z\in V\), \((x+y)+z=x+(y+z)\).
+		\item There exists \(0\in V\) such that for all \(x\in V\), \(x+0=x\).
+		\item For each element \(x\in V\) there exists an element \(y\in V\) such that \(x+y=0\).
+		\item For each element \(x\in V\), \(1x=x\).
+		\item For all \(a,b\in F\) and for all \(x\in V\), \((ab)x=a(bx)\).
+		\item For all \(a\in F\) and for all \(x,y\in V\), \(a(x+y)=ax+ay\).
+		\item For all \(a,b\in F\) and for all \(x\in V\), \((a+b)x=ax+bx\).
+	\end{enumerate}
+\end{defi}
+
+\end{document}
