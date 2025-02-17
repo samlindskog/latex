@@ -111,79 +111,75 @@ top=20mm,
 	If \(u_1\) and \(u_2\) satisfy a linear homogeneous equation, then any linear combination of these solutions is itself a solution.
 \end{definition}
 \subsection{Method of seperation of variables}
-The method of seperation of variables attempts to determine solutions of linear homogeneous equations by assuming \(u\) takes the form
+The method of seperation of variables attempts to determine solutions of linear homogeneous equations using the ansatz
 \begin{equation*}
 	u(x,t)=\phi(x)G(t).
 \end{equation*}
-	This is helpful because when this is subbed in for \(u\) in the equation, two functions of independent variables \(x\) and \(t\) are equated with each other. The only way this is possible is if these functions are constants. Knowing this, we can solve for the heat equation with the following boundary and initial conditions:
+We begin by solving the following BVP:
 	\begin{IEEEeqnarray*}{l}
 		\text{PDE:}\;\diffp{u}{x}=k\diffp[2]{u}{x},\quad 0<x<L,\;t>0\\
 		\text{BC:}\;u(0,t)=0,\;u(L,t)=0\\
 		\text{IC:}\;u(x,0)=f(x)
 	\end{IEEEeqnarray*}
-	This is a linear homogenous differential equation with linear homogenous boundary conditions. Homogeniety of boundary conditions and the properties of linear operators allows for easy manipulation of solutions to meet initial conditions, as we will see. To begin, sub in product solution \(u(x,t)=\phi(x)G(t)\):
+	This is a linear homogenous differential equation with linear homogenous boundary conditions. Homogeniety of boundary conditions and the properties of linear operators is usually necessary because it allows us to take advantage of the principle of superposition. To begin, sub in product solution \(u(x,t)=\phi(x)G(t)\):
 	\begin{IEEEeqnarray*}{l}
 		\phi(x)\diff{G}{t}=k\diff[2]{\phi}{x}G(t)\\
 		\frac{1}{kG}\diff{G}{t}=\frac{1}{\phi}\diff[2]{\phi}{x}=-\lambda
 	\end{IEEEeqnarray*}
-	The latter conclusion is reached as a result of the fact that the derivative operation is a linear operator. A consequence of this is that we can equate a linear combination of derivatives with respect to \(x\) with derivatives with respect to \(t\), while maintaining seperation between independent variables established by the product equation \(u(x,t)=\phi(x)G(t)\). Because \(x\) and \(t\) are independent variables, this equation seperated by its independent parts must be a constant. This yields two ODEs in \(x\) and \(t\):
+	The latter equation is reached as a result of the fact that the derivative operation is a linear operator. A consequence of this is that we can equate a linear combination of \(n\)th derivatives of \(u\) with respect to \(x\) with \(n\)th derivatives of \(u\) with respect to \(t\), while maintaining seperation between independent variables established by the product equation \(u(x,t)=\phi(x)G(t)\). Because \(x\) and \(t\) are independent variables, this equation seperated by its independent parts must be a constant. This yields two ODEs in \(x\) and \(t\):
 	\begin{IEEEeqnarray*}{l}
 		\diff[2]{\phi}{x}=-\lambda\phi\\
 		\diff{G}{t}=-\lambda kG
 	\end{IEEEeqnarray*}
-	To meet boundary conditions, either \(G(t)=0\) in which case \(u(x,t)=0\), or \(\phi(0)\text{ and }\phi(L)=0\). In the latter case if \(G(t)\neq 0\) then \(G(t)=ce^{-\lambda kt}\). Next, we solve the ODE with homogenous boundary conditions for \(\phi(x)\).
+	From here, boundary conditions determine solutions to our two ODEs. The homogeniety of the boundary conditions allows us to superimpose all possible solutions of \(u\), which through the nature of our solutions and fourier series means we can represent a wide range of initial conditions. To find all possible solutions for \(u\), we analyse the effect different values of \(\lambda\) have on our ODE solutions. If \(\lambda>0\), solutions for \(\phi(x)\) are of the form
 	\begin{IEEEeqnarray*}{l}
-		\diff[2]{\phi}{x}=-\lambda\phi\\
-		\phi(0)=0,\phi(L)=0
+		\diff[2]{\phi}{x}=-\lambda\phi,\quad\phi(0)=0,\phi(L)=0\\
+		\phi(x)=C_1\cos(\sqrt{\lambda}x)+C_2\sin(\sqrt{\lambda}x),
 	\end{IEEEeqnarray*}
-	Obviously, there is the trivial solution for \(\phi\). Nontrivial solutions exist for values of \(\lambda\) called eigenvalues. Such nontrivial solutions are called eigenfunctions, which correspond to their particular eigenvalue. This equation has two independent solutions in the form of exponentials \(\phi=e^{rx}\). The roots \(r\) are as follows:
-\begin{enumerate}
-	\item\(\lambda>0,\;r=\pm i\sqrt{\lambda}\).
-	\item\(\lambda=0,\;r=0\).
-	\item\(\lambda<0,\;r=\pm\sqrt{-\lambda}\).
-\end{enumerate}
-For \(\lambda>0\), \(r\) is imaginary and thus
-\begin{equation*}
-	\phi=c_1\text{cos}\,\sqrt{\lambda}x+c_2\text{sin}\,\sqrt{\lambda}x.
-\end{equation*}
-To meet boundary conditions, \(c_1=0\) and \(0=c_2\text{sin}\,\sqrt{\lambda}L\). The eigenvalues that satisfy this initial condition are
-\begin{equation*}
-	\lambda=\bigg(\frac{n\pi}{L}\bigg)^2,\quad n=1,2,\ldots.
-\end{equation*}
-For \(\lambda\leq 0\), \(\phi=c_1+c_2x\) which with these boundary conditions is the trivial solution. For this problem with \(\lambda\leq 0\), \(\phi\) is the trivial solution. Thus, product solutions of the heat equation are
-\begin{equation*}
-	u(x,t)=B\text{sin}\,\frac{n\pi x}{L}e^{-k(n\pi/L)^2}t,\quad n=1,2,\ldots,
-\end{equation*}
-with \(B\) an arbitrary constant.
+and solutions for \(G(t)\) are of the form
+	\begin{IEEEeqnarray*}{l}
+		\diff{G}{t}=-k\lambda G\\
+		G(t)=C_3e^{-k\lambda t}.
+	\end{IEEEeqnarray*}
+	From here, we see that values of \(\lambda>0\) that meet our boundary conditions are of the form \(\lambda=(n\pi/L)^2,\,n\in\mathbb{N}\setminus\{0\}\), and that \(C_1=0\) for \(\phi\). Therefore if \(\lambda>0\),
+	\begin{equation*}
+		u(x,t)=B\sin\bigg(\frac{n\pi}{L}x\bigg)e^{-k(n\pi/L)^2t}.
+	\end{equation*}
+	If \(\lambda=0\) then \(\phi(x)=C_1x+C_2\) and \(G(t)=C_3\), so to meet boundary conditions \(u(x,t)=0\). If \(\lambda<0\) then \(\phi(x)\) and \(G(t)\) are both exponentials multiplied by arbitrary constants, so to meet boundary conditions \(u(x,t)=0\). Therefore for this BVP, nontrivial solutions exist for values of \(\lambda>0\). Such \(\lambda\) are called eigenvalues, and their corresponding solutions are called eigenfunctions.
 \subsection{Superposition}
 Using the principle of superposition, we see that for solutions \(u_1,\ldots,u_M\), any linear combination of these solutions is itself a solution. Utilizing the theory of Fourier series, we know that
 \begin{enumerate}
-	\item Most functions can be approximated by a finite linear combination of \(\text{sin}\,n\pi x/L\).
+	\item Most functions can be approximated by a finite linear combination of \(\sin\,n\pi x/L\).
 	\item This approximation becomes arbitrarily accurate as \(M\) increases.
-	\item As \(M\) approaches infinity, the resulting infinite series converges to \(f(x)\), with some restrictions of \(f(x)\).
+	\item As \(M\) approaches infinity, the resulting infinite series converges to \(f(x)\), with some restrictions on \(f(x)\).
 \end{enumerate}
 Thus for most initial conditions \(f(x)\),
 \begin{equation*}
-	f(x)=\sum_{n=1}^{\infty}B_n\text{sin}\frac{n\pi x}{L}.
+	f(x)=\sum_{n=1}^{\infty}B_n\sin\frac{n\pi x}{L}.
 \end{equation*}
 Therefore,
 \begin{equation}
 	\label{forsereq}
-	u(x,t)=\sum_{n=1}^{\infty}B_n\text{sin}\,\frac{n\pi x}{L}e^{-k(n\pi/L)^2t}.
+	u(x,t)=\sum_{n=1}^{\infty}B_n\sin\,\frac{n\pi x}{L}e^{-k(n\pi/L)^2t}.
 \end{equation}
-\begin{proposition}
+\begin{proposition}[Orthogonality relation]
 	\label{orthofsins}
-	Eigenfunctions \(\text{sin}\,\frac{n\pi x}{L}\) satisfy the following property:
-	\begin{equation*}
-		\int_0^L\text{sin}\,\frac{n\pi x}{L}\text{sin}\,\frac{m\pi x}{L}dx=
+	Functions \(\sin\,\frac{n\pi x}{L}\) and \(\cos\) satisfy the following relation:
+	\begin{IEEEeqnarray*}{l}
+		\int_0^L\sin\frac{n\pi x}{L}\sin\frac{m\pi x}{L}dx=
 		\begin{cases}
 			0,&m\neq n\\L/2,&m=n
-		\end{cases}
-	\end{equation*}
-	In other words, solutions of differential equations using the product method form an orthogonal set of functions.
+		\end{cases}\\
+		\\
+		\int_0^L\cos\frac{n\pi x}{L}\cos\frac{m\pi x}{L}dx=
+		\begin{cases}
+			0,&n\neq m\\L/2,&n=m\neq0\\L,&n=m=0
+		\end{cases}\\
+		\int_0^L\cos\frac{n\pi x}{L}\sin\frac{m\pi x}{L}dx=0
+	\end{IEEEeqnarray*}
 \end{proposition}
 \noindent We can use proposition \ref{orthofsins} to calculate the coefficient \(B_m\) in equation \ref{forsereq} by way of the following equation:
 \begin{equation*}
-	B_m=\frac{2}{L}\int_0^Lf(x)\text{sin}\frac{m\pi x}{L}dx.
+	B_m=\frac{2}{L}\int_0^Lf(x)\sin\frac{m\pi x}{L}dx.
 \end{equation*}
 \end{document}

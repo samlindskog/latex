@@ -117,4 +117,64 @@ top=20mm,
 \begin{definition}[Exponentiation for natural numbers]
 	Let \(m\in\mathbb{N}\). \(m^0\coloneq 1\), and \(m^{n++}=m^n\times m\).
 \end{definition}
+\section{Set theory}
+\subsection{Fundamentals}
+\begin{definition}[Axioms of sets]
+	\,
+	\begin{enumerate}
+		\item (Sets are objects) If \(A\) is a set, then \(A\) is also an object. In particular, given two sets \(A\) and \(B\), it is meaningful to ask whether \(A\) is also an element of \(B\).
+		\item (Equality of sets) Two sets \(A\) and \(B\) are equal iff every element of \(A\) is an element of \(B\) and vice versa.
+		\item (Empty set) There exists a set known as the empty set, denoted \(\emptyset\), which contains no elements. In other words, for all objects \(x\) we have \(x\notin\emptyset\).
+		\item (Singleton sets) If \(a\) is an object, then there exists a set \(\{a\}\) whose only element is \(a\), i.e. for every object \(y\) we have \(y\in\{a\}\) iff \(y=a\). \(\{a\}\) is referred to as a singleton set.
+		\item (Pairwise union) Given any two sets \(A\) and \(B\), there exists a set \(A\cup B\), called the union of \(A\) and \(B\), which consists of all the elements which belong to \(A\) or \(B\). In other words,
+			\begin{equation*}
+				x\in A\cup B\Leftrightarrow(x\in A\vee x\in B).
+			\end{equation*}
+		\item (Axiom of specification) Let \(A\) be a set, and for each \(x\in A\) let \(P(x)\) be a property pertaining to \(x\). Then there exists a set \(\{x\in A\,|\,P(x)\}\) whose elements are precisely the elements \(x\) in \(A\) for which \(P(x)\) is true.
+		\item (Replacement) Let \(A\) be a set. For any object \(x\in A\) and any object \(y\), suppose we have a property \(P(x,y)\) that is true for at most one \(y\) for each \(x\in A\). Then
+			\begin{equation*}
+				z\in\{y\,|\,P(x,y),\, x\in A\}\Leftrightarrow P(x,z).
+			\end{equation*}
+		\item (Infinity) There exists a set \(\mathbb{N}\), whose elements are called natural numbers, as well as an object \(0\in\mathbb{N}\), and an object \(N++\) assigned to every natural number \(n\in\mathbb{N}\), such that the Peano axioms hold.
+	\end{enumerate}
+\end{definition}
+\begin{lemma}
+	Let \(A\) be a non-empty set. Then there exists an object \(x\) such that \(x\in A\).
+\end{lemma}
+\begin{definition}[Subset]
+	Let \(A,B\) be sets. We say that \(A\) is a subset of \(B\), denoted \(A\subseteq B\), iff every element of \(A\) is also an element of \(B\). We say that \(A\) is a proper subset of \(B\), denoted \(A\subsetneq B\), if \(A\subseteq B\) and \(A\neq B\).
+\end{definition}
+\begin{definition}[Intersection]
+	The intersection \(S_1\cap S_2\) of two sets is defined to be the set
+	\begin{equation*}
+		S_1\cap S_2\coloneq\{x\in S_1\,|\,x\in S_2\}.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Disjoint]
+	Two sets are disjoint if \(A\cap B=\emptyset\).
+\end{definition}
+\begin{definition}[Difference set]
+	If \(A\) and \(B\) are sets, the set \(A\setminus B\) is the set \(A\) with any elements of \(B\) removed, i.e.
+	\begin{equation*}
+		A\setminus B\coloneq\{x\in A\,|\,x\notin B\}.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	Let \(A,B,C\) be subsets of set \(X\).
+	\begin{enumerate}
+		\item (Minimal element) \(A\cup\emptyset=A\) and \(A\cap\emptyset=\emptyset\).
+		\item (Maximal element) \(A\cup X=X\) and \(A\cap X=A\).
+		\item (Identity) \(A\cap A=A\) and \(A\cup A=A\).
+		\item (Commutativity) \(A\cup B=B\cup A\) and \(A\cap B=B\cap A\).
+		\item (Associativity) \((A\cup B)\cup C=A\cup(B\cup C)\) and \((A\cap B)\cap C=A\cap(B\cap C)\).
+		\item (Distributivity) \(A\cap (B\cup C)=(A\cap B)\cup(A\cap C)\) and \(A\cup(B\cap C)=(A\cup B)\cap(A\cup C)\).
+		\item (Partition) \(A\cup(X\setminus A)=X\) and \(A\cap (X\setminus A)=\emptyset\).
+		\item (De Morgan Laws) \(X\setminus(A\cup B)=(X\setminus A)\cap(X\setminus B)\) and \(X\setminus (A\cap B)=(X\setminus A)\cup(X\setminus B)\).
+	\end{enumerate}
+\end{proposition}
+\subsection{Functions}
+\begin{definition}[Function]
+	
+\end{definition}
 \end{document}
+

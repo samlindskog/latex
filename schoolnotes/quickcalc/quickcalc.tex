@@ -19,9 +19,201 @@ top=20mm,
 \clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
-
-\section{Section 1}
-\subsection{Subsection 1}
+TODO: binomial theorem, cosh sinh, complete the square, difference of squares, partial fractions, 2.3 epsilon delta proofs
+\section{Chapter 2: Limits and continuity}
+\subsection{Rates of change and tangent lines to curves}
+\begin{definition}[Average rate of change]
+	The average rate of change of \(y=f(x)\) with respect to \(x\) over the interval \([x_1,x_2]\) is
+	\begin{equation*}
+		\frac{\Delta y}{\Delta x}=\frac{f(x_2)-f(x_1)}{x_2-x_1}=\frac{f(x_1+h)-f(x_1)}{h},\quad h\neq 0.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Secant line]
+	A line joining two points of a curve is called a secant line.
+\end{definition}
+\begin{remark}
+	The average rate of change of \(f\) from \(x_1\) to \(x_2\) is the slope of the secant line between these points.
+\end{remark}
+\subsection{Limit of a function and limit laws}
+\begin{definition}[Limit]
+	Let \(f(x)\) be defined on an open interval about \(c\). We say that the limit of \(f(x)\) as \(x\) approaches \(c\) is the number \(L\), and write
+	\begin{equation*}
+		\lim_{x\rightarrow c}f(x)=L,
+	\end{equation*}
+	if for every number \(\epsilon>0\) there exists \(\delta>0\) such that
+	\begin{equation*}
+		0<\abs{x-c}<\delta \Rightarrow \abs{f(x)-L}<\epsilon.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Limit laws]
+	\label{limitlaws}
+	If \(L,M,c,k\) are real numbers and \(\lim_{x\rightarrow c}f(x)=L\) and \(\lim_{x\rightarrow c}g(x)=M\), then
+	\begin{IEEEeqnarray*}{ll}
+		\text{Sum Rule:}&\lim_{x\rightarrow c}(f(x)+g(x))=L+M\\
+		\text{Difference Rule:}&\lim_{x\rightarrow c}(f(x)-g(x))=L-M\\
+		\text{Constant Multiple Rule:}\quad&\lim_{x\rightarrow c}(k\cdot f(x))=k\cdot L\\
+		\text{Product Rule:}&\lim_{x\rightarrow c}(f(x)\cdot g(x))=L\cdot M\\
+		\text{Quotient Rule:}&\lim_{x\rightarrow c}\frac{f(x)}{g(x)}=\frac{L}{M},\quad M\neq 0\\
+		\text{Power Rule:}&\lim_{x\rightarrow c}[f(x)]^n=L^n,\quad n\in\mathbb{Q}^+
+	\end{IEEEeqnarray*}
+	If \(n\) is even, we assume that \(f(x)\geq 0\) for \(x\) in an interval containing \(c\).
+\end{definition}
+\begin{theorem}
+	If \(P(x)\) is some polynomial \(a_n x^n+a_{n-1}x^{n-1}+\ldots+a_0\), then
+	\begin{equation*}
+		\lim_{x\rightarrow c}P(x)=P(c).
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	If \(P(x)\) and \(Q(x)\) are polynomials and \(Q(c)\neq 0\), then
+	\begin{equation*}
+		\lim_{x\rightarrow c}\frac{P(x)}{Q(x)}=\frac{P(c)}{Q(c)}.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}[Sandwich theorem]
+	Suppose that \(g(x)\leq f(x)\leq h(x)\) for all \(x\) in some open interval containing \(c\), except possibly at \(x=c\) itself. Suppose also that
+	\begin{equation*}
+		\lim_{x\rightarrow c}g(x)=\lim_{x\rightarrow c}h(x)=L.
+	\end{equation*}
+	Then \(\lim_{x\rightarrow c}f(x)=L\).
+\end{theorem}
+\subsection{One-sided limits}
+\begin{definition}[Right limit]
+	Assume the domain of \(f\) contains an interval \((c,d)\) to the right of \(c\). We say that \(f(x)\) has a right-handed limit \(L\) at \(c\) and write
+	\begin{equation*}
+		\lim_{x\rightarrow c^+}f(x)=L
+	\end{equation*}
+	if for all \(\epsilon>0\) there exists \(\delta>0\) such that
+	\begin{equation*}
+		c<x<c+\delta \abs{f(x-L)}<\epsilon.
+	\end{equation*}
+\end{definition}
+\subsection{Continuity}
+\begin{definition}[Continuity]
+	Let \(c\) be a real number that is in the interval of the domain of a function \(f\). \(f\) is continuous at \(c\) if
+	\begin{equation*}
+		\lim_{x\rightarrow c}f(x)=f(c).
+	\end{equation*}
+	\(f\) is right-continuous at \(c\) if
+	\begin{equation*}
+		\lim_{x\rightarrow c^+}f(x)=f(c.)
+	\end{equation*}
+	\(f\) is left-continuous at \(c\) if
+	\begin{equation*}
+		\lim_{x\rightarrow c^-}f(x)=f(c).
+	\end{equation*}
+\end{definition}
+\begin{remark}
+	If a function is not continuous at a point \(c\) of its domain, we say that \(f\) is discontinuous at \(c\), and that \(f\) has a discontinuity at \(c\).
+\end{remark}
+\begin{proposition}[Continuity test]
+	A function \(f(x)\) is continuous at a point \(x=c\) iff it meets the following three conditions:
+	\begin{enumerate}
+		\item \(f(c)\) exists.
+		\item \(\lim_{x\rightarrow c}f(x)\) exists.
+		\item \(\lim_{x\rightarrow c}f(x)=f(c)\).
+	\end{enumerate}
+\end{proposition}
+\begin{definition}[Continuous function]
+	A function is continous if it is continous at every point in its domain.
+\end{definition}
+\begin{theorem}
+	If the function \(f\) and \(g\) are continous at \(x=c\), then the following algebraic combination are continous at \(x=c\).
+	\begin{IEEEeqnarray*}{l}
+		f+g\\
+		f-g\\
+		k\cdot f,\; k\in\mathbb{R}\\
+		f\cdot g\\
+		f/g,\; g(c)\neq 0\\
+		f^n,\; n\in\mathbb{N}^+\\
+		f^{1/n},\;\text{ if defined on an interval containing } c.
+	\end{IEEEeqnarray*}
+\end{theorem}
+\begin{theorem}
+	If \(\lim_{x\rightarrow c}f(x)=b\) and \(g\) is continous at the point \(b\), then
+	\begin{equation*}
+		\lim_{x\rightarrow c}g(f(x))=g(b).
+	\end{equation*}
+\end{theorem}
+\begin{theorem}[Intermediate value theorem for continuous functions]
+	If \(f\) is a continous function on a closed interval \([a,b]\), and if \(y_0\) is any value between \(f(a)\) and \(f(b)\), then \(y_0=f(c)\) for some \(c\in[a,b]\).
+\end{theorem}
+\subsection{Limits involving infinity}
+\begin{definition}[Limits approaching infinity]
+	We say that \(f(x)\) has the limit \(L\) as \(x\) approaches infinity and write
+	\begin{equation*}
+		\lim_{x\rightarrow\infty}f(x)=L
+	\end{equation*}
+	if, for all \(\epsilon>0\) there exists \(M\) such that for all \(x\) in the domain of \(f\)
+	\begin{equation*}
+		x>M\Rightarrow \abs{f(x)-L}<\epsilon
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	Theorem \ref{limitlaws} applies to limits that appraoch infinity.
+\end{theorem}
+\begin{definition}[Horizontal asymptote]
+	A line \(y=b\) is a horizontal asymptote of a graph of a function \(y=f(x)\) if either
+	\begin{equation*}
+		\lim_{x\rightarrow\infty}f(x)=b\text{ or }\lim_{x\rightarrow -\infty}f(x)=b.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Infinite limits]
+	We say that \(f(x)\) approaches infinity as \(x\) approaches \(c\) and write
+	\begin{equation*}
+		\lim_{x\rightarrow c}=\infty,
+	\end{equation*}
+	if for every number \(B>0\) there exists \(\delta>0\) such that
+	\begin{equation*}
+		0<\abs{x-c}<\delta\Rightarrow f(x)>B.
+	\end{equation*}
+\end{definition}
+\begin{definition}
+	A line \(x=a\) is a vertical asymptote of the graph of a function \(y=f(x)\) if either
+	\begin{equation*}
+		\lim_{x\rightarrow a^+}f(x)=\pm\infty\text{ or }\lim_{x\rightarrow a^-}f(x)=\pm\infty.
+	\end{equation*}
+\end{definition}
+\section{Chapter 3: Derivatives}
+\subsection{Tangent lines and the derivative}
+\begin{definition}[Tangent line]
+	The slope of the curve \(y=f(x)\) at the point \(P(x_0,f(x_0))\) is the number
+	\begin{equation*}
+		\lim_{h\rightarrow 0}\frac{f(x_0+h)-f(x_0)}{h},
+	\end{equation*}
+	provided the limit exists. The tangent line to the curve at \(P\) is the line through \(P\) with this slope.
+\end{definition}
+\begin{definition}[Derivative]
+	The derivative of a function \(f\) at a point \(x_0\), denoted \(f'(x_0)\), is
+	\begin{equation*}
+		f'(x_0)=\lim_{h\rightarrow 0}\frac{f(x_0+h)-f(x_0)}{h},
+	\end{equation*}
+	provided this limit exists.
+\end{definition}
+\begin{definition}[Differentiability]
+	A function \(y=f(x)\) is differentiable on an open interval if it has a derivative at each point of the interval. It is differentiable on a closed interval \([a,b]\) if it is differentiable on the interior \((a,b)\) and if the right/left hand limits of the derivative exist on the left/right side of the interval respectively.
+\end{definition}
+\begin{theorem}
+	If \(f\) has a derivative at \(x=c\), then \(f\) is continuous at \(x=c\).
+\end{theorem}
+\section{Chapter 10: Parametric equations}
+\subsection{Parametrizations of plane curves}
+\begin{definition}[Parametric curve]
+	If \(x\) and \(y\) are given as functions of \(t\)
+	\begin{equation*}
+		x=f(t),\quad y=g(t),
+	\end{equation*}
+	over an interval \(I\) of \(t\)-values, then the set of points \((x,y)=(f(t),g(t))\) is a parametric curve. These equations are called parametric equations for the curve.
+\end{definition}
+\begin{remark}
+	The variable \(t\) is a parameter for the curve, and its domain \(I\) is the parameter interval. When we give parametric equations for a curve, we say that we have parameterized the curve. The equations and interval together constitute a parametrization of the curve.
+\end{remark}
+\subsection{Calculus with parametric curves}
+\begin{remark}
+A parametrized curve \(x=f(t)\) and \(y=g(t)\) is differentiable at \(t\) if \(f\) and \(g\) are differentiable at \(t\).
+\end{remark}
+\section{Multiple integrals}
+\subsection{Double integrals over rectangles}
 \begin{theorem}[Fubini's theorem]
 	Let \(f(x,y)\) be continuous on a region \(R\).
 	\begin{enumerate}
@@ -37,6 +229,8 @@ top=20mm,
 		A=\iint_R dA.
 	\end{equation*}
 \end{proposition}
+\section{Line integrals}
+\subsection{Line integrals}
 \begin{definition}[Path independence]
 	Let \(\textbf{F}\) be a vector field defined on an open region \(D\) in space, and suppose that for any two points \(A\) and \(B\) in \(D\) the line integral \(\int_C \textbf{F}\cdot d\textbf{r}\) along a path \(C\) from \(A\) to \(B\) in \(D\) is the same over all paths from \(A\) to \(B\). Then the integral \(\int_C\textbf{F}\cdot d\textbf{r}\) is path independent in \(D\) and the field \(\textbf{F}\) is conservative in \(D\).
 \end{definition}

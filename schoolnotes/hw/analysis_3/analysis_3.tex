@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{IEEEtrantools}
+
+
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\begin{document}
+
+
+\theoremstyle{definition}\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}\newtheorem{corrolary}{Corollary}
+\theoremstyle{definition}\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}\newtheorem{problem}{Problem}
+\theoremstyle{remark}\newtheorem*{notation}{Notation}
+
+\title{HW3}
+\author{Samuel Lindskog}
+\maketitle
+\subsection*{Problem 1}
+Show \((A\setminus B)\cup (B\setminus A)=(A\cup B)\setminus(A\cap B)\).
+\medbreak
+\begin{IEEEproof}
+	Suppose \(A,B\) are sets and \(X=A\cup B\). If \(a\in X\setminus A\), it follows from the definition of intersection, union, and difference sets that
+	\begin{IEEEeqnarray*}{rCl}
+		a\in X\setminus A&\Leftrightarrow&a\in (A\cup B)\setminus A\\
+		&\Leftrightarrow&(a\in A\vee a\in B)\wedge a\notin A\\
+		&\Leftrightarrow&(a\in A \wedge a\notin A)\vee (a\in B\wedge a\notin A)\\
+		&\Leftrightarrow&a\in B\wedge a\notin A\\
+		&\Leftrightarrow&a\in B\setminus A.
+	\end{IEEEeqnarray*}
+	Therefore wlog \(X\setminus A=B\setminus A\) and \(X\setminus B=A\setminus B\). Because \(A\subseteq X\) and \(B\subseteq X\), we can use De Morgan's laws to see \((A\setminus B)\cup(B\setminus A)=(X\setminus B)\cup (X\setminus A)=X\setminus(A\cap B)=(A\cup B)\setminus(A\cap B)\).
+\end{IEEEproof}
+\subsection*{Problem 2}
+Let \(f:X\rightarrow Y\) and \(g:Y\rightarrow Z\) be functions. Show that if \(f\) and \(g\) are bijective, then so is \(g\circ f\), and we have \((g\circ f)^{-1}=f^{-1}\circ g^{-1}\).
+\medbreak
+\begin{IEEEproof}
+	Suppose \(f:A\rightarrow B\) and \(g:B\rightarrow C\) are bijective functions. If \(a,a'\in A\) with \(a'\neq a\), it follows from the bijectivity of \(f\) and \(g\) that \(f(a)\neq f(a')\) and thus \(g(f(a))\neq g(f(a'))\). Therefore \(g\circ f\) is injective. Because \(f\) and \(g\) are surjective, \(g^{-1}(C)=B\) and \(f^{-1}(g^{-1}(C))=A\), so \(g\circ f\) is surjective and thus bijective. Every value in the codomain of \(f\) and \(g\) is mapped to by exactly one element in the domain of their respective functions. As a result of this the inverse functions of \(f\) and \(g\) exist and are given by
+	\begin{IEEEeqnarray*}{l}
+		f^{-1}:B\rightarrow A,\quad f(a)\mapsto a,\\
+		g^{-1}:C\rightarrow B,\quad g(b)\mapsto b.
+	\end{IEEEeqnarray*}
+	These functions are injective as stated above, and surjective due to the fact that \(f\) and \(g\) are defined on their entire domain. Following the reasoning above, \(f^{-1}\circ g^{-1}\) is a bijective function, with \(g(f(f^{-1}(g^{-1}(c))))=c\) for \(c\in C\). Therefore \((g\circ f)^{-1}=f^{-1}\circ g^{-1}\).
+\end{IEEEproof}
+\subsection*{Problem 3}
+Let \(X,Y,Z\) be sets. Then \(X\) has equal cardinality with \(X\). If \(X\) has equal cardinalit with \(Y\), then \(Y\) has equal cardinality with \(X\). If \(X\) has equal cardinality with \(Y\) and \(Y\) has equal cardinality with \(Z\), then \(X\) has equal cardinality with \(Z\).
+\medbreak
+\begin{IEEEproof}
+	Suppose for a function \(f:A\rightarrow B\) an inverse \(f^{-1}:B\rightarrow A\) exists. If \(f\) not injective, then there exists \(a,a'\in A\) with \(a\neq a'\) such that \(f(a)=f(a')\). But \(f^{-1}(f(a))\neq f^{-1}(f(a'))\), which contradicts the definition of a function. Because \(f^{-1}\) is defined on every \(b\in B\), and is the unique element for which \(f\) maps to from some \(a''\in A\), then \(f\) surjective, and is thus bijective
+	\smallbreak
+	The inverse function of the identity function on \(X\) is the identity function, therefore a bijection exists between \(X\) and \(X\) and \(\lvert X\rvert=\lvert X\rvert\). If \(X\) has equal cardinality with \(Y\), then a bijection \(f\) exists from \(X\) to \(Y\), and thus an inverse function \(f^{-1}\) exists from \(Y\) to \(X\). This inverse function maps each element in the codomain of the original function to a unique element in the domain from which \(f\) maps to that codomain element. This makes \(f^{-1}\) injective, and surjectivity follows from the fact that \(f\) is defined on its entire domain. Therefore \(f^{-1}Y\rightarrow X\) is bijective and \(\lvert Y\rvert=\lvert X\rvert\). If \(\lvert X\rvert=\lvert Y\rvert=\lvert Z\rvert\), the composition of bijective functions is bijective, so bijective functions \(f\) from \(X\) to \(Y\) and \(g\) from \(Y\) to \(Z\) exist. Define a function \(g\circ f:X\rightarrow Z\) by \(x\mapsto g(f(x))\). It follows from problem 2 that this is a bijective function, so \(\lvert X\rvert=\lvert Z\rvert\).
+\end{IEEEproof}
+\subsection*{Problem 4}
+Let \(A\) and \(B\) be sets. Show that \(A\times B\) and \(B\times A\) have equal cardinality by constructing an explicity bijection between these two sets. Then use cardinal arithmetic to prove commutivity of multiplication.
+\medbreak
+\begin{IEEEproof}
+\end{IEEEproof}
+\end{document}

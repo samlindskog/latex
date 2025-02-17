@@ -23,7 +23,7 @@ top=20mm,
 \section{Flows on the line}
 \subsection{Introduction}
 \begin{definition}[Fixed points]
-	A fixed point on a phase diagram is a point in which there is no flow, i.e. \(x'=0\). Fixed points represent equilibrium solutions.
+	A fixed point on a phase diagram is a point in which there is no flow, i.e. \(x'=0\). Fixed points represent equilibrium solutions, and are denoted with an asterisk \(x^*\).
 \end{definition}
 \begin{definition}[Phase point]
 	A phase point is an imaginary particle placed at a point \(x_0\) from which we can observe how it is carried along with the "flow". As time increases, the phase point moves along the \(x\)-axis according to some function \(x(t)\). \(x(t)\) is called the trajectory based at \(x_0\).
@@ -36,4 +36,46 @@ top=20mm,
 	\end{IEEEeqnarray*}
 	If \(f(x)\) and \(f'(x)\) are continuous on an open interval \(R\) of the \(x\)-axis, and \(x_0\in R\), then the initial value problem has a unique solution on some time interval \(-\tau,\tau\) about \(t=0\).
 \end{theorem}
+\begin{remark}
+	In a first-order system, trajectories can either approach a fixed point, or diverge to infinity. Trajectories are forced to increase or decrease monotonically because \(x'\) can not hold two values for the same \(x\). This means that phase points never 'overshoot' a fixed point to which its path converges. Therefore there are no periodic solutions to \(x'=f(x)\).
+\end{remark}
+\begin{definition}[Potentials]
+	In a first-order system \(x'=f(x)\), the potential function \(V(x)\) is defined by
+	\begin{equation*}
+		f(x)=-\frac{dV}{dx}
+	\end{equation*}
+\end{definition}
+\begin{remark}
+	Using the chain rule, we can see
+	\begin{IEEEeqnarray*}{rCl}
+		\frac{dV}{dt}&=&\frac{dV}{dx}\frac{dx}{dt}\\
+		&=&-\bigg(\frac{dV}{dx}\bigg)^2\\
+		&\leq&0
+	\end{IEEEeqnarray*}
+	Therefore potential decreases or stays constant along trajectories.
+\end{remark}
+\begin{proposition}[Euler's method]
+	Suppose \(x'=f(x)\) a one-dimensional dynamical system. Eulers method is a way of estimating \(x(t)\) at discreet times spaced \(\Delta t\) apart. We define \(x_n\) to be the approximate value of \(x(t)\) at \(n\Delta t\) by choosing a starting point \(x_0\), and using the following recursive definition to find any \(x_n\):
+	\begin{equation*}
+		x_{n+1}=x_n+f(x_n)\Delta t.
+	\end{equation*}
+\end{proposition}
+\subsection{Bifurcations}
+\begin{definition}[Bifurcation]
+	A bifurcation is a change in the qualitative structure of the flow caused by changing a parameter in an equation. The values at which bifurcations occur are called bifurcation points.
+\end{definition}
+\begin{definition}[Saddle-node bifurcation]
+	This is a bifurcation presents as fixed points colliding and annihilating as a parameter is varied. An example of this is increasing parameter \(r\) in the equation \(x'=r+x^2\). When \(r<0\) this equation has two zeros in the phase plane and thus two fixed points. When \(r=0\) \(x(t)\) has one phase point and when \(r>0\) there are no phase points.
+\end{definition}
+\clearpage
+\begin{definition}[Normal form]
+	The normal form of a bifurcation is the prototypical presentation of that bifurcation. For example, the partial taylor expansion of a function with a saddle-node bifurcation at \(x=x^*\) and \(r=r_c\) presents as the normal form of a saddle bifurcation
+	\begin{equation*}
+		f(x^*,r_c)+(x-x^*)\diffp{f}{x}(x^*,r_c)+(r-r_c)\diffp{f}{r}(x^*,r_c)+\frac{1}{2}(x-x_0)^2\diffp[2]{f}{x}(x^*,r_c).
+	\end{equation*}
+	Because \(\diffp{f}{x}(x^*,r_c)=0\) and \(f(x^*,r_c)=0\) at the bifurcation point, this equation can then be written in normal form
+	\begin{equation*}
+		(r-r_c)\diffp{f}{r}(x^*,r_c)+\frac{1}{2}(x-x^*)^2\diffp[2]{f}{x}(x^*,r_c).
+	\end{equation*}
+\end{definition}
 \end{document}
