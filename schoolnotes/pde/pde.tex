@@ -182,4 +182,48 @@ Therefore,
 \begin{equation*}
 	B_m=\frac{2}{L}\int_0^Lf(x)\sin\frac{m\pi x}{L}dx.
 \end{equation*}
+\section{Fourier series}
+\subsection{Introduction}
+\begin{definition}[Piecewise smooth]
+	A function is piecewise smooth on some interval if the interval can be broken up into pieces such that in each piece the function \(f(x)\) is continuous, and its derivative is also continuous. The function \(f(x)\) may not be continuous, in which case the only discontinuity allowed is a jump discontinuity.
+\end{definition}
+\begin{definition}[Fourier series]
+	The Fourier series of \(f(x)\) over the interval \(-L\leq x\leq L\) is defined to be the infinite series
+	\begin{equation*}
+		f(x)\sim a_0+\sum_{n=1}^{\infty}a_n\cos\frac{n\pi x}{L}+\sum_{n=1}^{\infty}b_n\frac{n\pi x}{L}.
+	\end{equation*}
+	Coefficients \(a_0,a_n,b_n\) are determined using the orthogonality integrals
+	\begin{IEEEeqnarray*}{rCl}
+		a_0&=&\frac{1}{2L}\int_{-L}^{L}f(x)dx\\\\
+		a_n&=&\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}dx\\\\
+		b_n&=&\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}dx
+	\end{IEEEeqnarray*}
+\end{definition}
+\begin{proposition}
+	The Fourier series of \(f(x)\) does not exist unless \(a_0\) exists.
+\end{proposition}
+\begin{theorem}[Fourier's theorem]
+	If \(f(x)\) is piecewise smooth on the interval \(-L\leq x\leq L\), then the Fourier series of \(f(x)\) converges in one of two ways:
+	\begin{enumerate}
+		\item To the periodic extension of \(f(x)\), where the periodic extension is continuous.
+		\item To the average of the two limits, usually \(.5[f(x+)+f(x-)]\), where the period extension has a jump discontinuity at \(x\).
+	\end{enumerate}
+\end{theorem}
+\subsection{Fourier cosine and sine series}
+\begin{definition}[Odd function]
+	An odd function is a function with the property \(f(-x)=-f(x)\).
+\end{definition}
+\begin{proposition}
+	The integral of an odd function over an interval symmetric about zero is zero.
+\end{proposition}
+\begin{proposition}
+	Any function can be written as
+	\begin{equation*}
+		f(x)=\frac{1}{2}[f(x)+f(-x)]+\frac{1}{2}[f(x)-f(-x)].
+	\end{equation*}
+	where the first bracketed term is an even function (\(f_e\)), and the second is an odd function (\(f_o\)).
+\end{proposition}
+\begin{lemma}
+	The Fourier series of \(f(x)\) equals the Fourier sine series of \(f_o(x)\) plus the Fourier cosine series of \(f_e(x)\).
+\end{lemma}
 \end{document}

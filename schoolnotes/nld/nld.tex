@@ -64,6 +64,9 @@ top=20mm,
 \begin{definition}[Bifurcation]
 	A bifurcation is a change in the qualitative structure of the flow caused by changing a parameter in an equation. The values at which bifurcations occur are called bifurcation points.
 \end{definition}
+\begin{remark}
+	Bifurcation diagrams plot fixed points on the vertical axis against parameter values \(r\) on the horizontal axis. Dashed lines represent unstable fixed points, where solid lines represent stable ones.
+\end{remark}
 \begin{definition}[Saddle-node bifurcation]
 	This is a bifurcation presents as fixed points colliding and annihilating as a parameter is varied. An example of this is increasing parameter \(r\) in the equation \(x'=r+x^2\). When \(r<0\) this equation has two zeros in the phase plane and thus two fixed points. When \(r=0\) \(x(t)\) has one phase point and when \(r>0\) there are no phase points.
 \end{definition}
@@ -77,5 +80,35 @@ top=20mm,
 	\begin{equation*}
 		(r-r_c)\diffp{f}{r}(x^*,r_c)+\frac{1}{2}(x-x^*)^2\diffp[2]{f}{x}(x^*,r_c).
 	\end{equation*}
+\end{definition}
+\begin{definition}[Transcritical bifurcation]
+	A fixed point that exists for all values of a parameter, but whoes stablility changes depending on that parameter, is said to undergo transcritical bifurcation.
+\end{definition}
+\begin{example}
+	Show that the first-order system \(x'=x(1-x^2)-a(1-e^{-bx})\) undergoes a transcritical bifurcation at \(x=0\) when the parameters \(a,b\) satisfy a certain equation.
+	\begin{IEEEproof}
+		\(x=0\) is a fixed point for all (a,b) so it is plausible that the point bifurcates transcritically. Using the second degree taylor expansion for \(x'\), we can estimate the behavior of this function near \(x=0\):
+		\begin{equation*}
+			x'=(1-ba)x+\frac{1}{2}(b^2a)x^2+O(x^3).
+		\end{equation*}
+	From this we see that transcritical bifurcation must occur when \(ba=1\), i.e. when the first derivative of \(x'\) with respect to \(x\) is zero. Using this equation we can estimate the location of fixed points near \(ab=1\) by simplifying the above equation to solve for \(x^*\):
+		\begin{equation*}
+			x^*\approx\frac{2(ba-1)}{b^2a}.
+		\end{equation*}
+	\end{IEEEproof}
+\end{example}
+\begin{example}
+	Describe the behavior of the laser equation \(n'=Gn(N_0-\alpha n)-kn\).
+	\begin{IEEEproof}
+		The change in the number of photons \(n'\) is given by the rate of photon generation \(GnN\) minus the outflow rate \(kn\). This equation has a normal form \(X'=RX-X^2\). The rate of photon generation is proportional to the number of excited atoms \(N=(N_0-\alpha n)\). We can simplify the above equation into two forms which tell us about the nature of the fixed points as \(N_0\) changes.
+		\begin{IEEEeqnarray*}{l}
+			n'=-G\alpha n^2+(GN_0-k)n\\
+			n'=-G\alpha n\bigg(n-\frac{GN_0-k}{G\alpha}\bigg)
+		\end{IEEEeqnarray*}
+		Clearly transcritical bifurcation of fixed point \(n=0\) occurs at \(GN_0-k=0\). This occurs with our intuitive understanding that if the rate of photon egress is larger than photon generation for small \(n\), then no laser action will take place. However if \(GN_0>k\) then the fixed point at \(n=0\) becomes unstable and a stable fixed point emerges, as given by the second equation.
+	\end{IEEEproof}
+\end{example}
+\begin{definition}[Pitchfork bifurcation]
+	Pitchfork bifurcations occur in problems which have symmetry,
 \end{definition}
 \end{document}

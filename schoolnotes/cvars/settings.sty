@@ -32,6 +32,9 @@
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+% remove IEEEproof indent
+\usepackage{etoolbox}
+\patchcmd{\IEEEproofindentspace}{2\parindent}{0pt}{}{}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]

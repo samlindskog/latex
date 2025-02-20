@@ -19,7 +19,6 @@ top=20mm,
 \clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
-\noindent All proofs are original work with hints taken occasionally :). Definitions, theorems, and other material contained within is partially or completely copied, or paraphrased from Complex Analysis by Theodore W. Gamelin.
 \section{Complex numbers}
 \subsection{Fundamental definitions and identities}
 \begin{definition}[Complex number]
@@ -58,7 +57,8 @@ top=20mm,
 		\overbar{zw}=\overbar{z}\overbar{w}\\
 		\overbar{z\overbar{w}}=\overbar{z}w\\
 		\abs{z}=\abs{\overbar{z}}\\
-		\abs{z}^2=z\overbar{z}
+		\abs{z}^2=z\overbar{z}\\
+		\abs{zw}=\abs{z}\abs{w}
 	\end{IEEEeqnarray*}
 \end{proposition}
 \begin{proposition}
@@ -68,7 +68,7 @@ top=20mm,
 		\text{Im}\,z=(z-\overbar{z})/2i
 	\end{IEEEeqnarray*}
 \end{proposition}
-\begin{definition}[Triangle inequality]
+\begin{lemma}[Triangle inequality in \(\mathbb{R}^n\)]
 	Suppose \(a,b\in\mathbb{R}^n\), with \(\abs{a}\) the distance from \(a\) to \(0\) under the euclidean metric. Then
 	\begin{equation*}
 		\abs{a+b}\leq\abs{a}+\abs{b}.
@@ -76,13 +76,28 @@ top=20mm,
 	\begin{IEEEproof}
 		If dot product of two vectors is zero, they are LI. Prove basis exists such that each vector dotted with all vectors in basis is zero (use nullity potentially). if \(a,b\) vectors such that \(b\cdot a=0\), then \(a\cdot(a+b)=a\cdot a\). If \(\abs{a+b}<a\) then \(a\cdot(a+b)<a\cdot a\), so \(\abs{a+b}\geq\abs{a}\). \(\abs{a},\abs{b}\) are both geq than magnitude of their sides made of a scalar multiple of \(a+b\).
 	\end{IEEEproof}
-\end{definition}
+\end{lemma}
 \begin{proposition}
+	\label{modsquared}
 	Let \(a,b\in{\mathbb{C}}\). Then
 	\begin{equation*}
 		\abs{a+b}^2=\abs{a}^2+\abs{b}^2+a\overline{b}+b\overline{a}=\abs{a}^2+\abs{b}^2+2\text{Re}\,a\overline{b}.
 	\end{equation*}
 \end{proposition}
+\begin{lemma}[Triangle inequality in \(\mathbb{C}\)]
+	For \(x,y\in\mathbb{C}\), \(\abs{x+y}\leq\abs{x}+\abs{y}\).
+	\begin{IEEEproof}
+		Suppose \(u,v\in\mathbb{R}\). Then
+		\begin{IEEEeqnarray*}{l}
+			\abs{u+iv}=\sqrt{u^2+v^2}\geq\sqrt{u^2}=\abs{u}\geq u.
+		\end{IEEEeqnarray*}
+		Therefore \(\text{Re}\,x+y\leq\abs{x+y}\) and
+		\begin{IEEEeqnarray*}{l}
+			2\text{Re}\,x\overbar{y}\leq2\abs{x\overbar{y}}=2\abs{xy}=2\abs{x}\abs{y}
+		\end{IEEEeqnarray*}
+		Because \((\abs{x}+\abs{y})^2=\abs{x}^2+\abs{y}^2+2\abs{x}\abs{y}\), it follows from proposition \ref{modsquared} that \((\abs{x}+\abs{y})^2\leq(\abs{x}+\abs{y})^2\), and therefore \(\abs{x+y}\leq\abs{x}+\abs{y}\).
+	\end{IEEEproof}
+\end{lemma}
 \begin{definition}[Cauchy's inequality]
 	\begin{equation*}
 		\bigg\lvert\sum_{i=1}^{n}a_ib_i\bigg\rvert^2\leq\sum_{i=1}^n\abs{a_i}^2+\sum_{i=1}^n\abs{b_i}^2
@@ -106,7 +121,7 @@ top=20mm,
 		e^{2i\theta}=(e^{i\theta})^2\\
 		\cos 2\theta+i\sin 2\theta=\cos^2 \theta+2i\cos \theta\sin \theta-\sin^2 \theta\\
 		\cos 2\theta=\cos^2 \theta-\sin^2 \theta\\
-		\sin 2\theta=2\cos \theta\sin \theta
+		\sin 2\theta=2\cos\theta\sin \theta
 	\end{IEEEeqnarray*}
 \end{definition}
 \begin{definition}[\(n\)th root]
@@ -133,7 +148,7 @@ top=20mm,
 	\begin{equation*}
 		0<\abs{z-z_0}<\delta\Rightarrow \abs{f(z)-w_0}<\epsilon.
 	\end{equation*}
-	This is written as \(\lim_{z\rightarrow z_0}f(z)=w_0\).
+	This is written as \(\lim_{z\rightarrow z_0}f(z)=w_0\). If the domain or range of the function we are taking the limit of is \(\mathbb{R}^n\), the definition remains the same and uses the euclidean metric.
 \end{definition}
 \begin{lemma}
 	The limit of a function is unique.
@@ -141,16 +156,41 @@ top=20mm,
 		Suppose \(f:\mathbb{C}\rightarrow\mathbb{C}\) a function and that \(\lim_{z\rightarrow z_0}f(z)=w_0\) and \(\lim_{z\rightarrow z_0}f(z)=w_1\) with \(w_0\neq w_1\). Because \(w_0\neq w_1\), \(\abs{w_0-w_1}=L>0\). If we take \(\epsilon=L/2\), there exists \(\delta>0\) such that \(\abs{z-z_0}<\delta\Rightarrow \abs{f(z)-w_0}<L/2\,\wedge\,\abs{f(z)-w_1}<L/2\). Because \((z-w_1)+(w_0-z)=w_0-w_1\), by the triangle inequality \(\abs{w_0-w_1}\leq\abs{f(z)-w_0}+\abs{f(z)-w_1}=L\), a contradiction.
 	\end{IEEEproof}
 \end{lemma}
+\clearpage
 \begin{theorem}
 	Suppose \(f(z)=u(x,y)+iv(x,y),\;z=x+iy\), and that \(z_0=x_0+iy_0\) and \(w_0=u_0+iv_0\). Then \(\lim_{z\rightarrow z_0}f(z)=w_0\) iff
-	\begin{equation*}
+	\begin{equation}
+		\label{limreim}
 		\lim_{(x,y)\rightarrow (x_0,y_0)}u(x,y)=u_0\text{ and }
 		\lim_{(x,y)\rightarrow (x_0,y_0)}v(x,y)=v_0.
-	\end{equation*}
-	\begin{IEEEproof}
-		do dis sheit
+	\end{equation}
+	\noindent\begin{IEEEproof}
+		Suppose \(\lim_{z\rightarrow z_0}f(z)=w_0\). Then for all \(\epsilon>0\) there exists \(\delta>0\) such that
+		\begin{IEEEeqnarray*}{l}
+			\abs{(x-x_0)+i(y-y_0)}=\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\\
+			\abs{u(x,y)-u_0+i(v(x,y)-v_0)}=\sqrt{(u(x,y)-u_0)^2+(v(x,y)-v_0)^2}<\epsilon.
+		\end{IEEEeqnarray*}
+		Because \(\sqrt{(u(x,y)-u_0)^2}\leq\sqrt{(u(x,y)-u_0)^2+(v(x,y)+v_0)^2}\),
+		\begin{equation*}
+			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon.
+		\end{equation*}
+		Therefore wlog \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\).
+		\medbreak
+		\noindent Suppose \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\). Then for all \(\epsilon>0\) there exists \(\delta_1,\delta_2>0\) such that
+		\begin{IEEEeqnarray*}{l}
+			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon/2,\\
+			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(v(x,y)-v_0)^2}<\epsilon/2.
+		\end{IEEEeqnarray*}
+		If \(0<\delta<\delta_1,\delta_2\), it follows from the triangle inequality, the definition of \(f\), and the definition of modulus that
+		\begin{equation*}
+			\abs{z-z_0}<\delta\Rightarrow\abs{f(z)-w_0}<\epsilon.
+		\end{equation*}
+		Thus \(\lim_{z\rightarrow z_0}f(z)=w_0\).
 	\end{IEEEproof}
 \end{theorem}
+\begin{remark}
+	Going forward, for \(x,y\in\mathbb{R}^n\), \(d(x,y)\) refers to the euclidean metric.
+\end{remark}
 \begin{theorem}
 	Suppose that
 	\begin{equation*}
