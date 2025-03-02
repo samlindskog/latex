@@ -7,7 +7,6 @@
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
-\usepackage{esdiff}
 \usepackage{IEEEtrantools}
 \usepackage{geometry}
 \usepackage{hyperref}
@@ -33,6 +32,9 @@
 \let\oldnorm\norm
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
+% remove IEEEproof indent
+\usepackage{etoolbox}
+\patchcmd{\IEEEproofindentspace}{2\parindent}{0pt}{}{}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]

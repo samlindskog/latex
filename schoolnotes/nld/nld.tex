@@ -68,7 +68,10 @@ top=20mm,
 	Bifurcation diagrams plot fixed points on the vertical axis against parameter values \(r\) on the horizontal axis. Dashed lines represent unstable fixed points, where solid lines represent stable ones.
 \end{remark}
 \begin{definition}[Saddle-node bifurcation]
-	This is a bifurcation presents as fixed points colliding and annihilating as a parameter is varied. An example of this is increasing parameter \(r\) in the equation \(x'=r+x^2\). When \(r<0\) this equation has two zeros in the phase plane and thus two fixed points. When \(r=0\) \(x(t)\) has one phase point and when \(r>0\) there are no phase points.
+	This is a bifurcation presents as fixed points colliding and annihilating as a parameter is varied. An example of this is increasing parameter \(r\) in the equation \(x'=r+x^2\). When \(r<0\) this equation has two zeros in the phase plane and thus two fixed points. When \(r=0\) \(x(t)\) has one phase point and when \(r>0\) there are no phase points. Saddle-node bifurcation has normal form
+	\begin{equation*}
+		x'=r+x^2\text{ or }x'=r-x^2.
+	\end{equation*}
 \end{definition}
 \clearpage
 \begin{definition}[Normal form]
@@ -82,7 +85,10 @@ top=20mm,
 	\end{equation*}
 \end{definition}
 \begin{definition}[Transcritical bifurcation]
-	A fixed point that exists for all values of a parameter, but whoes stablility changes depending on that parameter, is said to undergo transcritical bifurcation.
+	A fixed point that exists for all values of a parameter, but whoes stablility changes depending on that parameter, is said to undergo transcritical bifurcation. The normal form of a transcritical bifurcation is
+	\begin{equation*}
+		x'=rx-x^2.
+	\end{equation*}
 \end{definition}
 \begin{example}
 	Show that the first-order system \(x'=x(1-x^2)-a(1-e^{-bx})\) undergoes a transcritical bifurcation at \(x=0\) when the parameters \(a,b\) satisfy a certain equation.
@@ -108,7 +114,16 @@ top=20mm,
 		Clearly transcritical bifurcation of fixed point \(n=0\) occurs at \(GN_0-k=0\). This occurs with our intuitive understanding that if the rate of photon egress is larger than photon generation for small \(n\), then no laser action will take place. However if \(GN_0>k\) then the fixed point at \(n=0\) becomes unstable and a stable fixed point emerges, as given by the second equation.
 	\end{IEEEproof}
 \end{example}
-\begin{definition}[Pitchfork bifurcation]
-	Pitchfork bifurcations occur in problems which have symmetry,
+\begin{definition}[Supercritical pitchfork bifurcation]
+	Pitchfork bifurcations occur in problems which have symmetry, i.e. fixed points appear and disappear in symmetrical pairs. The normal form of supercritical pitchfork bifurcation is
+	\begin{equation*}
+		x'=rx-x^3.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Subcritical pitchfork bifurcation]
+	Subcritical pitchfork bifurcation presents as a mirror image about the \(y\)-axis of supercritical bifurcation, but with unstable symmetrical fixed points with a stable fixed point at zero, that converge to an unstable fixed point at \(x=0\). The normal form of a subcritical pitchfork bifurcation is
+	\begin{equation*}
+		x'=rx+x^3.
+	\end{equation*}
 \end{definition}
 \end{document}

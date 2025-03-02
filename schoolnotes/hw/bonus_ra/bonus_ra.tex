@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% remove IEEEproof indent
+\usepackage{etoolbox}
+\patchcmd{\IEEEproofindentspace}{2\parindent}{0pt}{}{}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+\title{Bonus Assignment}
+\author{Samuel Lindskog}
+\maketitle
+\begin{proposition}
+	\label{exponentdistribute}
+	If \(a,b\in\mathbb{Q}\) then \((ab)^{-1}=a^{-1}b^{-1}\).
+	\smallbreak
+	\begin{IEEEproof}
+		Suppose \(a,b\in\mathbb{Q}\) with \(a=x//y\) and \(b=z//w\) for \(x,y,z,w\in\mathbb{Z}\). It follows from the definitions of multiplication, exponentiation, and reciprocal that
+		\begin{IEEEeqnarray*}{rCl}
+			(ab)^{-1}&=&(x//y\times z//w)^{-1}\\
+			&=&(xz//yw)^{-1}\\
+			&=&yw//xz\\
+			&=&y//x\times z//w\\
+			&=&a^{-1}b^{-1}.
+		\end{IEEEeqnarray*}
+	\end{IEEEproof}
+\end{proposition}
+\subsection*{Problem 1}
+Show \(r^{-n}=(r^{-1})^{n}\) for \(r\in\mathbb{Q}\) and \(n\in\mathbb{N}\).\footnote{It is not stated in the problem statement that \(r\neq 0\). Is this statement vacuously true if \(r=0\)?}
+\smallbreak
+\begin{IEEEproof}
+	Suppose \(r\in\mathbb{Q}\). It follows from the definition of exponentiation that
+	\begin{equation*}
+		r^{-0}=r^0=1=(r^{-1})^0.
+	\end{equation*}
+	By inductive hypothesis suppose for \(n\in\mathbb{N}\), \(r^{-n}=(r^{-1})^n\). From the definitions of exponentiation, quotients and reciprocals, it follows that
+	\begin{IEEEeqnarray*}{rCl}
+		r^{-(n++)}&=&(r^{n++})^{-1}\\
+		&=&(r^n\times r)^{-1}.
+	\end{IEEEeqnarray*}
+	It follows from proposition \ref{exponentdistribute} that
+	\begin{equation*}
+		(r^n\times r)^{-1}=(r^{n})^{-1}\times r^{-1},
+	\end{equation*}
+	and from the inductive hypothesis
+	\begin{IEEEeqnarray*}{rCl}
+		(r^n)^{-1}\times r^{-1}&=&(r^{-1})^n\times r^{-1}\\
+		&=&(r^{-1})^{n++}.
+	\end{IEEEeqnarray*}
+\end{IEEEproof}
+\clearpage
+\subsection*{Problem 2}
+If \(r,s\in\mathbb{Q}\) and \(a\in\mathbb{Z}\) then \((r\times s)^a=r^a\times s^a\)
+\smallbreak
+\begin{IEEEproof}
+Suppose \(r,s\in\mathbb{Q}\) and \(a\in\mathbb{Z}\). From the definition of exponentiation, \((r\times s)^0=1\). By inductive hypothesis, suppose that for \(n\in\mathbb{N}\),
+\begin{IEEEeqnarray}{l}
+	(r\times s)^n=r^n\times s^n\label{eq1}\\
+	(r\times s)^{-n}=r^{-n}\times s^{-n}.\label{eq2}
+\end{IEEEeqnarray}
+It follows from equation \ref{eq1} of the inductive hypothesis, and rules for algebra that
+\begin{IEEEeqnarray*}{rCl}
+	(r\times s)^{n++}&=&(r\times s)^n\times (r\times s)\\
+	&=&(r^n\times s^n)\times (r\times s)\\
+	&=&r^n\times r\times s^n\times s\\
+	&=&r^{n++}\times s^{n++}.
+\end{IEEEeqnarray*}
+It follows from the results of problem \(1\) that
+\begin{IEEEeqnarray*}{rCl}
+	(r\times s)^{-(n++)}&=&[(r\times s)^{-1}]^{n++}\\
+	&=&[(r\times s)^{-1}]^n\times (r\times s)^{-1}.
+\end{IEEEeqnarray*}
+	By proposition \ref{exponentdistribute}, the results of problem \(1\), and equation \ref{eq2} of the inductive hypothesis:
+\begin{IEEEeqnarray*}{rCl}
+	(r\times s)^{-n}\times (r\times s)^{-1}&=&r^{-n}\times s^{-n}\times r^{-1}\times s^{-1}\\
+	&=&(r^{-1})^n\times r^{-1}\times (s^{-1})^n\times s^{-1}\\
+	&=&(r^{-1})^{n++}\times (s^{-1})^{n++}\\
+	&=&r^{-(n++)}\times s^{-(n++)}.
+\end{IEEEeqnarray*}
+	This closes the induction. Thus for all \(n\in\mathbb{N}\), \((r\times s)^\alpha=r^\alpha\times s^\alpha\) is true for all \(\alpha=n\) or \(\alpha=-n\). By the trichotomy of integers, every integer is either positive, zero, or negative. Every negative integer can be indentified with the negation of some positive natural number, and all integers greater than or equal to zero can be indentified with a natural number. Therefore for all \(a\in\mathbb{Z}\), the statement \((r\times s)^a=r^a\times s^a\) is true.
+\end{IEEEproof}
+\end{document}

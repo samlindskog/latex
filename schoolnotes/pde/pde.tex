@@ -21,7 +21,7 @@ top=20mm,
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\section{Heat Equation}
+\section{Heat equation}
 \subsection{One-dimensional heat equation}
 \begin{definition}[Thermal energy density]
 	\(e(x,t)\) represents thermal energy density of a one-dimensional rod with heat energy flowing only longitudinally. Heat energy in a small slice of width \(\Delta x\) is therefore \(e(x,t)A\Delta x\).
@@ -213,9 +213,56 @@ Therefore,
 \begin{definition}[Odd function]
 	An odd function is a function with the property \(f(-x)=-f(x)\).
 \end{definition}
+\begin{definition}[Even function]
+	An even function is a function with the property \(f(-x)=f(x)\).
+\end{definition}
 \begin{proposition}
-	The integral of an odd function over an interval symmetric about zero is zero.
+	\label{oddevenzero}
+	The sine coefficients of the Fourier series of a piecewise smooth even function are zero, and the cosine coefficients of the Fourier series of a piecewise smooth odd function are zero.
 \end{proposition}
+\begin{proposition}
+	\label{evenintegral}
+	The integral of an even function over a symmetric interval \(-L\leq x\leq L\) is twice the integral from \(0\leq x\leq L\).
+\end{proposition}
+\begin{definition}[Fourier sine series]
+	The Fourier sine series of a function \(f(x)\) defined on \(0\leq x\leq L\) is an infinite series of odd functions that approximates the odd extension of \(f(x)\)
+	\begin{equation*}
+		\text{odd extension }f(x)=\begin{cases}
+			f(x)&x>0\\
+			0&x=0\\
+			-f(-x)&x<0\\
+		\end{cases}
+	\end{equation*}
+		on \(-L\leq x\leq L\), i.e.
+	\begin{equation*}
+		\text{odd extension }f(x)\sim\sum_{n=1}^{\infty}B_n\sin\frac{n\pi x}{L}.
+	\end{equation*}
+	Because two odd functions multiplied are even, it follows from propositions \ref{oddevenzero} and \ref{evenintegral} that the coefficients \(B_n\) are the same for a Fourier series of the odd extension of \(f(x)\) and the sine series of \(f(x)\) on \(0\leq x\leq L\), i.e.
+	\begin{equation*}
+		B_n=\frac{1}{L}\int_{-L}^{L}f(x)\sin\frac{n\pi x}{L}dx=\frac{2}{L}\int_{0}^{L}f(x)\sin\frac{n\pi x}{L}dx.
+	\end{equation*}
+\end{definition}
+\begin{corollary}
+	The Fourier sine series of \(f(x)\) on \(0\leq x\leq L\) is always \(0\) at \(x=nL,\,n\in\mathbb{Z}\).
+\end{corollary}
+\begin{definition}[Fourier cosine series]
+	The Fourier cosine series of a function \(f(x)\) defined on \(0\leq x\leq L\) is an infinite series of even functions that approximates the even extension of \(f(x)\)
+	\begin{equation*}
+		\text{even extension }f(x)=\begin{cases}
+			f(x)&x\geq0\\
+			f(-x)&x<0\\
+		\end{cases}
+	\end{equation*}
+	on \(-L\leq x\leq L\), i.e.
+	\begin{equation*}
+		\text{even extension }f(x)\sim A_0+\sum_{n=1}^{\infty} A_n\cos\frac{n\pi x}{L}.
+	\end{equation*}
+	Because two even functions multiplied are even, it follows from propositions \ref{oddevenzero} and \ref{evenintegral} that the coefficients \(A_n\) are the same for a Fourier series of the even extension of \(f(x)\) and the cosine series of \(f(x)\) on \(0\leq x\leq L\), i.e.
+	\begin{IEEEeqnarray*}{l}
+		A_0=\frac{1}{2L}\int_{-L}^{L}f(x)dx=\frac{1}{L}\int_{0}^{L}f(x)dx,\\
+		A_n=\frac{1}{L}\int_{-L}^{L}f(x)\cos\frac{n\pi x}{L}dx=\frac{2}{L}\int_{0}^{L}f(x)\cos\frac{n\pi x}{L}dx.
+	\end{IEEEeqnarray*}
+\end{definition}
 \begin{proposition}
 	Any function can be written as
 	\begin{equation*}
@@ -223,7 +270,70 @@ Therefore,
 	\end{equation*}
 	where the first bracketed term is an even function (\(f_e\)), and the second is an odd function (\(f_o\)).
 \end{proposition}
-\begin{lemma}
-	The Fourier series of \(f(x)\) equals the Fourier sine series of \(f_o(x)\) plus the Fourier cosine series of \(f_e(x)\).
-\end{lemma}
+\begin{proposition}
+	It follows from proposition \ref{oddevenzero} that the Fourier series of \(f(x)\) equals the Fourier sine series of \(f_o(x)\) plus the Fourier cosine series of \(f_e(x)\).
+\end{proposition}
+\begin{caution}
+	The even/odd extension of \(f(x)\) is not necessarily equal to \(f_e\) or \(f_o\) respectively.
+\end{caution}
+\begin{proposition}
+	For piecewise smooth \(f(x)\), the Fourier series of \(f(x)\) is continuous and converges to \(f(x)\) for \(-L\leq x\leq L\) iff \(f(x)\) is continuous and \(f(-L)=f(L)\).
+\end{proposition}
+\begin{proposition}
+	For piecewise smooth \(f(x)\), the Fourier cosine series of \(f(x)\) is continuous and converges to \(f(x)\) for \(0\leq x\leq L\) iff \(f(x)\) is continuous.
+\end{proposition}
+\begin{proposition}
+	For piecewise smooth \(f(x)\), the Fourier sine series of \(f(x)\) is continuous and converges to \(f(x)\) for \(0\leq x\leq L\) iff \(f(x)\) is continuous and both \(f(0)=0\) and \(f(L)=0\).
+\end{proposition}
+\subsection{Term-by-term differentiation of Fourier series}
+\begin{theorem}
+	A Fourier series that is continuous can be differentiated term by term if \(f'(x)\) is piecewise smooth. In other words, if \(f(x)\) is piecewise smooth and continuous, its Fourier series can be differentiated term by term if \(f(-L)=f(L)\).
+\end{theorem}
+\section{Vibrating strings and membranes}
+\subsection{Derivation of a vertically vibrating string}
+A perfectly flexible string under tension oscillates. It experiences tension \(T(x,t)\) tangent to the graph of it's displacement with respect to \(x\). Neglecting horizontal motion of points on the string, Newton's second law tells us that for a section of string of length \(\Delta x\),
+\begin{IEEEeqnarray*}{rCl}
+	\rho_0(x)\Delta x\diffp[2]{u}{t}&=&T(x+\Delta x,t)\sin\big[\theta(x+\Delta x,t)\big]\\
+	&&-T(x,t)\sin\big[\theta(x,t)\big]+\rho_0(x)\Delta x Q(x,t),
+\end{IEEEeqnarray*}
+With \(\rho_0\) the mass density and \(\diffp{u}{x}=\tan(\theta)\). Dividing both sides of this equation by \(\Delta x\) and taking the limit of both sides as \(\Delta x\rightarrow 0\), the equation becomes
+\begin{equation*}
+	\rho_0\diffp[2]{u}{t}=\diffp{}{x}\bigg[T(x,t)\sin\big[\theta(x,t)\big]\bigg]+\rho_0(x)Q(x,t).
+\end{equation*}
+Assuming the string's amplitude is small relative to it's length, \(\theta\) is small and the approximation \(\diffp{u}{x}=\tan{\theta}\approx\sin(\theta)\) is relatively accurate. Additionally, if \(\theta\) is small we can assume stretching of the string is minimal and thus tension is constant, i.e. \(T(x,t)=T_0\). Using these additional approximations and assuming \(Q(x,t)=0\), this equations becomes
+\begin{equation*}
+	\diffp[2]{u}{t}=c^2\diffp{u}{x},
+\end{equation*}
+With \(c^2=T_0/\rho_0(x)\). This equation is called the one-dimensional wave equation.
+\begin{definition}[Normal modes]
+	For a string vibrating with fixed ends, solutions can be found via seperation of variables and are a linear combination of product solutions
+	\begin{equation*}
+		u(x,t)=\sum_{n=1}^{\infty}\sin\frac{n\pi x}{L}\big(A_n\cos\frac{n\pi ct}{L}+B_n\sin\frac{n\pi ct}{L}\big),
+	\end{equation*}
+	where \(c=\sqrt{T_0/\rho_0}\). Individually, these solutions are called normal modes. The normal mode \(n=1\) is called the first harmonic or fundamental mode. The \(n\)th normal mode is called the \(n\)th harmonic. Normal modes can be written in phase-amplitude form as
+	\begin{equation*}
+		\sin\frac{n\pi x}{L}\bigg(\sqrt{A_1^2+A_2^2}\sin(\omega t+\theta)\bigg),\quad\theta=\tan^{-1}\frac{A_n}{B_n},\;\omega=\frac{n\pi ct}{L}.
+	\end{equation*}
+	These waves are standing waves, and their amplitude varies with time with angular frequency \(n\pi c/L\).
+\end{definition}
+\begin{definition}[Natural frequency]
+	The natural frequency of a normal mode is it's angular frequency with respect to time. In the case of a vibrating string with fixed ends this is \(n\pi c/L\).
+\end{definition}
+\begin{definition}[Node]
+	Nodes are non-boundary points on the standing wave which are stationary with time, and occur at the points \(aL/n,\,a\in\mathbb{N}\) with \(0<a\leq n-1\).
+\end{definition}
+\subsection{Boundary conditions}
+For string with constant tension and mass density, the boundary conditions for a free end at \(x=0\) can be derived from variable support boundary conditions. Suppose one end of a string is connected to a mass \(m\) on a spring oriented perpendicularly to the length axis, with the spring's equilibrium position at \(y=0\). It follows from Hooke's law and N2L that
+\begin{equation*}
+	m\diffp[2]{u}{t}(0,t)=T_0\diffp{u}{x}(0,t)-ku(0,t).
+\end{equation*}
+If the mass it zero, it then must be the case that
+\begin{equation*}
+	ku(0,t)=T_0\diffp{u}{x}(0,t).
+\end{equation*}
+It follows that if \(k=0\), i.e. the end of the string is attached to a frictionless track, that
+\begin{equation*}
+	T_0\diffp{u}{x}(0,t)=0.
+\end{equation*}
+This is thus the boundary condition corresponding to a free end at \(x=0\).
 \end{document}
