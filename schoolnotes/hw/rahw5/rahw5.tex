@@ -68,13 +68,159 @@
 Show that if a sequence of rational numbers converges to a rational number then the sequence is Cauchy.
 \smallbreak
 \begin{IEEEproof}
-	Let \((a_n)_{n=1}^{\infty}\) be a sequence of rational numbers. If \(a_n\) converges to \(L\in\mathbb{Q}\) if for all \(\epsilon>0\) there exists \(N>0\) such that \(n>N\Rightarrow \abs{a_n-L}<\epsilon\).
+	Let \((a_n)_{n=1}^{\infty}\) be a sequence of rational numbers. If \((a_n)_{n=1}^{\infty}\) converges to \(L\in\mathbb{Q}\), then for all \(\epsilon>0\) there exists \(N>0\) such that \(n>N\Rightarrow \abs{a_n-L}<\epsilon\). Choose \(M\in\mathbb{N}\) such that \(n>M\) implies \(\abs{a_n-L}<\epsilon/2\). It follows that for \(i,j>M\),
+	\begin{IEEEeqnarray*}{rCl}
+		\epsilon=\frac{\epsilon}{2}+\frac{\epsilon}{2}&>&\abs{a_i-L}+\abs{a_j-L}\\
+		&=&\abs{a_i-L}+\abs{-(a_j-L)}\\
+		&\geq&\abs{a_i-L+(-(a_j-L))}\\
+		&=&\abs{a_i-a_j}
+	\end{IEEEeqnarray*}
+	Thus for all \(\epsilon>0\) there exists \(M\) such that \(i,j>M\) implies \(\abs{a_i-a_j}<\epsilon\) and \((a_n)_{n=1}^\infty\) is Cauchy.
 \end{IEEEproof}
 \subsection*{Problem 2}
+Section 5.1: Exercise 5.1.1
+\smallbreak
+\begin{IEEEproof}
+	Let \((a_n)_{n=1}^{\infty}\) be a Cauchy sequence, so
+	\begin{equation*}
+		\forall\epsilon\in\mathbb{Q}^+,\,\exists N\in\mathbb{N},\,\big(i,j>N\Rightarrow\abs{a_i-a_j}<\epsilon\big).
+	\end{equation*}
+	Therefore choose \(M\in\mathbb{N}\) such that \(i,j>M\) implies \(\abs{a_i-a_j}<1\). Then the sequence \((a_n)_{n=1}^{M+1}\) is finite and thus by lemma 5.1.14 there exists \(L\in\mathbb{Q}\) such that for all \(1\leq n\leq M+1\), \(\abs{a_n}<L\). Therefore there exists \(b\in\mathbb{Q}^+\) such that \(a_{M+1}+b=L\), i.e. \(a_{M+1}=L-b\). As a consequence of the fact that \(\abs{a_{M+1}}\) is nonnegative, \(0<b\leq L\) and \(L>0\).
+	\medbreak
+	Suppose to the contrary that for some \(k\in\mathbb{N}^+\) with \(k>M\), \(\abs{a_k}\geq L+1\), i.e. \(\abs{a_k}=L+1+l\) for some \(l\in\mathbb{Q}^+\cup\{0\}\). Utilizing the properties of absolute value, the fact that two nonnegative numbers added are nonnegative, and the facts
+	\begin{IEEEeqnarray*}{c}
+		L,b,1>0,\\
+		L>L-b\geq 0,\\
+		l\geq 0,
+	\end{IEEEeqnarray*}
+	we prove by cases that \(\abs{a_k-a_{M+1}}>1\), a contradiction:
+	\begin{enumerate}
+		\item
+			\begin{IEEEeqnarray*}{rCl}
+				\abs{a_k-a_{M+1}}&=&\abs{(L+1+l)+(L-b)}=L+L-b+1+l\geq 1+L>1\\
+				&=&\abs{-(L+1+l)-(L-b)}=\abs{(L+1+l)+(L-b)}>1
+			\end{IEEEeqnarray*}
+		\item
+			\begin{IEEEeqnarray*}{rCl}
+				\abs{a_k-a_{M+1}}&=&\abs{(L+1+l)-(L-b)}=\abs{1+l+b}\geq 1+b>1\\
+				&=&\abs{-(L+1+l)+(L-b)}=\abs{(L+1+l)-(L-b)}>1
+			\end{IEEEeqnarray*}
+	\end{enumerate}
+	Therefore \(\abs{a_k}<L+1\).
+\end{IEEEproof}
 \subsection*{Problem 3}
+Section 5.3: Exercise 5.2.1
+\smallbreak
+\begin{IEEEproof}
+	Suppose \((a_n)_{n=0}^{\infty}\) is Cauchy, and \((b_n)_{n=1}^{\infty}\) is an equivalent sequence. It follows that
+	\begin{equation*}
+		\forall\epsilon\in\mathbb{Q}^{+},\,\exists N\in\mathbb{N},\,\big(n\geq N\Rightarrow\abs{a_n-b_n}<\epsilon\big)
+	\end{equation*}
+	and
+	\begin{equation*}
+		\forall\epsilon\in\mathbb{Q}^{+},\,\exists M\in\mathbb{N},\,\big(i,j\geq M\Rightarrow\abs{a_i-a_j}<\epsilon\big).
+	\end{equation*}
+	Therefore, given \(\epsilon>0\), if \(i,j\geq\text{max}\{N,M\}\) then
+	\begin{IEEEeqnarray*}{rCl}
+		\abs{b_i-b_j}&=&\abs{b_i-a_i+a_i-a_j+a_j-b_j}\\
+		&\leq&\abs{b_i-a_i}+\abs{a_i-a_j}+\abs{a_j-b_j}\\
+		&=&3\epsilon.
+	\end{IEEEeqnarray*}
+\end{IEEEproof}
 \subsection*{Problem 4}
+Section 5.3: Exercise 5.3.2
+\smallbreak
+\begin{IEEEproof}
+	First we prove the product of two reals is real. Let \((a_n)_{n=1}^{\infty}\) and \((b_n)_{n=1}^{\infty}\) be Cauchy sequences. Then (also utilizing the reverse triangle inequality) we can choose \(N,M\in\mathbb{Q}\) such that
+	\begin{IEEEeqnarray}{l}
+		i,j>N\Rightarrow\abs{a_i-a_j}<1,\Rightarrow a_j<1+a_i\label{eqn1}\\
+		i,j>M\Rightarrow\abs{b_i-b_j}<1,\Rightarrow b_j<1+b_i\label{eqn2}
+	\end{IEEEeqnarray}
+	Then for \(\delta\in\mathbb{Q}\) choose \(L,O\in\mathbb{N}\) such that
+	\begin{IEEEeqnarray*}{l}
+		i,j>L\Rightarrow\abs{a_i-a_j}<\delta\\
+		i,j>O\Rightarrow\abs{b_i-b_j}<\delta
+	\end{IEEEeqnarray*}
+	Let \(C=\text{max}\{N,M,L,O\}\), and fix \(k\in\mathbb{N}\) such that \(k>C\). If \(i,j>C\), it follows from proposition 4.3.7 and equations \ref{eqn1} and \ref{eqn2} that
+	\begin{IEEEeqnarray*}{rCl}
+		\abs{a_ib_i-a_jb_j}&<&\delta\abs{b_i}+\delta\abs{a_i}+\delta^2\\
+		&=&\delta(\abs{b_i}+\abs{a_i})+\delta^2\\
+		&<&\delta(\abs{a_k}+1+\abs{b_k}+1)+\delta^2\\
+		&=&\delta(\abs{a_k}+\abs{b_k}+2)+\delta^2
+	\end{IEEEeqnarray*}
+	Given \(\epsilon\in\mathbb{Q}^+\), we may find \(\delta\) (thus determining \(C\)) such that \(\abs{a_ib_i-a_jb_j}<\epsilon\) as follows:
+	\begin{IEEEeqnarray*}{rCl}
+		\epsilon&=&\delta(\abs{a_k}+\abs{b_k}+2)+\delta^2\\
+		0&=&\delta^2+\delta(\abs{a_k}+\abs{b_k}+2)-\epsilon\\
+		\delta&=&\frac{-(\abs{a_k}+\abs{b_k}+2)+\sqrt{(\abs{a_k}+\abs{b_k}+2)^2+4\epsilon}}{2}
+	\end{IEEEeqnarray*}
+	Therefore given \(\epsilon>0\), \(i,j>C\) implies \(\abs{a_ib_i-a_jb_j}<\epsilon\), so \(\text{LIM}_{n\rightarrow\infty}a_nb_n\) is Cauchy, and thus multiplication of two reals is real.
+	\clearpage
+	Next, we prove that multiplication is well-defined. Suppose \(x,x',y\in\mathbb{R}\) with
+	\begin{IEEEeqnarray*}{l}
+		x=\text{LIM}_{n\rightarrow\infty}a_n\\
+		x'=\text{LIM}_{n\rightarrow\infty}a'_n\\
+		y=\text{LIM}_{n\rightarrow\infty}b_n,
+	\end{IEEEeqnarray*}
+	and \(x=x'\). Because \((b_n)_{n=1}^{\infty}\) is Cauchy, choose \(N\in\mathbb{N}\) (and use the reverse triangle inequality) such that
+	\begin{equation*}
+		i,j>N\Rightarrow\abs{b_i-b_j}<1\Rightarrow \abs{b_i}<1+\abs{b_j}.
+	\end{equation*}
+	Fix \(k\in\mathbb{N}\) such that \(k>N\). Because \(x=x'\), choose \(M\in\mathbb{N}\) such that for some \(\epsilon>0\),
+	\begin{equation*}
+		i>M\Rightarrow\abs{a_i-a'_i}<\frac{\epsilon}{1+\abs{b_k}}.
+	\end{equation*}
+	It follows from the properties of absolute value that the above equation implies
+	\begin{IEEEeqnarray*}{rCl}
+		i>M&\Rightarrow&\abs{b_i}\abs{a_i-a'_i}<\abs{b_i}\frac{\epsilon}{1+\abs{b_k}}\\
+		&\Rightarrow&\abs{a_ib_i-a'ib_i}<\frac{\abs{b_i}\epsilon}{1+\abs{b_k}}\\
+	\end{IEEEeqnarray*}
+	Therefore if \(C=\text{max}\{N,M\}\) then \(i>C\) implies \(\abs{b_i}<1+\abs{b_k}\). It then follows from the above implication that
+	\begin{IEEEeqnarray*}{rCl}
+		i>C\Rightarrow\abs{a_ib_i-a'_ib_k}&<&\frac{(1+\abs{b_k})\epsilon}{1+\abs{b_k}}\\
+		&=&\epsilon
+	\end{IEEEeqnarray*}
+	Thus \(xy\) and \(x'y\) are equivalent.
+\end{IEEEproof}
 \subsection*{Problem 5}
+Negate mathematical statments involving quantifiers.
+\smallbreak
+\begin{IEEEproof}
+	\begin{enumerate}
+		\item A sequence \(a_n\) is not Cauchy.
+			\subitem \(\exists\epsilon>0,\,\forall N\in\mathbb{N},\,\exists i,j\in\mathbb{N},\,(i,j>N\wedge \abs{a_i-a_j}\geq\epsilon)\).
+		\item Two sequences \((a_n)_{n=1}^{\infty}\) and \((b_n)_{n=1}^{\infty}\) are not equivalent.
+			\subitem \(\exists\epsilon>0,\,\forall N\in\mathbb{N},\,\exists i\in\mathbb{N},\,(i>N\wedge\abs{a_i-b_i}\geq\epsilon)\).
+		\item A sequence \((a_n)_{n=1}^{\infty}\) is not convergent to \(L\).
+			\subitem \(\exists\epsilon>0,\,\forall N\in\mathbb{N},\,\exists i\in\mathbb{N},\,(i>N\wedge\abs{a_i-L}\geq\epsilon)\).
+		\item A sequence \((a_n)_{n=1}^{\infty}\) is not bounded.
+			\subitem \(\forall L>0,\,\exists n\in\mathbb{N},\,\abs{a_n}>L\).
+	\end{enumerate}
+\end{IEEEproof}
 \subsection*{Problem 6}
+Show that for all \(x,y,z\in\mathbb{R}\):
+\begin{enumerate}
+	\item \(1\cdot x=x\).
+		\begin{IEEEproof}
+			Let \((a_n)_{n=1}^\infty\) be a Cauchy sequence. It follows from algebraic rules for rational numbers that for any rational number \(r\) we have \(1\cdot r=r\). Thus \(\text{LIM}_{n\rightarrow\infty}a_n\cdot\text{LIM}_{n\rightarrow\infty}1=\text{LIM}_{n\rightarrow\infty}(a_n\cdot 1)=\text{LIM}_{n\rightarrow\infty}a_n\).
+		\end{IEEEproof}
+	\item \(y-y=0\).
+		\begin{IEEEproof}
+			Let \((a_n)_{n=1}^{\infty}\) be a Cauchy sequence. It follows from algebraic rules for rational numbers that for any rational number \(r\) we have \(r-r=0\). Thus \(\text{LIM}_{n\rightarrow\infty}a_n-\text{LIM}_{n\rightarrow\infty}a_n=\text{LIM}_{n\rightarrow\infty}(a_n-a_n)=\text{LIM}_{n\rightarrow\infty}0\).
+		\end{IEEEproof}
+	\item If \(z\neq 0\) then \(z\cdot\frac{1}{z}=1\).
+		\begin{IEEEproof}
+			Let \((a_n)_{n=1}^{\infty}\) be a Cauchy sequence. It follows from algebraic rules for rational numbers that for any rational number \(r\neq 0\) we have \(r\cdot r^{-1}=1\). Thus \(\text{LIM}_{n\rightarrow\infty}a_n\cdot\text{LIM}_{n\rightarrow\infty}a_n^{-1}=\text{LIM}_{n\rightarrow\infty}(a_n\cdot a_n^{-1})=\text{LIM}_{n\rightarrow\infty}1\).
+		\end{IEEEproof}
+	\item \((x+y)z=xz+yz\).
+		\begin{IEEEproof}
+			Let \((a_n)_{n=1}^{\infty},\,(b_n)_{n=1}^{\infty},\,(c_n)_{n=1}^{\infty}\) be a Cauchy sequences. It follows from the distributive property of rational multiplication that for any rational numbers \(x,y,z\) we have \((x+y)z=xz+yz\). Thus \((\text{LIM}_{n\rightarrow\infty}a_n+\text{LIM}_{n\rightarrow\infty}b_n)\cdot\text{LIM}_{n\rightarrow\infty}c_n=\text{LIM}_{n\rightarrow\infty}(a_n+b_n)\cdot\text{LIM}_{n\rightarrow\infty}c_n=\text{LIM}_{n\rightarrow\infty}(a_n+b_n)c_n=\text{LIM}_{n\rightarrow\infty}(a_nc_n+b_nc_n)=\text{LIM}_{n\rightarrow\infty}a_nc_n+\text{LIM}_{n\rightarrow\infty}b_nc_n\).
+		\end{IEEEproof}
+	\item If \(x<y\) then \(x+z<y+z\).
+		\begin{IEEEproof}
+			Let \((a_n)_{n=1}^{\infty},\,(b_n)_{n=1}^{\infty},\,(c_n)_{n=1}^{\infty}\) be a Cauchy sequences. It follows from the properties of order of the rationals that for any rational numbers \(x,y,z\) we have \(x<y\rightarrow x+z<y+z\). Thus \((\text{LIM}_{n\rightarrow\infty}a_n+\text{LIM}_{n\rightarrow\infty}b_n)\cdot\text{LIM}_{n\rightarrow\infty}c_n=\text{LIM}_{n\rightarrow\infty}(a_n+b_n)\cdot\text{LIM}_{n\rightarrow\infty}c_n=\text{LIM}_{n\rightarrow\infty}(a_n+b_n)c_n=\text{LIM}_{n\rightarrow\infty}(a_nc_n+b_nc_n)=\text{LIM}_{n\rightarrow\infty}a_nc_n+\text{LIM}_{n\rightarrow\infty}b_nc_n\).
+		\end{IEEEproof}
+\end{enumerate}
 \subsection*{Bonus 5.4.4}
 \subsection*{Bonus 5.4.3}
 \end{document}
