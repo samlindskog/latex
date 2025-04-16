@@ -126,4 +126,51 @@ top=20mm,
 		x'=rx+x^3.
 	\end{equation*}
 \end{definition}
+\section{Linear systems}
+\subsection{Classification of linear systems}
+\begin{definition}[Closed orbit]
+	A trajectory which returns to its starting point forms a closed orbit.
+\end{definition}
+\begin{definition}[Attracting point]
+	We say that \(x^*\) is an attracting fixed point if all trajectories that start near \(x^*\) apporach it as \(t\rightarrow\infty\). If \(x^*\) attracts all trajectories in the phase plane, it is called globally attracting.
+\end{definition}
+\begin{definition}[Liapunov stable]
+	If all trajectories that start sufficiently close to a fixed point \(x^*\) remain close to \(x^*\) for all time, the fixed point is Liapunov stable.
+\end{definition}
+\begin{definition}[Neutrally stable]
+	When a fixed point is Liapunov stable but not attracting, it is called neutrally stable.
+\end{definition}
+\begin{definition}[Stable/unstable]
+	If a fixed point is both Liapunov stable and attracting, it is stable. If a fixed point is neither of these it is unstable.
+\end{definition}
+\begin{definition}[Stable and unstable manifold]
+	For a saddle point \(x^*\), the stable manifold is the set of initial conditions \(x_0\) such that \(\lim_{t\rightarrow\infty}x(t)=x^*\). The unstable manifold of \(x^*\) is the set of initial conditions such that \(\lim_{t\rightarrow-\infty}x(t)=x^*\).
+\end{definition}
+\begin{definition}[Saddle point]
+	If a system has real eigenvalues of opposite sign, it is a saddle point.
+\end{definition}
+\begin{definition}[Stable and unstable node]
+	If a system has all positive eigenvalues, it is an unstable node. If it has all negative eigenvalues, it is a stable node.
+\end{definition}
+\begin{definition}[Spiral and center]
+	If the eigenvalues are complex with no real part, the fixed point is a center. If the eigenvalues are complex with nonzero real part, the fixed point is a spiral.
+\end{definition}
+\begin{definition}[Star and degenerate node]
+	If the eigenvalues are equal with unequal eigenvectors, the node is a star node. If there is only one eigenvector, the fixed point is a degenerate node.
+\end{definition}
+\section{Phase plane}
+\begin{definition}[Conservative system]
+	Given a system \(x'=f(x)\), a conserved quantity is a real-valued continuous function \(E(x)\) that is constant on trajectories, i.e. \(dE/dt=0\). A conservative system is one for which a conserved quantity exists and is nonconstant on every open set.
+\end{definition}
+\begin{definition}[Homoclinic orbit]
+	A homoclinic orbit is a trajectory which starts and ends at the origin.
+\end{definition}
+\begin{definition}[Reversable system]
+	A reversible system is any second-order system that is invariant under \(t\rightarrow -t\) and \(y\rightarrow -y\). For example, any system of the form
+	\begin{IEEEeqnarray*}{l}
+		x'=f(x,y)\\
+		y'=g(x,y),
+	\end{IEEEeqnarray*}
+	Where \(f\) is odd in \(y\) and \(g\) is even in \(y\) is reversible. Reversable systems are not necessarily conservative.
+\end{definition}
 \end{document}

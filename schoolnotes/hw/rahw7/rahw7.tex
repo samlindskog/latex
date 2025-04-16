@@ -1,0 +1,197 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{esdiff}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+
+\title{HW}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+	Definitions are partially or completely copied from "Analysis with an introduction to proof" by Steven Lay, or Tao. Propositions are original.
+	\bigbreak
+\begin{definition}[bounded sequence]
+	Let \(S\) be a subset of \(\mathbb{R}\). If there exists a \(m\in\mathbb{R}\) such that \(m\geq s\) for all \(s\in S\), then \(m\) is an upper bound. If a set is bounded above and below, then the set is bounded.
+\end{definition}
+\begin{definition}[convergent sequence]
+	A sequence \((s_n)\) is said to converge to the real number \(s\) provided that
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists N\in\mathbb{N},\,\forall n\in N,\,\big(n\geq N\Rightarrow \abs{s_n-s}<\epsilon\big).
+	\end{equation*}
+\end{definition}
+\begin{definition}[limit of a sequence]
+	If \((s_n)\) is said to converges to \(s\in\mathbb{R}\), then \(s\) is called the limit of the sequence.
+\end{definition}
+\begin{definition}[supremum]
+	Let \(S\) be a nonempty subset of \(\mathbb{R}\). If \(S\) is bounded above, then the least upper bound of \(S\) is called its supremum, and is denoted by \(\sup S\). Thus \(m=\sup S\) iff
+	\begin{enumerate}
+		\item \(\forall s\in S,\,m\geq s\);
+		\item \(m'<m\Rightarrow \exists s'\in S\wedge s'>m'\)
+	\end{enumerate}
+\end{definition}
+\begin{definition}[limsup]
+	Let \(S_n\) be a bounded sequence. A subsequential limit of \((s_n)\) is any real number that is the limit of some subsequence of \((s_n)\). If \(S\) is the set of all subsequential limits of \(s_n\), then the limit superior of \((s_n)\) is
+	\begin{equation*}
+		\lim\sup s_n=\sup S.
+	\end{equation*}
+\end{definition}
+\begin{definition}[subsequence]
+	Let \((s_n)_{n=1}^{\infty}\) be a sequence and let \((n_k)_{k=1}^{\infty}\) be any sequence of natural numbers such that \(n_1< n_2< n_3<\ldots\). The sequence \((s_{n_k})_{k=1}^{\infty}\) is called a subsequence of \((s_n)_{n=1}^{\infty}\).
+\end{definition}
+\begin{definition}
+	Let \(x\geq 0\) be a non-negative real, and let \(n\geq 1\) be a positive integer. We define \(x^{1/n}\), also known as the \(n\)th rooth of \(x\), by the formula
+	\begin{equation*}
+		x^{1/n}\coloneq \sup\{y\in\mathbb{R}\,|\,y\geq 0\wedge y^n\leq x\}.
+	\end{equation*}
+\end{definition}
+\begin{definition}
+	Let \(x>0\) be a positive real number, and let \(q\) be a rational number. To define \(x^q\), we write \(q=a/b\) for some integer \(a\) and positive integer \(b\), and define
+	\begin{equation*}
+		x^q\coloneq(x^{1/b})^a.
+	\end{equation*}
+\end{definition}
+\clearpage
+\begin{proposition}
+	\label{eclosesup}
+	Let set \(S\subseteq\mathbb{R}\) such that \(\sup S\) \((\inf S)\) exists and is equal to \(L\in\mathbb{R}\). Then
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists s\in S,\,\big(\abs{L-s}<\epsilon\big).
+	\end{equation*}
+\end{proposition}
+\begin{IEEEproof}
+	Because \(L=\sup S\), if \(B=L-\epsilon\) for some \(\epsilon>0\), it follows from the definition of supremum that there exists \(s\in S\) such that \(s>B\). Because
+	\begin{equation*}
+		L-B=L-(L-\epsilon)=\epsilon
+	\end{equation*}
+	and \(B<s<L\), we have
+	\begin{equation*}
+		0<L-s<\epsilon
+	\end{equation*}
+	So \(\abs{L-s}<\epsilon\), as required. If \(L=\inf S\) and \(B=L+\epsilon\) for some \(\epsilon>0\), it follows from the definition of infimum that there exists \(s\in S\) such that \(s<B\) Because
+	\begin{equation*}
+		L-B=L-(L+\epsilon)=\epsilon
+	\end{equation*}
+	and \(L<s<B\), we have
+	\begin{equation*}
+		-\epsilon<L-s<0
+	\end{equation*}
+	So \(\abs{L-s}<\epsilon\), as required.
+\end{IEEEproof}
+\begin{proposition}
+	\label{ecloselimsup}
+	Let set \(S\subseteq\mathbb{R}\) such that \(\lim\sup S\) \((\lim\inf S)\) exists and is equal to \(L\in\mathbb{R}\). Then
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists s\in S,\,\big(\abs{L-s}<\epsilon\big).
+	\end{equation*}
+\end{proposition}
+\begin{IEEEproof}
+	If \(L\) is the limit of some subsequence \((a_{n_k})_{k=1}^{\infty}\) of \((a_n)_{n=1}^{\infty}\), then \((a_{n_k})\) converges to \(L\), i.e.
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists N\in\mathbb{N},\,\forall k\in\mathbb{N},\,\big(k>N\Rightarrow \abs{L-a_{n_k}}<\epsilon\big).
+	\end{equation*}
+	In other words, for every subsequential limit in the set of subsequential limits \(S\), there exists an element of the subsequence, and thus an element of the sequence, which is \(\epsilon\)-close to this limit. It follows from proposition \ref{eclosesup} that there exists \(s\in S\) which is \(\epsilon/2\)-close to \(\sup S\), and an element of \((a_n)\) which is \(\epsilon/2\) close to \(s\), so \(s\) is \(\epsilon\) close to \(\sup S\).
+\end{IEEEproof}
+\section*{Exercise 6.4.4}
+Suppose that \((a_n)_{n=m}^{\infty}\) and \((b_n)_{n=m}^{\infty}\) are two sequences of real numbers such that \(a_n\leq b_n\) for all \(n\geq m\). Then we have the inequalities
+\begin{IEEEeqnarray}{l}
+	\sup(a_n)_{n=m}^{\infty}\leq\sup(b_n)_{n=m}^{\infty}\label{eqn1}\\
+	\inf(a_n)_{n=m}^{\infty}\leq\inf(b_n)_{n=m}^{\infty}\label{eqn2}\\
+	\lim\sup(a_n)_{n=m}^{\infty}\leq\lim\sup(b_n)_{n=m}^{\infty}\label{eqn3}\\
+	\lim\inf(a_n)_{n=m}^{\infty}\leq\lim\inf(b_n)_{n=m}^{\infty}\label{eqn4}
+\end{IEEEeqnarray}
+\begin{IEEEproof}
+We prove these statements by contradiction. Suppose to the contrary exclusively either
+	\begin{IEEEeqnarray*}{l}
+		\sup(a_n)_{n=1}^{\infty}=L>\sup(b_n)_{n=1}^{\infty}=M;\\
+		\inf(a_n)_{n=1}^{\infty}=L>\inf(b_n)_{n=1}^{\infty}=M;\\
+		\lim\sup(a_n)_{n=1}^{\infty}=L>\lim\sup(b_n)_{n=1}^{\infty}=M;\\
+		\lim\inf(a_n)_{n=1}^{\infty}=L>\lim\inf(b_n)_{n=1}^{\infty}=M;\\
+		\lim\sup(a_n)_{n=1}^{\infty}=L>\lim\inf(b_n)_{n=1}^{\infty}=M.\quad\text{\# for exercise 6.4.5}
+	\end{IEEEeqnarray*}
+Because \(L>M\), there exists \(c\in\mathbb{R}^+\) such that \(L=M+c\). It follows from proposition \ref{eclosesup} or \ref{ecloselimsup} that there exists \(a\in(a_n)\) such that \(a\) is \(c/2\)-close to \(L\), and there exists \(b\in(b_n)\) such that \(b\) is \(c/2\)-close to \(M\). Because \(L-c/2<a<L+c/2\), we have \(M+c-c/2<a<M+c+c/2\), so \(a>M+c/2\). But \(M-c/2<b<M+c/2\) so \(b<M+c/2\) and \(b<a\), contradicting the fact that \(a\leq b\).
+\end{IEEEproof}
+\section*{Exercise 6.4.5}
+Let \((a_n)_{n=m}^{\infty},(b_n)_{n=m}^{\infty}\) and \((c_n)_{n=1}^{\infty}\) be sequences of real numbers such that \(a_n\leq b_n\leq c_n\) for all \(n\geq m\). Suppose also that \((a_n)_{n=1}^{\infty}\) and \((c_n)_{n=1}^{\infty}\) both converge to the same limit \(L\). Then \((b_n)_{n=m}^{\infty}\) is also convergent to \(L\).
+\medbreak
+\begin{IEEEproof}
+	It follows from Exercise 6.4.4 that \(\lim\sup(c_n)\leq\lim\inf(b_n)\) and \(\lim\sup(b_n)\leq\lim\inf(a_n)\). It follows from Tao proposition 6.4.12 that \(\lim\inf(a_n)=c=\lim\sup(c_n)\). Thus \(\lim\sup(b_n)=\lim\inf(b_n)=c\), and by the same proposition \((b_n)\) converges to \(c\).
+\end{IEEEproof}
+\section*{Exercise 6.5.3}
+For any \(x>0\), we have \(\lim_{n\rightarrow\infty}x^{1/n}=1\).
+\begin{IEEEproof}
+	It follows from the definition of an \(n\)th root that \(\lim_{n\rightarrow\infty}x^{1/n}\) is equivalent to
+	\begin{equation*}
+		\lim_{n\rightarrow\infty}\sup\{y\in\mathbb{R}\,|\,y^n\leq x\}.
+	\end{equation*}
+	If \(L(n)=\sup\{y\in\mathbb{R}\,|\,y^n\leq x\}\), and \(L(N)<L(N+1)\), is nonzero, it follows from proposition \ref{eclosesup} that for any \(\epsilon>0\) there exists \(l\in L_n\) such that \(\abs{L-l}<\epsilon\). But then
+\end{IEEEproof}
+\section*{Exercise 6.6.5}
+Let \((a_n)_{n=1}^{\infty}\) be a sequence of real numbers, and let \(L\) be a real number. Then the following two statements are logically equivalent:
+\begin{enumerate}
+	\item The sequence \((a_n)_{n=1}^{\infty}\) converves to \(L\).
+	\item Every subsequence of \((a_n)_{n=1}^{\infty}\) converges to \(L\).
+\end{enumerate}
+\begin{IEEEproof}
+	Suppose \((a_n)_{n=1}^{\infty}\) a sequence, and \((a_{n_k})_{k=1}^{\infty}\) a subsequence. Suppose to the contrary that for some \(k'\in\mathbb{N}\), \(k'\geq n\) and \(n_k<n\), i.e. \(n=n_k+a\) for some \(a\in\mathbb{N}^+.\). Because \(n_k\) is unique for each \(k\)
+\end{IEEEproof}
+\end{document}

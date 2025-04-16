@@ -8,7 +8,7 @@ left=35mm,
 top=20mm,
 }
 
-\title{"Calculus: Early Transcendantals" Notes}
+\title{Notes}
 \author{Samuel Lindskog}
 
 \begin{document}
@@ -212,7 +212,78 @@ TODO: binomial theorem, cosh sinh, complete the square, difference of squares, p
 \begin{remark}
 A parametrized curve \(x=f(t)\) and \(y=g(t)\) is differentiable at \(t\) if \(f\) and \(g\) are differentiable at \(t\).
 \end{remark}
-\section{Multiple integrals}
+\section{Chapter 12: Vector-valued functions}
+\subsection{Derivatives of vector functions}
+\begin{definition}[Limit]
+	Let \(r:\mathbb{R}\rightarrow \mathbb{R}^n\) be a function. We say that \(r\) has limit \(L\) as \(t\) approaches \(t_0\), denoted \(\lim_{t\rightarrow t_0}r(t)=L\), If
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists\delta>0,\,\big(\abs{t-t_0}<\delta\Rightarrow\abs{r(t)-L}<\epsilon\big).
+	\end{equation*}
+\end{definition}
+\begin{definition}[Continuity]
+	A vector-valued function \(r(t)\) is continous at a point \(t=t_0\) in its domain if \(\lim_{t\rightarrow t_0}r(t)=r(t_0)\). The function is continuous if it is continuous at every point in it's domain.
+\end{definition}
+\begin{definition}
+	The vector function \(r(t)=f(t)i+g(t)j+h(t)k\) has a derivative at \(t\) if \(f,g,h\) have derivatives at \(t\). The derivative is the vector function
+	\begin{equation*}
+		r'(t)=\diff{f}{t}i+\diff{g}{t}j+\diff{h}{t}k.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Velocity, acceleration]
+	If \(r\) is the position vector, the \(\diff{r}{t}\) is the velocity vector and \(\diff[2]{r}{t}\) is the acceleration vector.
+\end{definition}
+\begin{definition}[Indefinite integral]
+	The indefinite integral of \(r\) with respect to \(t\) is the set of all antiderivatives of \(r\). If \(R\) is any antiderivate of \(r\), then
+	\begin{equation*}
+		\int r(t)dt=R(t)+C.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Definite integral]
+	If the components of \(r(t)=f(t)i+g(t)j+h(t)k\) are integrable over \([a,b]\), then so is \(r\), and the definite integral of \(r\) from \(a\) to \(b\) is
+	\begin{equation*}
+		\int_a^b r(t)dt=\bigg(\int_a^bf(t)dt\bigg)i+\bigg(\int_a^bg(t)dt\bigg)j+\bigg(\int_a^bh(t)dt\bigg)k.
+	\end{equation*}
+	\subsection{Arc length in space}
+	\begin{definition}[Length]
+		The length of a smooth curve \(r(t)=x(t)i+y(t)j+z(t)k\) for \(a\leq t\leq b\) as \(t\) increases on this interval is
+		\begin{equation*}
+			L=\int_a^b\sqrt{\bigg(\diff{x}{t}\bigg)^2+\bigg(\diff{y}{t}\bigg)^2+\bigg(\diff{z}{t}\bigg)^2}dt.
+		\end{equation*}
+		In other words, if \(v\) is the first derivative of \(r\),
+		\begin{equation*}
+			L=\int_a^b\abs{v}dt.
+		\end{equation*}
+	\end{definition}
+\end{definition}
+\subsection{Velocity and acceleration in polar coordinates}
+\section{Chapter 13: Partial derivatives}
+\subsection{Gradient vectors}
+\begin{definition}[Directional derivative]
+	The derivative of \(f\) at \(P_0(x_0,y_0)\) in the direction of the unit vector \(u=u_1i+u_2j\) is the number
+	\begin{equation*}
+		\bigg(\diff{f}{s}\bigg)_{u,P_0}=\lim_{s\rightarrow 0}\frac{f(x_0+su_1,y_0+su_2)-f(x_0,y_0)}{s},
+	\end{equation*}
+	provided the limit exists.
+\end{definition}
+\begin{definition}[Gradient vector]
+	The gradient vector of \(f(x,y)\) is the vector
+	\begin{equation*}
+		\nabla f=\diffp{f}{x}i+\diffp{f}{y}j.
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	If \(f(x,y)\) is differentiable in an open region containing \(P_0(x_0,y_0)\), then
+	\begin{equation*}
+		\bigg(\diff{f}{s}\bigg)_{u,P_0}=\Eval{\nabla f}{P_0}{}\cdot u.
+	\end{equation*}
+\end{theorem}
+\begin{proposition}
+	The derivative along a path in the domain of \(f\), paramaterized by \(r\) is
+	\begin{equation*}
+		\diff{}{t}f(r(t))=\nabla f(r(t))\cdot r'(t).
+	\end{equation*}
+\end{proposition}
+\section{Chapter 14: Multiple integrals}
 \subsection{Double integrals over rectangles}
 \begin{theorem}[Fubini's theorem]
 	Let \(f(x,y)\) be continuous on a region \(R\).
@@ -229,8 +300,85 @@ A parametrized curve \(x=f(t)\) and \(y=g(t)\) is differentiable at \(t\) if \(f
 		A=\iint_R dA.
 	\end{equation*}
 \end{proposition}
-\section{Line integrals}
-\subsection{Line integrals}
+\section{Chapter 15: Integrals Vector fields}
+\subsection{Line integrals of scalar functions}
+\begin{definition}[Line integral]
+	\label{directlineint}
+	If \(f\) is defined on a curve \(C\) given parametrically by \(r(t)=g(t)i+h(t)j+k(t)k\) on \(a\leq t\leq b\), then the line integral of \(f\) over \(C\) is
+	\begin{equation*}
+		\int_C f(x,y,z)ds=\lim_{n\rightarrow\infty}\sum_{k=1}^{n}f(x_k,y_k,z_k)\Delta s_k,
+	\end{equation*}
+	and can be evaluated as
+	\begin{equation*}
+		\int_C f(x,y,z)ds=\int_a^{b}f(g(t),h(t),k(t))\abs{v(t)}dt.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	If a piecewise smooth curve \(C\) is made by joining a finite number of smooth curves \(C_1,\ldots,C_n\) end to end, then the integral of a function over \(C\) is the sum of the integrals over the curves \(C_1,\ldots,C_n\).
+\end{proposition}
+\subsection{Vector fields and line integrals}
+\begin{definition}[Vector field]
+	A vector field is a function that assigns a vector to each point in it's domain.
+\end{definition}
+\begin{proposition}
+	A vector field is continuous if it's component functions are continuous. It is differentiable if each of it's component functions are differentiable.
+\end{proposition}
+\begin{definition}[Line integral]
+	\label{vectorlineint}
+	Let \(F:\mathbb{R}^n\rightarrow\mathbb{R}^n\) be a vector field with continuous components defined along a smooth curve \(C\) parametrized by \(r:\mathbb{R}\rightarrow\mathbb{R}^n\) on \(a\leq t\leq b\). If \(T\) is the unit vector tangent to \(r\) at \(s\), then the line integral of \(F\) along \(C\) is
+	\begin{equation*}
+		\int_C F\cdot Tds=\int_C\bigg(F\cdot\diff{r}{s}\bigg)ds=\int_CF\cdot dr.
+	\end{equation*}
+\end{definition}
+\begin{remark}
+	Note that the line integral of a vector field is different from the line integral in definition \ref{directlineint}. In said definition, we are finding the area between the curve and the function. In the case of definition \ref{vectorlineint}, we are evaluating the definite integral of a function whose gradient is the output of \(f\), dotted with the derivative of the parametrized curve, \(dr/dt\). In other words, we are taking the integral of the directional derivative of \(f\) at \(r(t)\). It should be noted that \(F\) must be a function from \(\mathbb{R}^n\) to \(\mathbb{R}^n\) because the dimension of the domain and range of the gradient must be equal.
+\end{remark}
+\begin{theorem}
+	Let \(F=Mi+Nj+Pk\) be a vector field whose components are continuous througout an open connected region \(D\) in space. Then \(F\) is conservative if and only if \(F\) is a gradient field \(\nabla f\) for a differentiable function \(f\).
+\end{theorem}
+\begin{definition}[Curl]
+	Let \(F=M(x,y,z)i+N(x,y,z)j+P(x,y,z)k\) be a vector field. Then \(\text{curl}\,F\), called the curl of \(F\), is
+	\begin{equation*}
+		\bigg(\diffp{P}{y}-\diffp{N}{z}\bigg)i+\bigg(\diffp{M}{z}-\diffp{P}{x}\bigg)j+\big(\diffp{N}{x}-\diffp{M}{y}\bigg)k
+	\end{equation*}
+	For a two dimensional vector field \(F=M(x,y)+N(x,y)\), \(\text{curl}\,F\) is
+	\begin{equation*}
+		\bigg(\diffp{N}{x}-\diffp{M}{y}\bigg)k.
+	\end{equation*}
+\end{definition}
+\begin{remark}
+	Notice the first term describes counterclockwise rotation in the y-z plane relative to the normal \(i\), the second describes counterclockwise rotation in the z-x plane relative to the normal \(j\), and the third describes counterclockwise rotation in the x-y plane relative to the normal \(k\).
+\end{remark}
+\begin{theorem}
+	Let \(F\) be a filed on an open simply connected domain whose component functions have continuous first partial derivatives. Then \(F\) is conservative iff \(\text{curl}\,F=0\).
+\end{theorem}
+\begin{definition}[Differential form]
+	come back?
+\end{definition}
+\subsection{Green's theorem in the plane}
+\begin{definition}[Circulation density]
+	The circulation density of a vector field \(F=Mi+Nj\) at the point \((x,y)\) is the magnitude of the k-component of the curl of \(F\):
+	\begin{equation*}
+		\text{curl}\,F\cdot k=\diffp{N}{x}-\diffp{M}{y},
+	\end{equation*}
+\end{definition}
+\begin{definition}[Divergence]
+	The divergence, or flux density, of a vector field \(F=Mi+Nj\) at the point \((x,y)\) is
+	\begin{equation*}
+		\text{div}\,F=\diffp{M}{x}+\diffp{N}{y}.
+	\end{equation*}
+\end{definition}
+\begin{theorem}[Green's theorem]
+	Let \(C\) be a piecewise smooth, simple closed curve enclosing a region \(R\) in the plane. Let \(F=Mi+Nj\) be a vector field with \(M\) and \(N\) having continuous first derivatives in an open region containing \(R\). Then the counterclockwise circulation of \(F\) around \(C\) is
+\begin{equation*}
+	\oint_{C}F\cdot T\,ds=\iint_R\bigg(\diffp{N}{x}-\diffp{M}{y}\bigg)dxdy.
+\end{equation*}
+	Additionally, the outward flux of \(F\) across \(C\) is
+\begin{equation*}
+	\oint_{C}F\cdot n\,ds=\iint_R\bigg(\diffp{M}{x}+\diffp{N}{y}\bigg)dxdy.
+\end{equation*}
+\end{theorem}
+\subsection{Path independence}
 \begin{definition}[Path independence]
 	Let \(\textbf{F}\) be a vector field defined on an open region \(D\) in space, and suppose that for any two points \(A\) and \(B\) in \(D\) the line integral \(\int_C \textbf{F}\cdot d\textbf{r}\) along a path \(C\) from \(A\) to \(B\) in \(D\) is the same over all paths from \(A\) to \(B\). Then the integral \(\int_C\textbf{F}\cdot d\textbf{r}\) is path independent in \(D\) and the field \(\textbf{F}\) is conservative in \(D\).
 \end{definition}
@@ -239,5 +387,14 @@ A parametrized curve \(x=f(t)\) and \(y=g(t)\) is differentiable at \(t\) if \(f
 	\begin{equation*}
 		\int_C\textbf{F}\cdot d\textbf{r}=f(B)-f(A).
 	\end{equation*}
+\end{theorem}
+\begin{corollary}
+	If \(F\) is the gradient function of some differentiable function \(f\), and \(C\) a closed curve, then
+	\begin{equation*}
+		\oint_C F\cdot dr=0.
+	\end{equation*}
+\end{corollary}
+\begin{theorem}
+	A vector field \(F\) is conservative iff \(F\) is a gradient field \(\nabla f\) for a differentiable function \(f\).
 \end{theorem}
 \end{document}

@@ -336,4 +336,106 @@ It follows that if \(k=0\), i.e. the end of the string is attached to a friction
 	T_0\diffp{u}{x}(0,t)=0.
 \end{equation*}
 This is thus the boundary condition corresponding to a free end at \(x=0\).
+\clearpage
+\section{Sturm-Liouville eigenvalue problems}
+\subsection{Sturm-Liouville differential equations}
+\begin{definition}[Sturm-Liouville differential equation]
+	A Sturm-Liouville differential equation is an equation of the form
+	\begin{equation*}
+		\diff{}{x}\bigg(p\diff{\phi}{x}\bigg)+q\phi+\lambda\sigma\phi=0,
+	\end{equation*}
+	where \(\lambda\) is the eigenvalue, and \(p,q,\sigma\) are functions of \(x\).
+\end{definition}
+\begin{definition}
+	A regular Sturm-Liouville eigenvalue problem consists of a Sturm-Liouville differential equation
+	\begin{equation*}
+		\diff{}{x}\bigg(p(x)\diff{\phi}{x}\bigg)+q(x)\phi+\lambda\sigma(x)\phi=0,
+		\quad a<x<b,
+	\end{equation*}
+	subject to the boundary conditions
+	\begin{IEEEeqnarray*}{rCl}
+		\beta_1\phi(a)+\beta_2\diff{\phi}{x}(a)=0\\
+		\beta_3\phi(b)+\beta_4\diff{\phi}{x}(b)=0,
+	\end{IEEEeqnarray*}
+	with \(\beta_i\in\mathbb{R}\). To be called regular, the functions \(p,q,\sigma\) must be real and continuous everywhere including endpoints, and \(p,\sigma>0\) everywhere including endpoints.
+\end{definition}
+\begin{theorem}[Sturm-Liouville problem theorems]
+	For any regular Sturm-Liouville problem, the following theorems are valid:
+	\begin{enumerate}
+		\item All eigenvalues \(\lambda\) are real.
+		\item There exists and infinite number of eigenvalues. There is a smallest eigenvalue (usually denoted \(\lambda_1\)), but not a largest eigenvalue.
+		\item Corresponding to each eigenvalue \(\lambda_n\), there is an eigenfunction \(\phi_n(x)\) which is unique to within an arbitrary multiplicative constant. Additionally, \(\phi_n(x)\) has exactly \(n-1\) zeros for \(a<x<b\).
+		\item The eigenfuctions \(\phi_n(x)\) form a complete set, meaning that any piecewise smooth function \(f(x)\) can be represented by a generalized Fourier series of the eigenfunctions:
+			\begin{equation*}
+				f(x)\sim\sum_{n=1}^{\infty}a_n\phi_n(x).
+			\end{equation*}
+			This infinite series converges to \([f(x+)+f(x-)]/2\) on \(a<x<b\) for some specific \(a_n\).
+		\item Eigenfunctions belonging to different eigenvalues are orthogonal relative to the weight function \(\sigma(x)\), i.e.
+			\begin{equation*}
+				\int_{a}^{b}\phi_n(x)\phi_m(x)\sigma(x)dx=0\quad\lambda_n\neq\lambda_m.
+			\end{equation*}
+		\item All eigenvalues are related to their respective eigenfunctions by the Rayleigh quotient:
+			\begin{equation*}
+				\lambda=\frac{-p\phi\,d\phi/dx|_a^b+\int_a^b[p(d\phi/dx)^2-q\phi^2]dx}{\int_{a}^{b}\phi^2\sigma dx},
+			\end{equation*}
+			where the boundary conditions may somewhat simplify this expression.
+	\end{enumerate}
+\end{theorem}
+\begin{remark}
+	The Rayleigh quotient directly proves that \(\lambda\geq 0\) if
+	\begin{enumerate}
+		\item \(\Eval{-p\phi\diff{\phi}{x}}{a}{b}\geq 0\) and
+		\item \(q\leq 0\).
+	\end{enumerate}
+\end{remark}
+\begin{proposition}
+	The generalized Fourier coefficients for a given eigenfunction \(\phi_n(x)\) and weight function \(\sigma(x)\) are given by the equation
+	\begin{equation*}
+		a_n=\frac{\int_a^b f(x)\phi_n(x)\sigma(x)dx}{\int_a^b \phi^2_n(x)\sigma(x)dx}.
+	\end{equation*}
+\end{proposition}
+\begin{theorem}
+	The minimum value of the Rayleigh quotient for all continuous functions satisfying the boundary conditions is the lowest eigenvalue.
+\end{theorem}
+\subsection{Self-adjoint operators}
+\begin{definition}[Linear differential operator]
+	Let \(L\) stand for the linear differential operator, defined
+	\begin{equation*}
+		L(y)\equiv\diff{}{x}\bigg[p(x)\diff{y}{x}\bigg]+q(x)y.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	The Sturm-Liouville differential equation can be written using the operator notation
+	\begin{equation*}
+		L(\phi)+\lambda\sigma(x)\phi=0.
+	\end{equation*}
+\end{proposition}
+\begin{definition}[Lagrange's indentity] 
+	\,
+	\begin{equation*}
+		uL(v)-vL(u)=\diff{}{x}\bigg[p\bigg(u\diff{v}{x}-v\diff{u}{x}\bigg)\bigg].
+	\end{equation*}
+\end{definition}
+\begin{definition}[Green's formula]
+	\,
+	\begin{equation*}
+		\int_a^b\big[uL(v)-vL(u)\big]dx=\Eval{p\bigg(u\diff{v}{x}-v\diff{u}{x}\bigg)}{a}{b}.
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	If \(u\) and \(v\) are any two functions satisfying the same regular Sturm-Liouville boundary conditions, then
+	\begin{equation*}
+		\int_a^b[uL(v)-vL(u)]dx=0.
+	\end{equation*}
+	When this equation is true, we say that the operator \(L\) (with these boundary conditions) is self-adjoint.
+\end{theorem}
+\subsection{Estimation of eigenvalues}
+\begin{theorem}
+	\label{contrayleigh}
+	The minimum value of the Rayleigh quotient for all continuous functions satisfying the boundary conditions is the lowest eigenvalue.
+\end{theorem}
+\begin{proposition}[Estimate of upper bound for \(\lambda_1\)]
+\noindent Utilizing theorem \ref{contrayleigh}, we can estimate the lowest eigenvalue by choosing a trial function \(u_T\) close to the eigenfunction. Choose a function that satisfies the necessary boundary conditions, and has no zeroes on the corresponding interval.
+\end{proposition}
+\subsection{Elastic boundary conditions}
 \end{document}

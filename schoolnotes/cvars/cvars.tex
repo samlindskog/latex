@@ -22,7 +22,7 @@ top=20mm,
 \section{Complex numbers}
 \subsection{Fundamental definitions and identities}
 \begin{definition}[Complex number]
-	A complex number is an expression with of the form \(z=x+iy\), where \(x\) and \(y\) are real numbers.
+	A complex number is an expression of the form \(z=x+iy\), where \(x\) and \(y\) are real numbers.
 \end{definition}
 \begin{definition}
 	Ever complex number \(z\neq 0\) has a multiplicative inverse given by
@@ -73,10 +73,10 @@ top=20mm,
 	\begin{equation*}
 		\abs{a+b}\leq\abs{a}+\abs{b}.
 	\end{equation*}
-	\begin{IEEEproof}
-		If dot product of two vectors is zero, they are LI. Prove basis exists such that each vector dotted with all vectors in basis is zero (use nullity potentially). if \(a,b\) vectors such that \(b\cdot a=0\), then \(a\cdot(a+b)=a\cdot a\). If \(\abs{a+b}<a\) then \(a\cdot(a+b)<a\cdot a\), so \(\abs{a+b}\geq\abs{a}\). \(\abs{a},\abs{b}\) are both geq than magnitude of their sides made of a scalar multiple of \(a+b\).
-	\end{IEEEproof}
 \end{lemma}
+\begin{IEEEproof}
+	If dot product of two vectors is zero, they are LI. Prove basis exists such that each vector dotted with all vectors in basis is zero (use nullity potentially). if \(a,b\) vectors such that \(b\cdot a=0\), then \(a\cdot(a+b)=a\cdot a\). If \(\abs{a+b}<a\) then \(a\cdot(a+b)<a\cdot a\), so \(\abs{a+b}\geq\abs{a}\). \(\abs{a},\abs{b}\) are both geq than magnitude of their sides made of a scalar multiple of \(a+b\).
+\end{IEEEproof}
 \begin{proposition}
 	\label{modsquared}
 	Let \(a,b\in{\mathbb{C}}\). Then
@@ -86,18 +86,18 @@ top=20mm,
 \end{proposition}
 \begin{lemma}[Triangle inequality in \(\mathbb{C}\)]
 	For \(x,y\in\mathbb{C}\), \(\abs{x+y}\leq\abs{x}+\abs{y}\).
-	\begin{IEEEproof}
-		Suppose \(u,v\in\mathbb{R}\). Then
-		\begin{IEEEeqnarray*}{l}
-			\abs{u+iv}=\sqrt{u^2+v^2}\geq\sqrt{u^2}=\abs{u}\geq u.
-		\end{IEEEeqnarray*}
-		Therefore \(\text{Re}\,x+y\leq\abs{x+y}\) and
-		\begin{IEEEeqnarray*}{l}
-			2\text{Re}\,x\overbar{y}\leq2\abs{x\overbar{y}}=2\abs{xy}=2\abs{x}\abs{y}
-		\end{IEEEeqnarray*}
-		Because \((\abs{x}+\abs{y})^2=\abs{x}^2+\abs{y}^2+2\abs{x}\abs{y}\), it follows from proposition \ref{modsquared} that \((\abs{x}+\abs{y})^2\leq(\abs{x}+\abs{y})^2\), and therefore \(\abs{x+y}\leq\abs{x}+\abs{y}\).
-	\end{IEEEproof}
 \end{lemma}
+\begin{IEEEproof}
+	Suppose \(u,v\in\mathbb{R}\). Then
+	\begin{IEEEeqnarray*}{l}
+		\abs{u+iv}=\sqrt{u^2+v^2}\geq\sqrt{u^2}=\abs{u}\geq u.
+	\end{IEEEeqnarray*}
+	Therefore \(\text{Re}\,x+y\leq\abs{x+y}\) and
+	\begin{IEEEeqnarray*}{l}
+		2\text{Re}\,x\overbar{y}\leq2\abs{x\overbar{y}}=2\abs{xy}=2\abs{x}\abs{y}
+	\end{IEEEeqnarray*}
+	Because \((\abs{x}+\abs{y})^2=\abs{x}^2+\abs{y}^2+2\abs{x}\abs{y}\), it follows from proposition \ref{modsquared} that \((\abs{x}+\abs{y})^2\leq(\abs{x}+\abs{y})^2\), and therefore \(\abs{x+y}\leq\abs{x}+\abs{y}\).
+\end{IEEEproof}
 \begin{definition}[Cauchy's inequality]
 	\begin{equation*}
 		\bigg\lvert\sum_{i=1}^{n}a_ib_i\bigg\rvert^2\leq\sum_{i=1}^n\abs{a_i}^2+\sum_{i=1}^n\abs{b_i}^2
@@ -142,6 +142,9 @@ top=20mm,
 	\end{equation*}
 \end{proposition}
 \section{Analytic Functions}
+\begin{remark}
+	Going forward, if a function's domain and codomain are not specified, the function is from \(\mathbb{C}\) to \(\mathbb{C}\).
+\end{remark}
 \subsection{Limits}
 \begin{definition}[Limits]
 	If the limit of \(f(z)\) as \(z\) approaches \(z_0\) is \(w_0\), this means that for all \(\epsilon\in\mathbb{R}^+\), there exists \(\delta\in\mathbb{R}^+\) such that
@@ -152,10 +155,10 @@ top=20mm,
 \end{definition}
 \begin{lemma}
 	The limit of a function is unique.
-	\begin{IEEEproof}
-		Suppose \(f:\mathbb{C}\rightarrow\mathbb{C}\) a function and that \(\lim_{z\rightarrow z_0}f(z)=w_0\) and \(\lim_{z\rightarrow z_0}f(z)=w_1\) with \(w_0\neq w_1\). Because \(w_0\neq w_1\), \(\abs{w_0-w_1}=L>0\). If we take \(\epsilon=L/2\), there exists \(\delta>0\) such that \(\abs{z-z_0}<\delta\Rightarrow \abs{f(z)-w_0}<L/2\,\wedge\,\abs{f(z)-w_1}<L/2\). Because \((z-w_1)+(w_0-z)=w_0-w_1\), by the triangle inequality \(\abs{w_0-w_1}\leq\abs{f(z)-w_0}+\abs{f(z)-w_1}=L\), a contradiction.
-	\end{IEEEproof}
 \end{lemma}
+\begin{IEEEproof}
+	Suppose \(f:\mathbb{C}\rightarrow\mathbb{C}\) a function and that \(\lim_{z\rightarrow z_0}f(z)=w_0\) and \(\lim_{z\rightarrow z_0}f(z)=w_1\) with \(w_0\neq w_1\). Because \(w_0\neq w_1\), \(\abs{w_0-w_1}=L>0\). If we take \(\epsilon=L/2\), there exists \(\delta>0\) such that \(\abs{z-z_0}<\delta\Rightarrow \abs{f(z)-w_0}<L/2\,\wedge\,\abs{f(z)-w_1}<L/2\). Because \((z-w_1)+(w_0-z)=w_0-w_1\), by the triangle inequality \(\abs{w_0-w_1}\leq\abs{f(z)-w_0}+\abs{f(z)-w_1}=L\), a contradiction.
+\end{IEEEproof}
 \clearpage
 \begin{theorem}
 	Suppose \(f(z)=u(x,y)+iv(x,y),\;z=x+iy\), and that \(z_0=x_0+iy_0\) and \(w_0=u_0+iv_0\). Then \(\lim_{z\rightarrow z_0}f(z)=w_0\) iff
@@ -164,30 +167,30 @@ top=20mm,
 		\lim_{(x,y)\rightarrow (x_0,y_0)}u(x,y)=u_0\text{ and }
 		\lim_{(x,y)\rightarrow (x_0,y_0)}v(x,y)=v_0.
 	\end{equation}
-	\noindent\begin{IEEEproof}
-		Suppose \(\lim_{z\rightarrow z_0}f(z)=w_0\). Then for all \(\epsilon>0\) there exists \(\delta>0\) such that
-		\begin{IEEEeqnarray*}{l}
-			\abs{(x-x_0)+i(y-y_0)}=\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\\
-			\abs{u(x,y)-u_0+i(v(x,y)-v_0)}=\sqrt{(u(x,y)-u_0)^2+(v(x,y)-v_0)^2}<\epsilon.
-		\end{IEEEeqnarray*}
-		Because \(\sqrt{(u(x,y)-u_0)^2}\leq\sqrt{(u(x,y)-u_0)^2+(v(x,y)+v_0)^2}\),
-		\begin{equation*}
-			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon.
-		\end{equation*}
-		Therefore wlog \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\).
-		\medbreak
-		\noindent Suppose \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\). Then for all \(\epsilon>0\) there exists \(\delta_1,\delta_2>0\) such that
-		\begin{IEEEeqnarray*}{l}
-			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon/2,\\
-			\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(v(x,y)-v_0)^2}<\epsilon/2.
-		\end{IEEEeqnarray*}
-		If \(0<\delta<\delta_1,\delta_2\), it follows from the triangle inequality, the definition of \(f\), and the definition of modulus that
-		\begin{equation*}
-			\abs{z-z_0}<\delta\Rightarrow\abs{f(z)-w_0}<\epsilon.
-		\end{equation*}
-		Thus \(\lim_{z\rightarrow z_0}f(z)=w_0\).
-	\end{IEEEproof}
 \end{theorem}
+\begin{IEEEproof}
+	Suppose \(\lim_{z\rightarrow z_0}f(z)=w_0\). Then for all \(\epsilon>0\) there exists \(\delta>0\) such that
+	\begin{IEEEeqnarray*}{l}
+		\abs{(x-x_0)+i(y-y_0)}=\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\\
+		\abs{u(x,y)-u_0+i(v(x,y)-v_0)}=\sqrt{(u(x,y)-u_0)^2+(v(x,y)-v_0)^2}<\epsilon.
+	\end{IEEEeqnarray*}
+	Because \(\sqrt{(u(x,y)-u_0)^2}\leq\sqrt{(u(x,y)-u_0)^2+(v(x,y)+v_0)^2}\),
+	\begin{equation*}
+		\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon.
+	\end{equation*}
+	Therefore wlog \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\).
+	\medbreak
+	\noindent Suppose \(\lim_{(x,y)\rightarrow(x_0,y_0)}u(x,y)=u_0\) and \(\lim_{(x,y)\rightarrow(x_0,y_0)}v(x,y)=v_0\). Then for all \(\epsilon>0\) there exists \(\delta_1,\delta_2>0\) such that
+	\begin{IEEEeqnarray*}{l}
+		\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(u(x,y)-u_0)^2}<\epsilon/2,\\
+		\sqrt{(x-x_0)^2+(y-y_0)^2}<\delta_1\Rightarrow\sqrt{(v(x,y)-v_0)^2}<\epsilon/2.
+	\end{IEEEeqnarray*}
+	If \(0<\delta<\delta_1,\delta_2\), it follows from the triangle inequality, the definition of \(f\), and the definition of modulus that
+	\begin{equation*}
+		\abs{z-z_0}<\delta\Rightarrow\abs{f(z)-w_0}<\epsilon.
+	\end{equation*}
+	Thus \(\lim_{z\rightarrow z_0}f(z)=w_0\).
+\end{IEEEproof}
 \begin{remark}
 	Going forward, for \(x,y\in\mathbb{R}^n\), \(d(x,y)\) refers to the euclidean metric.
 \end{remark}
@@ -202,8 +205,437 @@ top=20mm,
 		\lim_{z\rightarrow z_0}[f(z)F(z)]=w_0W_0,\\
 		\lim_{z\rightarrow z_0}\frac{f(z)}{F(z)}=\frac{w_0}{W_0},\quad W_0\neq 0.
 	\end{IEEEeqnarray*}
-	\begin{IEEEproof}
-		prove dis
-	\end{IEEEproof}
 \end{theorem}
+\begin{IEEEproof}
+prove
+\end{IEEEproof}
+\begin{theorem}
+	If \(z_0\) and \(w_0\) are points in the \(z\) and \(w\) planes respectively, then the following properties hold:
+	\begin{IEEEeqnarray*}{l}
+		\lim_{z\rightarrow z_0}f(z)=\infty\Leftrightarrow\lim_{z\rightarrow z_0}\frac{1}{f(z)}=0\\
+		\lim_{z\rightarrow\infty}f(z)=w_0\Leftrightarrow\lim_{z\rightarrow 0}f(\frac{1}{z})=w_0\\
+		\lim_{z\rightarrow\infty}f(z)=\infty\Leftrightarrow\lim_{z\rightarrow 0}\frac{1}{f(1/z)}=0
+	\end{IEEEeqnarray*}
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\subsection{Derivatives}
+\begin{definition}[Continuity]
+	A function \(f\) is continuous at a point \(z_0\) if all three of the following conditions are satisfied:
+	\begin{enumerate}
+		\item \(\lim_{z\rightarrow z_0}f(z)\) exists.
+		\item \(f(z_0)\) exists.
+		\item \(\lim_{z\rightarrow z_0}f(z)=f(z_0)\).
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	The composition of continuous functions is continuous.
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\begin{theorem}
+	If a function \(f(z)\) is continuous and nonzero at a point \(z_0\), then \(f(z)\neq 0\) throughout some neighborhood of that point
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\begin{theorem}
+	If a function \(f\) is continuous throughout a region \(R\) that is both closed and bounded, there exists a nonnegative real number \(M\) and \(z'\in R\) such that
+	\begin{equation*}
+		\forall z\in R,\,\abs{f(z)}\leq M
+	\end{equation*}
+	and
+	\begin{equation*}
+		f(z')=M.
+	\end{equation*}
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\begin{definition}[Derivative]
+	Let \(f\) be a function whose domain of definition contains an \(\epsilon\)-neighborhood of \(z_0\). The derivative of \(f\) at \(z_0\) is the limit
+	\begin{equation*}
+		f'(z_0)=\lim_{z\rightarrow z_0}\frac{f(z)-f(z_0)}{z-z_0}.
+	\end{equation*}
+	The function \(f\) is said to be differentiable at \(z_0\) if \(f'(z_0)\) exists. If we set \(\Delta z=z-z_0\), we can write the definition as
+	\begin{equation*}
+		f'(z_0)=\lim_{\Delta z\rightarrow 0}\frac{f(z_0+\Delta z)-f(z_0)}{\Delta z}.
+	\end{equation*}
+	When using this form of the derivative, the subscript on \(z\) is often dropped and we introduce the number \(\Delta w=f(z+\Delta z)-f(z)\) so that the derivative becomes
+	\begin{equation*}
+		f'(z_0)=\diff{w}{z}=\lim_{\Delta z\rightarrow 0}\frac{\Delta w}{\Delta z}.
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	Because the derivative is a limit, if it exists it must be unique.
+\end{proposition}
+\begin{proposition}
+	If a function \(f:\mathbb{C}\rightarrow \mathbb{C}\) is differentiable at a point \(z_0\in\mathbb{C}\), then \(f\) is continuous at \(z_0\).
+\end{proposition}
+\begin{proposition}[Differentiation formulas]
+	Let \(c\in\mathbb{C}\) be a constant, \(z\in\mathbb{C}\) an independent variable, \(n\in\mathbb{Z}\), and \(f\) a function from \(\mathbb{C}\rightarrow\mathbb{C}\) which is differentiable at \(z\). These differentiation formulas can be derived from the definition of the derivative:
+	\begin{IEEEeqnarray*}{l}
+		\diff{}{z}c=0\\
+		\diff{}{z}z=1\\
+		\diff{}{z}[cf(z)]=cf'(z)\\
+		\diff{}{z}z^n=nz^{n-1}\\
+		\diff{}{z}[f(z)+g(z)]=f'(z)+g'(z)\\
+		\diff{}{z}f(z)g(z)=f(z)g'(z)+f'(z)g(z)\\
+		\diff{}{z}\frac{f(z)}{g(z)}=\frac{g(z)f'(z)-f(z)g'(z)}{[g(z)]^2}\\
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{theorem}[Chain rule]
+	If \(f,g\) functions from \(\mathbb{C}\rightarrow\mathbb{C}\) differentiable at \(z\in\mathbb{C}\), then
+	\begin{equation*}
+		\diff{}{z}g\circ f(z)=g'\circ f(z)\cdot f'(z).
+	\end{equation*}
+\end{theorem}
+\subsection{Cauchy-Riemann equations}
+\begin{theorem}
+	Suppose that \(f(z)=u(x,y)+iv(x,y)\) with \(z=x+iy\) and that \(f'(z)\) exists at a point \(z_0=x_0+iy_0\). Additionally, let \(u_x,v_x,u_y,v_y\) be the partial derivatives of the component functions of \(f\) with respect to \(x\) and \(y\) at \(x_0,y_0\). Then the first order partial derivatives of \(u\) and \(v\) exist at \(x_0,y_0\), and they must satisfy the Cauchy-Riemann equations
+	\begin{equation*}
+		u_x=v_y,\quad u_y=-v_x
+	\end{equation*}
+	at that point.
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\begin{remark}
+	\(1/i=-i\).
+\end{remark}
+\begin{corollary}
+	\(f'(z_0)=u_x+iv_x=v_y-iu_y\).
+\end{corollary}
+\begin{theorem}
+	Let the function \(f(z)=u(x,y)+iv(x,y)\) be defined throughout some \(\epsilon\)-neighborhood of a point \(z_0=x_0+iy_0\), and suppose that:
+	\begin{enumerate}
+		\item The first-order partial derivatives of the functions \(u\) and \(v\) with respect to \(x\) and \(y\) exist everywhere in the neighborhood.
+		\item Those partial derivatives are continuous at \((x_0,y_0)\) and satisfy the Cauchy-Riemann equations at \((x_0, y_0)\).
+	\end{enumerate}
+	Then \(f'(z_0)\) exists.
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\begin{theorem}
+	Let the function \(f(z)=u(r,\theta)+iv(r,\theta)\) be defined throughout some \(\epsilon\)-neighborhood of a nonzero point \(z_0=r_0\exp(i\theta_0)\), and suppose that
+	\begin{enumerate}
+		\item The first order partial derivatives of the function \(u\) and \(v\) with respect to \(r\) and \(\theta\) exists everywhere in the neighborhood;
+		\item Those partial derivatives are continuous at \((r_0,\theta_0)\) and satisfy the polar form of the Cauchy Reimann equations.
+	\end{enumerate}
+	Then \(f'(z_0)\) exists, its value being \(f'(z_0)=\exp(i\theta_0)(u_r+iv_r)\).
+\end{theorem}
+\begin{IEEEproof}
+	prove
+\end{IEEEproof}
+\subsection{Analytic and harmonic functions}
+\begin{definition}[Analytic function]
+	A function \(f\) of the complex variable \(z\) is analytic at a point \(z_0\) if it has a derivative at each point in some neighborhood \(z_0\). A function is analytic in an open set if it has a derivative everywhere in that set.
+\end{definition}
+\begin{definition}[Entire function]
+	An entire function from \(\mathbb{C}\rightarrow \mathbb{C}\) is a function that is analytic at each point in its domain.
+\end{definition}
+\begin{remark}
+	Every polynomial is an entire function.
+\end{remark}
+\begin{definition}[Singular point]
+	If \(f:\mathbb{C}\rightarrow\mathbb{C}\) is a function not analytic at a point \(z_0\), but analytic at some point in every neighborhood of \(z_0\), then \(z_0\) is called a singular point.
+\end{definition}
+\begin{proposition}
+	If two functions \(P\) and \(Q\) are analytic in a domain \(D\), their sum and product are analyitic. Their quotient is analytic in \(D\) provided the denominator is nonzero in \(D\).
+\end{proposition}
+\begin{proposition}
+	The composition of two analytic functions is analytic.
+\end{proposition}
+\begin{theorem}
+	If \(f'(z)=0\) everywhere in a domain \(D\), then \(f(z)\) must be constant throughout \(D\).
+\end{theorem}
+\begin{definition}[Harmonic]
+	A real-valued function \(H\) of two real variables \(x\) and \(y\) is said to be harmonic in a given domain of the \(xy\) plane if, throughout that domain, it has continuous partial derivatives of the first and second order, and satisfies
+	\begin{equation*}
+		H_{xx}+H_{yy}=0.
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	If a function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\), then it's component functions \(u\) and \(v\) are harmonic in \(D\).
+\end{theorem}
+\begin{theorem}
+	A function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\) iff \(v\) is the harmonic conjugate of \(u\).
+\end{theorem}
+\subsection{read 27/28}
+\section{Elementary functions}
+\begin{definition}[Branch]
+	A branch of a multiple-valued function \(f\) is any single-valued function \(F\) that is analytic in some domain at each point \(z\) of which the value \(F(z)\) is one of the values of \(f\).
+\end{definition}
+\begin{definition}[Complex exponents]
+	When \(z\neq 0\) and the exponent \(c\) is any complex number, the function \(z^c\) is defined by means of the equation
+	\begin{equation*}
+		z^c=e^{c\log z}.
+	\end{equation*}
+\end{definition}
+\begin{definition}[Sin and Cos]
+	\begin{IEEEeqnarray*}{l}
+		\sin x=\frac{e^{ix}-e^{-ix}}{2i}\\
+		\cos x=\frac{e^{ix}+e^{-ix}}{2}
+	\end{IEEEeqnarray*}
+\end{definition}
+\section{Integrals}
+\subsection{Derivatives and contours}
+\begin{definition}[Derivative]
+	Let \(w(t)=u(t)+iv(t)\) be a complex-valued function of a real variable, where the functions \(u(t)\) and \(v(t)\) are real valued functions of a real variable. Then the derivative of \(w(t)\) with respect to \(t\) is
+	\begin{equation*}
+		\diff{}{t}w(t)=\diff{}{t}u(t)+i\diff{}{t}v(t).
+	\end{equation*}
+\end{definition}
+\begin{definition}[Definite integral for function of a real variable]
+	When \(w(t)\) is a complex-valued function of a real variable \(t\), written
+	\begin{equation*}
+		w(t)=u(t)+iv(t),
+	\end{equation*}
+	where \(u\) and \(v\) are real-valued, the definite integral of \(w(t)\) over an interval \(a\leq t\leq b\) is
+	\begin{equation*}
+		\int_a^b w(t)dt=\int_a^b u(t)dt+i\int_a^b v(t)dt,
+	\end{equation*}
+	Provided the integrals on the left exist.
+\end{definition}
+\begin{remark}
+	This is analagous to derivatives of vector functions in calculus, where the definite integral of a function \(f:\mathbb{R}\rightarrow\mathbb{R}^n\) is a vector in \(\mathbb{R}^n\).
+\end{remark}
+\begin{definition}[Arc]
+	A set of points \(z=(x,y)\) in the complex plane is said to be an arc if
+	\begin{equation*}
+		x=x(t),\quad y=y(t),\quad a\leq t\leq b
+	\end{equation*}
+	where \(x\) and \(y\) are continuous functions of the real parameter \(t\). An arc \(C\) is called a simple arc, or a Jordan arc, if it does not cross itself. When the arc is simple except for the fact that \(z(b)=z(a)\), we say that \(C\) is a simple closed curve. Such a curve is positively oriented when it is in the counterclockwise direction.
+\end{definition}
+\begin{definition}[Smooth arc]
+	A smooth arc \(z=z(t)\) defined on \(a\leq t\leq b\) has continuous first derivatives on its domain \(a\leq t\leq b\) which are nonzero on \(a<t<b\).
+\end{definition}
+\begin{definition}[Contour]
+	A contour, or piecewise smooth arc, is an arc consisting of a finite number of smooth arcs joined end to end. When only the initial and final values of a contour \(C\) are the same, we say \(C\) is a simple closed contour.
+\end{definition}
+\begin{theorem}[Jordan curve theorem]
+	The points on any simple closed contour \(C\) are boundary points of two distinct domains. One of these domains is the interior of \(C\), and is bounded. The other is the exterior of \(C\), and is unbounded.
+\end{theorem}
+\subsection{Contour integrals}
+Suppose a contour \(C\) is represented by the function \(z:\mathbb{R}\rightarrow\mathbb{C}\) on the interval \((a\leq t\leq b)\). If \(f:\mathbb{C}\rightarrow\mathbb{C}\) a function, and \(f[z(t)]\) is piecewise continuous on the interval \(a\leq t\leq b\), the function \(f\) is piecewise continuous on \(C\). We then define the contour integral of \(f\) along \(C\) as
+\begin{equation*}
+	\int_{C}f(z)dz=\int_a^b f[z(t)]z'(t)dt.
+\end{equation*}
+\begin{proposition}
+	It follows from the properties of complex-valued functions of a real variable that
+	\begin{IEEEeqnarray*}{l}
+		\int_C z_0f(z)dz=z_0\int_Cf(z)dz,\\
+		\int_C\big[f(z)+g(z)\big]dz=\int_Cf(z)dz+\int_Cg(z)dz.
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{remark}
+	prove statements of section 40, 41, 42
+\end{remark}
+\subsection{Contour integral other shit}
+\begin{lemma}
+	If \(w:\mathbb{R}\rightarrow\mathbb{C}\) is piecewise continuous on an interval \(a\leq t\leq b\), then
+	\begin{equation*}
+		\abs{\int_a^bw(t)dt}\leq\int_a^b\abs{w(t)}dt.
+	\end{equation*}
+\end{lemma}
+\begin{theorem}
+	Let \(C\) denote a contour of length \(L\), and suppose that a function \(f:\mathbb{C}\rightarrow\mathbb{C}\) is continuous on \(C\). If \(M\) is a nonnegative constant such that
+	\begin{equation*}
+		\abs{f(z)}\leq M,
+	\end{equation*}
+	for all points \(z\) on \(C\) at which \(f(z)\) is defined, then
+	\begin{equation*}
+		\abs{\int_Cf(z)dz}\leq ML.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	Suppose that a function \(f:\mathbb{C}\rightarrow\mathbb{C}\) is continuous on domain \(D\). The following statements are logically equivalent:
+	\begin{enumerate}
+		\item \(f\) has an antiderivative \(F\) throughout \(D\).
+		\item The integrals of \(f\) along contours lying entirely in \(D\) and extending from any fixed point \(z_1\) to any fixed point \(z_2\) all have the same value.
+		\item The integrals around closed contours lying entirely in \(D\) are equal to zero.
+	\end{enumerate}
+\end{theorem}
+\begin{theorem}[Cauchy-Goursat theorem]
+\item If a function \(f:\mathbb{C}\rightarrow\mathbb{C}\) is analytic at all points interior to and on a simple closed contour \(C\), then
+	\begin{equation*}
+		\int_C f(z)dz=0.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	If a function \(f:\mathbb{C}\rightarrow\mathbb{C}\) is analytic througout a simply connected domain \(D\), then
+	\begin{equation*}
+		\int_C f(z)dz=0
+	\end{equation*}
+	for every closed contour \(C\) lying in \(D\).
+\end{theorem}
+\begin{remark}
+	Notice the lack of specificity that this contour is simple.
+\end{remark}
+\begin{theorem}
+	Suppose that
+	\begin{enumerate}
+		\item \(C\) is a simple closed contour, described in the counterclockwise direction.
+		\item \(C_k,\,k=1,\ldots,n\) are simple closed contours interior to \(C\), all described in the clockwise direction, that are disjoint and whose interiors have no points in common.
+	\end{enumerate}
+	If a function \(f\) is analytic on all of these contours and throughout the multiply connected domain consisting of the points inside \(C\) and exterior to each \(C_k\), then
+	\begin{equation*}
+		\int_Cf(z)dz+\sum_{k=1}^n\int_{C_k}f(z)dz=0.
+	\end{equation*}
+\end{theorem}
+\begin{corollary}[Principle of deformation of paths]
+	Let \(C_1\) and \(C_2\) denote positively oriented simple closed contours, where \(C_1\) is interior to \(C_2\). If a function \(f\) is analytic in the closed region consisting of these contours and all points between them, then
+	\begin{equation*}
+		\int_{C_1}f(z)dz=\int_{C_2}f(z)dz.
+	\end{equation*}
+\end{corollary}
+\begin{theorem}[Cauchy integral formula]
+	Let \(f:\mathbb{C}\rightarrow\mathbb{C}\) be analytic everywhere inside and on a simple closed contour \(C\), taken in the positive sense. If \(z_0\) is any point interior to \(C\), then
+	\begin{equation*}
+		f(z_0)=\frac{1}{2\pi i}\int_C\frac{f(z)dz}{z-z_0}.
+	\end{equation*}
+\end{theorem}
+\begin{remark}
+	read 51-53
+\end{remark}
+\begin{lemma}
+	Suppose that \(\abs{f(z)}\leq\abs{f(z_0)}\) at each point \(z\) in some neighborhood \(\abs{z-z_0}<\epsilon\) in which \(f\) is analytic. Then \(f(z)\) has constant value \(f(z_0)\) throughout that neighborhood.
+\end{lemma}
+\begin{theorem}
+	If a function \(f\) is analytic and not constant in a given domain \(D\), then \(\abs{f(z)}\) has no maximum value in \(D\). That is, there is no point \(z_0\) in the domain such that \(\abs{f(z)}\leq\abs{f(z_0)}\) for all points \(z\in D\).
+\end{theorem}
+\section{Sequences}
+\subsection{Convergence}
+\begin{definition}[Convergence of sequences]
+A sequence \((z_n)_{n=1}^{\infty}\) of complex numbers has a limit \(z\) if
+\begin{equation*}
+	\forall\epsilon>0,\,\exists N\in\mathbb{N},\,\forall n\in\mathbb{N},\,\big(n>N\Rightarrow\abs{z_n-z}<\epsilon\big)
+\end{equation*}
+When a sequence has a limit, it is said to converge.
+\end{definition}
+\begin{theorem}
+	Suppose that \(z_n=x_n+iy_n\). Then \(\lim_{n\rightarrow\infty}z_n=z\) iff
+	\begin{equation*}
+		\lim_{n\rightarrow\infty}x_n=x,\quad\lim_{n\rightarrow\infty}y_n=y.
+	\end{equation*}
+\end{theorem}
+\begin{definition}[Convergence of series]
+	An infinite series
+	\begin{equation*}
+		\sum_{n=1}^{\infty}z_n=z_1+z_2+\ldots
+	\end{equation*}
+	of complex numebrs converges to the sum \(S\) if the sequence
+	\begin{equation*}
+		S_N=\sum_{n=1}^{N}z_n
+	\end{equation*}
+	of partial sums converges to \(S\). We then write
+	\begin{equation*}
+		\sum_{n=1}^{\infty}z_n=S.
+	\end{equation*}
+\end{definition}
+\begin{theorem}
+	Suppose that \(z_n=x_n+iy_n\) and \(S=X+iY\). Then
+	\begin{equation*}
+		\sum_{n=1}^{\infty}z_n=S\Leftrightarrow\sum_{n=1}^{\infty}x_n=X\text{ and }
+		\sum_{n=1}^{\infty}y_n=Y.
+	\end{equation*}
+\end{theorem}
+\begin{corollary}
+	If a series of complex numbers converges, the \(n\)th term converges to zero as \(n\) tends to infinity.
+\end{corollary}
+\subsection{Taylor series}
+\begin{theorem}
+	Suppoe that a function \(f\) is analytic throughout a disk \(\abs{z-z_0}<R_0\), centered at \(z_0\) and with radius \(R_0\). Then \(f(z)\) has the power series representation
+	\begin{equation*}
+		f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n\quad(\abs{z-z_0}<R_0),
+	\end{equation*}
+	where
+	\begin{equation*}
+		a_n=\frac{f^{(n)}(z_0)}{n!}\quad n\in\mathbb{Z}^+.
+	\end{equation*}
+\end{theorem}
+\begin{definition}[Maclaurin series]
+	A Maclaurin series is a Taylor series centered at \(z_0=0\).
+\end{definition}
+\begin{theorem}
+	Suppose that a function \(f\) is analytic throughout an annular domain \(R_1<\abs{z-z_0}<R_2\), centered at \(z_0\), and let \(C\) denote any positively oriented simple closed contour around \(z_0\) and lying in that domain. Then, at each point in the domain, \(f(z)\) has the series representation
+	\begin{IEEEeqnarray*}{c}
+		f(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n+\sum_{n=1}^\infty\frac{b_n}{(z-z_0)^n}\quad(R_1<\abs{z-z_0}<R_2).
+	\end{IEEEeqnarray*}
+	where
+	\begin{equation*}
+		a_n=\frac{1}{2\pi i}\int_C\frac{f(z)dz}{(z-z_0)^{n+1}}\quad n=0,1,\ldots,
+	\end{equation*}
+	and
+	\begin{equation*}
+		b_n=\frac{1}{2\pi i}\int_C\frac{f(z)dz}{(z-z_0)^{-n+1}}\quad n=1,2,\ldots.
+	\end{equation*}
+\end{theorem}
+\subsection{Absolute and uniform convergence}
+\begin{definition}[Absolute convergence]
+	A series of complex numbers converges absolutely if the series of absolute values of those numbers converges.
+\end{definition}
+\begin{theorem}
+	If a power series
+	\begin{equation*}
+		\sum_{n=0}^\infty a_n(z-z_0)^n
+	\end{equation*}
+	converges when \(z=z_1\) with \(z_1\neq z_0\), then it is absolutely convergent at each point \(z\) in the open disk \(\abs{z-z_0}<R_1\) where \(R_1=\abs{z_1-z_0}\).
+\end{theorem}
+\begin{remark}
+	The greatest circle centered at \(z_0\) such that the above series converges is called the circle of convergence.
+\end{remark}
+\begin{remark}
+	when proving this, go over uniform convergence.
+\end{remark}
+\begin{theorem}
+	A power series
+	\begin{equation*}
+		\sum_{n=0}^{\infty}a_n(z-z_0)^n
+	\end{equation*}
+	represents a continuous function \(S(z)\) at each point inside its circle of convergence \(\abs{z-z_0}=R\).
+\end{theorem}
+\subsection{Integration and differentiation of power series}
+\begin{theorem}
+	Let \(C\) denote any contour interior to the circle of convergence of the power series
+	\begin{equation}
+		S(z)=\sum_{n=0}^{\infty}a_n(z-z_0)^n,\label{sz}
+	\end{equation}
+	and let \(g(z)\) be any function that is continuous on \(C\). The series formed by multiplying each term of the power series by \(g(z)\) can be integrated term by term over \(C\), i.e.
+	\begin{equation*}
+		\int_Cg(z)S(z)dz=\sum_{n=1}^{\infty}a_n\int_Cg(z)(z-z_0)^ndz.
+	\end{equation*}
+\end{theorem}
+\begin{corollary}
+	The sum \(S(z)\) of power series in equation \ref{sz} is analytic at each point \(z\) interior to the circle of convergence of that series.
+\end{corollary}
+\begin{theorem}
+	The power series in equation \ref{sz} can be differentiated term by term, i.e. at each point \(z\) interior to the circle of convergence of that series,
+	\begin{equation*}
+		S'(z)=\sum_{n=1}^{\infty}na_n(z-z_0)^{n-1}.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	If a series
+	\begin{equation*}
+		\sum_{n=0}^{\infty}a_n(z-z_0)^n
+	\end{equation*}
+	converges to \(f(z)\) at all points interior to some circle \(\abs{z-z_0}=R\), then it is the Taylor series expansion for \(f\) in powers of \(z-z_0\).
+\end{theorem}
+\begin{theorem}
+	If a series
+	\begin{equation*}
+		\sum_{n=-\infty}^{\infty}c_n(z-z_0)^n=\sum_{n=0}^\infty a_n(z-z_0)^n+\sum_{n=1}^{\infty}\frac{b_n}{(z-z_0)^n}
+	\end{equation*}
+	Converges to \(f(z)\) at all points in some annular domain about \(z_0\), then it is the Laurent series expansion for \(f\) in powers of \(z-z_0\) for that domain.
+\end{theorem}
+\subsection{Multiplication and division of power series}
+\begin{remark}
+	read 67
+\end{remark}
+\section{Residues and Poles}
 \end{document}

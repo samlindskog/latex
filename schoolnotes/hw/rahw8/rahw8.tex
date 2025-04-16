@@ -1,0 +1,198 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{esdiff}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+
+\title{HW 8}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+
+\begin{proposition}
+	\label{prop1}
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal series of non-negative real numbers. Then this series is convergent iff there is a real number \(M\) such that
+	\begin{equation*}
+		\forall N\in\mathbb{Z},\,\big(N\geq M\Rightarrow\sum_{n=m}^{N}a_n\leq M\big).
+	\end{equation*}
+\end{proposition}
+\begin{corollary}
+	\label{cor1}
+	Let \(\sum_{n=m}^{\infty}a_n\) and \(\sum_{n=m}^{\infty}b_n\) be two formal series of real numbers, and suppose that \(\abs{a_n}\leq b_n\) for all \(n\geq m\). Then if \(\sum_{n=m}^{\infty}b_n\) is convergent, then \(\sum_{n=m}^{\infty}a_n\) is absolutely convergent, and
+	\begin{equation*}
+		\abs{\sum_{n=m}^{\infty}a_n}\leq\sum_{n=m}^{\infty}\abs{a_n}\leq\sum_{n=m}^{\infty}b_n.
+	\end{equation*}
+\end{corollary}
+\section*{Problem 1}
+Prove use proposition \ref{prop1} to prove \ref{cor1}.
+\medbreak
+\begin{IEEEproof}
+	Suppose for all \(n\geq m\), \(\abs{a_n}\leq b_n\), and that the infinite series of \(b_n\) starting at \(n=m\) converges to \(L\in\mathbb{R}\). It follows that
+\begin{equation}
+	\sum_{n=m}^{m}\abs{a_n}=\abs{a_n}\leq b_n=\sum_{n=m}^{m}b_n.\label{eqn1}
+\end{equation}
+	By inductive hypothesis, for all \(N\geq m\),
+	\begin{equation*}
+		\sum_{n=m}^{N}\abs{a_n}\leq\sum_{n=m}^Nb_n.
+	\end{equation*}
+	because \(\abs{a_{N+1}}\leq b_{N+1}\), it follows from the inductive hypothesis that
+	\begin{equation*}
+		\sum_{n=m}^N\abs{a_n}+\abs{a_N+1}=\sum_{n=m}^{N+1}\abs{a_n}\leq
+		\sum_{n=m}^Nb_n+b_{N+1}=\sum_{n=m}^{N+1}b_n.
+	\end{equation*}
+	So
+	\begin{equation*}
+		\sum_{n=m}^\infty\abs{a_n}\leq\sum_{n=m}^{\infty}b_n=L.
+	\end{equation*}
+	It follows from equation \ref{eqn1} that
+	\begin{equation*}
+		\abs{\sum_{i=m}^ma_n}=\abs{a_n}\leq\sum_{i=m}^m\abs{a_n}=\abs{a_n}.
+	\end{equation*}
+	By inductive hypothesis, for all \(N\geq m\),
+	\begin{equation*}
+		\abs{\sum_{i=m}^Na_n}\leq\sum_{i=m}^N\abs{a_n}.
+	\end{equation*}
+	It follows from the triangle inequality and the inductive hypothesis that
+	\begin{IEEEeqnarray*}{rCl}
+		\abs{\sum_{i=m}^{N+1}a_n}&=&\abs{\sum_{i=m}^Na_n+a_{N+1}}\\
+		&\leq&\abs{\sum_{i=m}^Na_n}+\abs{a_{N+1}}\\
+		&\leq&\sum_{i=m}^N\abs{a_n}+\abs{a_{N+1}}\\
+		&=&\sum_{n=m}^{N+1}\abs{a_n}.
+	\end{IEEEeqnarray*}
+	Therefore,
+	\begin{equation*}
+		\abs{\sum_{n=m}^{\infty}a_n}\leq\sum_{n=m}^{\infty}\abs{a_n}\leq\sum_{n=m}^{\infty}b_n.
+	\end{equation*}
+	If \(\sum_{n=m}^{\infty}\abs{a_n}\) did not converge, then by proposition 7.2.5 it would not be bounded. Therefore \(\sum_{n=m}^{\infty}a_n\) is absolutely convergent.
+\end{IEEEproof}
+\clearpage
+\section*{Problem 4}
+Let \(X\) be a subset of \(\mathbb{R}\), let \(f:X\rightarrow\mathbb{R}\) be a function, let \(E\) be a subset of \(X\), let \(x_0\) be an adherent point of \(E\), and let \(L\) be a real number. Then the following statements are logically equivalent:
+\begin{enumerate}
+	\item \(f\) converges to \(L\) at \(x_0\) in \(E\)
+	\item For every sequence \((a_n)_{n=0}^{\infty}\) which consists entirely of elements \(E\) and converges to \(x_0\), the sequence \((f(a_n))_{n=1}^{\infty}\) converges to \(L\).
+\end{enumerate}
+\begin{IEEEproof}
+	First we prove (a) implies (b). Suppose \(\lim_{x\rightarrow x_0;x\in E}f(x)=L\), and let \((a_n)_{n=0}^{\infty}\) be a sequence of elements in \(E\) such that \(\lim_{n\rightarrow\infty}a_n=x_0\). Then
+	\begin{IEEEeqnarray*}{l}
+		\forall\epsilon>0,\,\exists\delta>0,\,\forall x\in E,\,\big(\abs{x-x_0}<\delta\Rightarrow\abs{f(x)-L}<\epsilon\big),\\
+		\forall\epsilon'>0,\,\exists N\in\mathbb{N},\,\forall n\in\mathbb{N},\,\big(n>N\Rightarrow\abs{a_n-x_0}<\epsilon'\big).
+	\end{IEEEeqnarray*}
+	Therefore,
+	\begin{equation*}
+		\forall\epsilon>0,\exists\delta>0,\exists M\in\mathbb{N},\,\forall n\in\mathbb{N},\,
+		\big(n>M\Rightarrow\abs{a_n-x_0}<\delta\Rightarrow\abs{f(a_n)-L}<\epsilon\big).
+	\end{equation*}
+	so
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists M\in\mathbb{N},\,\forall n\in\mathbb{N},\,\big(n>M\Rightarrow\abs{f(a_n)-L}<\epsilon\big),
+	\end{equation*}
+	and \((f(a_n))_{n=1}^{\infty}\) converges to \(L\).
+	\medbreak
+	Next, we prove (b) implies (a) by contrapositive. Suppose
+	\begin{equation*}
+		\exists\epsilon>0,\,\forall\delta>0,\,\exists x\in E,\,\big(\abs{x-x_0}<\delta\wedge\abs{f(x)-L}\geq\epsilon\big).
+	\end{equation*}
+	It follows that for some \(\epsilon>0\) there exists \(a_n\in E\) such that \(\abs{a_n-x_0}<1/n\) with \(\abs{f(a_n)-L}\geq\epsilon\). \((a_n)_{n=1}^{\infty}\) converges to \(x_0\) because for all \(\epsilon'\), \(n=\ceil{1/\epsilon'}\) implies \(1\leq n\epsilon'\) so \(1/n\leq\epsilon'\). Because for all n, \(\abs{f(a_n)-L}\geq\epsilon\), the sequence \((f(a_n))_{n=1}^{\infty}\) does not converge to \(L\), contradicting (b).
+\end{IEEEproof}
+\section*{Problem 5}
+Let \(f,g\) be functions defined from \(\mathbb{R}\) to \(\mathbb{R}\), and let \(a,b\) be real numbers. Show that if \(f\) and \(g\) are continuous at \(x_0\in\mathbb{R}\), then \(af+bg\) is continuous at \(x_0\).
+\medbreak
+\begin{IEEEproof}
+	If \(f,g\) are functions defined from \(\mathbb{R}\) to \(\mathbb{R}\), and are continuous on \(\mathbb{R}\) at \(x_0\), it follows from proposition 9.3.14 that
+	\begin{IEEEeqnarray*}{rCl}
+		\lim_{x\rightarrow x_0}af+bg&=&
+		\lim_{x\rightarrow x_0}af+
+		\lim_{x\rightarrow x_0}bg\\
+		&=&a\lim_{x\rightarrow x_0}f+b\lim_{x\rightarrow x_0}g\\
+		&=&af(x_0)+bg(x_0),
+	\end{IEEEeqnarray*}
+	so \(af+bg\) is continuous at \(x_0\).
+\end{IEEEproof}
+\clearpage
+\section*{Problem 6}
+Let \(X\) and \(Y\) be subsets of \(R\), and let \(f:X\rightarrow Y\) and \(g:Y\rightarrow\mathbb{R}\) be functions. Let \(x_0\) be a point in \(X\). If \(f\) is continuous at \(x_0\), and \(g\) is continuous at \(f(x_0)\), then the composition \(g\circ f:X\rightarrow\mathbb{R}\) is continuous at \(x_0\).
+\medbreak
+\begin{IEEEproof}
+	Because \(g\) is continuous at \(f(x_0)\) and \(f\) is continuous at \(x_0\),
+	\begin{IEEEeqnarray*}{l}
+		\forall\epsilon>0,\,\exists\delta>0,\,\forall y\in Y,\,\big(\abs{y-f(x_0)}<\delta\Rightarrow\abs{g(y)-g(f(x_0))}<\epsilon\big),\\
+		\forall\epsilon'>0,\,\exists\delta'>0,\,\forall x\in X,\,\big(\abs{x-x_0}<\delta'\Rightarrow\abs{f(x)-f(x_0)}<\epsilon'\big).
+	\end{IEEEeqnarray*}
+	Therefore, there exists \(\delta''>0\) such that \(\abs{x-x_0}<\delta''\) implies \(\abs{f(x)-f(x_0)}<\delta\) which implies \(\abs{g(f(x))-g(f(x_0))}<\epsilon\), i.e.
+	\begin{equation*}
+		\forall\epsilon>0,\,\exists\delta''>0,\,\forall x\in X\big(\abs{x-x_0}<\delta''\Rightarrow\abs{g\circ f(x)-g\circ f(x_0)}<\epsilon\big),
+	\end{equation*}
+	so \(g\circ f\) is continuous at \(x_0\).
+\end{IEEEproof}
+\section*{Problem 7}
+Let \(n\geq 0\) be an integer, and for each \(0\leq i\leq n\) let \(c_i\) be a real number. Let \(P:\mathbb{R}\rightarrow\mathbb{R}\) be the function
+\begin{equation*}
+	P(x)=\sum_{i=0}^nc_ix^i.
+\end{equation*}
+Show \(P\) is continuous.
+\medbreak
+\begin{IEEEproof}
+	test
+\end{IEEEproof}
+\end{document}

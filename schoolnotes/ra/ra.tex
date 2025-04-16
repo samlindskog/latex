@@ -718,4 +718,86 @@ We may indentify the rationals with natural numbers by setting \(n//1\equiv n\).
 \end{definition}
 \section{The real numbers}
 \subsection{Sequences}
+\section{Limits of sequences}
+\begin{definition}[Cauchy Sequence of reals]
+\end{definition}
+\section{Series}
+\begin{definition}[Convergence of series]
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal infinite series. For any integer \(N\geq m\), we define the \(N\)th partial sum \(S_N\) of this series to be
+	\begin{equation*}
+		S_N=\sum_{n=m}^{N}a_n.
+	\end{equation*}
+	If the sequence \((S_N)_{N=m}^{\infty}\) converges to \(L\), then we say that the infinite series \(\sum_{n=m}^{\infty}a_n\) is convergent, and converges to \(L\). We also write \(L=\sum_{n=m}^{\infty}a_n=L\). If the parial sums \(S_N\) diverge, we say the infinite series \(\sum_{n=m}^{\infty}a_n\) is divergent, and do not assign any real number to it.
+\end{definition}
+\begin{proposition}
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal series of real numbers. \(\sum_{n=m}^{\infty}a_n\) converges iff for every real number \(\epsilon>0\), there exists an integer \(N\geq m\) such that for all \(p,q\geq N\),
+	\begin{equation*}
+		\abs{\sum_{n=p}^{q}a_n}\leq\epsilon.
+	\end{equation*}
+\end{proposition}
+\begin{corollary}
+	Let \(\sum_{n=m}^{\infty}a_n\) be a convergent series of real numbers. Then we must have \(\lim_{n\rightarrow\infty}a_n=0\).
+\end{corollary}
+\begin{definition}[Absolute convergence]
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal series of real numbers. We say that this series is absolutely convergent iff the series \(\sum_{n=m}^{\infty}\abs{a_n}\) is convergent.
+\end{definition}
+\begin{proposition}
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal series of real numbers. If the series is absolutely convergent, then it is also convergent. Furthermore,
+	\begin{equation*}
+		\abs{\sum_{n=m}^{\infty}a_n}\leq\sum_{n=m}^{\infty}\abs{a_n}.
+	\end{equation*}
+\end{proposition}
+\begin{proposition}[Alternating series test]
+	Let \((a_n)_{n=m}^{\infty}\) be a sequence of real numbers which are non-negative and decreasing, thus \(a_n\geq 0\) and \(a_n\geq a_{n+1}\) for every \(n\geq m\). Then the series
+	\begin{equation*}
+		\sum_{n=m}^{\infty}(-1)^na_n
+	\end{equation*}
+	is convergent iff the sequence \(a_n\) converges to \(0\) as \(n\rightarrow\infty\).
+\end{proposition}
+\begin{IEEEproof}
+	The sequence of partial sums is Cauchy, thus converges.
+\end{IEEEproof}
+\begin{proposition}
+	Let \(\sum_{n=m}^{\infty}a_n\) be a formal series of non-negative real numbers. Then this series is convergent iff there is a real number \(M\) such that for all \(N\geq m\),
+	\begin{equation*}
+		\sum_{n=m}^{N}a_n\leq M.
+	\end{equation*}
+\end{proposition}
+\begin{corollary}[Comparison test]
+	Let \(\sum_{n=m}^{\infty}a_n\) and \(\sum_{n=m}^{\infty}b_n\) be two formal series of real numbers, and suppose that \(\abs{a_n}\leq b_n\) for all \(n\geq m\). Then if \(\sum_{n=m}^\infty b_n\) is convergent, then \(\sum_{n=m}^{\infty}a_n\) is absolutely convergent, and
+	\begin{equation*}
+		\abs{\sum_{n=m}^{\infty}a_n}\leq\sum_{n=m}^{\infty}\abs{a_n}\leq\sum_{n=m}^{\infty}b_n.
+	\end{equation*}
+\end{corollary}
+\begin{definition}[Geometric series]
+	The geometric series is defined
+	\begin{equation*}
+		\sum_{n=0}^{\infty}x^n,
+	\end{equation*}
+	Where \(x\in\mathbb{R}\).
+\end{definition}
+\begin{lemma}
+	Let \(x\) be a real number. If \(\abs{x}\geq 1\), then the series \(\sum_{n=0}^{\infty}x^n\) is divergent. If \(\abs{x}<1\), then the series is absolutely convergent, and
+	\begin{equation*}
+		\sum_{n=0}^{\infty}x^n=\frac{1}{1-x}.
+	\end{equation*}
+\end{lemma}
+\begin{proposition}
+	Let \((a_n)_{n=1}^{\infty}\) be a decreasing sequence of non-negative real numbers. Then the series \(\sum_{n=1}^{\infty}a_n\) is convergent iff
+	\begin{equation*}
+		\sum_{k=0}^{\infty}2^ka_{2^k}
+	\end{equation*}
+	is convergent.
+\end{proposition}
+\begin{corollary}
+	Let \(q>0\) be a real number. Then the series \(\sum_{n=1}^{\infty}\frac{1}{n^q}\) is convergent when \(q>1\) and divergent when \(q\leq 1\).
+\end{corollary}
+\begin{theorem}[Root test]
+	Let \(\sum_{n=m}^{\infty}a_n\) be a series of real numbers, and let \(\alpha=\lim\sup\abs{a_n}^{1/n}\).
+	\begin{enumerate}
+		\item If \(\alpha<1\), then the series \(\sum_{n=m}^{\infty}a_n\) is absolutely convergent.
+		\item If \(\alpha>1\), then the series \(\sum_{n=m}^{\infty}a_n\) is not convergent.
+		\item If \(\alpha=1\), we cannot assert any conclusion.
+	\end{enumerate}
+\end{theorem}
 \end{document}

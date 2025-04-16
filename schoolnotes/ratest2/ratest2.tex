@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Real Analysis test 2}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Series}
+\subsection{Useful properties}
+\begin{proposition}[Triangle inequality]
+	\begin{equation*}
+	\abs{\sum_{i=m}^{n}a_i}\leq\sum_{i=m}^{n}\abs{a_i}.
+	\end{equation*}
+\end{proposition}
+\begin{proposition}
+	The series below converges iff for every real number \(\epsilon>0\), there exists an integer \(N\geq m\) such that
+	\begin{equation*}
+		\forall p,q\geq N,\,\abs{\sum_{n=p}^{q}a_n}\leq\epsilon
+	\end{equation*}
+\end{proposition}
+\begin{proposition}
+	If \(\sum_{n=m}^{\infty}a_n=C_1\) and \(\sum_{n=m}^{\infty}b_n=C_2\) then
+	\begin{equation*}
+		\sum_{n=m}^{\infty}(a_n+b_n)=C_1+C_2.
+	\end{equation*}
+\end{proposition}
+\begin{proposition}
+	If \(\sum_{n=m}^{\infty}a_n=L\), then
+	\begin{equation*}
+		\sum_{n=m}^{\infty}ca_n=cL.
+	\end{equation*}
+\end{proposition}
+\begin{definition}[Geometric series]
+	Let \(x\) be a real number. If \(\abs{x}\geq 1\), then the series \(\sum_{n=0}^{\infty}x^n\) is divergent. If \(\abs{x}<1\), then the series is absolutely convergent and
+	\begin{equation*}
+		\sum_{n=0}^{\infty}x^n=\frac{1}{1-x}.
+	\end{equation*}
+\end{definition}
+\subsection{Series convergence tests}
+\begin{proposition}[Comparison test for finite series]
+	Let \(m\leq n\) be integers, and let \(a_i,b_i\) be real numbers assigned to each integer \(m\leq i\leq n\). Suppose that \(a_i\leq b_i\) for all \(m\leq i\leq n\). Then we have
+	\begin{equation*}
+		\sum_{i=m}^{n}a_i\leq\sum_{i=m}^{n}b_i.
+	\end{equation*}
+\end{proposition}
+\begin{proposition}[Zero test]
+	If a series converges, the limit of the same sequence of its elements converges to zero.
+\end{proposition}
+\begin{proposition}[Absolute convergence test]
+	If a series is absolutely convergent, it is convergent.
+\end{proposition}
+\begin{proposition}[Alternating series test]
+	Let \((a_n)_{n=m}^{\infty}\) be a sequence of real numbers which are non-negative and decreasing. Then the series \(\sum_{n=m}^{\infty}(-1)^{n}a_n\) is convergent iff \((a_n)_{n=m}^{\infty}\) converges to zero.
+\end{proposition}
+\begin{proposition}[Comparison test]
+	Let \(\sum_{n=m}^\infty a_n\) and \(\sum_{n=m}^{\infty}b_n\) be two series, and \(\abs{a_n}\leq b_n\) for all \(n\geq m\). Then if \(\sum_{n=m}^{\infty}b_n\) converges, then
+	\begin{equation*}
+		\abs{\sum_{n=m}^{\infty}a_n}\leq\sum_{n=m}^{\infty}\abs{a_n}\leq\sum_{n=m}^{\infty}b_n.
+	\end{equation*}
+\end{proposition}
+\begin{proposition}[Divergence test]
+	The contrapositive of the comparison test.
+\end{proposition}
+\begin{proposition}[Cauchy criterion]
+	Let \((a_n)_{n=1}^{\infty}\) be a decreasing sequence of non-negative real numbers. Then the series \(\sum_{n=1}^{\infty}a_n\) is convergent iff the series
+	\begin{equation*}
+		\sum_{k=0}^{\infty}2^ka_{2^k}
+	\end{equation*}
+	is convergent.
+\end{proposition}
+\begin{proposition}[P-test]
+	Let \(q>0\) be a real number. Then the series \(\sum_{n=1}^{\infty}\frac{1}{n^q}\) is convergent when \(q>1\) and divergent when \(q\leq 1\).
+\end{proposition}
+\begin{proposition}[Root test]
+	Let \(\sum_{n=m}^{\infty}a_n\) be a series of real numbers, and let \(\alpha=\lim\sup_{n\rightarrow\infty}\abs{a_n}^{1/n}\).
+	\begin{enumerate}
+		\item If \(\alpha<1\), then the series \(\sum_{n=m}^{\infty}a_n\) is absolutely convergent.
+		\item If \(\alpha>1\), then the series \(\sum_{n=m}^{\infty}a_n\) is not convergent.
+		\item If \(\alpha=1\), we cannot assert any conclusion.
+	\end{enumerate}
+\end{proposition}
+\begin{proposition}[Ratio test]
+	Let \(\sum_{n=m}^{\infty}a_n\) be a series of non-zero numbers.
+	\begin{enumerate}
+		\item If \(\lim\sup\frac{\abs{a_{n+1}}}{\abs{a_n}}<1\), the above series is absolutely convergent
+		\item If \(\lim\inf\frac{\abs{a_{n+1}}}{\abs{a_n}}>1\), the above series is not convergent.
+		\item In the remaining cases, we cannot assert any conclusion.
+	\end{enumerate}
+\end{proposition}
+\end{document}

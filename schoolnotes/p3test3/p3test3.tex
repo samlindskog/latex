@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Notes}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Gallilean Relativity}
+\begin{definition}[Reference frame]
+	A rigid cubical lattice of appropriately synchonized clocks
+\end{definition}
+\begin{definition}[Spacetime coordinates]
+	An event's spacetime coordinates in a given reference frame are an ordered set of four numbers, specifying time and three spatial coordinates.
+\end{definition}
+\begin{definition}[Observer]
+	An observer is defined to be a person who interprets measurements made in a reference frame.
+\end{definition}
+\begin{definition}[Intertial frame]
+	An inertial frame is one in which an isolated object is always and everywhere observed ot move at a constant velocity. In a noninertial frame, such an object moves with nonconstant velocity in at least some situations.
+\end{definition}
+\begin{proposition}
+	Any intertial frame will be observed to move at a constant velocity relative to any other inertial frame.
+\end{proposition}
+\begin{definition}[Principle of relativity]
+	The laws of physics are the same in all intertial reference frames.
+\end{definition}
+\begin{example}
+	Let there be an inertial frame called the home frame, and an interial frame called the other frame, moving with spacial (three-dimensional) velocity \(\vec{\beta}\) with respect to the home frame. Suppose \(\vec{\beta}\) has \(x\)-component \(\beta\), and all other components zero. Denote the spacetime coordinates of the other frame as prime. The spacetime coordinates of the two frames are related by the following equations:
+	\begin{IEEEeqnarray*}{l}
+		t'=t;\\
+		x'=x-\beta t;\\
+		y'=y;\\
+		z'=z.
+	\end{IEEEeqnarray*}
+	These transformations of coordinates are called the Gallilean transformation equations. Taking the derivative with respect to time of these equations reveals
+	\begin{IEEEeqnarray*}{l}
+		v'_x=v_x-\beta;\\
+		v'_y=v_y;\\
+		v'_z=v_z;\\
+	\end{IEEEeqnarray*}
+	Therefore the acceleration of the spacial components of the two frames is zero. Therefore the acceleration of an object in both frames will be the same, and newton's second law agrees in both frames.
+\end{example}
+\section{Einsteinian relativity}
+\begin{definition}[Synchronized clocks]
+	A light flash is emitted by clock A in an inertial frame at a time \(t_A\), and arrives at clock B in the same frame at a time \(t_B\). These clocks are defined to by synchronized if \(c(t_B-t_A)\) is equal to the distance between the clocks. For our purposes, light seconds are a useful way to quantify this distance.
+\end{definition}
+\begin{remark}
+	The assumption of frame independence of the speed of light is an extension of the principle of relativity.
+\end{remark}
+\begin{proposition}
+	Using light seconds as our measure of distance, one kilogram is equal to \(8.988\times 10^{16}J\).
+\end{proposition}
+\begin{definition}[Worldline]
+	All events occuring along the path of the object in a spacetime diagram is called the object's worldline. The slope of this line is the inverse of it's velocity.
+\end{definition}
+\begin{remark}
+	The worldline of a travelling light flash in an inertial reference frame makes a \(45^{\circ}\) angle with the \(x-axis\).
+\end{remark}
+\begin{remark}
+	Two events happening simultaneously in an other frame may not happen simultaneously in the home frame. This is a consequence of the fact that the speed of light is constant in all frames, even if the frames are moving relative to one another.
+\end{remark}
+\section{The spacetime interval}
+\begin{definition}[Coordinate time]
+	The time between two events measured in an inertial reference frame by a pair of synchronized clocks.
+\end{definition}
+\begin{definition}[Proper time]
+	Any single clock that is present at both of two events measures a frame-independed proper time \(\Delta\tau\) along its worldline. This clock can take any path between the events, not necessarily a constant-velocity or straight line.
+\end{definition}
+\begin{definition}[Spacetime interval]
+	If the woldline of a clock which measures the proper time between events happens to be the unique constant-velocity worldline between the events, the clock also measures the frame-independent spacetime interval \(\Delta s\).
+\end{definition}
+\begin{definition}[Metric equation]
+	Suppose we have a light clock in the other frame measure the time \(\Delta s\) it takes for light to bounce betwen two mirrors a distance \(L\) apart, and perpendicular to the direction of motion of the other frame. Let event A be the moment the light pulse is sent towards the reflecting mirror, and event \(B\) be the moment the light returns to the light clock. The other frame moves a distance \(\Delta d\) in the time it takes the light to make a round trip. Then the coordinate time \(\Delta t\) between the two events in the home frame is
+	\begin{equation*}
+		\Delta t=2\bigg[L^2+\bigg(\frac{\abs{\Delta d}}{2}\bigg)^2\bigg]^{1/2}.
+	\end{equation*}
+	Using \(\Delta s\), this equation becomes
+	\begin{equation*}
+		\Delta t^2=\Delta s^2+\abs{\Delta d}^2.
+	\end{equation*}
+	Using spacetime coordinates and solving for \(\Delta s\), this relationship is 
+	\begin{equation*}
+		\Delta s^2=\Delta t^2-\Delta x^2-\Delta y^2-\Delta z^2.
+	\end{equation*}
+	\href{https://www.desmos.com/calculator/oclqzrbsie}{HERE} is a link to a visualization of the metric equation.
+\end{definition}
+\section{Proper time}
+\begin{proposition}[Proper time]
+	The proper time \(\tau_{AB}\) experienced by a clock on a curved path from \(A\) to \(B\) from time \(t_A\) to time \(t_B\) is
+	\begin{equation*}
+		\tau_{AB}=\int_{t_A}^{t_B}(1-\abs{\vec{v}^2})^{1/2}dt.
+	\end{equation*}
+\end{proposition}
+\begin{remark}
+	As a result of the relationship described above, in general we have
+	\begin{equation*}
+		\Delta t\leq\Delta s\leq\Delta\tau.
+	\end{equation*}
+	This is how the twin paradox is nullified.
+\end{remark}
+\end{document}

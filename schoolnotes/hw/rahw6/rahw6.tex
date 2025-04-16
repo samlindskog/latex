@@ -1,0 +1,123 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+% remove IEEEproof indent
+\usepackage{etoolbox}
+\patchcmd{\IEEEproofindentspace}{2\parindent}{0pt}{}{}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+\title{HW 6}
+\author{Samuel Lindskog}
+\maketitle
+\begin{proposition}
+	\label{completeub}
+	If \(B\) is the set of upper bounds of a set \(R\), and \(Y\) is the set of convergent points of all convergent sequences in \(B\), \(B=Y\)
+\end{proposition}
+\begin{IEEEproof}
+	Suppose \((b_n)_{n=0}^{\infty}\) is a sequence in \(B\), the set of all upper bounds of \(R\), and let \((b_n)_{n=0}^{\infty}\) converge to \(L\in\mathbb{R}\). Then for all \(\epsilon>0\) there exists \(N\in\mathbb{N}\) such that \(n>N\) implies \(\abs{a_n-L}<\epsilon\). If there exists \(r\in R\) such that \(r>L\), then \(r=L+a\) for some \(a\in\mathbb{R}^+\). But there exists \(M\in\mathbb{N}\) such that \(n>M\) implies \(\abs{b_n-L}<a/2\), so
+	\begin{IEEEeqnarray*}{c}
+		L-a/2<b_n<L+a/2<L+a<c\\
+		b_n<c,
+	\end{IEEEeqnarray*}
+	a contradiction. Therefore \(Y\subseteq B\).
+	\medbreak
+	If \(b\in B\), the sequence \((b_n=b)_{n=0}^{\infty}\) is \(\epsilon\)-close to \(b\) for all \(\epsilon>0\), and thus converges to \(b\). Thus \(B\subseteq Y\).
+\end{IEEEproof}
+\subsection*{Problem 1}
+\begin{enumerate}
+	\item If a nonempty set \(R\subseteq\mathbb{R}\) has an upper bound then it has a least upper bound (supremum).
+		\begin{IEEEproof}
+			Let \(R\) be a nonempty set with an upper bound. Let \(B\) be the set of all upper bounds of \(R\). Suppose to the contrary that for all decreasing sequences \((b_n)_{n=0}^{\infty}\) in \(B\),
+			\begin{equation}
+				\exists b\in B,\,\forall N\in\mathbb{N},\,\exists n\in\mathbb{N}\big(n>N\wedge b_n>b\big).\label{eqn2}
+			\end{equation}
+			The constant sequence \((b_n=b)_{n=0}^{\infty}\) in \(B\) contradicts claim (\ref{eqn2}). Thus there exists a decreasing sequence \((b'_n)_{n=1}^{\infty}\) in \(B\) such that
+			\begin{equation}
+				\forall b\in B,\,\exists N\in\mathbb{N},\,\forall n\in\mathbb{N},\,\big(n>N\Rightarrow b'_n\leq b\big).\label{eqn3}
+			\end{equation}
+			It follows from proposition 6.3.8 (Tao) that any decreasing sequence in \(\mathbb{R}\) bounded below converges. Because for all \(b\in B\) and all \(r\in R\), \(b>r\), \(B\) is bounded below. Thus \((b'_n)_{n=0}^{\infty}\) converges (by proposition \ref{completeub}) to some \(l\in B\). Because the sequence is decreasing, for all \(n\in\mathbb{N}\), \(b'_n\geq l\). It then follows from equation (\ref{eqn3}) that for all \(b\in B\), \(l\leq b\). Thus \(\sup R\) exists.
+		\end{IEEEproof}
+	\item If a nonempty subset of \(\mathbb{R}\) has an infimum, then it is bounded.
+		\begin{IEEEproof}
+			Let \(R\subseteq\mathbb{R}\), and \(l=\inf R\). Then \(R\) is bounded below by \(l\), i.e.
+			\begin{equation*}
+				\forall r\in R,\,r>l.
+			\end{equation*}
+			If there exists \(l'\in\mathbb{R}\) with \(l'\geq 0\) such that \(\forall r\in R, \abs{r}\leq l'\), then
+			\begin{equation*}
+				l'<r<l'
+			\end{equation*}
+			But \(r\) can be arbitrarily large, so this is not necessarily true. Therefore the statement is false. A correct statement could be "If a nonempty set of \(\mathbb{R}\) has an infimum and a supremum, then it is bounded."
+		\end{IEEEproof}
+	\item Every nonempty bounded subset of \(\mathbb{R}\) has a maximum and a minimum.
+		\begin{IEEEproof}
+			If \(R=[0,1)\), then for all \(\epsilon>0\) there exists \(r\in R\) such that \(\abs{1-r}<\epsilon\), and \(1\notin R\). Because for all \(r\in R\) we have \(r<1\), \(\abs{1-r}=1-r>0\). Therefore for any \(r\), there exists \(a=r+(1-r)/2=r/2+1/2<1\), so \(a>r\) and \(a\in\mathbb{R}\). \(\abs{r}<2\) for all \(r\in R\), so \(R\) is bounded. Therefore, the bounded set \(R\) has no maximum and the statement is false.
+		\end{IEEEproof}
+	\item Let \(S\) be a nonempty subset of \(\mathbb{R}\). If \(m=\inf S\) and \(m'<m\) then \(m'\) is a lower bound of \(S\).
+		\begin{IEEEproof}
+			Because \(m=\inf S\), \(m\) is a lower bound for \(S\), and thus for all \(s\in S\), \(s\geq m\). Because \(m'<m\), it follows from elementary properties of the ordering of the reals that for all \(s\in S\), \(s\geq m>m'\), so the statement is true.
+		\end{IEEEproof}
+\end{enumerate}
+\subsection*{Problem 2}
+\begin{enumerate}
+	\item The interval \(I=(0,4]\) has supremum \(4\), and infimum \(0\). For any upper (lower) bound smaller (greater) than 4 (0), there exists \(i\in I\) such that \(i\) is greater (lesser) than that upper (lower) bound. The maximum is \(4\), and no minimum, because supremum \(S\) is an element of \(S\), but infimum \(S\) is not. The set is bounded because it is both bounded above and below by its supremum and infimum
+	\item The set \(A=\{1/n\,|\,n>0,\,n\in\mathbb{N}\}\) has supremum \(1\), and an infimum \(0\). The supremum of \(A\) is \(1\) because \(1\) is the maximum value of \(A\). As \(n\) increases, \(1/n\) is strictly larger than zero and becomes arbitrarily close to \(zero\). Thus for any number \(a\) greater than \(0\), there exists \(n\) such that \(1/n<a\), so zero is the infimum. \(0\notin A\), so the set has no minimum. The set is bounded because it is both bounded above and below by its supremum and infimum.
+\end{enumerate}
+\end{document}
