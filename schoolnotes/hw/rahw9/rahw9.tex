@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{esdiff}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+
+\title{HW 9}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+
+\section*{Exercise 9.4.7}
+First, we prove that a function \(f:\mathbb{R}\rightarrow\mathbb{R}\) defined by a real variable \(x\) taken to a nonnegative integer power is continuous. Let \(c\in\mathbb{R}\). If \(f=x^0\), then by definition \(f=1\). Thus \(\abs{f(x)-f(c)}=\abs{1-1}=0\), so
+\begin{equation*}
+	\forall\epsilon>0,\,\exists\delta>0,\,\forall x\in\mathbb{R},\,\big(\abs{x-c}<\delta\Rightarrow\abs{f(x)-f(c)}<\epsilon\big)
+\end{equation*}
+Is always true. By inductive hypothesis, suppose \(x^n\) is continuous for some \(n\in\mathbb{N}\). Then \(\lim_{x\rightarrow c}x^n=c^n\) for all \(c\in\mathbb{R}\). The function \(g:\mathbb{R}\rightarrow\mathbb{R}\) defined by \(g(x)=x\) is continuous because \(\abs{x-c}=\abs{f(x)-f(c)}\), thus for all \(\epsilon>0\), \(\abs{x-c}<\epsilon\Rightarrow\abs{f(x)-f(c)<\epsilon}\). It follows from limit laws in the text and the continuity of both \(x^n\) and \(x\) that
+\begin{IEEEeqnarray*}{rCl}
+	\lim_{x\rightarrow c}x^{n+1}&=&\lim_{x\rightarrow c}x^n\cdot x\\
+	&=&\lim_{x\rightarrow c}x^n\cdot\lim_{x\rightarrow c}x\\
+	&=&c^n\cdot c\\
+	&=&c^{n+1}.
+\end{IEEEeqnarray*}
+This closes the induction. If follows from proposition that a continuous function multiplied by a constant is continuous. Thus
+\begin{equation*}
+	\sum_{i=0}^{n}c_ix^i
+\end{equation*}
+Is a finite linear combination of continuous functions, and is thus continuous by proposition.
+\section*{Exercise 9.6.1}
+\subsection*{a}
+
+\end{document}

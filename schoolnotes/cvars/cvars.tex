@@ -58,7 +58,9 @@ top=20mm,
 		\overbar{z\overbar{w}}=\overbar{z}w\\
 		\abs{z}=\abs{\overbar{z}}\\
 		\abs{z}^2=z\overbar{z}\\
-		\abs{zw}=\abs{z}\abs{w}
+		\abs{zw}=\abs{z}\abs{w}\\
+		\text{Re}\,z+\text{Re}\,w=\text{Re}\,z+w\\
+		\text{Im}\,z+\text{Im}\,w=\text{Im}\,z+w
 	\end{IEEEeqnarray*}
 \end{proposition}
 \begin{proposition}
@@ -103,6 +105,25 @@ top=20mm,
 		\bigg\lvert\sum_{i=1}^{n}a_ib_i\bigg\rvert^2\leq\sum_{i=1}^n\abs{a_i}^2+\sum_{i=1}^n\abs{b_i}^2
 	\end{equation*}
 \end{definition}
+\begin{proposition}
+	If \(z=x+iy\) then
+	\begin{IEEEeqnarray*}{l}
+		\abs{x}\leq\abs{z},\\
+		\abs{y}\leq\abs{z}.
+	\end{IEEEeqnarray*}
+\end{proposition}
+\begin{IEEEproof}
+	From the definition of modulus,
+	\begin{equation}
+		\abs{z}^2=x^2+y^2.\label{modeqn}
+	\end{equation}
+	Thus wlog
+	\begin{IEEEeqnarray*}{l}
+		x=\pm\sqrt{\abs{z}^2-y^2},\\
+		\abs{x}=\sqrt{\abs{z}^2-y^2}.
+	\end{IEEEeqnarray*}
+	Suppose to the contrary \(\abs{x}>\abs{z}\). Then \(\abs{x}^2=x^2>\abs{z}^2\), and because \(y^2\) is nonnegative, equation \ref{modeqn} is not true.
+\end{IEEEproof}
 \subsection{Polar representation}
 \begin{definition}[Polar representation]
 	The polar representation of a complex number \(z=x+iy\) is
@@ -115,6 +136,9 @@ top=20mm,
 	\end{equation*}
 	The principle value of \(\text{arg}\,z\) denoted \(\text{Arg}\,z\) is the unique member of \(\text{arg}\,z\) such that \(-\pi<\text{Arg}\,z\leq\pi\).
 \end{definition}
+\begin{remark}
+	The value of certain functions depend on the argument of elements in it's domain. Thus in order to prevent the function from being multi-valued, a 'branch' of the domain must be chosen with only one argument. In order to maintain continuity, 'branch cuts' must be made to the functions domain, where the argument of elements on a branch coincide.
+\end{remark}
 \begin{definition}[de Moiver's formulae]
 	The identies obtained by equating the imaginary and real parts of the expansions of \(e^{in\theta}\) and \((e^{in})^\theta\) are known as de Moivre's formulae, e.g.
 	\begin{IEEEeqnarray*}{l}
@@ -159,7 +183,6 @@ top=20mm,
 \begin{IEEEproof}
 	Suppose \(f:\mathbb{C}\rightarrow\mathbb{C}\) a function and that \(\lim_{z\rightarrow z_0}f(z)=w_0\) and \(\lim_{z\rightarrow z_0}f(z)=w_1\) with \(w_0\neq w_1\). Because \(w_0\neq w_1\), \(\abs{w_0-w_1}=L>0\). If we take \(\epsilon=L/2\), there exists \(\delta>0\) such that \(\abs{z-z_0}<\delta\Rightarrow \abs{f(z)-w_0}<L/2\,\wedge\,\abs{f(z)-w_1}<L/2\). Because \((z-w_1)+(w_0-z)=w_0-w_1\), by the triangle inequality \(\abs{w_0-w_1}\leq\abs{f(z)-w_0}+\abs{f(z)-w_1}=L\), a contradiction.
 \end{IEEEproof}
-\clearpage
 \begin{theorem}
 	Suppose \(f(z)=u(x,y)+iv(x,y),\;z=x+iy\), and that \(z_0=x_0+iy_0\) and \(w_0=u_0+iv_0\). Then \(\lim_{z\rightarrow z_0}f(z)=w_0\) iff
 	\begin{equation}
@@ -298,10 +321,29 @@ prove
 	\begin{equation*}
 		u_x=v_y,\quad u_y=-v_x
 	\end{equation*}
-	at that point.
+	at that point. In polar form, these equations are
+	\begin{equation*}
+		ru_r=v_\theta,\quad u_\theta=-rv_r.
+	\end{equation*}
 \end{theorem}
 \begin{IEEEproof}
-	prove
+	The proof follows from the equality of the limit definition of the derivative approaching a point \(z_0\) from the \(x\)-axis, and approaching \(z_0\) from the \(y\)-axis. We utilize the fact that the limit of a sum of component functions of \(z\) is the sum of the limits of the individual functions. These individual limits then become the partial derivatives of \(f\) with respect to \(x\) and \(y\). Approaching \(z_0\) along the \(x\)-axis, the derivative of \(f=u(x,0)+v(x,0)\) at \(z_0\) is
+	\begin{IEEEeqnarray*}{rCl}
+		f'(z_0)&=&\lim_{\Delta x\rightarrow 0}\frac{u(x+\Delta x)-u(x)}{\Delta x}
+		+i\frac{v(x+\Delta x)-v(x)}{\Delta x}\\
+		&=&\lim_{\Delta x\rightarrow 0}\frac{u(x+\Delta x)-u(x)}{\Delta x}
+		+\lim_{\Delta x\rightarrow 0}i\frac{v(x+\Delta x)-v(x)}{\Delta x}\\
+	\end{IEEEeqnarray*}
+	Approaching \(z_0\) along the \(y\)-axis, the derivative of \(f(u(0,y)+v(0,y))\) at \(z_0\) is
+	\begin{IEEEeqnarray*}{rCl}
+		f'(z_0)&=&\lim_{\Delta y\rightarrow 0}\frac{u(y+\Delta y)-u(y)}{i\Delta y}
+		+i\frac{v(y+\Delta y)-v(y)}{i\Delta y}\\
+		&=&\lim_{\Delta y\rightarrow 0}\frac{u(y+\Delta y)-u(y)}{i\Delta y}
+		+\lim_{\Delta y\rightarrow 0}i\frac{v(y+\Delta y)-v(y)}{i\Delta y}\\
+		&=&\lim_{\Delta y\rightarrow 0}-i\frac{u(y+\Delta y)-u(y)}{\Delta y}
+		+\lim_{\Delta y\rightarrow 0}\frac{v(y+\Delta y)-v(y)}{\Delta y}\\
+	\end{IEEEeqnarray*}
+	Thus \(u_x=v_y\) and \(u_y=-v_x\).
 \end{IEEEproof}
 \begin{remark}
 	\(1/i=-i\).
@@ -362,6 +404,12 @@ prove
 \begin{theorem}
 	If a function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\), then it's component functions \(u\) and \(v\) are harmonic in \(D\).
 \end{theorem}
+\begin{definition}[Harmonic conjugate]
+	If two given functions \(u\) and \(v\) are harmonic in a domain \(D\) and their first-order partial derivatives satisfy the Cauchy-Riemann equations (in the same order as \(u\) and \(v\) appear in the c.r. equations) throughout \(D\), then \(v\) is said to be the harmonic conjugate of \(u\).
+\end{definition}
+\begin{remark}
+	It is possible that \(v\) is the harmonic conjugate of \(u\) with the reverse not being true.
+\end{remark}
 \begin{theorem}
 	A function \(f(z)=u(x,y)+iv(x,y)\) is analytic in a domain \(D\) iff \(v\) is the harmonic conjugate of \(u\).
 \end{theorem}
@@ -376,12 +424,42 @@ prove
 		z^c=e^{c\log z}.
 	\end{equation*}
 \end{definition}
+\begin{definition}[log and Log]
+	Let \(z=re^{i\theta}\). \(\log z\) is a multiple-valued function defined by
+	\begin{equation*}
+		\log z=\ln \abs{z}+i\arg z.
+	\end{equation*}
+	\(\text{Log}\,z\) is the single valued function
+	\begin{equation*}
+		\text{Log}\,z=\ln r+i\Theta,
+	\end{equation*}
+	Where \(\Theta=\text{Arg}\,z\). \(\text{Log}\,z\) is not analytic because it is not continuous when \(z\in\mathbb{R}^{-}\).
+\end{definition}
+\begin{proposition}[Branches and derivatives of logarithms]
+	If \(\theta=\Theta+2n\pi\) for \(n\in\mathbb{Z}\), and \(z=re^{i\theta}\), then \(\log z\) can be defined
+	\begin{equation*}
+		\log z=\ln r+i\theta.
+	\end{equation*}
+	If we let \(\alpha\) denoted any real number, and \(\alpha<\theta<\alpha+2\pi\) with \(r>0\), \(\log z\) becomes a single-valued continuous function. \(\log z\) restricted to this domain is a branch of \(\log z\). If \(\alpha=-\pi\), this branch is called the principal branch, and is equal to \(\text{Log}\, z\) with the additional restriction \(\Theta<\pi\).
+\end{proposition}
 \begin{definition}[Sin and Cos]
 	\begin{IEEEeqnarray*}{l}
 		\sin x=\frac{e^{ix}-e^{-ix}}{2i}\\
 		\cos x=\frac{e^{ix}+e^{-ix}}{2}
 	\end{IEEEeqnarray*}
 \end{definition}
+\begin{definition}[Sinh and Cosh]
+	\begin{IEEEeqnarray*}{rCl}
+		\sinh x=\frac{e^x-e^{-x}}{2}\\
+		\cosh x=\frac{e^x+e^{-x}}{2}
+	\end{IEEEeqnarray*}
+\end{definition}
+\begin{proposition}
+	\begin{IEEEeqnarray*}{c}
+		\abs{\sin z}^2=\sin^2 x+\sinh^2 y\\
+		\abs{\cos z}^2=\cos^2 x+\sinh^2 y
+	\end{IEEEeqnarray*}
+\end{proposition}
 \section{Integrals}
 \subsection{Derivatives and contours}
 \begin{definition}[Derivative]
@@ -435,6 +513,8 @@ Suppose a contour \(C\) is represented by the function \(z:\mathbb{R}\rightarrow
 \begin{remark}
 	prove statements of section 40, 41, 42
 \end{remark}
+\begin{proposition}
+\end{proposition}
 \subsection{Contour integral other shit}
 \begin{lemma}
 	If \(w:\mathbb{R}\rightarrow\mathbb{C}\) is piecewise continuous on an interval \(a\leq t\leq b\), then
@@ -498,10 +578,26 @@ Suppose a contour \(C\) is represented by the function \(z:\mathbb{R}\rightarrow
 	\begin{equation*}
 		f(z_0)=\frac{1}{2\pi i}\int_C\frac{f(z)dz}{z-z_0}.
 	\end{equation*}
+	This formula can be extended to find the derivative of functions analytic on and inside the interior of a simple closed contour \(C\) with repect to a point \(z\) on the interior of this curve:
+	\begin{equation*}
+		f^{(n)}(z)=\frac{n!}{2\pi i}\int_C\frac{f(s)ds}{(s-z)^{n+1}},\;n\in\mathbb{Z}^+.
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	If a function \(f\) is analytic at a given point, then it's derivatives of all orders are analytic there too.
 \end{theorem}
 \begin{remark}
 	read 51-53
 \end{remark}
+\begin{lemma}
+	Suppose that \(\abs{f(z)}\leq\abs{f_{z_0}}\) at each point \(z\) in some neighborhood \(\abs{z-z_0}<\epsilon\) in which \(f\) is analytic. Then \(f(z)\) has constant value \(f(z_0)\) throughout that neighborhood.
+\end{lemma}
+\begin{theorem}
+	If a function \(f\) is analytic and not constant in a given domain \(D\), then \(\abs{f(z)}\) has non maximum value in \(D\). That is, there is no point \(z_0\) in the domain such that \(\abs{f(z)}\leq\abs{f(z_0)}\) for all points \(z\) in it.
+\end{theorem}
+\begin{corollary}
+	Suppose that a function \(f\) is continuous on a closed bounded region \(R\), and that it is analytic and not constant in the interior of \(R\). then the maximum value of \(\abs{f(z)}\) in \(R\), which is always reached, occurs somewhere on the boundary of \(R\) and never in the interior.
+\end{corollary}
 \begin{lemma}
 	Suppose that \(\abs{f(z)}\leq\abs{f(z_0)}\) at each point \(z\) in some neighborhood \(\abs{z-z_0}<\epsilon\) in which \(f\) is analytic. Then \(f(z)\) has constant value \(f(z_0)\) throughout that neighborhood.
 \end{lemma}
@@ -638,4 +734,90 @@ When a sequence has a limit, it is said to converge.
 	read 67
 \end{remark}
 \section{Residues and Poles}
+\subsection{Residues}
+\begin{definition}
+	The residue of \(f\) at a point \(z_0\) is the coefficient \(b_1\) for the Laurent series valid in a deleted neighborhood of \(z_0\), i.e.
+	\begin{equation*}
+		2\pi i\text{Res}_{z=z_0}\,f(z)=\int_C f(z)dz.
+	\end{equation*}
+	The residue at infinity is \(b_1\) term for the Laurent series valid as \(\abs{z}\rightarrow\infty\).
+\end{definition}
+\begin{remark}
+	The Cauchy-Goursat theorem implies that if \(f\) is analytic inside and on a simple closed curve \(C\), the residue of \(f\) at any point interior to \(C\) must be zero. Alternatively, if \(f\) is analytic, all coefficients on the principle part of the laurent series must be zero due to the integrand for these coefficients becoming analytic. It should be noted that a functions analyticity on a simply connected domain is a sufficient but not necessary condition for the integrals of simple closed curves being zero on that domain.
+\end{remark}
+\subsection{Classifying singular points}
+\begin{definition}[Singular point]
+	A point \(z_0\) is called a singular point of \(f\) if \(f\) fails to be analytic at \(z_0\) but is analytic at some point in every neighborhood of \(z_0\).
+\end{definition}
+\begin{definition}[Isolated point]
+	A singular point is said to be isolated if there is a deleted neighborhood of \(z_0\) throughout which \(f\) is analytic.
+\end{definition}
+\begin{theorem}
+	Let \(C\) be a simple closed contour, described in the positive sense. If a function \(f\) is analytic inside and on \(C\) except for a finite number of singular points \(z_k\) (\(k\in\mathbb{Z}^+\)) inside \(C\), then
+	\begin{equation*}
+		\int_C f(z)dz=2\pi i\sum_{k=1}^{n}\text{Res}_{z=z_k}f(z).
+	\end{equation*}
+\end{theorem}
+\begin{definition}[Types of singular points]
+	If the principle part of the Laurent series at an isolated singular point has a minimum degree \(-m\), then pole is called a pole of order \(m\). A pole of order \(m=1\) is referred to as a simple pole.\medbreak
+	If the principle part of the Laurent series at an isolated singular point has all zero coefficients, the singularity at \(z_0\) is said to be removable.\medbreak
+	If an infinite number of the coefficients in the principle part are nonzero, \(z_0\) is said to be an essential singular point of \(f\).
+\end{definition}
+\begin{theorem}
+	An isolated singular point \(z_0\) of a function \(f\) is a pole of order \(m\) iff \(f(z)\) can be written in the form
+	\begin{equation*}
+		f(z)=\frac{\phi(z)}{(z-z_0)^m},
+	\end{equation*}
+	where \(\phi(z)\) is analytic and nonzero at \(z_0\). Moreover,
+	\begin{equation*}
+		\text{Res}\,_{z=z_0}f(z)=\phi(z_0),\;\text{if }m=1
+	\end{equation*}
+	and
+	\begin{equation*}
+		\text{Res}\,_{z=z_0}f(z)=\frac{\phi^{(m-1)}(z_0)}{(m-1)!}\;\text{if }m\geq 2.
+	\end{equation*}
+\end{theorem}
+\begin{definition}[Zeros of analytic functions]
+	Suppose a function \(f\) is analytic at a point \(z_0\). If \(f(z_0)=0\), and if there is a positive integer \(m\) with \(f^{(m)}(z_0)\neq 0\) such that \(n>m\) implies \(f^{(n)}(z_0)=0\), then \(f\) is said to have a zero of order \(m\) at \(z_0\).
+\end{definition}
+\begin{theorem}
+	Let a function \(f\) be analytic at a point \(z_0\). It has a zero of order \(m\) at \(z_0\) iff there is a function \(g\), which is analytic and nonzero at \(z_0\), such that
+	\begin{equation*}
+		f(z)=(z-z_0)^mg(z).
+	\end{equation*}
+\end{theorem}
+\begin{theorem}
+	Suppose that
+	\begin{enumerate}
+		\item Two functions \(p\) and \(q\) are analytic at a point \(z_0\);
+		\item \(p(z_0)\neq 0\) and \(q\) has a zero of order \(m\) at \(z_0\).
+	\end{enumerate}
+	Then the quotient \(p(z)/q(z)\) has a pole of order \(m\) at \(z_0\).
+\end{theorem}
+\begin{theorem}
+	Let two functions \(p\) and \(q\) be analytic at a point \(z_0\). If
+	\begin{equation*}
+		p(z_0)\neq 0,\;q(z_0)=0,\;q'(z_0)\neq 0,
+	\end{equation*}
+	then \(z_0\) is a simple pole of the quotient \(p(z)/q(z)\) and
+	\begin{equation*}
+		\text{Res}_{z=z_0}\,\frac{p(z)}{q(z)}=\frac{p(z_0)}{q'(z_0)}.
+	\end{equation*}
+\end{theorem}
+\section{Mappings by elementary functions}
+\begin{definition}[Bilinear transformation]
+	The transformation
+	\begin{equation*}
+		w=\frac{az+b}{cz+d},\;(ad-bc\neq 0),
+	\end{equation*}
+	where \(a,b,c,d\in\mathbb{C}\), is called a linear fractional transformation. This is a bijective mapping from the extended \(z\)-plane to the extended \(w\)-plane. Solving this equation for \(z\) yields
+	\begin{equation*}
+		z=\frac{-dw+b}{cw-a},\;(ad-bc\neq 0).
+	\end{equation*}
+	The equation
+	\begin{equation*}
+		\frac{(w-w_1)(w_2-w_3)}{(w-w_3)(w_2-w_1)}=\frac{(z-z_1)(z_2-z_3)}{(z-z_3)(z_2-z_1)}
+	\end{equation*}
+	Defines a linear fractional transformation that maps \(z_1,z_2,z_3\) in the finite \(z\) plane onto distinct points \(w_1,w_2,w_3\) respectively in the finite \(w\) plane.
+\end{definition}
 \end{document}

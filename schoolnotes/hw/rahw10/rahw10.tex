@@ -1,0 +1,167 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+\setlength{\parindent}{0mm}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{esdiff}
+\usepackage{IEEEtrantools}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
+\hypersetup{
+	colorlinks,
+	linkcolor={black},
+	citecolor={black},
+	filecolor={black},
+	urlcolor={black},
+}
+\renewcommand{\IEEEQED}{\IEEEQEDopen}
+
+\newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
+\newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
+\newcommand*\Eval[3]{\left.#1\right\rvert_{#2}^{#3}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem{example}[theorem]{Example} 
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{caution}[theorem]{Caution}
+\newtheorem{recall}[theorem]{Recall}
+\newtheorem{question}[theorem]{Question}
+\newtheorem*{remark}{Remark}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{exer}[theorem]{Exercise}
+\newtheorem{convention}[theorem]{Convention}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\begin{document}
+
+\title{HW 10}
+\author{Samuel Lindskog}
+\maketitle
+
+\setcounter{section}{1}
+
+\section*{Exercise 10.2.5}
+Let \(f:[a,b]\rightarrow\mathbb{R}\) with \(a<b\) be continuous and differentiable on \((a,b)\). Let \(g:[a,b]\rightarrow\mathbb{R}\) be defined by
+\begin{equation*}
+	g(x)=\frac{f(b)-f(a)}{b-a}(x-a).
+\end{equation*}
+It follows that \((f-g)(a)=(f-g)(b)=f(a)\) because
+\begin{equation*}
+	f(a)-\frac{f(b)-f(a)}{b-a}(a-a)=f(a)-0=f(a),
+\end{equation*}
+and
+\begin{equation*}
+	f(b)-\frac{f(b)-f(a)}{b-a}(b-a)=f(b)-(f(b)-f(a))=f(a).
+\end{equation*}
+Thus from Rolle's theorem, there exists \(d\in(a,b)\) such that \((f-g)'(d)=0\). \(g'(d)\) can be found from the limit definition of the derivative:
+\begin{IEEEeqnarray*}{rCl}
+	g'(x)&=&\lim_{x\rightarrow d}\frac{\frac{f(b)-f(a)}{d-a}(d-a)-\frac{f(b)-f(a)}{b-a}(x-a)}{d-x}\\
+	&=&\lim_{x\rightarrow d}\frac{\frac{f(b)-f(a)}{d-a}(d-x)}{d-x}\\
+	&=&\frac{f(b)-f(a)}{b-a}.
+\end{IEEEeqnarray*}
+It follows from the difference rule that
+\begin{equation*}
+	(f-g)'(x)=f'(d)-g'(d)=0,
+\end{equation*}
+so
+\begin{IEEEeqnarray*}{rCl}
+	f'(d)&=&g'(d)\\
+	&=&\frac{f(b)-f(a)}{b-a},
+\end{IEEEeqnarray*}
+proving the mean value theorem.
+\clearpage
+\subsection*{Exercise 10.2.6}
+Suppose to the contrary that \(\abs{f(x)-f(y)}>M\abs{x-y}\) for some \(x,y\in[a,b]\). Wlog assuming \(y>x\), it follows from MVT for derivatives that for some \(c\in(x,y)\),
+\begin{IEEEeqnarray*}{rCl}
+	f|_{[x,y]}'(c)&=&\frac{f(x)-f(y)}{x-y}.
+\end{IEEEeqnarray*}
+Thus
+\begin{IEEEeqnarray*}{rCl}
+	\abs{f|_{[x,y]}'(c)}&=&\abs{\frac{f(x)-f(y)}{x-y}}\\
+	&=&\frac{\abs{f(x)-f(y)}}{\abs{x-y}}\\
+	&>&\frac{M\abs{x-y}}{\abs{x-y}}\\
+	&=&M.
+\end{IEEEeqnarray*}
+The limit definition of the derivative yields the same result as \(f|_{[x,y]}'\) for \(f'\) at \(d\) because \([x,y]\) is connected. Thus \(f'\) is not bounded by \(M\), a contradiction.
+\subsection*{Exercise 10.2.7}
+It follows from the previous exercise that \(f\) is Lipschitz continuous. Therefore
+\begin{equation*}
+	\abs{f(x)-f(y)}\leq M\abs{x-y}.
+\end{equation*}
+If \(\epsilon>0\) and \(0<\delta<\epsilon/M\), it follows that
+\begin{equation*}
+	\forall\epsilon>0,\,\exists\delta>0,\,\forall x,y\in\mathbb{R},\,\big(\abs{x-y}<\delta\Rightarrow\abs{f(x)-f(y)}<\epsilon\big),
+\end{equation*}
+so \(f\) is uniformly continuous.
+\subsection*{Exercise 10.3.2}
+If \(f:[-1,1]\rightarrow\mathbb{R}\) is defined
+\begin{equation*}
+	f(x)=\begin{cases}
+		x&x<0\\
+		x+1&x\geq 0\\
+	\end{cases}
+\end{equation*}
+Then
+\begin{equation*}
+	\lim_{x\rightarrow 0^-}\frac{1-f(x)}{x}=\lim_{x\rightarrow 0^-}\frac{1}{x}
+\end{equation*}
+diverges. Thus
+\begin{equation*}
+	\lim_{x\rightarrow 0}\frac{1-f(x)}{x}
+\end{equation*}
+diverges or does not exist and the function is not differentiable at \(0\).
+\clearpage
+\subsection*{Exercise 10.4.1}
+Let \(f:(0,\infty)\rightarrow(0,\infty)\) be defined \(x^{1/n}\) for \(x\in (0,\infty)\) and \(n\in\mathbb{Z}^+\). For part (a), because \(1/n\in\mathbb{R}\), it follows from Proposition 9.9.10 that \(x^{1/n}\) continuous on \((0,\infty)\). For part (b), we must first establish that \(f\) is bijective, in order to establish that its unique inverse \(f^{-1}\) exists.\medbreak
+Let \(a,b\in(0,\infty)\) with \(a\neq b\), and assume to the contrary that \(a^{1/n}=b^{1/n}\). Then \((a^{1/n})^n=(b^{1/n})^n\) so \(a=b\), a contradiction. Thus \(a\neq b\Rightarrow f(a)\neq f(b)\) so \(f\) is injective. Also, for \(y\in(0,\infty)\), \(y^n>0\) so \(y^n\in(0,\infty)\) and \(f(y^n)=y\). Therefore \(\forall y\in(0,\infty),\,\exists x\in(0,\infty)\) such that \(f(x)=y\) and \(f\) is surjective. Thus \(f\) is bijective and has a unique inverse.\medbreak
+If \(f^{-1}:(0,\infty)\rightarrow(0,\infty)\) is defined by \(y^n\) for \(y\in(0,\infty)\), then \((f^{-1}\circ f):(0,\infty)\rightarrow(0,\infty)\) is defined by \((x^{1/n})^n=x\) for \(x\in(0,\infty)\), i.e. the indentity function, so \(f^{-1}\) is the inverse function of \(f\).\medbreak
+Next, we find the derivative of \(f^{-1}:(0,\infty)\rightarrow(0,\infty)\) defined by \(y^n\) for \(y\in(0,\infty)\). Note the sum  on lines 4 \& 5  disappears for \(n<2\).
+\begin{IEEEeqnarray*}{rCl}
+	(f^{-1})'(y)&=&\lim_{h\rightarrow 0}\frac{f^{-1}(y+h)-f(y)}{h}\\
+	&=&\lim_{h\rightarrow 0}\frac{(y+h)^n-y^n}{h}\\
+	&=&\lim_{h\rightarrow 0}\frac{-y^n+\sum_{k=0}^n\begin{pmatrix}n\\k\end{pmatrix}y^{n-k}h^k}{h}\\
+	&=&\lim_{h\rightarrow 0}\frac{y^n-y^n+\frac{n!}{(n-1)!}y^{n-1}h+\sum_{k=2}^n\begin{pmatrix}n\\k\end{pmatrix}y^{n-k}h^k}{h}\\
+		&=&\lim_{h\rightarrow 0}ny^{n-1}+\sum_{k=2}^n\begin{pmatrix}n\\k\end{pmatrix}y^{n-k}h^{k-1}\\
+		&=&ny^{n-1}.
+\end{IEEEeqnarray*}
+Therefore \(f^{-1}\) is differentiable, with \((f^{-1})'(y)\) is defined \(ny^{n-1}\) for \(y\in(0,\infty)\), and by proposition 6.7.3 \((f^{-1})'\) is greater than zero on its domain. \((f^{-1})^{-1}=f\), and from part (a) \(f\) is continuous, so by the inverse function theorem \(f\) is differentiable, and for \(x\in (0,\infty)\),
+\begin{IEEEeqnarray*}{rCl}
+	f'(x)&=&\frac{1}{(f^{-1})'(f(x))}\\
+	&=&\frac{1}{n(x^{1/n})^{n-1}}\\
+	&=&\frac{1}{n}(x^{1-1/n})^{-1}\\
+	&=&\frac{1}{n}x^{1/n-1}.
+\end{IEEEeqnarray*}
+\subsection*{Exercise 11.1.4}
+Let \(x\in \bigcup P\#P'\). Then \(x\in p\) for some \(p\in P\#P'\) and \(p=a\cap a'\) for some \(a\in P\) and \(a'\in P'\). From the definition of a partition, \(\bigcup P\) and \(\bigcup P'\) are equal to \(I\), so \(a,a'\subseteq I\) and thus \(p\subseteq I\) so \(x\in I\). Because \(\bigcup P=I\) and \(\bigcup P'=I\), for any \(x\in I\) there exists \(a\in P\) and \(a'\in P'\) with \(x\in a\) and \(x\in a'\). It follows \(x\in a\cap a'\), and \(a'\cap a\in P\#P'\), so \(x\in\bigcup P\#P'\) and \(\bigcup P\#P'=I\).\medbreak
+If \(x,y\in P\#P'\), then for some \(a,b\in P\) and \(a',b'\in P'\) we have \(x=a\cap a'\) and \(y=b\cap b'\). Thus if \(s\in x\) and \(s\in y\), then \(s\in a,b\). Because the elements of each partition are pairwise disjoint, this directly implies \(a=b\). By the same logic \(a'=b'\), so \(x=y\). By contrapositive for \(x,y\in P\#P'\) with \(x\neq y\) implies \(x\cap y=\emptyset\) so \(\bigcap P\#P'=\emptyset\). Therefore \(P\#P'\) is a partition of \(I\). Trivially \(a\cap a'\subseteq a\), \(a\cap a'\subseteq a'\), thus all elements of \(P\#P'\) are subsets of some element of \(P\) and some element of \(P'\). Therefore \(P\#P'\) is finer then both \(P\) and \(P'\).
+\clearpage
+\end{document}
