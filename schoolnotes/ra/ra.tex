@@ -403,7 +403,6 @@ top=20mm,
 \begin{definition}[Bijective]
 	A function is bijective (invertible) if it is injective and surjective.
 \end{definition}
-%
 \begin{proposition}
 	Let \(f:A\rightarrow B\) and \(g:B\rightarrow C\). Then
 	\begin{enumerate}
@@ -445,6 +444,21 @@ top=20mm,
 	\end{equation*}
 	We call \(f^{-1}(U)\) the inverse image of \(U\).
 \end{definition}
+\begin{theorem}
+	Suppose that \(f:A\rightarrow B\), let \(C,C_1,C_2\) be subsets of \(A\), and let \(D,D_1,D_2\) be subsets of \(B\). Then the following hold:
+	\begin{enumerate}
+		\item \(C\subseteq f^{-1}(f(C))\).
+		\item \(f(f^{-1}(D))\subseteq D\).
+		\item \(f(C_1\cap C_2)\subseteq f(C_1)\cap f(C_2)\).
+		\item \(f(C_1\cup C_2)=f(C_1)\cup f(C_2)\).
+		\item \(f^{-1}(D_1\cap D_2)=f^{-1}(D_1)\cap f^{-1}(D_2)\).
+		\item \(f^{-1}(D_1\cup D_2)=f^{-1}(D_1)\cup f^{-1}(D_2)\).
+		\item \(f^{-1}(B\setminus D)=A\setminus f^{-1}(D)\).
+	\end{enumerate}
+	\begin{IEEEproof}
+		test
+	\end{IEEEproof}
+\end{theorem}
 \begin{proposition}
 	\label{imagessubset}
 	If \(X,Y\) are sets and \(f:X\rightarrow Y\) then \(f(X)\subseteq Y\).
@@ -1422,3 +1436,4 @@ Suppose that \((s_n)\) and \((t_n)\) are convergent sequences with \(\lim_{n\rig
 	\end{enumerate}
 \end{definition}
 \end{document}
+

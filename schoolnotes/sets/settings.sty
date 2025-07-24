@@ -10,27 +10,18 @@
 \usepackage{esdiff}
 \usepackage{IEEEtrantools}
 \usepackage{geometry}
-\geometry{
-a4paper,
-total={140mm,257mm},
-left=35mm,
-top=20mm,
-}
 \usepackage{hyperref}
+
+\setlist[enumerate,1]{label=(\alph*)}
+\setlist[enumerate,2]{label=(\arabic*)}
 \hypersetup{
 	colorlinks,
 	linkcolor={black},
 	citecolor={black},
 	filecolor={black},
 	urlcolor={black},
-	hypertexnames=false
 }
-\usepackage{bookmark}
-
-\setlist[enumerate,1]{label=(\alph*)}
-\setlist[enumerate,2]{label=(\arabic*)}
 \renewcommand{\IEEEQED}{\IEEEQEDopen}
-
 
 \newcommand{\overbar}[1]{\mkern 1.0mu\overline{\mkern-1.0mu#1\mkern-1.0mu}\mkern 1.0mu}
 \newcommand{\Mod}[1]{(\mathrm{mod}\ #1)}
@@ -49,6 +40,7 @@ top=20mm,
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
 \theoremstyle{definition}
+\newtheorem{axiom}[theorem]{Axiom}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}

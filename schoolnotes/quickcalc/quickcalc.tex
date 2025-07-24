@@ -1,25 +1,119 @@
-\documentclass{article}
+\documentclass[oneside]{book}
 \usepackage{settings}
 
-\geometry{
-a4paper,
-total={140mm,257mm},
-left=35mm,
-top=20mm,
-}
-
-\title{Notes}
+\begin{document}
+\title{Calculus: Early Transcendentals Notes}
 \author{Samuel Lindskog}
 
-\begin{document}
+\frontmatter
+
 \maketitle
-\addtocontents{toc}{\protect\hypertarget{toc}{}}
 \tableofcontents
-\pagenumbering{gobble}
-\clearpage
-\pagenumbering{arabic}
-\setcounter{page}{1}
-TODO: binomial theorem, cosh sinh, complete the square, difference of squares, partial fractions, 2.3 epsilon delta proofs
+
+\mainmatter
+
+\chapter{Algebra}
+\section{Fundamentals}
+\subsection{Real numbers and absolute value}
+\begin{remark}
+	TODO: binomial theorem, cosh sinh, complete the square, difference of squares, partial fractions, 2.3 epsilon delta proofs, sunthetic division/polynomial long division, conjugate multiplication
+\end{remark}
+
+\chapter{Calculus}
+\section{Chapter 1: Functions}
+\subsection{Functions and their graphs}
+\begin{definition}[Function]
+	A function \(f:D\rightarrow Y\) is a rule that assigns a unique element \(f(x)\in Y\) to each element \(x\in D\). The set \(D\) is called the domain, and the set \(f(D)\subseteq Y\) is called the range.
+\end{definition}
+\begin{proposition}[Vertical line test]
+	A funciton \(f\) can have only one value \(f(x)\) for each \(x\) in it's domain.
+\end{proposition}
+\begin{definition}[Increasing function]
+	Let \(f\) be a function defined on an interval \(I\), and let \(x_1\) and \(x_2\) be any two points in \(I\).
+	\begin{enumerate}
+		\item If \(f(x_2)>f(x_1)\) whenever \(x_2>x_1\), then \(f\) is said to be increasing on \(I\).
+		\item  If \(f(x_2)<f(x_1)\) whenvever \(x_2<x_1\), then \(f\) is said to be decreasing on \(I\).
+	\end{enumerate}
+\end{definition}
+\begin{definition}[Polynomial]
+	A function \(p\) is a polynomial if it is of the form
+	\begin{equation*}
+		p(x)=a_nx^n+a_{n-1}x^{n-1}+\ldots+a_1x+a_0.
+	\end{equation*}
+	Where \(n\) is a nonnegative coefficient. The greatest \(n\) value for which \(a_n\) is nonzero is called the degree of the polynomial. A polynomial with one term is called a monomial
+\end{definition}
+\begin{definition}[Even and odd functions]
+	A function \(y=f(x)\) is even if
+	\begin{equation*}
+		f(-x)=f(x),
+	\end{equation*}
+	and is odd if
+	\begin{equation*}
+		f(-x)=-f(x)
+	\end{equation*}
+	for all \(x\) in the domain of \(f\). The graph of an even function is symmetric about the \(y\)-axis, and an odd function is symmetric about the origin.
+\end{definition}
+\begin{remark}
+	The names even and odd come from powers of \(x\). Even-degree monomials of \(x\) are even, and odd-degree monomials of \(x\) are odd.
+\end{remark}
+\begin{definition}[Linear function]
+	A linear function is a function of the form
+	\begin{equation*}
+		f(x)=mx+b
+	\end{equation*}
+	for constants \(m,b\). In other words, a linear function is a polynomial of degree \(1\).
+\end{definition}
+\begin{definition}[Quadratic]
+	A quadratic function is a polynomial of degree \(2\). A cubic function is a function of degree \(3\).
+\end{definition}
+\begin{definition}[Power function]
+	A power function a function of the form
+	\begin{equation*}
+		f(x)=x^a
+	\end{equation*}
+	for some constant \(a\).
+\end{definition}
+\begin{definition}[Rational function]
+	A rational function is a quotient or ratio \(f(x)=p(x)/q(x)\), where \(p,q\) are polynomials and \(q(x)\neq 0\).
+\end{definition}
+\begin{definition}[Algebraic function]
+	Any function constructed from polynomials \(p_k\) using algebraic operations \(+,-,\times,/,(p_k)^a\) is an algebraic function.
+\end{definition}
+\begin{definition}[Exponential function]
+	Functions of the form \(f(x)=a^x\), where the base \(a>0\) is a positive constant \(a\neq 1\), are called exponential functions.
+\end{definition}
+\begin{definition}[Logarithic function]
+	There are the functions \(f(x)=\log_a x\), where \(a\neq 1\) is a positive constant.
+\end{definition}
+\begin{definition}[Transcendental functions]
+	These are functions that are not algebraic. They include trigonometric, inverse trigonometric, exponential, and logarithmic functions, and many more.
+\end{definition}
+\subsection{Combining Functions; Shifting and Scaling Graphs}
+\begin{definition}[Operations on functions]
+	Arithmetic operations on functions are defined as follows:
+	\begin{IEEEeqnarray*}{rCl}
+		(f+g)(x)&=&f(x)+g(x).\\
+		(f-g)(x)&=&f(x)-g(x).\\
+		(fg)(x)&=&f(x)g(x).\\
+		(f/g)(x)&=&f(x)/g(x)\quad\text{where }g(x)\neq 0.
+	\end{IEEEeqnarray*}
+\end{definition}
+\begin{definition}[Composite function]
+	If \(f\) and \(g\) are functions, the composite function \(f\circ g\) is defined by
+	\begin{equation*}
+		(f\circ g)(x)=f(g(x)).
+	\end{equation*}
+\end{definition}
+\begin{proposition}
+	To shift a function \(f\) vertically we can add a constant \(k\), e.g.
+	\begin{equation*}
+		f(x)+k.
+	\end{equation*}
+	To shift a function horizontally, we can add a constant to the functions input, e.g.
+	\begin{equation*}
+		f(x+k).
+	\end{equation*}
+\end{proposition}
 \section{Chapter 2: Limits and continuity}
 \subsection{Rates of change and tangent lines to curves}
 \begin{definition}[Average rate of change]
@@ -34,6 +128,12 @@ TODO: binomial theorem, cosh sinh, complete the square, difference of squares, p
 \begin{remark}
 	The average rate of change of \(f\) from \(x_1\) to \(x_2\) is the slope of the secant line between these points.
 \end{remark}
+\begin{definition}[Tangent line]
+	The qualitative definition of a tangent line is the line that grazes the curve at some point on the graph.
+\end{definition}
+\begin{definition}[Instantaneous rate of change]
+	The instantaneous rate of change of a graph at a point \(p\) is the slope of the tangent line at point \(p\).
+\end{definition}
 \subsection{Limit of a function and limit laws}
 \begin{definition}[Limit]
 	Let \(f(x)\) be defined on an open interval about \(c\). We say that the limit of \(f(x)\) as \(x\) approaches \(c\) is the number \(L\), and write
@@ -76,6 +176,12 @@ TODO: binomial theorem, cosh sinh, complete the square, difference of squares, p
 		\lim_{x\rightarrow c}g(x)=\lim_{x\rightarrow c}h(x)=L.
 	\end{equation*}
 	Then \(\lim_{x\rightarrow c}f(x)=L\).
+\end{theorem}
+\begin{theorem}
+	If \(f(x)\leq g(x)\) for all \(x\) in some open interval containing \(c\), except possibly at \(x=c\) itself, and if the limits of \(f\) and \(g\) both exist as \(x\) approaches \(c\), then
+	\begin{equation*}
+		\lim_{x\rightarrow c}f(x)\leq \lim_{x\rightarrow c}g(x).
+	\end{equation*}
 \end{theorem}
 \subsection{One-sided limits}
 \begin{definition}[Right limit]

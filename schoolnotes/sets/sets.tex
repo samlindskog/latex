@@ -1,0 +1,128 @@
+\documentclass{article}
+\usepackage{settings}
+
+\geometry{
+a4paper,
+total={140mm,257mm},
+left=35mm,
+top=20mm,
+}
+
+\title{Set Theory}
+\author{Samuel Lindskog}
+
+\begin{document}
+\maketitle
+\addtocontents{toc}{\protect\hypertarget{toc}{}}
+\tableofcontents
+\pagenumbering{gobble}
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Sets}
+\subsection{Properties}
+\begin{definition}[Set]
+	A set is a collection of objects with a certain property. Objects of a set are called elements or members of that set.
+\end{definition}
+\begin{remark}
+	Throughout these notes, we are concerned only about sets of mathematical objects. Most of these objects can be described in terms of sets with certain properties. Therefore, going forward, all objects referenced in these notes are sets. Despite this, objects in these notes may be informally referred to before/without their set-based definitions.
+\end{remark}
+\begin{proposition}[Russel's paradox]
+	Russel's paradox arises from the definition of the following set:
+	\begin{equation*}
+		\text{The set containing all sets that do not contain themselves.}
+	\end{equation*}
+	It is true that the set either contains itself or does not contain itself. If this set contains itself, then the set contains a set that contains itself, so therefore it cannot contain itself. But if the set does not contain itself, then by definition it must contain itself.
+\end{proposition}
+\begin{remark}
+	This paradox demonstrates that defining a set does not prove it's existence, i.e. there exist properties that do not define sets. Godel's incompleteness theorems suggest that a complete answer to the question $'$what properties define a set$'$ doesn't exist.
+\end{remark}
+\begin{definition}[Membership Property]
+	A membership property is a property specifying that some element(s) are a member of some set.
+\end{definition}
+\begin{remark}
+	We use the identity sign $'$\(=\)$'$ to denote that two variables are the same set.
+\end{remark}
+\begin{definition}[Parameter]
+	If we have a property of some object \(X\), we say that said property depends on parameter \(X\).
+\end{definition}
+\begin{example}
+	The property of \(X\)
+	\begin{equation*}
+		\exists Y,\,Y\in X
+	\end{equation*}
+	is a property of \(X\), and thus \(Y\) is not a parameter of \(X\). To show this, we could equally state this property as \emph{There exists some element of \(X\)}. We can write a property \(P\) with its parameters \(X,Y,\ldots, Z\) as \(P(X,Y,\dots, Z)\).
+\end{example}
+\begin{definition}[Statement]
+	Properties which have no parameters are called statements.
+\end{definition}
+\begin{example}
+	"All living people engage in cellular respiration" is a true statement. All mathematical theorems are statements.
+\end{example}
+\begin{definition}[Definition]
+	A definition is an instantiation of a particular property.
+\end{definition}
+\subsection{Set Axioms}
+\begin{axiom}[The axiom of existence]
+	There exists a set which has no elements.
+\end{axiom}
+\begin{axiom}[The axiom of extensionality]
+	If every element of \(X\) is an element of \(Y\) and every element of \(Y\) is an element of \(X\), then \(X=Y\).
+\end{axiom}
+\begin{lemma}
+	There exists only one set with no elements.
+\end{lemma}
+\begin{IEEEproof}
+	Suppose \(A,B\) are sets with no elements. It is vacuously true that \(x\in A\Rightarrow x\in B\) and \(x\in B\Rightarrow x\in A\), thus \(A=B\).
+\end{IEEEproof}
+\begin{definition}[Empty set]
+	The unique set with no elements is called the empty set, and is denoted \(\emptyset\).
+\end{definition}
+\begin{remark}
+	Not all properties are membership properties; for example, the property $'$\(a\) is less than \(b\)$'$. In order to collect all objects which satisfy non-membership properties into a set (thereby rendering said property a membership property, as desired), we must specify what we mean by all objects. We can choose the set of all objects arbitrarily i.e. we must be able to percieve all sets. The following axiom solves this problem.
+\end{remark}
+\begin{axiom}[The axiom schema of comprehension]
+	Let \(P(x)\) be a property of \(x\). For any set \(A\), there is a set \(B\) such that \(x\in B\) iff \(x\in A\) and \(P(x)\).
+\end{axiom}
+\begin{lemma}
+	For every set \(A\), there is only one set \(B\) such that \(x\in B\) iff \(x\in A\) and \(P(x)\).
+\end{lemma}
+\begin{IEEEproof}
+	Let \(A,B,C\) be sets and \(P(x)\) be a property of \(x\). From the axiom of comprehension,
+	\begin{IEEEeqnarray*}{l}
+		\forall A,\,\exists B,\,x\in B\Leftrightarrow\big(x\in A\wedge P(x)\big),\\
+		\forall A,\,\exists C,\,x\in C\Leftrightarrow\big(x\in A\wedge P(x)\big).
+	\end{IEEEeqnarray*}
+It then follows that
+\begin{IEEEeqnarray*}{l}
+	x\in B\Rightarrow\big(x\in A\wedge P(x)\big)\Rightarrow x\in C,\\
+	x\in C\Rightarrow\big(x\in A\wedge P(x)\big)\Rightarrow x\in B,
+\end{IEEEeqnarray*}
+so \(B\subseteq C\) and \(C\subseteq B\) and by the axiom of extensionality, \(B=C\).
+\end{IEEEproof}
+\begin{definition}
+	\(\{x\in A\,|\,P(x)\}\) is the set of all \(x\in A\) with the property \(P(x)\).
+\end{definition}
+\begin{axiom}[The axiom of pair]
+	For any \(A\) and \(B\), there is a set \(C\) such that \(x\in C\) iff \(x=A\) or \(x=B\).
+\end{axiom}
+\begin{axiom}[The axiom of union]
+	For any set \(S\), there exists a set \(U\) such that \(x\in U\) iff \(x\in A\) for some \(A\in S\).
+\end{axiom}
+\begin{definition}[Union]
+	The union of \(S\), denoted \(\bigcup S\), is the set \(U\) such that \(x\in U\) iff \(x\in A\) for some \(A\in S\). The union of two sets \(M,N\), denoted \(M\cup N\) is the set \(\bigcup\{M,N\}\).
+\end{definition}
+\begin{remark}
+	We say that \(S\) is a system of sets, or a collection of sets, if we want to stress that the elements of \(S\) are sets.
+\end{remark}
+\begin{definition}[Subset]
+	\(A\) is a subset of \(B\), denoted \(A\subseteq B\), if for all \(x\), \(x\in A\) implies \(x\in B\).
+\end{definition}
+\begin{axiom}[The axiom of power set]
+	For any set \(S\), there exists a set \(P\) such that \(X\in P\) iff \(X\subseteq S\).
+\end{axiom}
+\begin{definition}[Power set]
+	Since the set \(P\) is uniquely determined, we call the set of all subsets of \(S\) the power set of \(S\), and denote it by \(\mathcal{P}(S)\).
+\end{definition}
+\end{document}
